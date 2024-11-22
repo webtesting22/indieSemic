@@ -1,0 +1,32 @@
+#MegaNavigationContainer {
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+
+}
+
+.p-megamenu-panel {
+    background-color: black;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 80vh;
+}
+
+.p-megamenu-root-list>.p-menuitem {
+    position: unset;
+}
+
+.p-menuitem {
+    margin: 0px 20px;
+}
+
+.p-menuitem-text {
+    color: black;
+}
+.MuiPaper-root {
+    background-color: transparent !important;
+    --Paper-shadow:none !important;
+}
