@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -32,6 +32,20 @@ HideOnScroll.propTypes = {
 };
 
 const MegaNavigation = () => {
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollY = window.scrollY || document.documentElement.scrollTop;
+            setIsScrolled(scrollY > 50); // Change threshold as needed
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
     const navigate = useNavigate(); // Using useNavigate hook
 
     // Create a function to handle navigation on click
@@ -85,7 +99,11 @@ const MegaNavigation = () => {
     return (
         <React.Fragment>
             <HideOnScroll>
-                <AppBar>
+                <AppBar style={{
+                    backgroundColor: isScrolled ? "black" : "transparent",
+                    transition: "background-color 0.3s ease",
+                    boxShadow: isScrolled ? "0px 4px 6px rgba(0, 0, 0, 0.1)" : "none",
+                }}>
                     <main id="MegaNavigationContainer">
                         <div className="LogoContainer">
                             {/* Add logo or any other content here */}
