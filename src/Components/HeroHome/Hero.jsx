@@ -35,6 +35,7 @@ const Hero = () => {
                         pagination={{
                             dynamicBullets: true,
                         }}
+                        speed={800}
                         autoplay={{
                             delay: 2000,
                             disableOnInteraction: false,
