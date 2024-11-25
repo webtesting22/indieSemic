@@ -1,0 +1,135 @@
+.ProductCard {
+    position: relative;
+}
+
+.ImageContainer {
+    height: 250px;
+    width: 250px;
+}
+
+.ImageContainer img {
+    width: 100%;
+    object-fit: contain;
+    height: 100%;
+    aspect-ratio: 3 / 2;
+}
+
+.CombineContainer {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ProducardContent h4 {
+    font-weight: 400;
+    text-align: center;
+    margin-top: 8px;
+}
+
+.ProducardContent h5 {
+    font-weight: 500;
+    text-align: center;
+}
+
+
+.CompareButton,
+.WishListButton {
+    height: 23px;
+    width: 23px;
+    /* background-color: red; */
+    margin: 10px 0px;
+    position: absolute;
+    right: 0px;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: .5s;
+    padding: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 3px;
+}
+
+.ProductCard:hover .CompareButton,
+.ProductCard:hover .WishListButton {
+    height: 23px;
+    width: 23px;
+    /* background-color: red; */
+    margin: 10px 0px;
+    position: absolute;
+    right: 0px;
+    opacity: 1;
+    transform: translateX(0px);
+    transition: .5s;
+    padding: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.WishListButton {
+    top: 37px;
+}
+
+.AddToCardBtn button {
+    margin-top: 5px;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: .5s;
+    cursor: pointer;
+}
+
+.ProductCard:hover .AddToCardBtn button {
+    margin-top: 5px;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    opacity: 1;
+    transform: translateY(0px);
+    transition: .5s;
+}
+
+.ProductCard:hover .AddToCardBtn button:hover {
+    background-color: black;
+    transition: .5s;
+}
+
+.ProductCard:hover .AddToCardBtn button:hover .cart-icon {
+    color: white;
+}
+
+.cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+}
+
+.cart-button .cart-text {
+    opacity: 1;
+    display: block;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    position: absolute;
+}
+
+.cart-button .cart-icon {
+    opacity: 0;
+    display: none;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    position: absolute;
+}
+
+.cart-button:hover .cart-text {
+    opacity: 0;
+    display: block;
+    transform: translateY(-20px);
+}
+
+.cart-button:hover .cart-icon {
+    /* transform: translate(-50%, -50%) scale(1); */
+    opacity: 1;
+    display: block;
+    transform: translateY(0px);
+}

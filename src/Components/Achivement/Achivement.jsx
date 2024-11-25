@@ -33,7 +33,7 @@ const Achivement = () => {
                 </div>
                 <Row >
                     {AchivementvaluesData.map((item, index) => (
-                        <Col lg={8} md={12} sm={24} key={index} style={{width:"100%"}}>
+                        <Col lg={8} md={12} sm={24} key={index} style={{ width: "100%" }}>
                             <div className="CountersContainer">
                                 <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                                     {item.icon} &nbsp;
