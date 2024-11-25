@@ -27,82 +27,28 @@ const NavigationData = [
 
 const RFModules = [
     {
-        link: "DemoLink",
-    },
-    {
-        link: "DemoLink"
-    },
-    {
-        link: "DemoLink"
-    },
-    {
-        link: "DemoLink"
-    },
-    {
-        link: "DemoLink"
-    },
-    {
-        link: "DemoLink"
-    },
-    {
-        link: "DemoLink"
-    },
+        link:"Coming Soon",
+       },
 ]
 
 const SystemOnChip = [
-    {
-        link: "SystemOnChip"
-    },
-    {
-        link: "SystemOnChip"
-    },
-    {
-        link: "SystemOnChip"
-    },
-    {
-        link: "SystemOnChip"
-    },
-    {
-        link: "SystemOnChip"
-    },
+   {
+    link:"Coming Soon",
+   },
 
 ]
 
 const Services = [
     {
-        link: "Services"
-    },
-    {
-        link: "Services"
-    },
-    {
-        link: "Services"
-    },
-    {
-        link: "Services"
-    },
-    {
-        link: "Services"
-    },
+        link:"Coming Soon",
+       },
 
 ]
 
 const Applications = [
     {
-        link: "Applications"
-    },
-    {
-        link: "Applications"
-    },
-    {
-        link: "Applications"
-    },
-    {
-        link: "Applications"
-    },
-    {
-        link: "Applications"
-    },
+        link:"Coming Soon",
+       },
 ]
 
 
