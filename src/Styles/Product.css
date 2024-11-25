@@ -12,6 +12,12 @@
     object-fit: contain;
     height: 100%;
     aspect-ratio: 3 / 2;
+    transition: .5s;
+}
+
+.ProductCard:hover .ImageContainer img {
+    transform: scale(1.03);
+    transition: .5s;
 }
 
 .CombineContainer {
@@ -19,6 +25,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.ProducardContent {
+    width: 100%;
 }
 
 .ProducardContent h4 {
@@ -47,6 +57,7 @@
     padding: 5px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     border-radius: 3px;
+    z-index: 55;
 }
 
 .ProductCard:hover .CompareButton,
@@ -62,6 +73,7 @@
     transition: .5s;
     padding: 5px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    z-index: 55555;
 }
 
 .WishListButton {
@@ -87,6 +99,8 @@
     opacity: 1;
     transform: translateY(0px);
     transition: .5s;
+    border-radius: 0px 0px 10px 10px;
+    overflow: hidden;
 }
 
 .ProductCard:hover .AddToCardBtn button:hover {
@@ -119,6 +133,7 @@
     transform: translateY(0);
     transition: all 0.3s ease;
     position: absolute;
+    transform: translateY(20px);
 }
 
 .cart-button:hover .cart-text {
@@ -128,8 +143,30 @@
 }
 
 .cart-button:hover .cart-icon {
-    /* transform: translate(-50%, -50%) scale(1); */
     opacity: 1;
     display: block;
     transform: translateY(0px);
+}
+
+.ToolsAndFeatures {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 30px;
+}
+
+.ToolsAndFeatures>div {
+    margin: 0px 5px;
+    height: 20px;
+    width: 25px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ToolsAndFeatures>div svg {
+    font-size: 38px;
+    /* height: 38px;
+    width: 30px; */
+    opacity: 0.4;
 }

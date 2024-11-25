@@ -8,12 +8,28 @@ import CompareArrowsSharpIcon from "@mui/icons-material/CompareArrowsSharp";
 import FavoriteBorderSharpIcon from "@mui/icons-material/FavoriteBorderSharp";
 import DoneSharpIcon from "@mui/icons-material/DoneSharp";
 import ShoppingCartSharpIcon from '@mui/icons-material/ShoppingCartSharp';
+import GridViewSharpIcon from '@mui/icons-material/GridViewSharp';
+import ViewModuleSharpIcon from '@mui/icons-material/ViewModuleSharp';
+import ViewCompactSharpIcon from '@mui/icons-material/ViewCompactSharp';
+import Cart from "../Cart/Cart";
+import SingleProductPage from "../../CommonComponents/Navigationdata/SingleProductPage/SingleProduct";
 const IndieSemicProduct = () => {
+    const [columnSpan, setColumnSpan] = useState({ lg: 6, md: 8 }); // Default to 6 (for 12/12 view)
     const { products } = useProductContext();
 
     // State to manage icons for each product
     const [compareStates, setCompareStates] = useState({});
     const [favoriteStates, setFavoriteStates] = useState({});
+    const handleLayoutChange = (layout) => {
+        if (layout === "first") {
+            setColumnSpan({ lg: 6, md: 12 }); // Two columns per row
+        } else if (layout === "second") {
+            setColumnSpan({ lg: 8, md: 8 }); // Three columns per row
+        } else if (layout === "third") {
+            setColumnSpan({ lg: 12, md: 6 }); // Four columns per row
+        }
+    };
+
 
     // Toggle Compare Icon
     const toggleCompareIcon = (productId) => {
@@ -40,10 +56,21 @@ const IndieSemicProduct = () => {
                 link="Products"
             />
             <section className="section_Padding">
+                <div className="ToolsAndFeatures">
+                    <div onClick={() => handleLayoutChange("first")} style={{ cursor: "pointer" }}>
+                        <ViewCompactSharpIcon />
+                    </div>
+                    <div onClick={() => handleLayoutChange("second")} style={{ cursor: "pointer" }}>
+                        <ViewModuleSharpIcon />
+                    </div>
+                    <div onClick={() => handleLayoutChange("third")} style={{ cursor: "pointer" }}>
+                        <GridViewSharpIcon />
+                    </div>
+                </div>
                 <div style={{ padding: "20px" }}>
                     <Row>
                         {products.map((product) => (
-                            <Col lg={6} md={8} key={product.id}>
+                            <Col lg={columnSpan.lg} md={columnSpan.md} key={product.id}>
                                 <div className="ProductCard">
                                     <div className="HoverableButtons">
                                         {/* Compare Button */}
@@ -79,7 +106,7 @@ const IndieSemicProduct = () => {
                                         </div>
                                     </div>
                                     <div className="CombineContainer">
-                                        <div>
+                                        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>
                                             <div className="ImageContainer">
                                                 <img alt={product.title} src={product.image} />
                                             </div>
@@ -88,7 +115,7 @@ const IndieSemicProduct = () => {
                                                     <button className="cart-button">
                                                         <span className="cart-text">Add To Cart</span>
                                                         <span className="cart-icon" >
-                                                           <ShoppingCartSharpIcon/>{/* FontAwesome cart icon */}
+                                                            <ShoppingCartSharpIcon />{/* FontAwesome cart icon */}
                                                         </span>
                                                     </button>
                                                 </div>
@@ -102,6 +129,8 @@ const IndieSemicProduct = () => {
                         ))}
                     </Row>
                 </div>
+                <Cart />
+                <SingleProductPage/>
             </section>
         </>
     );
