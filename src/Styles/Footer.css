@@ -1,0 +1,36 @@
+#footerSection{
+    background-color: black;
+    color: white;
+    padding-bottom: 7rem;
+}
+.footerLinksSection ul{
+    padding-left: 0;
+}
+.footerLinksSection ul li{ 
+    list-style: none;
+    padding: 10px 15px;
+}
+.footerLinksSection a{
+    color: white;
+}
+.footerContactLinks p{
+    display: flex;
+    padding: 10px 0;
+} 
+.footerSocialIcons{
+    display: flex;
+}
+.footerSocialIcons>div{
+    padding: 7px 10px ;
+    margin: 10px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+@media (max-width:576px){
+    #footerSection{
+        padding-bottom: 0;
+    }
+    .footerSocialIcons>div{
+        margin: 5px;
+    }
+}

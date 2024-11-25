@@ -70,5 +70,23 @@
 
     .p-menuitem-text {
         color: white;
+        width: 100%;
     }
 }
+@media (max-width:576px){
+    .p-megamenu-panel{
+        margin-top: 0;
+        padding: 5px 20px;
+    }
+    .p-megamenu-root-list>.p-menuitem{
+        margin: 15px 0;
+    }
+    .p-megamenu-submenu{
+        padding: 0;
+        display: flex;
+
+        width: 100%;
+    }
+    .p-megamenu-submenu-header {
+        margin: 0;
+    }}

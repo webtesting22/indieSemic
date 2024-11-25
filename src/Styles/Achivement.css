@@ -12,7 +12,9 @@
 .CountersContainer {
     text-align: center;
 }
-
+.CountersContainer h1{
+    font-size: 3rem;
+}
 .OverlayContainer {
     height: 100%;
     width: 100%;
