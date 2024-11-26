@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import CssBaseline from '@mui/material/CssBaseline';
+import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import Slide from '@mui/material/Slide';
-import { MegaMenu } from 'primereact/megamenu';
 import { NavigationData, RFModules, SystemOnChip, Services, Applications } from "../../CommonComponents/Navigationdata/NavigationData";
-import { useNavigate } from 'react-router-dom'; // Updated import for React Router v6
+import { Drawer, Button, Collapse } from 'antd';
+import { MenuOutlined } from '@ant-design/icons';
 import "../../Styles/MegaNavigation.css";
 
 function HideOnScroll(props) {
@@ -33,93 +29,144 @@ HideOnScroll.propTypes = {
 
 const MegaNavigation = () => {
     const [isScrolled, setIsScrolled] = useState(false);
-
+    const [lastScrollY, setLastScrollY] = useState(0);
+    const [showAppBar, setShowAppBar] = useState(true);
+    const [drawerVisible, setDrawerVisible] = useState(false);  // To manage drawer visibility
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     useEffect(() => {
         const handleScroll = () => {
             const scrollY = window.scrollY || document.documentElement.scrollTop;
-            setIsScrolled(scrollY > 50); // Change threshold as needed
+            setShowAppBar(scrollY <= lastScrollY); // Show AppBar when scrolling up
+            setIsScrolled(scrollY > 50); // Add background when scrolled down
+            setLastScrollY(scrollY);
         };
+
+        const handleResize = () => setWindowWidth(window.innerWidth);
 
         window.addEventListener("scroll", handleScroll);
+        window.addEventListener("resize", handleResize);
+
         return () => {
             window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("resize", handleResize);
         };
-    }, []);
+    }, [lastScrollY]);
 
-    const navigate = useNavigate(); // Using useNavigate hook
 
-    // Create a function to handle navigation on click
-    const handleLinkClick = (path) => {
-        navigate(path); // This will navigate to the selected path
+    // To toggle the Drawer visibility
+    const toggleDrawer = () => {
+        setDrawerVisible(!drawerVisible);
     };
 
-    // Map NavigationData to MegaMenu items
-    const items = NavigationData.map((category) => {
-        // If the category is a top-level menu like "Home" or "About Us"
-        if (category.link === "Home" || category.link === "About Us") {
-            return {
-                label: category.link,
-                icon: 'pi pi-home', // You can customize this icon for each category
-                command: () => handleLinkClick(category.path) // Navigate directly on click
-            };
+    // A function to render sub-nav based on the main navigation item
+    const renderSubNav = (link) => {
+        switch (link) {
+            case 'RF Modules':
+                return RFModules.map((item, index) => (
+                    <Collapse.Panel header={item.link} key={index}>
+                        <a href="#">{item.link}</a>
+                    </Collapse.Panel>
+                ));
+            case 'System on Chip (SoCS)':
+                return SystemOnChip.map((item, index) => (
+                    <Collapse.Panel header={item.link} key={index}>
+                        <a href="#">{item.link}</a>
+                    </Collapse.Panel>
+                ));
+            case 'Services':
+                return Services.map((item, index) => (
+                    <Collapse.Panel header={item.link} key={index}>
+                        <a href="#">{item.link}</a>
+                    </Collapse.Panel>
+                ));
+            case 'Applications':
+                return Applications.map((item, index) => (
+                    <Collapse.Panel header={item.link} key={index}>
+                        <a href="#">{item.link}</a>
+                    </Collapse.Panel>
+                ));
+            default:
+                return null;
         }
-
-        let categoryItems = [];
-
-        // Check the category type and map the corresponding links
-        if (category.link === "RF Modules") {
-            categoryItems = RFModules.map((item) => ({
-                label: item.link,
-                command: () => handleLinkClick(item.link)
-            }));
-        } else if (category.link === "System on Chip (SoCS)") {
-            categoryItems = SystemOnChip.map((item) => ({
-                label: item.link,
-                command: () => handleLinkClick(item.link)
-            }));
-        } else if (category.link === "Services") {
-            categoryItems = Services.map((item) => ({
-                label: item.link,
-                command: () => handleLinkClick(item.link)
-            }));
-        } else if (category.link === "Applications") {
-            categoryItems = Applications.map((item) => ({
-                label: item.link,
-                command: () => handleLinkClick(item.link)
-            }));
+    };
+    const getButtonColor = () => {
+        // For mobile devices, always return white, otherwise use scroll state
+        if (windowWidth < 768) {
+            return "white"; // On mobile, button color is always white
         }
-
-        return {
-            label: category.link,
-            icon: 'pi pi-box', // You can customize this icon for each category
-            items: [[...categoryItems]] // Wrap in an array of arrays to match MegaMenu structure
-        };
-    });
+        return isScrolled ? "white" : "white"; // On desktop, use scroll state
+    };
 
     return (
         <React.Fragment>
+            {/* Only show AppBar if `showAppBar` is true */}
             <HideOnScroll>
-                <AppBar style={{
-                    backgroundColor: isScrolled ? "black" : "transparent",
-                    transition: "background-color 0.3s ease",
-                    boxShadow: isScrolled ? "0px 4px 6px rgba(0, 0, 0, 0.1)" : "none",
-                }}>
-                    <main id="MegaNavigationContainer">
-                        <div className="LogoContainer">
-                            {/* Add logo or any other content here */}
-                        </div>
-                        <div className="NavigationLinksContainer">
-                            <div className="card">
-                                <MegaMenu model={items} breakpoint="960px" />
+                <div id="NavigationBar">
+                    <AppBar
+                        style={{
+                            backgroundColor: isScrolled ? "black" : "transparent",
+                            top: showAppBar ? 0 : '-64px', transition: 'top 0.3s',
+                            boxShadow: isScrolled ? "0px 4px 6px rgba(0, 0, 0, 0.1)" : "none",
+                        }}
+                    >
+                        <Toolbar>
+                            <div>
+                                {/* If the window width is less than 768px, show Drawer for mobile/tablet */}
+                                {windowWidth < 768 ? (
+                                    <>
+                                        <Button
+                                            type="primary"
+                                            icon={<MenuOutlined />}
+                                            onClick={toggleDrawer}
+                                            style={{ color: 'white' }}
+                                        >
+                                            Menu
+                                        </Button>
+                                        <Drawer
+                                            title="Navigation"
+                                            placement="left"
+                                            closable={false}
+                                            onClose={toggleDrawer}
+                                            visible={drawerVisible}
+                                            width={300}
+                                        >
+                                            <Collapse accordion>
+                                                {NavigationData.map((item, index) => (
+                                                    <Collapse.Panel header={item.link} key={index}>
+                                                        {renderSubNav(item.link)}
+                                                    </Collapse.Panel>
+                                                ))}
+                                            </Collapse>
+                                        </Drawer>
+                                    </>
+                                ) : (
+                                    // Desktop navigation as per original code
+                                    <ul style={{ listStyleType: 'none', padding: 0 }}>
+                                        {NavigationData.map((item, index) => (
+                                            <li key={index} style={{ display: 'inline-block', marginRight: '10px' }}>
+                                                <div className="dropdown">
+                                                    <button className="dropbtn" style={{ color: getButtonColor() }}>
+                                                        {item.link}
+                                                    </button>
+                                                    {renderSubNav(item.link) && (
+                                                        <div className="dropdown-content">
+                                                            <div>
+                                                                {renderSubNav(item.link)} {/* Render sub-nav */}
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
                             </div>
-                        </div>
-                    </main>
-                </AppBar>
+                        </Toolbar>
+                    </AppBar>
+                </div>
             </HideOnScroll>
 
-            <Toolbar /> {/* To prevent content from jumping up under the AppBar */}
-
-
+            <Toolbar />
         </React.Fragment>
     );
 };

@@ -17,6 +17,7 @@ const IndieSemicProduct = () => {
     const [columnSpan, setColumnSpan] = useState({ lg: 6, md: 8 }); // Default to 6 (for 12/12 view)
     const { products } = useProductContext();
 
+
     // State to manage icons for each product
     const [compareStates, setCompareStates] = useState({});
     const [favoriteStates, setFavoriteStates] = useState({});
@@ -112,7 +113,7 @@ const IndieSemicProduct = () => {
                                             </div>
                                             <div className="ProducardContent">
                                                 <div className="AddToCardBtn">
-                                                    <button className="cart-button">
+                                                    <button className="cart-button" >
                                                         <span className="cart-text">Add To Cart</span>
                                                         <span className="cart-icon" >
                                                             <ShoppingCartSharpIcon />{/* FontAwesome cart icon */}
@@ -129,8 +130,6 @@ const IndieSemicProduct = () => {
                         ))}
                     </Row>
                 </div>
-                <Cart />
-                <SingleProductPage/>
             </section>
         </>
     );
