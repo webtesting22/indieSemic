@@ -1,6 +1,6 @@
-.expertise-page {
+/* .expertise-page {
     padding: 5rem 7rem 0rem 7rem;
-  }
+  } */
   
   .expertise-header {
     display: grid;
@@ -9,15 +9,10 @@
     margin-bottom: 2rem;
   }
   
-  .expertise-heading h1 {
-    font-size: 3rem;
+  .expertise-heading h2 {
+    /* font-size: 3rem; */
     font-weight: bold;
-    color: #1773cf;
-  }
-  
-  .expertise-description p {
-    font-size: 1.5rem;
-    /* color: #718096; */
+    color: #3B3BD6;
   }
   
   .expertise-cards {
@@ -69,7 +64,7 @@
   }
   
   .card-title {
-    color: #3182ce;
+    color: #3B3BD6;
     transition: color 0.3s ease;
   }
   
@@ -77,9 +72,9 @@
     transition: color 0.3s ease;
   }
   
-  .expertise-card:hover .card-description {
+  /* .expertise-card:hover .card-description {
     color: #2c5282;
-  }
+  } */
   
   /* Responsive Design */
   @media (max-width: 1024px) {

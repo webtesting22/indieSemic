@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, Typography } from '@mui/material';
+import { Card, CardContent } from '@mui/material';
 import "../../Styles/Expertise.css";
 
 const Expertise = () => {
@@ -37,10 +37,10 @@ const Expertise = () => {
     ];
 
     return (
-        <div className="expertise-page">
+        <section id='expertise-page' className="section_Padding">
             <div className="expertise-header">
                 <div className="expertise-heading">
-                    <h1>What We Excel </h1>
+                    <h2>What We Excel </h2>
                 </div>
 
                 <div className="expertise-description">
@@ -65,13 +65,13 @@ const Expertise = () => {
                         </div>
 
                         <CardContent>
-                            <Typography className="card-title">{card.title}</Typography>
+                            <h3 className="card-title">{card.title}</h3>
                             <p className="card-description">{card.description}</p>
                         </CardContent>
                     </Card>
                 ))}
             </div>
-        </div>
+        </section>
     );
 };
 

@@ -22,9 +22,11 @@ h4,
 h5,
 h6 {
   margin: 0;
+  font-family: "Roboto Flex", sans-serif !important;
 }
 p {
   font-size: 16px;
+  font-family: "Roboto Flex", sans-serif !important;
 }
 
 @media (max-width: 769px) {

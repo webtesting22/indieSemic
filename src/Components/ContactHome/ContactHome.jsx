@@ -33,7 +33,7 @@ const ContactHome = () => {
                     </div>
                 </Col>
             </Row>
-        </section >
+        </section>
     )
 }
 export default ContactHome;
