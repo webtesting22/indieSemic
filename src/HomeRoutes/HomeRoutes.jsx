@@ -9,13 +9,13 @@ import Expertise from "../Components/OurExpertise/Expertise";
 const HomeRoutes = () => {
     return (
         <>
-            <ScrollTop style={{ zIndex: "1000000",backgroundColor:'black' }} />
+            <ScrollTop style={{ zIndex: "1000000", backgroundColor: 'black' }} />
             <Hero />
 
 
             <AboutCompany />
             <Achivement />
-<Expertise/>
+            <Expertise />
             <ContactHome />
         </>
     )
