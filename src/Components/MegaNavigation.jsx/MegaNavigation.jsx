@@ -94,7 +94,7 @@ const MegaNavigation = () => {
         if (windowWidth < 768) {
             return "white"; // On mobile, button color is always white
         }
-        return isScrolled ? "white" : "white"; // On desktop, use scroll state
+        return isScrolled ? "black" : "white"; // On desktop, use scroll state
     };
 
     return (
@@ -104,7 +104,7 @@ const MegaNavigation = () => {
                 <div id="NavigationBar">
                     <AppBar
                         style={{
-                            backgroundColor: isScrolled ? "black" : "transparent",
+                            backgroundColor: isScrolled ? "white" : "transparent",
                             top: showAppBar ? 0 : '-64px', transition: 'top 0.3s',
                             boxShadow: isScrolled ? "0px 4px 6px rgba(0, 0, 0, 0.1)" : "none",
                         }}
@@ -123,20 +123,22 @@ const MegaNavigation = () => {
                                             Menu
                                         </Button>
                                         <Drawer
-                                            title="Navigation"
+                                            title="IndieSemic"
                                             placement="left"
                                             closable={false}
                                             onClose={toggleDrawer}
                                             visible={drawerVisible}
                                             width={300}
                                         >
-                                            <Collapse accordion>
-                                                {NavigationData.map((item, index) => (
-                                                    <Collapse.Panel header={item.link} key={index}>
-                                                        {renderSubNav(item.link)}
-                                                    </Collapse.Panel>
-                                                ))}
-                                            </Collapse>
+                                            <div id='Collapse'>
+                                                <Collapse accordion>
+                                                    {NavigationData.map((item, index) => (
+                                                        <Collapse.Panel header={item.link} key={index}>
+                                                            {renderSubNav(item.link)}
+                                                        </Collapse.Panel>
+                                                    ))}
+                                                </Collapse>
+                                            </div>
                                         </Drawer>
                                     </>
                                 ) : (

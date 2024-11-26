@@ -1,4 +1,14 @@
+.MuiToolbar-root:hover {
+    background-color: white;
+    transition: .5s;
+}
+
+.MuiToolbar-root:hover .dropdown .dropbtn {
+    color: black !important;
+}
+
 /* Container for the dropdown items */
+
 .dropdown {
     /* position: relative; */
     display: inline-block;
@@ -6,16 +16,18 @@
 
 /* Style for the dropdown content */
 .dropdown-content {
-    display: none;
+    opacity: 0;
     position: absolute;
     background-color: transparent;
     min-width: 100%;
     left: 0px;
     right: 0px;
-    /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
     z-index: 23423432423;
     min-height: 40vh;
     cursor: pointer;
+    transition: .2s;
+    visibility: hidden;
+    transform: translateY(20px);
 }
 
 .dropdown-content>div {
@@ -25,27 +37,31 @@
     height: 100%;
     width: 100%;
     position: absolute;
-    background: black;
+    background: white;
     margin-top: 20px;
+    transition: .5s;
 }
 
-/* Style for each link in the dropdown */
 .dropdown-content a {
     /* color: black; */
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     cursor: pointer;
+    transition: .5s;
 }
 
 .dropdown-content a:hover {
     background-color: #ddd;
     cursor: pointer;
+    transition: .5s;
 }
 
-/* Show the dropdown content when hovering */
 .dropdown:hover .dropdown-content {
-    display: block;
+    opacity: 1;
+    transition: .2s;
+    visibility: visible;
+    transform: translateY(0px);
 }
 
 .dropbtn {
@@ -53,4 +69,36 @@
     border: none;
     cursor: pointer;
     font-size: 16px;
+}
+
+#Collapse .ant-collapse {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+#Collapse .ant-collapse .ant-collapse-item {
+    border: none !important;
+}
+
+#Collapse .ant-collapse .ant-collapse-item:nth-child(1) .ant-collapse-content {
+    background-color: red;
+    display: none;
+}
+
+#Collapse .ant-collapse .ant-collapse-item:last-child .ant-collapse-content {
+    background-color: red;
+    display: none;
+}
+
+#Collapse .ant-collapse .ant-collapse-item:first-child .ant-collapse-expand-icon {
+    opacity: 0 !important;
+}
+
+#Collapse .ant-collapse .ant-collapse-item:last-child .ant-collapse-expand-icon {
+    opacity: 0 !important;
+
+}
+
+.ant-collapse-header-text {
+    color: black;
 }
