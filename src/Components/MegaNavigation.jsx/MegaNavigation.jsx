@@ -123,20 +123,22 @@ const MegaNavigation = () => {
                                             Menu
                                         </Button>
                                         <Drawer
-                                            title="Navigation"
+                                            title="IndieSemic"
                                             placement="left"
                                             closable={false}
                                             onClose={toggleDrawer}
                                             visible={drawerVisible}
                                             width={300}
                                         >
-                                            <Collapse accordion>
-                                                {NavigationData.map((item, index) => (
-                                                    <Collapse.Panel header={item.link} key={index}>
-                                                        {renderSubNav(item.link)}
-                                                    </Collapse.Panel>
-                                                ))}
-                                            </Collapse>
+                                            <div id='Collapse'>
+                                                <Collapse accordion>
+                                                    {NavigationData.map((item, index) => (
+                                                        <Collapse.Panel header={item.link} key={index}>
+                                                            {renderSubNav(item.link)}
+                                                        </Collapse.Panel>
+                                                    ))}
+                                                </Collapse>
+                                            </div>
                                         </Drawer>
                                     </>
                                 ) : (
