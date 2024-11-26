@@ -5,6 +5,7 @@ import Achivement from "../Components/Achivement/Achivement";
 import ContactHome from "../Components/ContactHome/ContactHome";
 import { ScrollTop } from 'primereact/scrolltop';
 
+import Expertise from "../Components/OurExpertise/Expertise";
 const HomeRoutes = () => {
     return (
         <>
@@ -14,7 +15,7 @@ const HomeRoutes = () => {
 
             <AboutCompany />
             <Achivement />
-
+<Expertise/>
             <ContactHome />
         </>
     )
