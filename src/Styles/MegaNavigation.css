@@ -1,4 +1,14 @@
+.MuiToolbar-root:hover {
+    background-color: white;
+    transition: .5s;
+}
+
+.MuiToolbar-root:hover .dropdown .dropbtn {
+    color: black !important;
+}
+
 /* Container for the dropdown items */
+
 .dropdown {
     /* position: relative; */
     display: inline-block;
@@ -86,4 +96,9 @@
 
 #Collapse .ant-collapse .ant-collapse-item:last-child .ant-collapse-expand-icon {
     opacity: 0 !important;
+
+}
+
+.ant-collapse-header-text {
+    color: black;
 }
