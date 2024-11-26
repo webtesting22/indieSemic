@@ -23,13 +23,7 @@ const ContactHome = () => {
                 <Col lg={12} xs={20}>
                     <div className='contactFormContainer'>
                         <div className='sectionHeading'><h2>Reach Out To Us!</h2></div>
-                        <Form className='contactForm'>
-                        <TextField id="outlined-basic" label="Outlined" variant="outlined" style={{marginBottom:"10px"}} />
-                        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-                        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-                        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-
-                        </Form>
+                       
                     </div>
                 </Col>
             </Row>
