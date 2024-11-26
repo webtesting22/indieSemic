@@ -8,6 +8,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import EmailIcon from '@mui/icons-material/Email';
 import { NavigationData } from "../../CommonComponents/Navigationdata/NavigationData";
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 const Footer = () => {
     return (
         <section className="section_Padding" id="footerSection">
@@ -15,7 +16,7 @@ const Footer = () => {
                 <Col lg={10} xs={24}>Company Logo here</Col>
                 <Col lg={6} xs={12}>
                     <div className="footerLinksSection">
-                        <h2>Quick Links</h2>
+                    <div className='sectionHeading'><h2>Quick Links</h2></div>
                         <ul>
                             {NavigationData.map((item, index) => (
                                 <li key={index}>
@@ -27,7 +28,7 @@ const Footer = () => {
                 </Col>
                 <Col lg={8} xs={12}>
                     <div className="footerContactLinks">
-                        <h2>Contact Us</h2>
+                    <div className='sectionHeading'><h2>Contact Us</h2></div>
                         <p><LocationOnOutlinedIcon />&nbsp;Address here</p>
                         <p><PhoneIcon />&nbsp;Contact Number here</p>
                         <p><EmailIcon />&nbsp;Mail here</p>

@@ -15,21 +15,21 @@ const Achivement = () => {
 
     const AchivementvaluesData = [
         {
-            icon: <SupervisorAccountIcon style={{ fontSize: "30px", color: "white" }} />,
+            icon: <SupervisorAccountIcon style={{ fontSize: "3rem", color: "white" }} />,
             values: "50+",
             text: "Customers",
             key: "customers",
             target:50,
         },
         {
-            icon: <EmojiEventsSharpIcon style={{ fontSize: "30px", color: "white" }} />,
+            icon: <EmojiEventsSharpIcon style={{ fontSize: "3rem", color: "white" }} />,
             values: "5+",
             text: "Awards",
             key: "awards",
             target:5,
         },
         {
-            icon: <StoreSharpIcon style={{ fontSize: "30px", color: "white" }} />,
+            icon: <StoreSharpIcon style={{ fontSize: "3rem", color: "white" }} />,
             values: "15+",
             text: "Market Ready Modules",
             key: "marketReady",
@@ -107,6 +107,7 @@ const Achivement = () => {
 
     return (
         <section id="AchivementContainer" className="section_Padding" ref={sectionRef}>
+                <div className="FixedImage" />
 
             <div className="AchivementValuesContainer">
                 <div className="OverlayContainer">
@@ -117,7 +118,7 @@ const Achivement = () => {
                         <Col lg={8} md={12} sm={24} key={index} style={{ width: "100%" }}>
                             <div className="CountersContainer">
                                 <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                    {item.icon} &nbsp;
+                                    {item.icon}&nbsp;
                                     <h1 style={{ color: "white" }}>
                                        {/* Dynamically render the counter value */}
                                        {counters[item.key].toFixed(0)}+

@@ -2,17 +2,17 @@ import React from "react";
 import "../../Styles/AboutContent.css"
 import AboutContentVideo from "../../../public/Images/AboutContentVideo.mp4"
 import { Row, Col } from "antd";
+import MemoryIcon from '@mui/icons-material/Memory';
 const AboutCompany = () => {
     return (
         <>
             <section id="AboutCompanyContainer" className="section_Padding">
-                <div className="FixedImage">
-                </div>
+                <div className="FixedImage" />
                 <div style={{ position: "sticky" }}>
                     <Row>
                         <Col lg={12} md={24}>
                             <div className="AboutCompanyContent">
-                                <h2>Company Overview</h2>
+                                <div className="sectionHeading"><h2>Company Overview</h2></div>
                                 <p>We are a leading provider of Design and Verification solutions.</p>
                                 <p>
                                     Truechip, the Verification IP specialist, is a leading provider of

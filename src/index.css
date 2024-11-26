@@ -36,3 +36,38 @@ p {
 a {
   text-decoration: none;
 }
+.p-scrolltop {
+  background-color: black;
+  border-radius: 50%;
+  padding: 10px;
+}
+.sectionHeading {
+  text-transform: uppercase;
+  color: rgb(59, 59, 214);
+  position: relative;
+  display: inline-block; /* Ensures the underline adjusts to the text width */
+}
+
+.sectionHeading::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px; /* Adjusts the position of the underline */
+  width: 0;
+  height: 1px; /* Thickness of the underline */
+  background-color: rgb(59, 59, 214); /* Matches the text color */
+  animation: animateBorder 3s infinite ease-in-out; /* Infinite animation */
+}
+
+/* Keyframes for the border animation */
+@keyframes animateBorder {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 50px; /* Expands the underline */
+  }
+  100% {
+    width: 0; /* Collapses the underline */
+  }
+}

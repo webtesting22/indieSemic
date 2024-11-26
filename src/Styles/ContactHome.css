@@ -3,32 +3,43 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .contactFormContainer {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* align-items: center; */
 }
-.contactInfoContainer p{
-    display: flex;
+
+.contactInfoContainer p {
+  display: flex;
 }
-.ContentContainerHome button{
-    background-color: black;
-    color: white;
-    padding: 10px;
-    border: none;
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap:10px;
 }
-@media (max-width:576px){
-    .contactInfoContainer{
-        align-items: center;
-    }
-    .contactFormContainer{
-        align-items: center;
-        width: 100%;
-    }
-    .ant-col{
-        width: 100%;
-    }
+.ContentContainerHome button {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  border: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+@media (max-width: 576px) {
+  .contactInfoContainer {
+    align-items: center;
+  }
+  .contactFormContainer {
+    align-items: center;
+    width: 100%;
+  }
+  .ant-col {
+    width: 100%;
+  }
 }

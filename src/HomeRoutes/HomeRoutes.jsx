@@ -3,15 +3,19 @@ import Hero from "../Components/HeroHome/Hero";
 import AboutCompany from "../Components/AboutCompany/AboutCompany";
 import Achivement from "../Components/Achivement/Achivement";
 import ContactHome from "../Components/ContactHome/ContactHome";
+import { ScrollTop } from 'primereact/scrolltop';
+
 const HomeRoutes = () => {
     return (
         <>
+            <ScrollTop style={{ zIndex: "1000000",backgroundColor:'black' }} />
+            <Hero />
 
-        <Hero/>
-        <AboutCompany/>
-        <Achivement/>
-        
-        <ContactHome/>
+
+            <AboutCompany />
+            <Achivement />
+
+            <ContactHome />
         </>
     )
 }

@@ -5,6 +5,7 @@ import "../../Styles/Hero.css"
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
+
 const Hero = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const CarousalImages = [
@@ -54,7 +55,9 @@ const Hero = () => {
                             </SwiperSlide>
                         ))}
                     </Swiper>
+                    
                 </div>
+
             </section>
         </>
     )
