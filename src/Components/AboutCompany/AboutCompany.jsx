@@ -1,14 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../../Styles/AboutContent.css"
 import AboutContentVideo from "../../../public/Images/AboutContentVideo.mp4"
 import { Row, Col } from "antd";
 import MemoryIcon from '@mui/icons-material/Memory';
 const AboutCompany = () => {
+    const [offsetY, setOffsetY] = useState(0);
+
+    // Update scroll position
+    const handleScroll = () => {
+        setOffsetY(window.scrollY);
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
     return (
         <>
             <section id="AboutCompanyContainer" className="section_Padding">
-                <div className="FixedImage" />
-                <div style={{ position: "sticky" }}>
+                <div className="DesignedContainer">
+                    <h1>Empowering Innovation in Semiconductor Solutions</h1>
+                    <p>Revolutionizing the future of technology with cutting-edge chip design and development.</p>
+                </div>
+                <div className="AnimatedParallaxContainer">
+                    <div>
+                        <img
+                            className="parallax-image"
+                            style={{
+                                transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed with the multiplier
+                            }}
+                            src="https://plus.unsplash.com/premium_photo-1683120974913-1ef17fdec2a8?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt=""
+                        />
+                    </div>
+                    <div>
+                        <img
+                            className="parallax-image"
+                            style={{
+                                transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed for second image
+                            }}
+                            src="https://images.unsplash.com/photo-1639004643579-7286ae5a771d?q=80&w=2835&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt=""
+                        />
+                    </div>
+                </div>
+                {/* <div className="FixedImage" /> */}
+                {/* <div style={{ position: "sticky" }}>
                     <Row>
                         <Col lg={12} md={24}>
                             <div className="AboutCompanyContent">
@@ -45,7 +84,7 @@ const AboutCompany = () => {
                         </Col>
                     </Row>
 
-                </div>
+                </div> */}
             </section>
         </>
     )
