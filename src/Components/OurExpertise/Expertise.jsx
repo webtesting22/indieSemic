@@ -133,7 +133,7 @@ const Expertise = () => {
             <div className='ExpertiseCardContainer'>
                 <img src={BackShapeImg} alt="" className='Overlayimage' />
                 <div className="DesignedContainer" id='Target'>
-                    <h1 style={{ textAlign: "left" }}>Innovating Tomorrow’s Chips with Precision and Excellence Today</h1>
+                    <h1 style={{ textAlign: "left" }}><span style={{color:"rgb(74, 144, 226)"}}>Innovating Tomorrow’s Chips</span> with Precision and Excellence Today</h1>
                     {/* <p>Revolutionizing the future of technology with cutting-edge chip design and development.</p> */}
                 </div>
 

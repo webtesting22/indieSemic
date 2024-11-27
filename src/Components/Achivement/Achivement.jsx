@@ -125,11 +125,11 @@ const Achivement = () => {
     return (
         <>
 
-            <div className="section_Padding"></div>
+            
             <section id="AchivementContainer" ref={sectionRef} className="section_Padding">
                 <div >
                     <div className="DesignedContainer">
-                        <h1>Driving Innovation in Semiconductor Technology</h1>
+                        <h1><span style={{color:"rgb(74, 144, 226)"}}>Driving Innovation</span> in Semiconductor Technology</h1>
                         <p>Shaping the Future of Technology Through Groundbreaking Semiconductor Design and Innovation.</p>
                     </div>
                 </div>
