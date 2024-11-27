@@ -148,9 +148,11 @@
   /* align-items: center; */
 }
 
-#ScrollingAnimation .StickyComponent,
+#ScrollingAnimation .StickyComponent{
+  width: 70%;
+}
 #ScrollingAnimation .ImagesContainer {
-  width: 50%;
+  width: 30%;
 }
 
 #ScrollingAnimation .StickyComponent h2 {
