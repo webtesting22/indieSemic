@@ -129,8 +129,8 @@ const Achivement = () => {
             <section id="AchivementContainer" ref={sectionRef} className="section_Padding">
                 <div >
                     <div className="DesignedContainer">
-                        <h1>Empowering Innovation in Semiconductor Solutions</h1>
-                        <p>Revolutionizing the future of technology with cutting-edge chip design and development.</p>
+                        <h1>Driving Innovation in Semiconductor Technology</h1>
+                        <p>Shaping the Future of Technology Through Groundbreaking Semiconductor Design and Innovation.</p>
                     </div>
                 </div>
                 <div>
@@ -140,8 +140,8 @@ const Achivement = () => {
                         </div>
                         <div className="Content">
                             <div>
-                                <h2>Build scalable web and mobile applications</h2>
-                                <p>We accelerate the development with a dedicated team who extends the capabilities of any idea and the vision of any product.</p>
+                                <h2>The Building Block of Modern Technology</h2>
+                                <p>Semiconductors are materials with electrical conductivity between that of a conductor and an insulator, making them essential in modern electronics.</p>
                             </div>
                         </div>
                         <img src={Back} alt="" style={{

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import "../../Styles/AboutContent.css"
 import AboutContentVideo from "../../../public/Images/AboutContentVideo.mp4"
 import { Row, Col } from "antd";
-import MemoryIcon from '@mui/icons-material/Memory';
+import MemoryRoundedIcon from '@mui/icons-material/MemoryRounded';
+import DeveloperBoardIcon from '@mui/icons-material/DeveloperBoard';
 const AboutCompany = () => {
     const [offsetY, setOffsetY] = useState(0);
 
@@ -25,7 +26,7 @@ const AboutCompany = () => {
                     <p>Revolutionizing the future of technology with cutting-edge chip design and development.</p>
                 </div>
                 <div className="AnimatedParallaxContainer">
-                    <div>
+                    <div >
                         <img
                             className="parallax-image"
                             style={{
@@ -34,6 +35,15 @@ const AboutCompany = () => {
                             src="https://plus.unsplash.com/premium_photo-1683120974913-1ef17fdec2a8?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                             alt=""
                         />
+                        <div className="text-field">
+                            <div className="text-icon">
+                                <MemoryRoundedIcon />
+                            </div>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen
+                                book.</p>
+                        </div>
                     </div>
                     <div>
                         <img
@@ -44,6 +54,15 @@ const AboutCompany = () => {
                             src="https://images.unsplash.com/photo-1639004643579-7286ae5a771d?q=80&w=2835&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                             alt=""
                         />
+                        <div className="text-field">
+                            <div className="text-icon">
+                                <DeveloperBoardIcon />
+                            </div>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen
+                                book.</p>
+                        </div>
                     </div>
                 </div>
                 {/* <div className="FixedImage" /> */}
