@@ -143,7 +143,7 @@ const Achivement = () => {
                                 <h2>Build scalable web and mobile applications</h2>
                                 <p>We accelerate the development with a dedicated team who extends the capabilities of any idea and the vision of any product.</p>
                             </div>
-                            </div>
+                        </div>
                         <img src={Back} alt="" style={{
                             transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed with the multiplier
                         }} />
