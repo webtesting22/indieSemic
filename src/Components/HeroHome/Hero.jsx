@@ -11,7 +11,7 @@ const Hero = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const CarousalImages = [
         {
-            image: "https://plus.unsplash.com/premium_photo-1683121716061-3faddf4dc504?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            image: "/Images/Slider2.jpg",
             heading: "Innovating the Future of Semiconductors",
             tagline: "Powering breakthroughs in AI and IoT technology",
         },
@@ -26,7 +26,7 @@ const Hero = () => {
             tagline: "Revolutionizing mobile and communication systems",
         },
         {
-            image: "https://plus.unsplash.com/premium_photo-1714618993404-1c25dd17afb7?q=80&w=2921&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            image: "/Images/Slider3.jpg",
             heading: "Sustainable Semiconductor Solutions",
             tagline: "Eco-friendly innovation for a greener planet",
         }
