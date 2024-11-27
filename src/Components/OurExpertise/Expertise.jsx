@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent } from '@mui/material';
 import "../../Styles/Expertise.css";
-
+import { Row, Col } from 'antd';
 const Expertise = () => {
     const expertiseCards = [
         {
@@ -39,7 +39,7 @@ const Expertise = () => {
     return (
         <section id='expertise-page' className="section_Padding">
             <div className="expertise-header">
-                <div className="expertise-heading">
+                <div className="sectionHeading">
                     <h2>What We Excel </h2>
                 </div>
 
@@ -53,23 +53,27 @@ const Expertise = () => {
             </div>
 
             <div className="expertise-cards">
-                {expertiseCards.map((card, index) => (
-                    <Card key={index} className="expertise-card">
-                        <div className="card-image-wrapper">
-                            <img
-                                src={card.image}
-                                alt={card.title}
-                                className="card-image"
-                            />
-                            <div className="card-image-overlay"></div>
-                        </div>
+                <Row gutter={[16, 16]}>
+                    {expertiseCards.map((card, index) => (
+                        <Col lg={8} md={12} xs={24}>
+                            <Card key={index} className="expertise-card">
+                                <div className="card-image-wrapper">
+                                    <img
+                                        src={card.image}
+                                        alt={card.title}
+                                        className="card-image"
+                                    />
+                                    <div className="card-image-overlay"></div>
+                                </div>
 
-                        <CardContent>
-                            <h3 className="card-title">{card.title}</h3>
-                            <p className="card-description">{card.description}</p>
-                        </CardContent>
-                    </Card>
-                ))}
+                                <CardContent>
+                                    <h3 className="card-title">{card.title}</h3>
+                                    <p className="card-description">{card.description}</p>
+                                </CardContent>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
             </div>
         </section>
     );

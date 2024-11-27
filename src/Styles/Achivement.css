@@ -11,6 +11,7 @@
     background-image: url("https://images.unsplash.com/photo-1721314787850-5745fdfb06b4?q=80&w=3028&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
     background-size: cover;
     position: relative;
+    
 }
 
 .CountersContainer {
@@ -19,6 +20,7 @@
 
 .CountersContainer h1 {
     font-size: 3rem;
+    
 }
 
 .OverlayContainer {
@@ -91,4 +93,12 @@
 
 .Content p {
     color: rgba(255, 255, 255, 0.449);
+}
+@media (max-width:769px){
+    .BoxEdit{
+        flex-direction: column;
+    }
+    .Content{
+        width: 100%;
+    }
 }

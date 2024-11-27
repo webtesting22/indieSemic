@@ -1,9 +1,11 @@
+#ContactContainer {
+  padding-bottom: 7rem;
+}
 .contactInfoContainer {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 .contactFormContainer {
   width: 100%;
@@ -19,7 +21,7 @@
 .contactForm {
   display: flex;
   flex-direction: column;
-  gap:10px;
+  gap: 10px;
 }
 .ContentContainerHome button {
   background-color: black;

@@ -5,6 +5,7 @@ import "../../Styles/Hero.css"
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
+import Button from '@mui/material/Button';
 
 const Hero = () => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -39,25 +40,35 @@ const Hero = () => {
                         loop={true}
                         pagination={{
                             dynamicBullets: true,
+                            clickable: true,
                         }}
                         speed={1000}
                         autoplay={{
-                            delay: 3000,
+                            delay: 5000,
                             disableOnInteraction: false,
                         }}
-                        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+                        // onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
                         modules={[Autoplay, Pagination]}
                         className="mySwiper"
                     >
                         {CarousalImages.map((item, index) => (
                             <SwiperSlide key={index}>
                                 <div className="slideContent">
-                                <div className="imageOverlayContainer">
+                                    <div className="imageOverlayContainer">
                                         <img src={item.image} alt={`Slide ${index + 1}`} />
                                         <div className="overlay"></div>
                                     </div>
-                                    <div className={`slideText ${activeIndex === index ? "fade-in" : "fade-out"
-                                        }`}>{item.heading}</div>
+                                    <div
+                                        className={`slideText ${activeIndex === index ? "fade-in" : "fade-out"}`}
+                                    >
+                                        {item.heading}
+                                    </div>
+                                    <div
+                                        className={`slideTagline ${activeIndex === index ? "fade-in" : "fade-out"}`}
+                                    >
+                                        {item.tagline} 
+                                    </div>
+
                                 </div>
                             </SwiperSlide>
                         ))}
