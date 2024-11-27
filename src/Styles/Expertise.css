@@ -148,9 +148,11 @@
   /* align-items: center; */
 }
 
-#ScrollingAnimation .StickyComponent,
+#ScrollingAnimation .StickyComponent{
+  width: 70%;
+}
 #ScrollingAnimation .ImagesContainer {
-  width: 50%;
+  width: 30%;
 }
 
 #ScrollingAnimation .StickyComponent h2 {
@@ -208,6 +210,7 @@
   width: 100%;
 }
 
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   #Target h1 {
@@ -224,6 +227,18 @@
 }
 
 @media (max-width: 640px) {
+  #ScrollingAnimation .StickyComponent,
+#ScrollingAnimation .ImagesContainer {
+  width: 100%;
+}
+
+  .ContentRow .SideContentContainer h3 {
+    margin-top: 0px;
+    direction: ltr;
+    font-size: 30px;
+    font-weight: 400;
+  }
+  
   .expertise-page {
     padding: 1rem;
   }
@@ -231,4 +246,13 @@
   .expertise-cards {
     grid-template-columns: 1fr;
   }
+  .ImagesContainer{
+    display: none;
+  }
+  .ExpertiseCards .ExpertiseImageContainer {
+    height: 300px;
+    width: 100%;
+    overflow: hidden;
+  }
+  
 }
