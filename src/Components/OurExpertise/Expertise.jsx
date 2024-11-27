@@ -1,8 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import { Card, CardContent } from '@mui/material';
 import "../../Styles/Expertise.css";
 import { Row, Col } from 'antd';
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import BackShapeImg from "./BackShapeImg.svg"
 const Expertise = () => {
+    const [visibleIndexes, setVisibleIndexes] = useState([]); // Track visible cards
+    const sectionRefs = useRef([]); // Ref array for all cards
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    const index = parseInt(entry.target.getAttribute("data-index"));
+                    if (entry.isIntersecting) {
+                        // Add the index to visibleIndexes when the card is in view
+                        setVisibleIndexes((prev) => [...new Set([...prev, index])]);
+                    } else {
+                        // Remove the index from visibleIndexes when the card exits the view
+                        setVisibleIndexes((prev) => prev.filter((i) => i !== index));
+                    }
+                });
+            },
+            { threshold: 0.5 } // Trigger animation when 50% is visible
+        );
+
+        sectionRefs.current.forEach((ref) => {
+            if (ref) observer.observe(ref);
+        });
+
+        return () => {
+            sectionRefs.current.forEach((ref) => {
+                if (ref) observer.unobserve(ref);
+            });
+        };
+    }, []);
     const expertiseCards = [
         {
             image: "https://plus.unsplash.com/premium_vector-1683129606388-a140556ced13?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -100,6 +131,7 @@ const Expertise = () => {
             {/* </div>
                 </div> */}
             <div className='ExpertiseCardContainer'>
+                <img src={BackShapeImg} alt="" className='Overlayimage' />
                 <div className="DesignedContainer" id='Target'>
                     <h1 style={{ textAlign: "left" }}>Innovating Tomorrow’s Chips with Precision and Excellence Today</h1>
                     {/* <p>Revolutionizing the future of technology with cutting-edge chip design and development.</p> */}
@@ -118,10 +150,43 @@ const Expertise = () => {
                                 <p>Redesigning your website can be a powerful tool for improving a brand's online presence and reaching a wider audience. A fresh well-designed website is a new asset that companies have discovered.
 
                                 </p>
-                                <button>Read More</button>
+                                <button><ArrowRightAltIcon /> Read More</button>
                             </div>
                         </Col>
+
                     </Row>
+
+                </div>
+                <div className='ContentRow' id='ScrollingAnimation'>
+                    <div className='StickyComponent'>
+                        <div>
+                            <h2>Revolutionizing Industries with Semiconductor Excellence</h2>
+                            <p>From consumer electronics to industrial automation, our semiconductors transform ideas into reality, shaping the modern technological landscape.</p>
+                        </div>
+                        <br /><br />
+                        {expertiseCards.map((item, index) => (
+                            <div key={index} className={`ExpertiseCards ${visibleIndexes.includes(index) ? "fade-in" : "hidden"
+                                }`}
+                                data-index={index}
+                                ref={(el) => (sectionRefs.current[index] = el)}>
+                                <div className='SmallText'>
+                                    <p>00{index + 1} Expertise - {item.title}</p>
+                                </div>
+                                <div>
+                                    <h2>{item.title}</h2>
+                                    <p>{item.description}</p>
+                                    <div className='ExpertiseImageContainer'>
+                                        <img src={item.image} alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className='ImagesContainer'>
+                        <div>
+                            {/* <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2765&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" /> */}
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

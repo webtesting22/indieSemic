@@ -4,7 +4,7 @@
 body {
     padding: 0px;
     margin: 0px;
-  /* font-family: "Red Hat Display", sans-serif; */
+  font-family: "Red Hat Display", sans-serif;
 }
 
 svg.p-icon {
@@ -19,7 +19,7 @@ h4,
 h5,
 h6 {
     margin: 0;
-    font-family: "Roboto Flex", sans-serif !important;
+    font-family: "Red Hat Display", sans-serif !important;
 }
 
 p {

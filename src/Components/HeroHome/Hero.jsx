@@ -66,7 +66,7 @@ const Hero = () => {
                                     <div
                                         className={`slideTagline ${activeIndex === index ? "fade-in" : "fade-out"}`}
                                     >
-                                        {item.tagline} 
+                                       <p> {item.tagline} </p>
                                     </div>
 
                                 </div>

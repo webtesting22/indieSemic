@@ -16,7 +16,7 @@ const HomeRoutes = () => {
             <AboutCompany />
             <Achivement />
             <Expertise />
-            <ContactHome />
+            {/* <ContactHome /> */}
         </>
     )
 }
