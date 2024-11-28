@@ -4,7 +4,7 @@ import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Slide from '@mui/material/Slide';
-import { NavigationData, RFModules, SystemOnChip, Services, Applications } from "../../CommonComponents/Navigationdata/NavigationData";
+import { NavigationData, RFModules, SystemOnChip, Services, Applications, AboutUs } from "../../CommonComponents/Navigationdata/NavigationData";
 import { Drawer, Button, Collapse } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import "../../Styles/MegaNavigation.css";
@@ -85,6 +85,13 @@ const MegaNavigation = () => {
                         <a href="#">{item.link}</a>
                     </Collapse.Panel>
                 ));
+            case 'About Us':
+                return AboutUs.map((item, index) => (
+                    <Collapse.Panel header={item.link} key={index}>
+                        <a href="#">{item.link}</a>
+                    </Collapse.Panel>
+                ));
+
             default:
                 return null;
         }
@@ -110,8 +117,8 @@ const MegaNavigation = () => {
                         }}
                     >
                         <Toolbar>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%',alignItems:"center" }}>
-                            <div className="logoContainer">
+                            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: "center" }}>
+                                <div className="logoContainer">
                                     <img src="/Images/logo.png" alt="Logo" />
                                 </div>
                                 {/* If the window width is less than 768px, show Drawer for mobile/tablet */}
@@ -126,7 +133,7 @@ const MegaNavigation = () => {
                                             Menu
                                         </Button>
                                         <Drawer
-                                            
+
                                             placement="left"
                                             closable={false}
                                             onClose={toggleDrawer}
@@ -147,26 +154,26 @@ const MegaNavigation = () => {
                                 ) : (
                                     // Desktop navigation as per original code
                                     <>
-                                      
-                                            <ul style={{ listStyleType: 'none', padding: 0 }}>
-                                                {NavigationData.map((item, index) => (
-                                                    <li key={index} style={{ display: 'inline-block', marginRight: '10px' }}>
-                                                        <div className="dropdown">
-                                                            <button className="dropbtn" style={{ color: getButtonColor() }}>
-                                                                {item.link}
-                                                            </button>
-                                                            {renderSubNav(item.link) && (
-                                                                <div className="dropdown-content">
-                                                                    <div>
-                                                                        {renderSubNav(item.link)} {/* Render sub-nav */}
-                                                                    </div>
+
+                                        <ul style={{ listStyleType: 'none', padding: 0 }}>
+                                            {NavigationData.map((item, index) => (
+                                                <li key={index} style={{ display: 'inline-block', marginRight: '10px' }}>
+                                                    <div className="dropdown">
+                                                        <button className="dropbtn" style={{ color: getButtonColor() }}>
+                                                            {item.link}
+                                                        </button>
+                                                        {renderSubNav(item.link) && (
+                                                            <div className="dropdown-content">
+                                                                <div>
+                                                                    {renderSubNav(item.link)} {/* Render sub-nav */}
                                                                 </div>
-                                                            )}
-                                                        </div>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                          
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                </li>
+                                            ))}
+                                        </ul>
+
                                     </>
                                 )}
                             </div>

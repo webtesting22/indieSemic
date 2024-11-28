@@ -25,7 +25,7 @@ const AboutCompany = () => {
                     <h1><span style={{color:"rgb(74, 144, 226)"}}>Empowering Innovation</span> in Semiconductor Solutions</h1>
                     <p>Revolutionizing the future of technology with cutting-edge chip design and development.</p>
                 </div>
-                <div className="AnimatedParallaxContainer">
+                {/* <div className="AnimatedParallaxContainer">
                     <div >
                         <img
                             className="parallax-image"
@@ -48,7 +48,7 @@ const AboutCompany = () => {
                         />
                         
                     </div>
-                </div>
+                </div> */}
                 {/* <div className="FixedImage" /> */}
                 {/* <div style={{ position: "sticky" }}>
                     <Row>

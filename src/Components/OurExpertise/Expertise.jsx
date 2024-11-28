@@ -4,6 +4,7 @@ import "../../Styles/Expertise.css";
 import { Row, Col } from 'antd';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import BackShapeImg from "./BackShapeImg.svg"
+import RightSideBack from "./RightSideBack.jpg"
 const Expertise = () => {
     const [visibleIndexes, setVisibleIndexes] = useState([]); // Track visible cards
     const sectionRefs = useRef([]); // Ref array for all cards
@@ -146,10 +147,8 @@ const Expertise = () => {
                         </Col>
                         <Col lg={12}>
                             <div className='SideContentContainer'>
-                                <h3>Why should you redesign your website?</h3>
-                                <p>Redesigning your website can be a powerful tool for improving a brand's online presence and reaching a wider audience. A fresh well-designed website is a new asset that companies have discovered.
-
-                                </p>
+                                <h3>Advancements in Semiconductor Technology</h3>
+                                <p>Semiconductor technology is at the core of modern electronics, driving innovation in devices like smartphones, computers, and automotive systems. With the continuous evolution of fabrication techniques, semiconductors are becoming smaller, faster, and more efficient. These advancements are essential for powering cutting-edge technologies, from artificial intelligence to 5G networks, revolutionizing industries and enabling the next wave of digital transformation. </p>
                                 <button><ArrowRightAltIcon /> Read More</button>
                             </div>
                         </Col>
@@ -164,6 +163,7 @@ const Expertise = () => {
                             <p>From consumer electronics to industrial automation, our semiconductors transform ideas into reality, shaping the modern technological landscape.</p>
                         </div>
                         <br /><br />
+                        <div>
                         {expertiseCards.map((item, index) => (
                             <div key={index} className={`ExpertiseCards ${visibleIndexes.includes(index) ? "fade-in" : "hidden"
                                 }`}
@@ -181,12 +181,9 @@ const Expertise = () => {
                                 </div>
                             </div>
                         ))}
-                    </div>
-                    <div className='ImagesContainer'>
-                        <div className='vertical-image'>
-                            <img src="https://images.unsplash.com/photo-1639004643579-7286ae5a771d?q=80&w=2835&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </section>
