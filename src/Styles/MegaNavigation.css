@@ -1,104 +1,134 @@
 .MuiToolbar-root:hover {
-    background-color: white;
-    transition: .5s;
+  background-color: white;
+  transition: 0.5s;
 }
 
 .MuiToolbar-root:hover .dropdown .dropbtn {
-    color: black !important;
+  color: black !important;
 }
 
 /* Container for the dropdown items */
 
 .dropdown {
-    /* position: relative; */
-    display: inline-block;
+  /* position: relative; */
+  display: inline-block;
 }
 
 /* Style for the dropdown content */
 .dropdown-content {
-    opacity: 0;
-    position: absolute;
-    background-color: transparent;
-    min-width: 100%;
-    left: 0px;
-    right: 0px;
-    z-index: 23423432423;
-    min-height: 40vh;
-    cursor: pointer;
-    transition: .2s;
-    visibility: hidden;
-    transform: translateY(20px);
+  opacity: 0;
+  position: absolute;
+  background-color: transparent;
+  min-width: 100%;
+  left: 0px;
+  right: 0px;
+  z-index: 23423432423;
+  min-height: 40vh;
+  cursor: pointer;
+  transition: 0.2s;
+  visibility: hidden;
+  transform: translateY(20px);
 }
 
-.dropdown-content>div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    background: white;
-    margin-top: 20px;
-    transition: .5s;
+.dropdown-content > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: white;
+  margin-top: 20px;
+  transition: 0.5s;
 }
 
 .dropdown-content a {
-    /* color: black; */
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    cursor: pointer;
-    transition: .5s;
+  /* color: black; */
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+  transition: 0.5s;
 }
 
 .dropdown-content a:hover {
-    background-color: #ddd;
-    cursor: pointer;
-    transition: .5s;
+  background-color: #ddd;
+  cursor: pointer;
+  transition: 0.5s;
 }
 
 .dropdown:hover .dropdown-content {
-    opacity: 1;
-    transition: .2s;
-    visibility: visible;
-    transform: translateY(0px);
+  opacity: 1;
+  transition: 0.2s;
+  visibility: visible;
+  transform: translateY(0px);
 }
 
 .dropbtn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
 }
-
+.logoContainer {
+  width: 150px;
+}
+.logoContainer img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+}
+.navigationContainer {
+  display: flex;
+  justify-content: space-between !important;
+  align-items: center;
+}
+#Collapse{
+    margin-top: 100px;
+}
 #Collapse .ant-collapse {
-    background-color: transparent !important;
-    border: none !important;
+  background-color: transparent !important;
+  border: none !important;
 }
 
 #Collapse .ant-collapse .ant-collapse-item {
-    border: none !important;
+  border: none !important;
 }
 
 #Collapse .ant-collapse .ant-collapse-item:nth-child(1) .ant-collapse-content {
-    background-color: red;
-    display: none;
+  background-color: red;
+  display: none;
 }
 
 #Collapse .ant-collapse .ant-collapse-item:last-child .ant-collapse-content {
-    background-color: red;
-    display: none;
+  background-color: red;
+  display: none;
 }
 
-#Collapse .ant-collapse .ant-collapse-item:first-child .ant-collapse-expand-icon {
-    opacity: 0 !important;
+#Collapse
+  .ant-collapse
+  .ant-collapse-item:first-child
+  .ant-collapse-expand-icon {
+  opacity: 0 !important;
 }
 
-#Collapse .ant-collapse .ant-collapse-item:last-child .ant-collapse-expand-icon {
-    opacity: 0 !important;
-
+#Collapse
+  .ant-collapse
+  .ant-collapse-item:last-child
+  .ant-collapse-expand-icon {
+  opacity: 0 !important;
 }
 
 .ant-collapse-header-text {
-    color: black;
+  color: black;
+}
+.MuiToolbar-root {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center !important;
+}
+@media (max-width:576px){
+    .logoContainer{
+        width: 100px;
+    }
 }

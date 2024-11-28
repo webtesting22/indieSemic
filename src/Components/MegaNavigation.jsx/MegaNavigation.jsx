@@ -110,7 +110,10 @@ const MegaNavigation = () => {
                         }}
                     >
                         <Toolbar>
-                            <div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%',alignItems:"center" }}>
+                            <div className="logoContainer">
+                                    <img src="/Images/logo.png" alt="Logo" />
+                                </div>
                                 {/* If the window width is less than 768px, show Drawer for mobile/tablet */}
                                 {windowWidth < 768 ? (
                                     <>
@@ -123,7 +126,7 @@ const MegaNavigation = () => {
                                             Menu
                                         </Button>
                                         <Drawer
-                                            title="IndieSemic"
+                                            
                                             placement="left"
                                             closable={false}
                                             onClose={toggleDrawer}
@@ -143,24 +146,28 @@ const MegaNavigation = () => {
                                     </>
                                 ) : (
                                     // Desktop navigation as per original code
-                                    <ul style={{ listStyleType: 'none', padding: 0 }}>
-                                        {NavigationData.map((item, index) => (
-                                            <li key={index} style={{ display: 'inline-block', marginRight: '10px' }}>
-                                                <div className="dropdown">
-                                                    <button className="dropbtn" style={{ color: getButtonColor() }}>
-                                                        {item.link}
-                                                    </button>
-                                                    {renderSubNav(item.link) && (
-                                                        <div className="dropdown-content">
-                                                            <div>
-                                                                {renderSubNav(item.link)} {/* Render sub-nav */}
-                                                            </div>
+                                    <>
+                                      
+                                            <ul style={{ listStyleType: 'none', padding: 0 }}>
+                                                {NavigationData.map((item, index) => (
+                                                    <li key={index} style={{ display: 'inline-block', marginRight: '10px' }}>
+                                                        <div className="dropdown">
+                                                            <button className="dropbtn" style={{ color: getButtonColor() }}>
+                                                                {item.link}
+                                                            </button>
+                                                            {renderSubNav(item.link) && (
+                                                                <div className="dropdown-content">
+                                                                    <div>
+                                                                        {renderSubNav(item.link)} {/* Render sub-nav */}
+                                                                    </div>
+                                                                </div>
+                                                            )}
                                                         </div>
-                                                    )}
-                                                </div>
-                                            </li>
-                                        ))}
-                                    </ul>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                          
+                                    </>
                                 )}
                             </div>
                         </Toolbar>
