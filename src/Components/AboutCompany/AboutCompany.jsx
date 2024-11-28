@@ -4,6 +4,7 @@ import AboutContentVideo from "../../../public/Images/AboutContentVideo.mp4"
 import { Row, Col } from "antd";
 import MemoryRoundedIcon from '@mui/icons-material/MemoryRounded';
 import DeveloperBoardIcon from '@mui/icons-material/DeveloperBoard';
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 const AboutCompany = () => {
     const [offsetY, setOffsetY] = useState(0);
 
@@ -18,12 +19,65 @@ const AboutCompany = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+    const CompanyData = [
+        {
+            points: "Semiconductor Solutions"
+        },
+        {
+            points: "Semiconductor Solutions"
+        },
+        {
+            points: "Semiconductor Solutions"
+        },
+        {
+            points: "Semiconductor Solutions"
+        }
+    ]
     return (
         <>
             <section id="AboutCompanyContainer" className="section_Padding">
                 <div className="DesignedContainer">
-                    <h1 data-aos="fade-up"><span style={{color:"rgb(74, 144, 226)"}} >Empowering Innovation</span> in Semiconductor Solutions</h1>
+                    <h1 data-aos="fade-up"><span style={{ color: "rgb(74, 144, 226)" }} >Empowering Innovation</span> in Semiconductor Solutions</h1>
                     <p data-aos="fade-up">Revolutionizing the future of technology with cutting-edge chip design and development.</p>
+                </div>
+                <div className="CompanyContentRow">
+                    <Row>
+                        <Col lg={8}>
+                            <div className="ListItemUl">
+                                <ul>
+                                    {CompanyData.map((item, index) => (
+                                        <li key={index}>
+                                            {item.points}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </Col>
+                        <Col lg={8}>
+                            <div className="MiddleImageContainer">
+                                <img style={{
+                                    transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed with the multiplier
+                                }} src="https://images.unsplash.com/photo-1726739819428-a8f250e60691?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+                            </div>
+                        </Col>
+                        <Col lg={8}>
+                            <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
+                                <div>
+                                    <h2 >We are a dynamic design studio driven by a deep passion for creativity and innovation.</h2>
+                                    <p>Our team is dedicated to crafting bespoke, thoughtful designs that not only reflect the individuality of your brand but also connect with your audience on a meaningful level. Every project we undertake is an opportunity to tell a unique story, blending strategy .</p>
+                                    <br /><br />
+                                    <div className="SideContentContainer">
+                                        <button data-aos="fade-left"
+                                            data-aos-duration="1500">
+                                            <ArrowRightAltIcon />
+                                            Read More
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
                 </div>
                 {/* <div className="AnimatedParallaxContainer">
                     <div >

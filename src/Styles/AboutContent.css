@@ -72,10 +72,93 @@
   object-fit: cover;
 }
 
+.CompanyContentRow {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
 
+.CompanyContentRow .MiddleImageContainer {
+  height: 500px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.CompanyContentRow img {
+  width: 80%;
+  height: 100%;
+  object-fit: cover;
+  margin-top: -13rem;
+}
+
+.ListItemUl {
+  display: flex;
+  height: 100%;
+  justify-content: end;
+}
+
+.ListItemUl ul {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  list-style: none;
+}
+
+.ListItemUl ul li {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  padding: 1rem 0rem;
+}
+
+.ListItemUl ul li:nth-child(odd) {
+  margin-left: -30px;
+}
+
+.ListItemUl ul li::before {
+  content: "";
+  height: 1px;
+  width: 80px;
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.506);
+  margin-right: 2rem;
+}
 
 @media (max-width: 769px) {
+  .CompanyContentRow {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  .ListItemUl ul li::before {
+    content: "";
+    height: 1px;
+    width: 30px;
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.506);
+    margin-right: 2rem;
+  }
+  .ListItemUl ul li:nth-child(odd) {
+    margin-left: 0px;
+  }
+  
+  .CompanyContentRow .MiddleImageContainer {
+    height: 500px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0rem;
+  }
+
+  .CompanyContentRow img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin-top: -8rem;
+  }
+
   .AnimatedParallaxContainer div:last-child {
     padding-top: 0rem;
   }

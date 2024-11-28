@@ -40,15 +40,16 @@
   font-size: 13px;
 }
 
-.CopyrightContainer div p:first-child {
-  margin-bottom: 0px;
-}
 
 .CopyrightContainer div p a {
   color: white;
 }
 
 @media(max-width:769px) {
+
+.CopyrightContainer div p:first-child {
+  margin-bottom: 0px;
+}
   .CopyrightContainer div {
     display: flex;
     align-items: center;

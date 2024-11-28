@@ -118,9 +118,11 @@
   /* justify-content: center; */
   background: transparent;
   border: none;
-  transform: translateX(5px);
+  transform: translateX(10px);
   transition: .5s;
   cursor: pointer;
+  color: rgb(163, 106, 203)
+;
 }
 
 .SideContentContainer button svg {
@@ -128,6 +130,11 @@
   border-radius: 50%;
   margin-right: 5px;
   font-size: 15px;
+}
+
+.SideContentContainer button:hover svg {
+  border: 1px solid rgb(163, 106, 203)
+;
 }
 
 .SideContentContainer {
@@ -148,9 +155,10 @@
   /* align-items: center; */
 }
 
-#ScrollingAnimation .StickyComponent{
+#ScrollingAnimation .StickyComponent {
   width: 70%;
 }
+
 #ScrollingAnimation .ImagesContainer {
   width: 30%;
 }
@@ -175,13 +183,13 @@
 
 
 .ExpertiseCards img {
-  width: 100%;
+  width: 80%;
   object-fit: cover;
   height: 100%;
 }
 
 .ExpertiseCards .ExpertiseImageContainer {
-  height: 300px;
+  height: 400px;
   width: 80%;
   overflow: hidden;
 }
@@ -223,10 +231,11 @@
   .imageContainer {
     padding-right: 0rem;
   }
+
   #ScrollingAnimation .StickyComponent,
-#ScrollingAnimation .ImagesContainer {
-  width: 100%;
-}
+  #ScrollingAnimation .ImagesContainer {
+    width: 100%;
+  }
 
   .ContentRow .SideContentContainer h3 {
     margin-top: 0px;
@@ -234,7 +243,7 @@
     font-size: 30px;
     font-weight: 400;
   }
-  
+
   .expertise-page {
     padding: 1rem;
   }
@@ -242,21 +251,23 @@
   .expertise-cards {
     grid-template-columns: 1fr;
   }
-  .ImagesContainer{
+
+  .ImagesContainer {
     display: none;
   }
+
   .ExpertiseCards .ExpertiseImageContainer {
     height: 300px;
     width: 100%;
     overflow: hidden;
   }
 
-.ExpertiseCards {
-  margin-bottom: 3rem;
-  transform: translateY(50px);
-  transition: .5s;
-  /* opacity: 0; */
-}
+  .ExpertiseCards {
+    margin-bottom: 3rem;
+    transform: translateY(50px);
+    transition: .5s;
+    /* opacity: 0; */
+  }
 
-  
+
 }
