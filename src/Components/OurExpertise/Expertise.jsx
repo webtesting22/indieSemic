@@ -138,10 +138,11 @@ const Expertise = () => {
                     {/* <p>Revolutionizing the future of technology with cutting-edge chip design and development.</p> */}
                 </div>
 
-                <div className='ContentRow'>
+                <div className='ContentRow' style={{ overflow: "hidden" }}>
                     <Row>
                         <Col lg={12}>
-                            <div className='imageContainer'>
+                            <div className='imageContainer' data-aos="fade-right"
+                                data-aos-duration="1500">
                                 <img src="https://plus.unsplash.com/premium_photo-1664301926600-5d25b8af1fca?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
                             </div>
                         </Col>
@@ -150,7 +151,7 @@ const Expertise = () => {
                                 <h3 data-aos="fade-up">Advancements in Semiconductor Technology</h3>
                                 <p data-aos="fade-up">Semiconductor technology is at the core of modern electronics, driving innovation in devices like smartphones, computers, and automotive systems. With the continuous evolution of fabrication techniques, semiconductors are becoming smaller, faster, and more efficient. These advancements are essential for powering cutting-edge technologies, from artificial intelligence to 5G networks, revolutionizing industries and enabling the next wave of digital transformation. </p>
                                 <button data-aos="fade-left"
-     data-aos-duration="1500"><ArrowRightAltIcon /> Read More</button>
+                                    data-aos-duration="1500"><ArrowRightAltIcon /> Read More</button>
                             </div>
                         </Col>
 
@@ -166,10 +167,8 @@ const Expertise = () => {
                         <br /><br />
                         <div>
                             {expertiseCards.map((item, index) => (
-                                <div key={index} className={`ExpertiseCards ${visibleIndexes.includes(index) ? "fade-in" : "hidden"
-                                    }`}
-                                    data-index={index}
-                                    ref={(el) => (sectionRefs.current[index] = el)}>
+                                <div key={index} className="ExpertiseCards "  data-aos="fade-up" 
+                                data-aos-delay={index * 100} >
                                     <div className='SmallText'>
                                         <p>00{index + 1} Expertise - {item.title}</p>
                                     </div>

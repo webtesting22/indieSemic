@@ -169,18 +169,10 @@
   margin-bottom: 5rem;
   transform: translateY(50px);
   transition: .5s;
-  opacity: 0;
+  /* opacity: 0; */
 }
 
-.ExpertiseCards.fade-in {
-  opacity: 1;
-  transform: translateY(0);
-  transition: .8s;
-}
 
-.hidden {
-  visibility: hidden;
-}
 
 .ExpertiseCards img {
   width: 100%;
@@ -228,6 +220,9 @@
 }
 
 @media (max-width: 640px) {
+  .imageContainer {
+    padding-right: 0rem;
+  }
   #ScrollingAnimation .StickyComponent,
 #ScrollingAnimation .ImagesContainer {
   width: 100%;
@@ -255,5 +250,13 @@
     width: 100%;
     overflow: hidden;
   }
+
+.ExpertiseCards {
+  margin-bottom: 3rem;
+  transform: translateY(50px);
+  transition: .5s;
+  /* opacity: 0; */
+}
+
   
 }
