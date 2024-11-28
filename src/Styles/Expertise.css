@@ -103,6 +103,9 @@
   font-weight: 400;
 }
 
+.SideContentContainer{
+  overflow: hidden;
+}
 .SideContentContainer button {
   display: flex;
   align-items: center;
