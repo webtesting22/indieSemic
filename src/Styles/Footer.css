@@ -6,7 +6,6 @@
   padding-bottom: 0rem;
 }
 
-
 #footerSection h1 {
   margin-top: 0px;
   direction: ltr;
@@ -40,20 +39,28 @@
   font-size: 13px;
 }
 
-
 .CopyrightContainer div p a {
   color: white;
 }
-
-@media(max-width:769px) {
-
-.CopyrightContainer div p:first-child {
-  margin-bottom: 0px;
+.footerLogoContainer {
+  width: 20%;
 }
+.footerLogoContainer img {
+  width: 100%;
+  object-fit: contain;
+  aspect-ratio: 3/2;
+}
+@media (max-width: 769px) {
+  .CopyrightContainer div p:first-child {
+    margin-bottom: 0px;
+  }
   .CopyrightContainer div {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
+  }
+  .footerLogoContainer {
+    width: 30%;
   }
 }

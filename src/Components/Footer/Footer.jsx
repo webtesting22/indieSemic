@@ -23,7 +23,9 @@ const Footer = () => {
                 <Row>
                     <Col lg={12} md={12}>
                         <div>
-                            <h2>Company Logo</h2>
+                        <div className="footerLogoContainer">
+                                    <img src="/Images/logo.png" alt="Logo" />
+                                </div>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus hic alias nisi optio voluptatibus dolorem cum dolore omnis. Earum, vitae!</p>
                         </div>
                     </Col>

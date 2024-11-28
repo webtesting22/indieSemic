@@ -121,16 +121,14 @@ const MegaNavigation = () => {
                                 <div className="logoContainer">
                                     <img src="/Images/logo.png" alt="Logo" />
                                 </div>
-                                {/* If the window width is less than 768px, show Drawer for mobile/tablet */}
                                 {windowWidth < 768 ? (
                                     <>
                                         <Button
-                                            type="primary"
+                                            type="solid"
                                             icon={<MenuOutlined />}
                                             onClick={toggleDrawer}
-                                            style={{ color: 'white' }}
+                                            style={{ backgroundColor: "black", color: "white" }}
                                         >
-                                            Menu
                                         </Button>
                                         <Drawer
 

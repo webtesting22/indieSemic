@@ -138,3 +138,11 @@
     bottom: -70px;
   }
 }
+@media (max-width: 576px) {
+  .slideText {
+    width: 90% !important;
+  }
+  .slideTagline {
+    width: 90% !important;
+  }
+}
