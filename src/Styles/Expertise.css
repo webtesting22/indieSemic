@@ -178,19 +178,23 @@
 .ExpertiseCards {
   margin-bottom: 3rem;
   transition: .5s;
-  width: 30%;
-  padding: 15px;
+  width: 25%;
+  /* padding: 12px; */
   transform: translateY(0px);
   /* opacity: 0; */
 }
 
+.ExpertiseCards>div{
+  padding: 10px;
+}
 .ExpertiseCards:hover {
   margin-bottom: 3rem;
   transform: translateY(-10px);
-  width: 30%;
+  width: 25%;
   background-color: #4a91e235;
-  padding: 15px;
+  /* padding: 12px; */
   transition: 1s;
+  border-radius: 10px;
 }
 
 .ExpertiseCards img {
@@ -200,7 +204,7 @@
 }
 
 .ExpertiseCards .ExpertiseImageContainer {
-  height: 400px;
+  height: 300px;
   width: 100%;
   overflow: hidden;
 }

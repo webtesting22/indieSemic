@@ -163,8 +163,8 @@ const Expertise = () => {
                 <div className='ContentRow' id='ScrollingAnimation'>
                     <div className='StickyComponent'>
                         <div>
-                            <h2>Revolutionizing Industries with Semiconductor Excellence</h2>
-                            <p>From consumer electronics to industrial automation, our semiconductors transform ideas into reality, shaping the modern technological landscape.</p>
+                            <h2 style={{ textAlign: "center" }}>Revolutionizing Industries with Semiconductor Excellence</h2>
+                            <p style={{ textAlign: "center" }}>From consumer electronics to industrial automation, our semiconductors transform ideas into reality, shaping the modern technological landscape.</p>
                         </div>
                         <br /><br />
                         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
@@ -173,7 +173,7 @@ const Expertise = () => {
                                     <div data-aos="fade-up"
                                         data-aos-delay={index * 100}>
                                         <div className='SmallText'>
-                                            <p>00{index + 1} Expertise - {item.title}</p>
+                                            <p>00{index + 1} </p>
                                         </div>
                                         <div>
                                             <h2>{item.title}</h2>
