@@ -150,7 +150,7 @@ const Expertise = () => {
                             <div className='SideContentContainer'>
                                 <h3 data-aos="fade-up">Advancements in Semiconductor Technology</h3>
                                 <p data-aos="fade-up">Semiconductor technology is at the core of modern electronics, driving innovation in devices like smartphones, computers, and automotive systems. With the continuous evolution of fabrication techniques, semiconductors are becoming smaller, faster, and more efficient. These advancements are essential for powering cutting-edge technologies, from artificial intelligence to 5G networks, revolutionizing industries and enabling the next wave of digital transformation. </p>
-                                <br /><br />
+                                <br />
                                 <button data-aos="fade-left"
                                     data-aos-duration="1500"><ArrowRightAltIcon /> Read More</button>
                             </div>
@@ -168,8 +168,8 @@ const Expertise = () => {
                         <br /><br />
                         <div>
                             {expertiseCards.map((item, index) => (
-                                <div key={index} className="ExpertiseCards "  data-aos="fade-up" 
-                                data-aos-delay={index * 100} >
+                                <div key={index} className="ExpertiseCards " data-aos="fade-up"
+                                    data-aos-delay={index * 100} >
                                     <div className='SmallText'>
                                         <p>00{index + 1} Expertise - {item.title}</p>
                                     </div>
