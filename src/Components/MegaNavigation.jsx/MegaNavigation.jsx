@@ -155,7 +155,7 @@ const MegaNavigation = () => {
 
                                         <ul style={{ listStyleType: 'none', padding: 0 }}>
                                             {NavigationData.map((item, index) => (
-                                                <li key={index} style={{ display: 'inline-block', marginRight: '10px' }}>
+                                                <li key={index} style={{ display: 'inline-block' }}>
                                                     <div className="dropdown">
                                                         <button className="dropbtn" style={{ color: getButtonColor() }}>
                                                             {item.link}
@@ -168,6 +168,7 @@ const MegaNavigation = () => {
                                                             </div>
                                                         )}
                                                     </div>
+                                                    {/* <hr /> */}
                                                 </li>
                                             ))}
                                         </ul>
