@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@mui/material';
 import "../../Styles/Expertise.css";
 import { Row, Col } from 'antd';
@@ -134,7 +134,7 @@ const Expertise = () => {
             <div className='ExpertiseCardContainer'>
                 <img src={BackShapeImg} alt="" className='Overlayimage' />
                 <div className="DesignedContainer" id='Target'>
-                    <h1 style={{ textAlign: "left" }}><span style={{color:"rgb(74, 144, 226)"}}>Innovating Tomorrow’s Chips</span> with Precision and Excellence Today</h1>
+                    <h1 style={{ textAlign: "left" }}><span style={{ color: "rgb(74, 144, 226)" }}>Innovating Tomorrow’s Chips</span> with Precision and Excellence Today</h1>
                     {/* <p>Revolutionizing the future of technology with cutting-edge chip design and development.</p> */}
                 </div>
 
@@ -147,9 +147,10 @@ const Expertise = () => {
                         </Col>
                         <Col lg={12}>
                             <div className='SideContentContainer'>
-                                <h3>Advancements in Semiconductor Technology</h3>
-                                <p>Semiconductor technology is at the core of modern electronics, driving innovation in devices like smartphones, computers, and automotive systems. With the continuous evolution of fabrication techniques, semiconductors are becoming smaller, faster, and more efficient. These advancements are essential for powering cutting-edge technologies, from artificial intelligence to 5G networks, revolutionizing industries and enabling the next wave of digital transformation. </p>
-                                <button><ArrowRightAltIcon /> Read More</button>
+                                <h3 data-aos="fade-up">Advancements in Semiconductor Technology</h3>
+                                <p data-aos="fade-up">Semiconductor technology is at the core of modern electronics, driving innovation in devices like smartphones, computers, and automotive systems. With the continuous evolution of fabrication techniques, semiconductors are becoming smaller, faster, and more efficient. These advancements are essential for powering cutting-edge technologies, from artificial intelligence to 5G networks, revolutionizing industries and enabling the next wave of digital transformation. </p>
+                                <button data-aos="fade-left"
+     data-aos-duration="1500"><ArrowRightAltIcon /> Read More</button>
                             </div>
                         </Col>
 
@@ -164,26 +165,26 @@ const Expertise = () => {
                         </div>
                         <br /><br />
                         <div>
-                        {expertiseCards.map((item, index) => (
-                            <div key={index} className={`ExpertiseCards ${visibleIndexes.includes(index) ? "fade-in" : "hidden"
-                                }`}
-                                data-index={index}
-                                ref={(el) => (sectionRefs.current[index] = el)}>
-                                <div className='SmallText'>
-                                    <p>00{index + 1} Expertise - {item.title}</p>
-                                </div>
-                                <div>
-                                    <h2>{item.title}</h2>
-                                    <p>{item.description}</p>
-                                    <div className='ExpertiseImageContainer'>
-                                        <img src={item.image} alt="" />
+                            {expertiseCards.map((item, index) => (
+                                <div key={index} className={`ExpertiseCards ${visibleIndexes.includes(index) ? "fade-in" : "hidden"
+                                    }`}
+                                    data-index={index}
+                                    ref={(el) => (sectionRefs.current[index] = el)}>
+                                    <div className='SmallText'>
+                                        <p>00{index + 1} Expertise - {item.title}</p>
+                                    </div>
+                                    <div>
+                                        <h2>{item.title}</h2>
+                                        <p>{item.description}</p>
+                                        <div className='ExpertiseImageContainer'>
+                                            <img src={item.image} alt="" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </section>

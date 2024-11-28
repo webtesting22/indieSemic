@@ -22,8 +22,8 @@ const AboutCompany = () => {
         <>
             <section id="AboutCompanyContainer" className="section_Padding">
                 <div className="DesignedContainer">
-                    <h1><span style={{color:"rgb(74, 144, 226)"}}>Empowering Innovation</span> in Semiconductor Solutions</h1>
-                    <p>Revolutionizing the future of technology with cutting-edge chip design and development.</p>
+                    <h1 data-aos="fade-up"><span style={{color:"rgb(74, 144, 226)"}} >Empowering Innovation</span> in Semiconductor Solutions</h1>
+                    <p data-aos="fade-up">Revolutionizing the future of technology with cutting-edge chip design and development.</p>
                 </div>
                 {/* <div className="AnimatedParallaxContainer">
                     <div >
