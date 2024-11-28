@@ -103,9 +103,10 @@
   font-weight: 400;
 }
 
-.SideContentContainer{
+.SideContentContainer {
   overflow: hidden;
 }
+
 .SideContentContainer button {
   display: flex;
   align-items: center;
@@ -124,8 +125,7 @@
   transform: translateX(10px);
   transition: .5s;
   cursor: pointer;
-  color: rgb(163, 106, 203)
-;
+  color: rgb(163, 106, 203);
 }
 
 .SideContentContainer button svg {
@@ -136,8 +136,7 @@
 }
 
 .SideContentContainer button:hover svg {
-  border: 1px solid rgb(163, 106, 203)
-;
+  border: 1px solid rgb(163, 106, 203);
 }
 
 .SideContentContainer {
@@ -159,12 +158,12 @@
 }
 
 #ScrollingAnimation .StickyComponent {
-  width: 70%;
+  width: 100%;
 }
 
-#ScrollingAnimation .ImagesContainer {
+/* #ScrollingAnimation .ImagesContainer {
   width: 30%;
-}
+} */
 
 #ScrollingAnimation .StickyComponent h2 {
   font-weight: 500;
@@ -177,13 +176,22 @@
 }
 
 .ExpertiseCards {
-  margin-bottom: 5rem;
-  transform: translateY(50px);
+  margin-bottom: 3rem;
   transition: .5s;
+  width: 30%;
+  padding: 15px;
+  transform: translateY(0px);
   /* opacity: 0; */
 }
 
-
+.ExpertiseCards:hover {
+  margin-bottom: 3rem;
+  transform: translateY(-10px);
+  width: 30%;
+  background-color: #4a91e235;
+  padding: 15px;
+  transition: 1s;
+}
 
 .ExpertiseCards img {
   width: 100%;
@@ -193,7 +201,7 @@
 
 .ExpertiseCards .ExpertiseImageContainer {
   height: 400px;
-  width: 80%;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -215,8 +223,18 @@
 }
 
 
+
 /* Responsive Design */
 @media (max-width: 1024px) {
+  .ExpertiseCards {
+    margin-bottom: 3rem;
+    transform: translateY(50px);
+    transition: .5s;
+    width: 40%;
+    padding: 10px;
+    /* opacity: 0; */
+  }
+
   #Target h1 {
     width: 100%;
   }
@@ -231,6 +249,15 @@
 }
 
 @media (max-width: 640px) {
+  .ExpertiseCards {
+    margin-bottom: 3rem;
+    transform: translateY(50px);
+    transition: .5s;
+    width: 100%;
+    padding: 10px;
+    /* opacity: 0; */
+  }
+
   .imageContainer {
     padding-right: 0rem;
   }

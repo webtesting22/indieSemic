@@ -42,15 +42,16 @@ const Expertise = () => {
             description: "Connecting devices for seamless data sharing and automation."
         },
         {
-            image: "https://images.unsplash.com/photo-1676288176918-232f7caadfee?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            title: "Automotive",
-            description: "Advancing smart vehicles with enhanced safety and performance."
-        },
-        {
             image: "https://plus.unsplash.com/premium_photo-1661878265739-da90bc1af051?q=80&w=1986&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             title: "Security",
             description: " Developing systems to safeguard data and ensure privacy."
         },
+        {
+            image: "https://images.unsplash.com/photo-1676288176918-232f7caadfee?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            title: "Automotive",
+            description: "Advancing smart vehicles with enhanced safety and performance."
+        },
+
         {
             image: "https://plus.unsplash.com/premium_photo-1698421947098-d68176a8f5b2?q=80&w=1952&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             title: "Health Care",
@@ -166,18 +167,20 @@ const Expertise = () => {
                             <p>From consumer electronics to industrial automation, our semiconductors transform ideas into reality, shaping the modern technological landscape.</p>
                         </div>
                         <br /><br />
-                        <div>
+                        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
                             {expertiseCards.map((item, index) => (
-                                <div key={index} className="ExpertiseCards " data-aos="fade-up"
-                                    data-aos-delay={index * 100} >
-                                    <div className='SmallText'>
-                                        <p>00{index + 1} Expertise - {item.title}</p>
-                                    </div>
-                                    <div>
-                                        <h2>{item.title}</h2>
-                                        <p>{item.description}</p>
-                                        <div className='ExpertiseImageContainer'>
-                                            <img src={item.image} alt="" />
+                                <div key={index} className="ExpertiseCards "  >
+                                    <div data-aos="fade-up"
+                                        data-aos-delay={index * 100}>
+                                        <div className='SmallText'>
+                                            <p>00{index + 1} Expertise - {item.title}</p>
+                                        </div>
+                                        <div>
+                                            <h2>{item.title}</h2>
+                                            <p>{item.description}</p>
+                                            <div className='ExpertiseImageContainer'>
+                                                <img src={item.image} alt="" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
