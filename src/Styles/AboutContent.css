@@ -113,9 +113,9 @@
   padding: 1rem 0rem;
 }
 
-.ListItemUl ul li:nth-child(odd) {
+/* .ListItemUl ul li:nth-child(odd) {
   margin-left: -30px;
-}
+} */
 
 .ListItemUl ul li::before {
   content: "";
