@@ -125,28 +125,46 @@ const Achivement = () => {
     return (
         <>
 
-            
+
             <section id="AchivementContainer" ref={sectionRef} className="section_Padding">
                 <div >
                     <div className="DesignedContainer">
-                        <h1 data-aos="fade-up"><span style={{color:"rgb(74, 144, 226)"}}>Driving Innovation</span> in Semiconductor Technology</h1>
+                        <h1 data-aos="fade-up"><span style={{ color: "rgb(74, 144, 226)" }}>Driving Innovation</span> in Semiconductor Technology</h1>
                         <p data-aos="fade-up">Shaping the Future of Technology Through Groundbreaking Semiconductor Design and Innovation.</p>
                     </div>
                 </div>
-                <div>
-                    <div className="BoxEdit">
-                        <div className="blackoverlay">
+                <div id="CardColumns">
+                    <div>
+                        <div className="BoxEdit">
+                            <div className="blackoverlay">
 
-                        </div>
-                        <div className="Content">
-                            <div>
-                                <h2>The Building Block of Modern Technology</h2>
-                                <p>Semiconductors are materials with electrical conductivity between that of a conductor and an insulator, making them essential in modern electronics.</p>
                             </div>
+                            <div className="Content">
+                                <div>
+                                    <h2>The Building Block of Modern Technology</h2>
+                                    <p>Semiconductors are materials with electrical conductivity between that of a conductor and an insulator, making them essential in modern electronics.</p>
+                                </div>
+                            </div>
+                            <img src={Back} alt="" style={{
+                                transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed with the multiplier
+                            }} />
                         </div>
-                        <img src={Back} alt="" style={{
-                            transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed with the multiplier
-                        }} />
+                    </div>
+                    <div>
+                        <div className="BoxEdit">
+                            <div className="blackoverlay">
+
+                            </div>
+                            <div className="Content">
+                                <div>
+                                    <h2>The Building Block of Modern Technology</h2>
+                                    <p>Semiconductors are materials with electrical conductivity between that of a conductor and an insulator, making them essential in modern electronics.</p>
+                                </div>
+                            </div>
+                            <img src={Back} alt="" style={{
+                                transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed with the multiplier
+                            }} />
+                        </div>
                     </div>
                 </div>
                 {/* <div className="FixedImage" />

@@ -111,7 +111,8 @@ const MegaNavigation = () => {
                 <div id="NavigationBar">
                     <AppBar
                         style={{
-                            backgroundColor: isScrolled ? "white" : "transparent",
+                            backgroundColor: isScrolled ? "transparent" : "transparent",
+                            backdropFilter: isScrolled ? "blur(10px)" : "blur(0px)",
                             top: showAppBar ? 0 : '-64px', transition: 'top 0.3s',
                             boxShadow: isScrolled ? "0px 4px 6px rgba(0, 0, 0, 0.1)" : "none",
                         }}

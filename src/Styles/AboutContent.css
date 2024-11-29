@@ -88,10 +88,11 @@
 }
 
 .CompanyContentRow img {
-  width: 80%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
   margin-top: -13rem;
+  padding-right: 2rem;
 }
 
 .ListItemUl {
@@ -162,6 +163,11 @@
   background-attachment: fixed;
 }
 @media (max-width: 769px) {
+
+.CompanyContentRow {
+  margin-top: 5rem;
+  padding-bottom: 0rem;
+}
   .ListItemUl ul div:nth-child(odd) {
     margin-left: 0rem;
   }
@@ -175,7 +181,7 @@
 
   .CompanyContentRow {
     margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom:0rem;
   }
 
   .ListItemUl ul li::before {

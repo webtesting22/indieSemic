@@ -148,7 +148,7 @@ const Expertise = () => {
                         <Col lg={12}>
                             <div className='imageContainer' data-aos="fade-right"
                                 data-aos-duration="1500">
-                                <img src={LeftSide} alt="" />
+                                <img src={LeftSide} alt="Advancements Semiconductor Technology" />
                             </div>
                         </Col>
                         <Col lg={12}>
