@@ -8,6 +8,7 @@ import RightSideBack from "./RightSideBack.jpg"
 import Robotics from "./Robotics.jpeg"
 import HealthCare from "./HealthCare.jpeg"
 import IOTNetwork from "./IOTNetwork.jpg"
+import LeftSide from "./LeftSide.jpeg"
 const Expertise = () => {
     const [visibleIndexes, setVisibleIndexes] = useState([]); // Track visible cards
     const sectionRefs = useRef([]); // Ref array for all cards
@@ -147,7 +148,7 @@ const Expertise = () => {
                         <Col lg={12}>
                             <div className='imageContainer' data-aos="fade-right"
                                 data-aos-duration="1500">
-                                <img src="https://plus.unsplash.com/premium_photo-1664301926600-5d25b8af1fca?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+                                <img src={LeftSide} alt="" />
                             </div>
                         </Col>
                         <Col lg={12}>
