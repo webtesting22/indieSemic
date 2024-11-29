@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import CountUp from "react-countup";
 import "../../Styles/AboutContent.css"
 import AboutContentVideo from "../../../public/Images/AboutContentVideo.mp4"
 import { Row, Col } from "antd";
@@ -7,7 +8,34 @@ import DeveloperBoardIcon from '@mui/icons-material/DeveloperBoard';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 const AboutCompany = () => {
     const [offsetY, setOffsetY] = useState(0);
+    const [startCount, setStartCount] = useState(false); // State to trigger count-up animation
+    const sectionRef = useRef(null); // Ref for the observer
 
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setStartCount(true); // Trigger count-up when in view
+                } else {
+                    setStartCount(false); // Reset count when out of view
+                }
+            },
+            {
+                threshold: 0.5, // Trigger when 50% of the element is visible
+            }
+        );
+
+        const currentRef = sectionRef.current;
+        if (currentRef) {
+            observer.observe(currentRef);
+        }
+
+        return () => {
+            if (currentRef) {
+                observer.unobserve(currentRef);
+            }
+        };
+    }, []);
     // Update scroll position
     const handleScroll = () => {
         setOffsetY(window.scrollY);
@@ -22,18 +50,18 @@ const AboutCompany = () => {
 
     const CompanyData = [
         {
-            points: "Semiconductor Solutions"
+            points: "Customers",
+            numbers: 50
         },
         {
-            points: "Semiconductor Solutions"
+            points: "Awards",
+            numbers: 75
         },
         {
-            points: "Semiconductor Solutions"
+            points: "Market Ready Modules",
+            numbers: 100
         },
-        {
-            points: "Semiconductor Solutions"
-        }
-    ]
+    ];
     return (
         <>
             <section id="AboutCompanyContainer" className="section_Padding">
@@ -44,12 +72,21 @@ const AboutCompany = () => {
                 <div className="CompanyContentRow">
                     <Row>
                         <Col lg={8}>
-                            <div className="ListItemUl">
+                            <div className="ListItemUl" ref={sectionRef}>
                                 <ul>
                                     {CompanyData.map((item, index) => (
-                                        <li key={index}>
-                                            {item.points}
-                                        </li>
+                                        <div key={index} className="statCard">
+                                            {startCount && ( // Only render CountUp when in view
+                                                <CountUp
+                                                    start={0}
+                                                    suffix="+"
+                                                    end={item.numbers} // Target value
+                                                    duration={5} // Animation duration
+                                                    delay={0.3 * index} // Staggered delay for each card
+                                                />
+                                            )}
+                                            <li>{item.points}</li>
+                                        </div>
                                     ))}
                                 </ul>
                             </div>

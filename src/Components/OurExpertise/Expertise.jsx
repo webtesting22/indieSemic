@@ -166,8 +166,8 @@ const Expertise = () => {
                 <div className='ContentRow' id='ScrollingAnimation'>
                     <div className='StickyComponent'>
                         <div>
-                            <h2 style={{ textAlign: "center" }}>Revolutionizing Industries with Semiconductor Excellence</h2>
-                            <p style={{ textAlign: "center" }}>From consumer electronics to industrial automation, our semiconductors transform ideas into reality, shaping the modern technological landscape.</p>
+                            <h2>Revolutionizing Industries with Semiconductor Excellence</h2>
+                            <p>From consumer electronics to industrial automation, our semiconductors transform ideas into reality, shaping the modern technological landscape.</p>
                         </div>
                         <br /><br />
                         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
