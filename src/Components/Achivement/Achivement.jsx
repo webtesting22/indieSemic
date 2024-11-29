@@ -4,7 +4,7 @@ import { Row, Col } from "antd";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import EmojiEventsSharpIcon from '@mui/icons-material/EmojiEventsSharp';
 import StoreSharpIcon from '@mui/icons-material/StoreSharp';
-import Back from "./Back.jpeg"
+import Back from "./Back.jpg"
 const Achivement = () => {
     const [isInView, setIsInView] = useState(false); // Track visibility of the section
     const [offsetY, setOffsetY] = useState(0);
