@@ -263,6 +263,9 @@
 }
 
 @media (max-width: 640px) {
+  .ExpertiseCards>div{
+    padding: 0px;
+  }
   .ExpertiseCards {
     margin-bottom: 1rem;
     transform: translateY(0px);
