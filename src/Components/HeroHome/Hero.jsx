@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React, { useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "../../Styles/Hero.css"
 // Import Swiper styles
 import 'swiper/css';
@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 
 const Hero = () => {
     const [activeIndex, setActiveIndex] = useState(0);
+
     const CarousalImages = [
         {
             image: "/Images/Slider2.jpg",
@@ -58,15 +59,11 @@ const Hero = () => {
                                         <img src={item.image} alt={`Slide ${index + 1}`} />
                                         <div className="overlay"></div>
                                     </div>
-                                    <div
-                                        className={`slideText ${activeIndex === index ? "fade-in" : "fade-out"}`}
-                                    >
+                                    <div className={`slideText `}>
                                         {item.heading}
                                     </div>
-                                    <div
-                                        className={`slideTagline ${activeIndex === index ? "fade-in" : "fade-out"}`}
-                                    >
-                                       <p> {item.tagline} </p>
+                                    <div className={`slideTagline ${activeIndex === index ? "slideText" : "slideText"}`}>
+                                        <p>{item.tagline}</p>
                                     </div>
 
                                 </div>

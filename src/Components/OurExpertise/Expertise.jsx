@@ -5,6 +5,9 @@ import { Row, Col } from 'antd';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import BackShapeImg from "./BackShapeImg.svg"
 import RightSideBack from "./RightSideBack.jpg"
+import Robotics from "./Robotics.jpeg"
+import HealthCare from "./HealthCare.jpeg"
+import IOTNetwork from "./IOTNetwork.jpg"
 const Expertise = () => {
     const [visibleIndexes, setVisibleIndexes] = useState([]); // Track visible cards
     const sectionRefs = useRef([]); // Ref array for all cards
@@ -37,7 +40,7 @@ const Expertise = () => {
     }, []);
     const expertiseCards = [
         {
-            image: "https://plus.unsplash.com/premium_vector-1683129606388-a140556ced13?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            image: IOTNetwork,
             title: "IOT Networks",
             description: "Connecting devices for seamless data sharing and automation."
         },
@@ -53,7 +56,7 @@ const Expertise = () => {
         },
 
         {
-            image: "https://plus.unsplash.com/premium_photo-1698421947098-d68176a8f5b2?q=80&w=1952&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            image: HealthCare,
             title: "Health Care",
             description: "Innovating medical technology for improved diagnostics and patient care."
         },
@@ -63,7 +66,7 @@ const Expertise = () => {
             description: "Enabling fast and reliable data exchange across networks."
         },
         {
-            image: "https://plus.unsplash.com/premium_photo-1680509034814-e733c5f873ac?q=80&w=1927&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            image: Robotics,
             title: "Robotics",
             description: "Designing intelligent machines to automate tasks and enhance efficiency."
         }
