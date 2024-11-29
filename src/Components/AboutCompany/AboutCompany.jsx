@@ -15,10 +15,12 @@ const AboutCompany = () => {
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
+                // Always trigger the counter reset each time the section is in view
                 if (entry.isIntersecting) {
-                    setStartCount(true); // Trigger count-up when in view
-                } else {
-                    setStartCount(false); // Reset count when out of view
+                    setStartCount(false);  // Reset the count
+                    setTimeout(() => {
+                        setStartCount(true);  // Start the count-up animation again
+                    }, 0);  // Delay the start to ensure reset happens
                 }
             },
             {
@@ -28,9 +30,10 @@ const AboutCompany = () => {
 
         const currentRef = sectionRef.current;
         if (currentRef) {
-            observer.observe(currentRef);
+            observer.observe(currentRef); // Observe the section
         }
 
+        // Cleanup observer when component unmounts
         return () => {
             if (currentRef) {
                 observer.unobserve(currentRef);
