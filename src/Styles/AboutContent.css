@@ -76,7 +76,7 @@
 
 .CompanyContentRow {
   margin-top: 5rem;
-  margin-bottom: 5rem;
+  padding-bottom: 5rem;
 }
 
 .CompanyContentRow .MiddleImageContainer {
@@ -149,6 +149,18 @@
   color: rgb(74, 144, 226);
 }
 
+.backGroundAttachment {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-image: url("../Components/AboutCompany/BackImage.jpeg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.1;
+  background-attachment: fixed;
+}
 @media (max-width: 769px) {
   .ListItemUl ul div:nth-child(odd) {
     margin-left: 0rem;

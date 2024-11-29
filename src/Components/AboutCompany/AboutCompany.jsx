@@ -6,6 +6,7 @@ import { Row, Col } from "antd";
 import MemoryRoundedIcon from '@mui/icons-material/MemoryRounded';
 import DeveloperBoardIcon from '@mui/icons-material/DeveloperBoard';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import BackImage from "./BackImage.jpeg"
 const AboutCompany = () => {
     const [offsetY, setOffsetY] = useState(0);
     const [startCount, setStartCount] = useState(false); // State to trigger count-up animation
@@ -65,11 +66,15 @@ const AboutCompany = () => {
     return (
         <>
             <section id="AboutCompanyContainer" className="section_Padding">
+                <div className="backGroundAttachment">
+                    
+                </div>
                 <div className="DesignedContainer">
                     <h1 data-aos="fade-up"><span style={{ color: "rgb(74, 144, 226)" }} >Empowering Innovation</span> in Semiconductor Solutions</h1>
                     <p data-aos="fade-up">Revolutionizing the future of technology with cutting-edge chip design and development.</p>
                 </div>
                 <div className="CompanyContentRow">
+                    
                     <Row>
                         <Col lg={8}>
                             <div className="ListItemUl" ref={sectionRef}>
