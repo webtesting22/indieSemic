@@ -7,6 +7,13 @@ import MemoryRoundedIcon from '@mui/icons-material/MemoryRounded';
 import DeveloperBoardIcon from '@mui/icons-material/DeveloperBoard';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import BackImage from "./BackImage.jpeg"
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from 'swiper/modules';
+import "swiper/css/autoplay"; 
+
+// Import Swiper styles
+import 'swiper/css';
+
 const AboutCompany = () => {
     const [offsetY, setOffsetY] = useState(0);
     const [startCount, setStartCount] = useState(false); // State to trigger count-up animation
@@ -66,6 +73,18 @@ const AboutCompany = () => {
             numbers: 100
         },
     ];
+
+    const CarousalImages = [
+        {
+            image: "https://images.unsplash.com/photo-1726739819428-a8f250e60691?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        },
+        {
+            image: "https://images.unsplash.com/photo-1642229408339-572fa3328d10?q=80&w=2873&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        },
+        {
+            image: "https://plus.unsplash.com/premium_photo-1714618946021-8fbd6394d1a8?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        }
+    ]
     return (
         <>
             <section id="AboutCompanyContainer" className="section_Padding">
@@ -101,9 +120,27 @@ const AboutCompany = () => {
                         </Col> */}
                         <Col lg={12}>
                             <div className="MiddleImageContainer">
-                                <img style={{
-                                    transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed with the multiplier
-                                }} src="https://images.unsplash.com/photo-1726739819428-a8f250e60691?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+                                <Swiper 
+                                    loop={true}
+                                    autoplay={{
+                                        delay: 2500, // Delay between slides in milliseconds
+                                        disableOnInteraction: false, // Allow autoplay to continue after user interaction
+                                    }}
+                                    
+                                    modules={[Autoplay]}
+                                    className="mySwiper"
+                                >
+                                    {CarousalImages.map((item, index) => (
+                                        <SwiperSlide key={index}>
+                                            <img src={item.image} alt="" style={{
+                                                transform: `translateY(${offsetY * 0.1}px)`,
+                                            }} />
+                                        </SwiperSlide>
+                                    ))}
+                                </Swiper>
+                                {/* <img style={{
+                                    transform: `translateY(${offsetY * 0.1}px)`,
+                                }} src="https://images.unsplash.com/photo-1726739819428-a8f250e60691?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" /> */}
                             </div>
                         </Col>
                         <Col lg={12}>
@@ -112,13 +149,13 @@ const AboutCompany = () => {
                                     <h2 >We are a dynamic design studio driven by a deep passion for creativity and innovation.</h2>
                                     <p>Our team is dedicated to crafting bespoke, thoughtful designs that not only reflect the individuality of your brand but also connect with your audience on a meaningful level. Every project we undertake is an opportunity to tell a unique story, blending strategy .</p>
                                     <br /><br />
-                                    <div className="SideContentContainer">
+                                    {/* <div className="SideContentContainer">
                                         <button data-aos="fade-left"
                                             data-aos-duration="1500">
                                             <ArrowRightAltIcon />
                                             Read More
                                         </button>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </Col>

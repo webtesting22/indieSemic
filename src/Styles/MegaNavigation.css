@@ -2,14 +2,8 @@
   transition: 0.5s;
 }
 
-.MuiToolbar-root:hover {
-  background-color: white;
-  transition: 0.5s;
-}
 
-.MuiToolbar-root:hover .dropdown .dropbtn {
-  color: black !important;
-}
+
 
 .dropdown {
   /* position: relative; */

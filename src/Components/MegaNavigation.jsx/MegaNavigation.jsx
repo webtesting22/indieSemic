@@ -97,11 +97,10 @@ const MegaNavigation = () => {
         }
     };
     const getButtonColor = () => {
-        // For mobile devices, always return white, otherwise use scroll state
         if (windowWidth < 768) {
-            return "white"; // On mobile, button color is always white
+            return "white";
         }
-        return isScrolled ? "black" : "white"; // On desktop, use scroll state
+        return isScrolled ? "black" : "white";
     };
 
     return (
@@ -118,7 +117,7 @@ const MegaNavigation = () => {
                         }}
                     >
                         <Toolbar>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: "center" }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: "center", borderBottom: isScrolled ? "none" : "1px solid #ffffff8f", marginTop: isScrolled ? "0px" : "20px", marginLeft: isScrolled ? "0px" : "50px", marginRight: isScrolled ? "0px" : "50px", backdropFilter: isScrolled ? "blur(0px)" : "blur(10px)" }}>
                                 <div className="logoContainer">
                                     <img src="/Images/logo.png" alt="Logo" />
                                 </div>
@@ -169,7 +168,6 @@ const MegaNavigation = () => {
                                                             </div>
                                                         )}
                                                     </div>
-                                                    {/* <hr /> */}
                                                 </li>
                                             ))}
                                         </ul>

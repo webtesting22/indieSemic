@@ -156,8 +156,8 @@ const Expertise = () => {
                                 <h3 data-aos="fade-up">Advancements in Semiconductor Technology</h3>
                                 <p data-aos="fade-up">Semiconductor technology is at the core of modern electronics, driving innovation in devices like smartphones, computers, and automotive systems. With the continuous evolution of fabrication techniques, semiconductors are becoming smaller, faster, and more efficient. These advancements are essential for powering cutting-edge technologies, from artificial intelligence to 5G networks, revolutionizing industries and enabling the next wave of digital transformation. </p>
                                 <br />
-                                <button data-aos="fade-left"
-                                    data-aos-duration="1500"><ArrowRightAltIcon /> Read More</button>
+                                {/* <button data-aos="fade-left"
+                                    data-aos-duration="1500"><ArrowRightAltIcon /> Read More</button> */}
                             </div>
                         </Col>
 
