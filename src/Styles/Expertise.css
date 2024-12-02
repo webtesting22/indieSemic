@@ -216,7 +216,8 @@
   /* right: 0px;
   left: 0px; */
 }
-.ExpertiseCards:hover .hoverContainer{
+
+.ExpertiseCards:hover .hoverContainer {
   position: absolute;
   bottom: 0px;
   backdrop-filter: blur(20px);
@@ -236,6 +237,7 @@
 .HeightContainer {
   height: 300px;
   overflow: hidden;
+  position: relative;
 }
 
 .ImagesContainer {

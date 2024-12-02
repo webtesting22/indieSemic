@@ -1,5 +1,8 @@
+.MuiToolbar-root{
+  transition: 0.5s;
+}
 .MuiToolbar-root:hover {
-  background-color: transparent;
+  background-color: white;
   transition: 0.5s;
 }
 
