@@ -124,7 +124,7 @@ const AboutCompany = () => {
                         </Col>
                     </Row>
                 </div>
-               
+
                 {/* <div className="AnimatedParallaxContainer">
                     <div >
                         <img

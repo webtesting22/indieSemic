@@ -1,6 +1,7 @@
-.MuiToolbar-root{
+.MuiToolbar-root {
   transition: 0.5s;
 }
+
 .MuiToolbar-root:hover {
   background-color: white;
   transition: 0.5s;
@@ -10,14 +11,11 @@
   color: black !important;
 }
 
-/* Container for the dropdown items */
-
 .dropdown {
   /* position: relative; */
   display: inline-block;
 }
 
-/* Style for the dropdown content */
 .dropdown-content {
   opacity: 0;
   position: absolute;
@@ -33,7 +31,7 @@
   transform: translateY(20px);
 }
 
-.dropdown-content > div {
+.dropdown-content>div {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -74,22 +72,27 @@
   font-size: 16px;
   padding: 0px;
 }
+
 .logoContainer {
   width: 150px;
 }
+
 .logoContainer img {
   width: 70%;
   aspect-ratio: 3/2;
   object-fit: contain;
 }
+
 .navigationContainer {
   display: flex;
   justify-content: space-between !important;
   align-items: center;
 }
-#Collapse{
-    margin-top: 100px;
+
+#Collapse {
+  margin-top: 100px;
 }
+
 #Collapse .ant-collapse {
   background-color: transparent !important;
   border: none !important;
@@ -109,31 +112,28 @@
   display: none;
 }
 
-#Collapse
-  .ant-collapse
-  .ant-collapse-item:first-child
-  .ant-collapse-expand-icon {
+#Collapse .ant-collapse .ant-collapse-item:first-child .ant-collapse-expand-icon {
   opacity: 0 !important;
 }
 
-#Collapse
-  .ant-collapse
-  .ant-collapse-item:last-child
-  .ant-collapse-expand-icon {
+#Collapse .ant-collapse .ant-collapse-item:last-child .ant-collapse-expand-icon {
   opacity: 0 !important;
 }
 
 .ant-collapse-header-text {
   color: black;
 }
+
 .MuiToolbar-root {
   display: flex !important;
   justify-content: space-between;
   align-items: center !important;
 }
-#NavigationBar ul li{
+
+#NavigationBar ul li {
   margin: 0px 20px;
 }
+
 /* #NavigationBar ul li hr{
   width: 0px;
   background-color: black;
@@ -143,8 +143,8 @@
 #NavigationBar ul li:hover hr{
   width: 100%;
 } */
-@media (max-width:576px){
-    .logoContainer{
-        width: 100px;
-    }
+@media (max-width:576px) {
+  .logoContainer {
+    width: 100px;
+  }
 }
