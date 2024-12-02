@@ -179,12 +179,16 @@ const Expertise = () => {
                                         <div className='SmallText'>
                                             <p>00{index + 1} </p>
                                         </div>
-                                        <div>
-                                            <h2>{item.title}</h2>
-                                            <p>{item.description}</p>
+                                        <div className='HeightContainer'>
                                             <div className='ExpertiseImageContainer'>
                                                 <img src={item.image} alt="" />
                                             </div>
+                                            <br />
+                                            <div className='hoverContainer'>
+                                            <h2>{item.title}</h2>
+                                            <p>{item.description}</p>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>

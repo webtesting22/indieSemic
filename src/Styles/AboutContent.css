@@ -142,11 +142,12 @@
   margin-left: 2rem;
 }
 
-.statCard span{
+.statCard span {
   font-size: 40px;
   font-family: "Noto Serif Ahom", serif;
 }
-.statCard span::first-letter{
+
+.statCard span::first-letter {
   color: rgb(74, 144, 226);
 }
 
@@ -162,12 +163,14 @@
   opacity: 0.1;
   background-attachment: fixed;
 }
+
 @media (max-width: 769px) {
 
-.CompanyContentRow {
-  margin-top: 5rem;
-  padding-bottom: 0rem;
-}
+  .CompanyContentRow {
+    margin-top: 5rem;
+    padding-bottom: 0rem;
+  }
+
   .ListItemUl ul div:nth-child(odd) {
     margin-left: 0rem;
   }
@@ -181,7 +184,7 @@
 
   .CompanyContentRow {
     margin-top: 2rem;
-    margin-bottom:0rem;
+    margin-bottom: 0rem;
   }
 
   .ListItemUl ul li::before {

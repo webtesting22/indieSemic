@@ -173,6 +173,8 @@
   width: 25%;
   /* padding: 12px; */
   transform: translateY(0px);
+  height: 100%;
+  overflow: hidden;
 }
 
 .ExpertiseCards>div {
@@ -198,6 +200,41 @@
 .ExpertiseCards .ExpertiseImageContainer {
   height: 300px;
   width: 100%;
+  overflow: hidden;
+}
+
+.ExpertiseCards .hoverContainer {
+  position: absolute;
+  bottom: 0px;
+  backdrop-filter: blur(20px);
+  right: 10px;
+  left: 10px;
+  padding: 0px 8px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: .5s;
+  /* right: 0px;
+  left: 0px; */
+}
+.ExpertiseCards:hover .hoverContainer{
+  position: absolute;
+  bottom: 0px;
+  backdrop-filter: blur(20px);
+  right: 10px;
+  left: 10px;
+  padding: 0px 8px;
+  opacity: 1;
+  transform: translateY(0px);
+  transition: .5s;
+}
+
+.ExpertiseCards .hoverContainer h2,
+.ExpertiseCards .hoverContainer p {
+  color: white;
+}
+
+.HeightContainer {
+  height: 300px;
   overflow: hidden;
 }
 
