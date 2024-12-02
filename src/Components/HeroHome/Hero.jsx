@@ -6,13 +6,13 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
 import Button from '@mui/material/Button';
-
+import BackBanner from "../../../public/Images/BackBanner.png"
 const Hero = () => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const CarousalImages = [
         {
-            image: "/Images/Slider2.jpg",
+            image: BackBanner,
             heading: "Innovating the Future of Semiconductors",
             tagline: "Powering breakthroughs in AI and IoT technology",
         },
@@ -44,10 +44,10 @@ const Hero = () => {
                             clickable: true,
                         }}
                         speed={1000}
-                        autoplay={{
-                            delay: 5000,
-                            disableOnInteraction: false,
-                        }}
+                        // autoplay={{
+                        //     delay: 1000,
+                        //     disableOnInteraction: false,
+                        // }}
                         // onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
                         modules={[Autoplay, Pagination]}
                         className="mySwiper"
@@ -59,12 +59,12 @@ const Hero = () => {
                                         <img src={item.image} alt={`Slide ${index + 1}`} />
                                         <div className="overlay"></div>
                                     </div>
-                                    <div className={`slideText `}>
+                                    {/* <div className={`slideText `}>
                                         {item.heading}
                                     </div>
                                     <div className={`slideTagline ${activeIndex === index ? "slideText" : "slideText"}`}>
                                         <p>{item.tagline}</p>
-                                    </div>
+                                    </div> */}
 
                                 </div>
                             </SwiperSlide>

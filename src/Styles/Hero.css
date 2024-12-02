@@ -114,7 +114,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4); /* Semi-transparent black overlay */
+  background: rgb(0 0 0 / 17%); /* Semi-transparent black overlay */
   z-index: 9;
 }
 

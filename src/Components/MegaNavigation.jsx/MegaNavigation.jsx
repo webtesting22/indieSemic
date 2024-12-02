@@ -174,6 +174,7 @@ const MegaNavigation = () => {
 
                                     </>
                                 )}
+                                {/* <hr /> */}
                             </div>
                         </Toolbar>
                     </AppBar>
