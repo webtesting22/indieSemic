@@ -9,7 +9,7 @@ import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import BackImage from "./BackImage.jpeg"
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from 'swiper/modules';
-import "swiper/css/autoplay"; 
+import "swiper/css/autoplay";
 
 // Import Swiper styles
 import 'swiper/css';
@@ -120,13 +120,13 @@ const AboutCompany = () => {
                         </Col> */}
                         <Col lg={12}>
                             <div className="MiddleImageContainer">
-                                <Swiper 
+                                <Swiper
                                     loop={true}
                                     autoplay={{
                                         delay: 2500, // Delay between slides in milliseconds
                                         disableOnInteraction: false, // Allow autoplay to continue after user interaction
                                     }}
-                                    
+
                                     modules={[Autoplay]}
                                     className="mySwiper"
                                 >
@@ -146,8 +146,11 @@ const AboutCompany = () => {
                         <Col lg={12}>
                             <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
                                 <div>
-                                    <h2 >We are a dynamic design studio driven by a deep passion for creativity and innovation.</h2>
-                                    <p>Our team is dedicated to crafting bespoke, thoughtful designs that not only reflect the individuality of your brand but also connect with your audience on a meaningful level. Every project we undertake is an opportunity to tell a unique story, blending strategy .</p>
+                                    <h2 >Empowering innovation and creativity through cutting-edge semiconductor design.</h2>
+
+                                    <p>IndieSemiC specializes in semiconductor and embedded systems, with a focus on design and development of ASIC chipsets and RF modules. Our technology expertise spans BLE, WiFi, LoRa, GPS, Zigbee, and more.</p>
+                                    <p>With a diverse clientele across Europe, the USA, and India, we are dedicated to delivering tailored solutions that drive technological advancements. At IndieSemiC, we strive to push the boundaries of the semiconductor industry while supporting our customers' growth and success on a global scale.</p>
+                                    {/* <p>Our team is dedicated to crafting bespoke, thoughtful designs that not only reflect the individuality of your brand but also connect with your audience on a meaningful level. Every project we undertake is an opportunity to tell a unique story, blending strategy .</p> */}
                                     <br /><br />
                                     {/* <div className="SideContentContainer">
                                         <button data-aos="fade-left"

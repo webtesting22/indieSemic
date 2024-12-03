@@ -3,6 +3,7 @@
   /* Set relative positioning to use pseudo-element */
   background-color: rgb(19 19 19);
   color: white;
+  padding-top: 3rem;
   padding-bottom: 0rem;
 }
 
@@ -16,8 +17,12 @@
 .QuateContainer {
   border-bottom: 0.5px solid rgba(255, 255, 255, 0.23);
   padding-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
 }
-
+.QuateContainer img{
+  width: 200px;
+}
 .FooterContentContainer {
   padding: 3rem 0rem;
   border-bottom: 0.5px solid rgba(255, 255, 255, 0.23);
@@ -27,8 +32,12 @@
 .SocialNavigationLinks p:first-child,
 .SocialMediaLinks p:first-child {
   font-weight: 500;
+  color: rgb(74, 144, 226);
 }
-
+.SocialMediaLinks {
+  display: flex;
+  flex-direction: column;
+}
 .CopyrightContainer div {
   display: flex;
   align-items: center;
@@ -50,6 +59,34 @@
   object-fit: contain;
   aspect-ratio: 3/2;
 }
+.SocialMediaLinks p {
+  margin-top: 0 !important;
+}
+.footerSocialIcons {
+  padding-top: 10px;
+}
+.footerSocialIcons div {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 10px; /* Adds spacing between each social link */
+}
+
+.footerSocialIcons div a {
+  text-decoration: none;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.footerSocialIcons div a:hover {
+  text-decoration: underline; /* Optional hover effect */
+}
+
+.footerSocialIcons svg {
+  font-size: 1.5rem; /* Adjust icon size */
+  padding-right: 7px;
+}
 @media (max-width: 769px) {
   .CopyrightContainer div p:first-child {
     margin-bottom: 0px;
@@ -62,5 +99,10 @@
   }
   .footerLogoContainer {
     width: 30%;
+  }
+}
+@media (max-width:576px){
+  .QuateContainer img{
+    width: 100px;
   }
 }

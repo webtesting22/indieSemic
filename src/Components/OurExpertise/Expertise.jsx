@@ -153,8 +153,12 @@ const Expertise = () => {
                         </Col>
                         <Col lg={12}>
                             <div className='SideContentContainer'>
-                                <h3 data-aos="fade-up">Advancements in Semiconductor Technology</h3>
-                                <p data-aos="fade-up">Semiconductor technology is at the core of modern electronics, driving innovation in devices like smartphones, computers, and automotive systems. With the continuous evolution of fabrication techniques, semiconductors are becoming smaller, faster, and more efficient. These advancements are essential for powering cutting-edge technologies, from artificial intelligence to 5G networks, revolutionizing industries and enabling the next wave of digital transformation. </p>
+                                {/* <h3 data-aos="fade-up">Advancements in Semiconductor Technology</h3> */}
+                                <h3 data-aos='fade-up'>Shaping Tomorrow's Semiconductor Landscape in India</h3>
+                                <p> IndieSemic aims to set a critical milestone by achieving a breakthrough in the Fail-Safe Secure Controller SoC and RF modules within the next five years.<br />
+                                    This milestone encompasses the development and launch of flagship SoCs and RF modules that not only surpass current market offerings in terms of range, power efficiency and data transmission rates; but also introduces novel chipset architecture that significantly reduces production costs and energy consumption.<br />
+                                    Success in these endeavors will position India as a leader in efficient SoC designing and development along with secure wireless communication technology, underscoring our commitment to innovation, and paving way for future advancements that will continue to challenge and redefine industry standards.
+                                </p>    {/* <p data-aos="fade-up">Semiconductor technology is at the core of modern electronics, driving innovation in devices like smartphones, computers, and automotive systems. With the continuous evolution of fabrication techniques, semiconductors are becoming smaller, faster, and more efficient. These advancements are essential for powering cutting-edge technologies, from artificial intelligence to 5G networks, revolutionizing industries and enabling the next wave of digital transformation. </p> */}
                                 <br />
                                 {/* <button data-aos="fade-left"
                                     data-aos-duration="1500"><ArrowRightAltIcon /> Read More</button> */}

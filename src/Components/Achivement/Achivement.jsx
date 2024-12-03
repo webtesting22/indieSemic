@@ -1,45 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../../Styles/Achivement.css";
-import { Row, Col } from "antd";
-import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
-import EmojiEventsSharpIcon from '@mui/icons-material/EmojiEventsSharp';
-import StoreSharpIcon from '@mui/icons-material/StoreSharp';
+import Back2 from '/Images/AboutImage.jpg';
 import Back from "./Back.jpg"
 const Achivement = () => {
-    const [isInView, setIsInView] = useState(false); // Track visibility of the section
-    const [offsetY, setOffsetY] = useState(0);
-    const [counters, setCounters] = useState({
-        customers: 0,
-        awards: 0,
-        marketReady: 0,
-    });
-
-    const AchivementvaluesData = [
-        {
-            icon: <SupervisorAccountIcon style={{ fontSize: "3rem", color: "white" }} />,
-            values: "50+",
-            text: "Customers",
-            key: "customers",
-            target: 50,
-        },
-        {
-            icon: <EmojiEventsSharpIcon style={{ fontSize: "3rem", color: "white" }} />,
-            values: "5+",
-            text: "Awards",
-            key: "awards",
-            target: 5,
-        },
-        {
-            icon: <StoreSharpIcon style={{ fontSize: "3rem", color: "white" }} />,
-            values: "15+",
-            text: "Market Ready Modules",
-            key: "marketReady",
-            target: 15,
-        },
-    ];
-
     const sectionRef = useRef(null);
-
+    const [offsetY, setOffsetY] = useState(0);
     useEffect(() => {
         // Intersection Observer to detect visibility of the section
         const observer = new IntersectionObserver(
@@ -68,59 +33,6 @@ const Achivement = () => {
         };
     }, []);
 
-    useEffect(() => {
-        if (isInView) {
-            const maxIterations = Math.max(
-                AchivementvaluesData[0].target,
-                AchivementvaluesData[1].target,
-                AchivementvaluesData[2].target
-            );
-            // Start counting animation when in view
-            const interval = setInterval(() => {
-                setCounters((prevCounters) => {
-                    const newCounters = { ...prevCounters };
-
-                    AchivementvaluesData.forEach(item => {
-                        // Sync the counters
-                        if (newCounters[item.key] < item.target) {
-                            newCounters[item.key] = Math.min(
-                                newCounters[item.key] + (item.target / maxIterations),
-                                item.target
-                            );
-                        }
-                    });
-
-                    return newCounters;
-                });
-            }, 100); // Adjust this to control speed of animation
-
-            return () => clearInterval(interval); // Cleanup on unmount or when out of view
-        } else {
-            // Reset counters when out of view
-            setCounters({
-                customers: 0,
-                awards: 0,
-                marketReady: 0,
-            });
-        }
-    }, [isInView]);
-
-
-    // Update scroll position
-
-    useEffect(() => {
-        // Update the parallax offset only when the section is in view
-        const handleScroll = () => {
-            if (isInView) {
-                const sectionTop = sectionRef.current.getBoundingClientRect().top;
-                setOffsetY(sectionTop * 0.5); // Adjust the multiplier for the desired effect
-            }
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [isInView]);
-
 
     return (
         <>
@@ -136,8 +48,12 @@ const Achivement = () => {
                 <div id="CardColumns">
                     <div>
                         <div className="BoxEdit">
+
                             <div className="blackoverlay">
 
+                            </div>
+                            <div className="Title">
+                                <h1> SOC MODULES</h1>
                             </div>
                             <div className="Content">
                                 <div>
@@ -145,6 +61,7 @@ const Achivement = () => {
                                     <p>Semiconductors are materials with electrical conductivity between that of a conductor and an insulator, making them essential in modern electronics.</p>
                                 </div>
                             </div>
+
                             <img src={Back} alt="" style={{
                                 transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed with the multiplier
                             }} />
@@ -155,41 +72,24 @@ const Achivement = () => {
                             <div className="blackoverlay">
 
                             </div>
+                            <div className="Title">
+                                <h1> RF MODULES</h1>
+                            </div>
                             <div className="Content">
                                 <div>
                                     <h2>The Building Block of Modern Technology</h2>
                                     <p>Semiconductors are materials with electrical conductivity between that of a conductor and an insulator, making them essential in modern electronics.</p>
                                 </div>
                             </div>
-                            <img src={Back} alt="" style={{
+                            <img src={Back2} alt="" style={{
                                 transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed with the multiplier
                             }} />
                         </div>
                     </div>
                 </div>
-                {/* <div className="FixedImage" />
+                <div className="FixedImage" />
 
-            <div className="AchivementValuesContainer">
-                <div className="OverlayContainer">
 
-                </div>
-                <Row >
-                    {AchivementvaluesData.map((item, index) => (
-                        <Col lg={8} md={12} sm={24} key={index} style={{ width: "100%" }}>
-                            <div className="CountersContainer">
-                                <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                    {item.icon}&nbsp;
-                                    <h1 style={{ color: "white" }}>
-                                       {counters[item.key].toFixed(0)}+
-
-                                    </h1>
-                                </div>
-                                <p style={{ color: "white" }}>{item.text}</p>
-                            </div>
-                        </Col>
-                    ))}
-                </Row>
-            </div> */}
             </section></>
     );
 };

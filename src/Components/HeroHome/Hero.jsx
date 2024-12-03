@@ -5,8 +5,7 @@ import "../../Styles/Hero.css"
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
-import Button from '@mui/material/Button';
-import BackBanner from "../../../public/Images/BackBanner.png"
+import BackBanner from "../../../public/Images/SliderImage.png"
 const Hero = () => {
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -30,7 +29,8 @@ const Hero = () => {
             image: "/Images/Slider3.jpg",
             heading: "Sustainable Semiconductor Solutions",
             tagline: "Eco-friendly innovation for a greener planet",
-        }
+        },
+
     ];
 
     return (
