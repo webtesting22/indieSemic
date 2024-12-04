@@ -69,12 +69,14 @@
 
 .logoContainer {
   width: 150px;
+  
 }
 
 .logoContainer img {
   width: 70%;
   aspect-ratio: 3/2;
   object-fit: contain;
+  background-color: white;
 }
 
 .navigationContainer {

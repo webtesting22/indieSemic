@@ -4,14 +4,19 @@
 
 .AchivementValuesContainer {
   max-width: 100%;
-  height: 100%;
+  height: 40vh;
+  /* height: 100%; */
   background-color: black;
   padding: 2rem 0rem;
   /* background-image: url("https://images.unsplash.com/photo-1721314787850-5745fdfb06b4?q=80&w=3028&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); */
-  background-image: url('/Images/3047945.jpg');
+  background-image: url("/Images/3047945.jpg");
   background-size: cover;
   position: relative;
   background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
 }
 
 /* https://images.unsplash.com/photo-1639004643331-9526630beb3d?q=80&w=2941&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
@@ -21,6 +26,7 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
 
 .CountersContainer {
   text-align: center;
+  width: 100%;
 }
 
 .CountersContainer h1 {
@@ -69,7 +75,7 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
     rgba(0, 0, 0, 0.5) 90%,
     rgb(74, 144, 226, 0) 100%
   );
-  transition: 0.5s;
+  transition: 0.7s;
 }
 
 .BoxEdit:hover .blackoverlay {
@@ -82,11 +88,11 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
   z-index: 44;
   background: linear-gradient(
     to right,
-    rgba(0, 0, 0, 0.8) 70%,
-    rgba(0, 0, 0, 0.8) 90%,
-    rgb(74, 144, 226, 0) 100%
+    rgba(0, 0, 0, 0.7) 70%,
+    rgba(0, 0, 0, 0.7) 90%,
+    rgb(0, 0, 0, 0.8) 100%
   );
-  transition: 0.5s;
+  transition: 0.7s;
 }
 
 .Content {
@@ -115,7 +121,7 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
 }
 
 .Content p {
-  color: rgba(255, 255, 255, 0.449);
+  color: rgba(255, 255, 255, 0.849);
 }
 
 #CardColumns {
@@ -130,13 +136,13 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
 .Content {
   visibility: hidden;
   opacity: 0;
-  transition: 0.5s;
+  transition: 0.7s;
   transform: translateY(200px);
 }
 .BoxEdit:hover .Content {
   opacity: 1;
   visibility: visible;
-  transition: 0.5s;
+  transition: 0.7s;
   transform: translateY(0);
 }
 
@@ -148,9 +154,11 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
   position: absolute;
   color: white;
   opacity: 1;
+  transition: 0.7s;
 }
 .BoxEdit:hover .Title {
   opacity: 0;
+  transition: 0.7s;
   visibility: hidden;
   /* transition: 0.5s; */
 }
@@ -194,6 +202,9 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
     padding-left: 0rem;
     /* padding: 1rem; */
     flex-direction: column;
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .BoxEdit {
@@ -208,14 +219,14 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
   .blackoverlay {
     position: absolute;
     background-color: rgb(0, 0, 0);
-    height: 70%;
+    height: 100%;
     left: 0px;
     top: 30%;
     width: 100%;
     z-index: 44;
     background: linear-gradient(
       to top,
-      rgba(0, 0, 0, 1) 70%,
+      rgba(0, 0, 0, 0.7) 70%,
       rgba(0, 0, 0, 0.3) 90%,
       rgb(74, 144, 226, 0) 100%
     );

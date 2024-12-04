@@ -19,22 +19,22 @@ const Footer = () => {
                     <p>Stay in the loop! Join our newsletter for exclusive updates and insights delivered straight to your inbox.</p>
                 </div>
                 <div>
-                    <img src="/Images/MakeInIndia.png" />
+                    <img src="/Images/MakeInIndia2.png" />
                 </div>
             </div>
             <div className="FooterContentContainer">
                 <Row>
-                    <Col lg={10} md={24}>
+                    <Col lg={10} md={24} xs={24}>
                         <div>
                             <div className="footerLogoContainer">
                                 <img src="/Images/logo.png" alt="Logo" />
                             </div>
                             <p>IndieSemiC Private Limited</p>
-                            <p><b>Address:</b>&nbsp;<Link to="https://maps.app.goo.gl/mh95Njc42ex6evFx9">C-201, 2nd Floor, The First, B/h Keshav Baugh Party Plot Nr. Shivalik High-Street, Vastrapur, Ahmedabad, Gujarat 380015, IN</Link></p>
+                            <p><b>Address:</b>&nbsp;<Link to="https://maps.app.goo.gl/mh95Njc42ex6evFx9">C-201, 2nd Floor, The First, B/h Keshav Baugh Party Plot Nr. Shivalik High-Street, Vastrapur, Ahmedabad, Gujarat 380015.</Link></p>
                         </div>
                     </Col>
                     <Col lg={1} md={0} />
-                    <Col lg={6} md={24}>
+                    <Col lg={6} md={24} xs={24}>
                         <div className="SocialNavigationLinks">
                             <div style={{ width: "100%", height: "100%", display: "flex", }}>
                                 <iframe
@@ -53,7 +53,7 @@ const Footer = () => {
                         </div>
                     </Col>
                     <Col lg={1} md={0} />
-                    <Col lg={5} md={24}>
+                    <Col lg={5} md={24} xs={24}>
                         <div className="SocialMediaLinks">
                             <p>Contact Us</p>
                             <div className="footerSocialIcons">

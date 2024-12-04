@@ -9,6 +9,8 @@ import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send';
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+
 const ContactHome = () => {
     const [formValues, setFormValues] = React.useState({
         name: "",
@@ -56,22 +58,23 @@ const ContactHome = () => {
     return (
         <section id="ContactContainer" className='section_Padding'>
             <Row>
-                <Col lg={12} xs={24}>
+                <Col lg={11} xs={24}>
                     <div className='contactInfoContainer'>
                         <div className='sectionHeading'><h2>Contact Us</h2></div>
                         <p className='contactItem'>
-                            <LocationOnOutlinedIcon sx={{ color: "rgb(59, 59, 214)" }} />C-201, 2nd Floor, The First, B/h Keshav Baugh Party Plot Nr. Shivalik High-Street,&nbsp;Vastrapur, Ahmedabad, Gujarat 380015, IN
+                            <LocationOnOutlinedIcon sx={{ color: "#4a90e2" }} />C-201, 2nd Floor, The First, B/h Keshav Baugh Party Plot Nr. Shivalik High-Street,&nbsp;Vastrapur, Ahmedabad, Gujarat 380015.
                         </p>
                         <p className='contactItem'>
-                            <PhoneIcon sx={{ color: "rgb(59, 59, 214)" }} />
+                            <PhoneIcon sx={{ color: "#4a90e2" }} />
                             Contact Number here
                         </p>
                         <p className='contactItem'>
-                            <EmailIcon sx={{ color: "rgb(59, 59, 214)" }} />
+                            <EmailIcon sx={{ color: "#4a90e2" }} />
                             sales@indiesemic.com
                         </p>
                     </div>
                 </Col>
+                <Col lg={1} md={0} />
                 <Col lg={12} xs={24}>
                     <div className='contactFormContainer'>
                         <div className='sectionHeading'><h2>Reach Out To Us!</h2></div>
@@ -102,18 +105,19 @@ const ContactHome = () => {
                                     onChange={handleInputChange} />
                             </Box>
                             <InputLabel id="demo-simple-select-label">Country</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
+                            <TextField
+                                select
+                                label="Country"
+                                id="country"
                                 value={formValues.country}
                                 onChange={handleCountryChange}
                                 error={!!formErrors.country}
-
                                 variant='outlined'
+                                sx={{ width: '100%' }}
                             >
                                 <MenuItem value="India">India</MenuItem>
                                 <MenuItem value="Others">Others</MenuItem>
-                            </Select>
+                            </TextField>
                             {formValues.country === "Others" && (
                                 <TextField
                                     id="otherCountry"
@@ -131,7 +135,15 @@ const ContactHome = () => {
                                 onChange={handleInputChange}
                                 error={!!formErrors.message}
                                 helperText={formErrors.message} />
-                            <Button variant='contained' endIcon={<SendIcon />} type="submit" sx={{ width: "20%" }}>Submit</Button>
+                            {/* <Button variant='contained' endIcon={<SendIcon />} type="submit" sx={{ width: "20%" }}>Submit</Button> */}
+                            <div className="SideContentContainer">
+                                <button data-aos="fade-left"
+                                    type='submit'
+                                    data-aos-duration="1500">
+                                    <ArrowRightAltIcon />
+                                    Submit
+                                </button>
+                            </div>
                         </Box>
 
                     </div>

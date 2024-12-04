@@ -30,7 +30,8 @@
 .AboutCompanyContent {
   padding-right: 2rem;
 }
-
+.DesignedContainer {
+}
 .DesignedContainer h1 {
   font-size: 45px;
   font-weight: 400;
@@ -80,7 +81,7 @@
 }
 
 .CompanyContentRow .MiddleImageContainer {
-  height: 700px;
+  height: 500px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -162,7 +163,7 @@
   background-image: url("/Images/FooterBack.jpg");
   background-size: cover;
   background-position: center;
-  opacity: 0.2;
+  opacity: 0.1;
   background-attachment: fixed;
 }
 
@@ -224,6 +225,7 @@
     align-items: center;
     justify-content: center;
     margin: 2rem 0rem;
+    padding-right: 0;
   }
 
   .CompanyContentRow img {

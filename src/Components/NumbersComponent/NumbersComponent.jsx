@@ -98,7 +98,7 @@ const NumbersComponent = () => {
     return (
         <div ref={sectionRef} className="AchivementValuesContainer">
             <div className="OverlayContainer"></div>
-            <Row>
+            <Row style={{width:"100%"}}>
                 {AchivementvaluesData.map((item, index) => (
                     <Col lg={8} md={12} sm={24} key={index} style={{ width: "100%" }}>
                         <div className="CountersContainer">

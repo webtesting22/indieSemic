@@ -316,14 +316,21 @@
   #ScrollingAnimation .ImagesContainer {
     width: 100%;
   }
-
+  .ContentRow {
+    margin-top: 2rem;
+  }
   .ContentRow .SideContentContainer h3 {
     margin-top: 0px;
     direction: ltr;
     font-size: 30px;
     font-weight: 400;
   }
-
+  .ContentRow .SideContentContainer p{
+    text-align: justify;
+  }
+  .SideContentContainer{
+    margin-top: 1rem;
+  }
   .expertise-page {
     padding: 1rem;
   }
