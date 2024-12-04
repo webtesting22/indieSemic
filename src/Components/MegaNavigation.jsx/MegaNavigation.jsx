@@ -4,7 +4,7 @@ import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Slide from '@mui/material/Slide';
-import { NavigationData, RFModules, SystemOnChip, Services, Applications, AboutUs } from "../../CommonComponents/Navigationdata/NavigationData";
+import { NavigationData, RFModules, SystemOnChip, Services, Applications, } from "../../CommonComponents/Navigationdata/NavigationData";
 import { Drawer, Button, Collapse } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import "../../Styles/MegaNavigation.css";
@@ -85,12 +85,12 @@ const MegaNavigation = () => {
                         <a href="#">{item.link}</a>
                     </Collapse.Panel>
                 ));
-            case 'About Us':
-                return AboutUs.map((item, index) => (
-                    <Collapse.Panel header={item.link} key={index}>
-                        <a href="#">{item.link}</a>
-                    </Collapse.Panel>
-                ));
+            // case 'About Us':
+            //     return AboutUs.map((item, index) => (
+            //         <Collapse.Panel header={item.link} key={index}>
+            //             <a href="#footerSection">{item.link}</a>
+            //         </Collapse.Panel>
+            //     ));
 
             default:
                 return null;

@@ -83,7 +83,7 @@ const AboutCompany = () => {
             image: "https://images.unsplash.com/photo-1642229408339-572fa3328d10?q=80&w=2873&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         },
         {
-            image:'/Images/AboutImage3.jpg',
+            image: '/Images/AboutImage3.jpg',
         }
         // {
         //     image: "https://plus.unsplash.com/premium_photo-1714618946021-8fbd6394d1a8?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -95,10 +95,7 @@ const AboutCompany = () => {
                 <div className="backGroundAttachment">
 
                 </div>
-                <div className="DesignedContainer">
-                    <h1 data-aos="fade-up"  ><span style={{ fontSize: "50px" }}>IndieSemiC</span> <br /> <span style={{ color: "rgb(74, 144, 226)" }} >Making India's Way To Semiconductor</span></h1>
-                    {/* <p data-aos="fade-up">Revolutionizing the future of technology with cutting-edge chip design and development.</p> */}
-                </div>
+
                 <div className="CompanyContentRow">
 
                     <Row>
@@ -122,7 +119,32 @@ const AboutCompany = () => {
                                 </ul>
                             </div>
                         </Col> */}
+
                         <Col lg={12}>
+                            <div className="DesignedContainer">
+                                <h1 data-aos="fade-up"  ><span style={{ fontSize: "50px" }}>IndieSemiC</span> <br /> <span style={{ color: "rgb(74, 144, 226)" }} >Making India's Way To Semiconductor</span></h1>
+                                {/* <p data-aos="fade-up">Revolutionizing the future of technology with cutting-edge chip design and development.</p> */}
+                            </div>
+                            <div><br />
+                                <div>
+                                    <h2 >Empowering innovation and creativity through cutting-edge semiconductor design.</h2>
+
+                                    <p>IndieSemiC specializes in semiconductor and embedded systems, with a focus on design and development of ASIC chipsets and RF modules. Our technology expertise spans BLE, WiFi, LoRa, GPS, Zigbee, and more.</p>
+                                    <p>With a diverse clientele across Europe, the USA, and India, we are dedicated to delivering tailored solutions that drive technological advancements. At IndieSemiC, we strive to push the boundaries of the semiconductor industry while supporting our customers' growth and success on a global scale.</p>
+                                    {/* <p>Our team is dedicated to crafting bespoke, thoughtful designs that not only reflect the individuality of your brand but also connect with your audience on a meaningful level. Every project we undertake is an opportunity to tell a unique story, blending strategy .</p> */}
+                                    <br /><br />
+                                    {/* <div className="SideContentContainer">
+                                        <button data-aos="fade-left"
+                                            data-aos-duration="1500">
+                                            <ArrowRightAltIcon />
+                                            Read More
+                                        </button>
+                                    </div> */}
+                                </div>
+                            </div>
+                        </Col>
+                        <Col lg={1} md={0} xs={0} sm={0} />
+                        <Col lg={11}>
                             <div className="MiddleImageContainer">
                                 <Swiper
                                     loop={true}
@@ -145,25 +167,6 @@ const AboutCompany = () => {
                                 {/* <img style={{
                                     transform: `translateY(${offsetY * 0.1}px)`,
                                 }} src="https://images.unsplash.com/photo-1726739819428-a8f250e60691?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" /> */}
-                            </div>
-                        </Col>
-                        <Col lg={12}>
-                            <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
-                                <div>
-                                    <h2 >Empowering innovation and creativity through cutting-edge semiconductor design.</h2>
-
-                                    <p>IndieSemiC specializes in semiconductor and embedded systems, with a focus on design and development of ASIC chipsets and RF modules. Our technology expertise spans BLE, WiFi, LoRa, GPS, Zigbee, and more.</p>
-                                    <p>With a diverse clientele across Europe, the USA, and India, we are dedicated to delivering tailored solutions that drive technological advancements. At IndieSemiC, we strive to push the boundaries of the semiconductor industry while supporting our customers' growth and success on a global scale.</p>
-                                    {/* <p>Our team is dedicated to crafting bespoke, thoughtful designs that not only reflect the individuality of your brand but also connect with your audience on a meaningful level. Every project we undertake is an opportunity to tell a unique story, blending strategy .</p> */}
-                                    <br /><br />
-                                    {/* <div className="SideContentContainer">
-                                        <button data-aos="fade-left"
-                                            data-aos-duration="1500">
-                                            <ArrowRightAltIcon />
-                                            Read More
-                                        </button>
-                                    </div> */}
-                                </div>
                             </div>
                         </Col>
                     </Row>

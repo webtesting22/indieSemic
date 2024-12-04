@@ -21,7 +21,7 @@ const NavigationData = [
     // },
     {
         link: "About Us",
-        path: ""
+        path: "/#footerSection"
     },
 ]
 
@@ -30,11 +30,11 @@ const RFModules = [
         link: "Coming Soon",
     },
 ]
-const AboutUs = [
-    {
-        link: "Coming Soon",
-    },
-]
+// const AboutUs = [
+//     // {
+//     //     link: "Coming Soon",
+//     // },
+// ]
 
 const SystemOnChip = [
     {
@@ -58,5 +58,5 @@ const Applications = [
 
 
 
-export { AboutUs,RFModules, NavigationData, SystemOnChip, Services, Applications }
+export { AboutUs, RFModules, NavigationData, SystemOnChip, Services, Applications }
 
