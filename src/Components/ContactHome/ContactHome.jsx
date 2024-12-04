@@ -104,7 +104,6 @@ const ContactHome = () => {
                                     helperText={formErrors.contact}
                                     onChange={handleInputChange} />
                             </Box>
-                            <InputLabel id="demo-simple-select-label">Country</InputLabel>
                             <TextField
                                 select
                                 label="Country"
