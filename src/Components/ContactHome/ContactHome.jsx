@@ -1,12 +1,14 @@
 import '../../Styles/ContactHome.css'
 import React from 'react'
 import { Row, Col } from 'antd'
-import { Button, Checkbox, Form, Input } from 'antd';
+// import { Button, Checkbox, Form, Input } from 'antd';
+import { Button } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import SendIcon from '@mui/icons-material/Send';
 const ContactHome = () => {
 
     return (
@@ -40,6 +42,7 @@ const ContactHome = () => {
                                 <TextField id="email" label="Email" variant="outlined" sx={{ flex: 1 }} />
                             </Box>
                             <TextField id="message" label="Message" variant="outlined" multiline rows={4} />
+                            <Button variant='contained' endIcon={<SendIcon />} sx={{width:"20%"}}>Submit</Button>
                         </Box>
 
                     </div>
