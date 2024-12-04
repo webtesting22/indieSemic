@@ -6,30 +6,24 @@ import { Modal } from 'antd';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(true); // Modal opens on page load
-
-  const handleOk = () => {
-    setIsModalOpen(false); // Close the modal on "OK"
-  };
-
   const handleCancel = () => {
     setIsModalOpen(false); // Close the modal on "Cancel"
   };
-  const [count, setCount] = useState(0)
 
   return (
     <>
       <Router>
         <DynamicRoutes />
-        
+
       </Router>
-       {/* Modal */}
-       <Modal
+      {/* Modal */}
+      <Modal
         title="Welcome!"
         open={isModalOpen}
-        onOk={handleOk}
+        footer={null}
         onCancel={handleCancel}
       >
-        <p>Welcome to our application! Enjoy your experience.</p>
+        <p>Welcome to IndieSemiC!</p>
       </Modal>
     </>
   )
