@@ -8,8 +8,6 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import BackBanner from "../../../public/Images/SliderImage.png"
 import TryBanner from "../../../public/Images/TryBanner.jpeg"
 import ChipVideo from "../../../public/Images/ChipVideo.mp4"
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 const Hero = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const CarousalImages = [
@@ -36,19 +34,7 @@ const Hero = () => {
         },
 
     ];
-    useEffect(() => {
-        // Initialize AOS
-        AOS.init({
-            once: false,    // Whether animation should happen only once or every time
-        });
-
-        // Refresh AOS on updates
-        const interval = setInterval(() => {
-            AOS.refresh(); // Refresh AOS animations dynamically
-        }, 500); // Refresh every 500ms
-
-        return () => clearInterval(interval); // Clean up on unmount
-    }, []);
+  
     return (
         <>
             <section id="CarousalContainer">

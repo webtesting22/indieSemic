@@ -58,5 +58,5 @@ const Applications = [
 
 
 
-export { AboutUs, RFModules, NavigationData, SystemOnChip, Services, Applications }
+export {  RFModules, NavigationData, SystemOnChip, Services, Applications }
 
