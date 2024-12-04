@@ -35,7 +35,12 @@
   justify-content: flex-end;
   align-items: flex-end;
 }
-
+.contactInfoContainer a{
+  color: black;
+}
+.contactInfoContainer a:hover{
+  color: rgb(74, 144, 226);
+}
 @media (max-width: 576px) {
   .contactInfoContainer {
     align-items: center;

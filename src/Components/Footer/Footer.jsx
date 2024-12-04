@@ -30,7 +30,7 @@ const Footer = () => {
                                 <img src="/Images/logo.png" alt="Logo" />
                             </div>
                             <p>IndieSemiC Private Limited</p>
-                            <p><b>Address:</b>&nbsp;<Link to="https://maps.app.goo.gl/mh95Njc42ex6evFx9">C-201, 2nd Floor, The First, B/h Keshav Baugh Party Plot Nr. Shivalik High-Street, Vastrapur, Ahmedabad, Gujarat 380015.</Link></p>
+                            <p><b>Address:</b>&nbsp;<Link to="https://maps.app.goo.gl/mh95Njc42ex6evFx9" target="_blank">C-201, 2nd Floor, The First, B/h Keshav Baugh Party Plot Nr. Shivalik High-Street, Vastrapur, Ahmedabad, Gujarat 380015.</Link></p>
                         </div>
                     </Col>
                     <Col lg={1} md={0} />
@@ -57,8 +57,8 @@ const Footer = () => {
                         <div className="SocialMediaLinks">
                             <p>Contact Us</p>
                             <div className="footerSocialIcons">
-                                <div><Link to="mailto:sales@indiesemic.com"><MailIcon sx={{ color: "rgb(74, 144, 226)" }} />sales@indiesemic.com</Link></div>
-                                <div><Link to="https://www.linkedin.com/company/102919226/admin/dashboard/"><LinkedInIcon sx={{ color: "rgb(74, 144, 226)" }} />LinkedIn</Link></div>
+                                <div><Link to="mailto:sales@indiesemic.com" target="_blank"><MailIcon sx={{ color: "rgb(74, 144, 226)" }} />sales@indiesemic.com</Link></div>
+                                <div><Link to="https://www.linkedin.com/company/102919226/admin/dashboard/" target="_blank"><LinkedInIcon sx={{ color: "rgb(74, 144, 226)" }} />LinkedIn</Link></div>
                             </div>
                         </div>
                     </Col>

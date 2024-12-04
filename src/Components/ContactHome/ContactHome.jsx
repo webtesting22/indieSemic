@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-
+import { Link } from 'react-router-dom';
 const ContactHome = () => {
     const [formValues, setFormValues] = React.useState({
         name: "",
@@ -62,7 +62,8 @@ const ContactHome = () => {
                     <div className='contactInfoContainer'>
                         <div className='sectionHeading'><h2>Contact Us</h2></div>
                         <p className='contactItem'>
-                            <LocationOnOutlinedIcon sx={{ color: "#4a90e2" }} />C-201, 2nd Floor, The First, B/h Keshav Baugh Party Plot Nr. Shivalik High-Street,&nbsp;Vastrapur, Ahmedabad, Gujarat 380015.
+                            <LocationOnOutlinedIcon sx={{ color: "#4a90e2" }} />
+                            <Link to="https://maps.app.goo.gl/mh95Njc42ex6evFx9">C-201, 2nd Floor, The First, B/h Keshav Baugh Party Plot Nr. Shivalik High-Street,&nbsp;Vastrapur, Ahmedabad, Gujarat 380015.</Link>
                         </p>
                         <p className='contactItem'>
                             <PhoneIcon sx={{ color: "#4a90e2" }} />
@@ -70,7 +71,7 @@ const ContactHome = () => {
                         </p>
                         <p className='contactItem'>
                             <EmailIcon sx={{ color: "#4a90e2" }} />
-                            sales@indiesemic.com
+                            <Link to="mailto:sales@indiesemic.com" target="_blank">sales@indiesemic.com</Link>
                         </p>
                     </div>
                 </Col>
