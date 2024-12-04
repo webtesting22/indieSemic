@@ -16,21 +16,21 @@ const NumbersComponent = () => {
 
     const AchivementvaluesData = [
         {
-            icon: <SupervisorAccountIcon style={{ fontSize: "3rem", color: "#3B3BD6" }} />,
+            icon: <SupervisorAccountIcon style={{ fontSize: "3rem", color: "white" }} />,
             values: "50+",
             text: "Customers",
             key: "customers",
             target: 50,
         },
         {
-            icon: <EmojiEventsSharpIcon style={{ fontSize: "3rem", color: "#3B3BD6" }} />,
+            icon: <EmojiEventsSharpIcon style={{ fontSize: "3rem", color: "white" }} />,
             values: "5+",
             text: "Awards",
             key: "awards",
             target: 5,
         },
         {
-            icon: <StoreSharpIcon style={{ fontSize: "3rem", color: "#3B3BD6" }} />,
+            icon: <StoreSharpIcon style={{ fontSize: "3rem", color: "white" }} />,
             values: "15+",
             text: "Market Ready Modules",
             key: "marketReady",
