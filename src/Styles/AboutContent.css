@@ -80,7 +80,7 @@
 }
 
 .CompanyContentRow .MiddleImageContainer {
-  height: 500px;
+  height: 700px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -164,13 +164,16 @@
   opacity: 0.2;
   background-attachment: fixed;
 }
-.MiddleImageContainer .swiper-slide{
+
+.MiddleImageContainer .swiper-slide {
   width: 100% !important;
 }
-.MiddleImageContainer .swiper{
-  height: 500px !important;
+
+.MiddleImageContainer .swiper {
+  height: 700px !important;
 }
-.MiddleImageContainer .swiper-slide img{
+
+.MiddleImageContainer .swiper-slide img {
   width: 100% !important;
   height: 100% !important;
   margin-top: -5rem !important;
@@ -178,6 +181,7 @@
   object-fit: cover;
 
 }
+
 @media (max-width: 769px) {
 
   .CompanyContentRow {

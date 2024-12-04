@@ -10,6 +10,7 @@ import BackImage from "./BackImage.jpeg"
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from 'swiper/modules';
 import "swiper/css/autoplay";
+import "swiper/css/autoplay";
 
 // Import Swiper styles
 import 'swiper/css';
@@ -92,8 +93,8 @@ const AboutCompany = () => {
 
                 </div>
                 <div className="DesignedContainer">
-                    <h1 data-aos="fade-up"><span style={{ color: "rgb(74, 144, 226)" }} >Empowering Innovation</span> in Semiconductor Solutions</h1>
-                    <p data-aos="fade-up">Revolutionizing the future of technology with cutting-edge chip design and development.</p>
+                    <h1 data-aos="fade-up"  ><span style={{ fontSize: "50px" }}>IndieSemiC</span> <br /> <span style={{ color: "rgb(74, 144, 226)" }} >Making India's Way To Semiconductor</span></h1>
+                    {/* <p data-aos="fade-up">Revolutionizing the future of technology with cutting-edge chip design and development.</p> */}
                 </div>
                 <div className="CompanyContentRow">
 

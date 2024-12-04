@@ -6,11 +6,14 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
 import BackBanner from "../../../public/Images/SliderImage.png"
+import TryBanner from "../../../public/Images/TryBanner.jpeg"
+import ChipVideo from "../../../public/Images/ChipVideo.mp4"
 const Hero = () => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const CarousalImages = [
         {
+            image: ChipVideo,
             image: BackBanner,
             heading: "Innovating the Future of Semiconductors",
             tagline: "Powering breakthroughs in AI and IoT technology",
@@ -57,6 +60,18 @@ const Hero = () => {
                                 <div className="slideContent">
                                     <div className="imageOverlayContainer">
                                         <img src={item.image} alt={`Slide ${index + 1}`} />
+                                        {/* <video
+                                            src={ChipVideo}
+                                            autoPlay
+                                            loop
+                                            muted
+                                            style={{
+                                                // transform: `translateY(${offsetY * 0.1}px)`,
+                                                width: '100%',
+                                                height: 'auto',
+                                                objectFit:"cover"
+                                            }}
+                                        /> */}
                                         <div className="overlay"></div>
                                     </div>
                                     {/* <div className={`slideText `}>

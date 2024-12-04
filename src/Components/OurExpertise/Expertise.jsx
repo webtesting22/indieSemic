@@ -10,23 +10,21 @@ import HealthCare from "./HealthCare.jpeg"
 import IOTNetwork from "./IOTNetwork.jpg"
 import LeftSide from "./LeftSide.jpeg"
 const Expertise = () => {
-    const [visibleIndexes, setVisibleIndexes] = useState([]); // Track visible cards
-    const sectionRefs = useRef([]); // Ref array for all cards
+    const [visibleIndexes, setVisibleIndexes] = useState([]);
+    const sectionRefs = useRef([]);
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
                     const index = parseInt(entry.target.getAttribute("data-index"));
                     if (entry.isIntersecting) {
-                        // Add the index to visibleIndexes when the card is in view
                         setVisibleIndexes((prev) => [...new Set([...prev, index])]);
                     } else {
-                        // Remove the index from visibleIndexes when the card exits the view
                         setVisibleIndexes((prev) => prev.filter((i) => i !== index));
                     }
                 });
             },
-            { threshold: 0.5 } // Trigger animation when 50% is visible
+            { threshold: 0.5 }
         );
 
         sectionRefs.current.forEach((ref) => {
@@ -41,36 +39,41 @@ const Expertise = () => {
     }, []);
     const expertiseCards = [
         {
+            image: "https://images.unsplash.com/photo-1676288176918-232f7caadfee?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            title: "Automotive",
+            description: "Advancing smart vehicles with enhanced safety and performance."
+        },
+        {
             image: IOTNetwork,
             title: "IOT Networks",
             description: "Connecting devices for seamless data sharing and automation."
         },
         {
             image: "https://plus.unsplash.com/premium_photo-1661878265739-da90bc1af051?q=80&w=1986&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            title: "Security",
+            title: "Consumer Eletronics",
             description: " Developing systems to safeguard data and ensure privacy."
         },
-        {
-            image: "https://images.unsplash.com/photo-1676288176918-232f7caadfee?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            title: "Automotive",
-            description: "Advancing smart vehicles with enhanced safety and performance."
-        },
+        // {
+        //     image: "https://plus.unsplash.com/premium_photo-1661878265739-da90bc1af051?q=80&w=1986&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        //     title: "Security",
+        //     description: " Developing systems to safeguard data and ensure privacy."
+        // },
 
-        {
-            image: HealthCare,
-            title: "Health Care",
-            description: "Innovating medical technology for improved diagnostics and patient care."
-        },
-        {
-            image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            title: "Communication",
-            description: "Enabling fast and reliable data exchange across networks."
-        },
-        {
-            image: Robotics,
-            title: "Robotics",
-            description: "Designing intelligent machines to automate tasks and enhance efficiency."
-        }
+        // {
+        //     image: HealthCare,
+        //     title: "Health Care",
+        //     description: "Innovating medical technology for improved diagnostics and patient care."
+        // },
+        // {
+        //     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        //     title: "Communication",
+        //     description: "Enabling fast and reliable data exchange across networks."
+        // },
+        // {
+        //     image: Robotics,
+        //     title: "Robotics",
+        //     description: "Designing intelligent machines to automate tasks and enhance efficiency."
+        // }
     ];
 
     return (

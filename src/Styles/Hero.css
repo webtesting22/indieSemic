@@ -8,7 +8,7 @@
   justify-content: center;
 }
 
-#CarousalContainer > div {
+#CarousalContainer>div {
   height: 100%;
   width: 100%;
 }
@@ -36,6 +36,7 @@
   position: relative;
   /* text-align: center; */
 }
+
 .slideText {
   position: absolute;
   bottom: 20px;
@@ -48,8 +49,10 @@
   font-weight: 300;
   color: white;
   /* filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5)); */
-  opacity: 0; /* Start hidden */
-  transform: translateX(-100%); /* Start off-screen to the left */
+  opacity: 0;
+  /* Start hidden */
+  transform: translateX(-100%);
+  /* Start off-screen to the left */
   z-index: 10;
   animation: slide-left-to-right 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
@@ -57,40 +60,51 @@
 .slideTagline {
   position: absolute;
   left: 5%;
-  bottom: -50px; /* Start off-screen below */
+  bottom: -50px;
+  /* Start off-screen below */
   width: 100%;
   display: flex;
   align-items: center;
   font-size: 2rem;
 
-  opacity: 0; /* Start hidden */
+  opacity: 0;
+  /* Start hidden */
   z-index: 10;
   animation: slide-bottom-to-up 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
   animation-delay: 1.2s;
 }
-.slideTagline p{
+
+.slideTagline p {
   color: white !important;
   margin-top: -20px !important;
 }
 
 @keyframes slide-left-to-right {
   0% {
-    transform: translateX(-100%); /* Off-screen to the left */
-    opacity: 0; /* Invisible */
+    transform: translateX(-100%);
+    /* Off-screen to the left */
+    opacity: 0;
+    /* Invisible */
   }
+
   100% {
-    transform: translateX(0); /* Fully visible */
+    transform: translateX(0);
+    /* Fully visible */
     opacity: 1;
   }
 }
 
 @keyframes slide-bottom-to-up {
   0% {
-    transform: translateY(100%); /* Off-screen below */
-    opacity: 0; /* Invisible */
+    transform: translateY(100%);
+    /* Off-screen below */
+    opacity: 0;
+    /* Invisible */
   }
+
   100% {
-    transform: translateY(0); /* Fully visible */
+    transform: translateY(0);
+    /* Fully visible */
     opacity: 1;
   }
 }
@@ -114,38 +128,28 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgb(0 0 0 / 17%); /* Semi-transparent black overlay */
+  background: rgb(0 0 0 / 17%);
   z-index: 9;
 }
 
-@keyframes zoomInOut {
-  0% {
-    transform: scale(1);
-    /* Normal size */
-  }
-  50% {
-    transform: scale(1.1);
-    /* Zoom in */
-  }
-  100% {
-    transform: scale(1);
-    /* Back to normal size */
-  }
-}
+
 @media (max-width: 769px) {
   .slideText {
     font-size: 2rem;
     bottom: 20px;
   }
+
   .slideTagline {
     font-size: 1.5rem;
     bottom: -70px;
   }
 }
+
 @media (max-width: 576px) {
   .slideText {
     width: 90% !important;
   }
+
   .slideTagline {
     width: 90% !important;
   }
