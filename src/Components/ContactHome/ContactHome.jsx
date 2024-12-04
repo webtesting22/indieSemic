@@ -59,9 +59,17 @@ const ContactHome = () => {
                 <Col lg={12} xs={24}>
                     <div className='contactInfoContainer'>
                         <div className='sectionHeading'><h2>Contact Us</h2></div>
-                        <p><LocationOnOutlinedIcon sx={{ color: "rgb(59, 59, 214)" }} />&nbsp;C-201, 2nd Floor, The First, B/h Keshav Baugh Party Plot Nr. Shivalik High-Street, Vastrapur, Ahmedabad, Gujarat 380015, IN</p>
-                        <p><PhoneIcon sx={{ color: "rgb(59, 59, 214)" }} />&nbsp;Contact Number here</p>
-                        <p><EmailIcon sx={{ color: "rgb(59, 59, 214)" }} />&nbsp;sales@indiesemic.com</p>
+                        <p className='contactItem'>
+                            <LocationOnOutlinedIcon sx={{ color: "rgb(59, 59, 214)" }} />C-201, 2nd Floor, The First, B/h Keshav Baugh Party Plot Nr. Shivalik High-Street,&nbsp;Vastrapur, Ahmedabad, Gujarat 380015, IN
+                        </p>
+                        <p className='contactItem'>
+                            <PhoneIcon sx={{ color: "rgb(59, 59, 214)" }} />
+                            Contact Number here
+                        </p>
+                        <p className='contactItem'>
+                            <EmailIcon sx={{ color: "rgb(59, 59, 214)" }} />
+                            sales@indiesemic.com
+                        </p>
                     </div>
                 </Col>
                 <Col lg={12} xs={24}>

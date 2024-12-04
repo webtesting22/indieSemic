@@ -14,14 +14,17 @@
   flex-direction: column;
   /* align-items: center; */
 }
-
-.contactInfoContainer p {
+.contactItem {
   display: flex;
+  align-items: center;
+}
+
+.contactItem svg {
+  margin-right: 10px; /* Add some space between icon and text */
 }
 .contactForm {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 .ContentContainerHome button {
   background-color: black;
