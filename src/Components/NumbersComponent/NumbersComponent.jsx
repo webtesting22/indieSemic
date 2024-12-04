@@ -37,42 +37,63 @@ const NumbersComponent = () => {
             target: 15,
         },
     ];
-
-    // Check if section is in view
     useEffect(() => {
         const handleScroll = () => {
             if (sectionRef.current) {
                 const rect = sectionRef.current.getBoundingClientRect();
-                const inView = rect.top >= 0 && rect.bottom <= window.innerHeight;
-                setIsInView(inView);
+                const wasInView = isInView;
+                const currentlyInView = rect.top >= 0 && rect.bottom <= window.innerHeight;
+
+                // If section goes out of view, reset counters
+                if (wasInView && !currentlyInView) {
+                    setCounters({
+                        customers: 0,
+                        awards: 0,
+                        marketReady: 0,
+                    });
+                }
+
+                setIsInView(currentlyInView);
             }
         };
 
         window.addEventListener("scroll", handleScroll);
         handleScroll(); // Initial check
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    }, [isInView]);
+    const maxTarget = Math.max(...AchivementvaluesData.map(item => item.target));
 
+    // Counter increment effect
     useEffect(() => {
         if (isInView) {
             const interval = setInterval(() => {
                 setCounters((prevCounters) => {
                     const newCounters = { ...prevCounters };
+                    let allReachedTarget = true;
+
                     AchivementvaluesData.forEach((item) => {
+                        const incrementRate = item.target / maxTarget;
                         if (newCounters[item.key] < item.target) {
                             newCounters[item.key] = Math.min(
-                                newCounters[item.key] + 1,
+                                newCounters[item.key] + incrementRate,
                                 item.target
                             );
+                            allReachedTarget = false;
                         }
                     });
+
+                    // Clear interval when all counters reach their target
+                    if (allReachedTarget) {
+                        clearInterval(interval);
+                    }
+
                     return newCounters;
                 });
-            }, 50); // Adjust for smoother animation
+            }, 50);
 
             return () => clearInterval(interval);
         }
-    }, [isInView]);
+    }, [isInView, maxTarget]);
 
     return (
         <div ref={sectionRef} className="AchivementValuesContainer">
@@ -84,7 +105,7 @@ const NumbersComponent = () => {
                             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                                 {item.icon}&nbsp;
                                 <h1 style={{ color: "white" }}>
-                                    {counters[item.key].toFixed(0)}+
+                                {Math.floor(counters[item.key]).toFixed(0)}+
                                 </h1>
                             </div>
                             <p style={{ color: "white" }}>{item.text}</p>
