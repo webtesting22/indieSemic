@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "../../Styles/Achivement.css";
 import Back2 from '/Images/AboutImage.jpg';
 import Back from "./Back.jpg"
+
 const Achivement = () => {
     const sectionRef = useRef(null);
     const [offsetY, setOffsetY] = useState(0);

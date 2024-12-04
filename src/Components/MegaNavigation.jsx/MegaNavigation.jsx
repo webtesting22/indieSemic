@@ -110,14 +110,14 @@ const MegaNavigation = () => {
                 <div id="NavigationBar">
                     <AppBar
                         style={{
-                            backgroundColor: isScrolled ? "transparent" : "transparent",
-                            backdropFilter: isScrolled ? "blur(20px)" : "blur(0px)",
+                            backgroundColor: isScrolled ? "white" : "transparent",
+                            backdropFilter: isScrolled ? "blur(0px)" : "blur(0px)",
                             top: showAppBar ? 0 : '-64px', transition: 'top 0.3s',
                             boxShadow: isScrolled ? "0px 4px 6px rgba(0, 0, 0, 0.1)" : "none",
                         }}
                     >
                         <Toolbar>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: "center", marginTop: isScrolled ? "0px" : "20px", marginLeft: isScrolled ? "0px" : "50px", marginRight: isScrolled ? "0px" : "50px", backdropFilter: isScrolled ? "blur(0px)" : "blur(10px)" }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: "center", marginTop: isScrolled ? "2px" : "20px", marginLeft: isScrolled ? "0px" : "0px", marginRight: isScrolled ? "0px" : "50px", backdropFilter: isScrolled ? "blur(0px)" : "blur(10px)" }}>
                                 <div className="logoContainer">
                                     <img src="/Images/logo.png" alt="Logo" />
                                 </div>

@@ -15,9 +15,9 @@ const ContactHome = () => {
                 <Col lg={12} xs={24}>
                     <div className='contactInfoContainer'>
                         <div className='sectionHeading'><h2>Contact Us</h2></div>
-                        <p><LocationOnOutlinedIcon sx={{ color: "4a90e2" }} />&nbsp;Address here</p>
-                        <p><PhoneIcon sx={{ color: "4a90e2" }} />&nbsp;Contact Number here</p>
-                        <p><EmailIcon sx={{ color: "4a90e2" }} />&nbsp;Mail here</p>
+                        <p><LocationOnOutlinedIcon sx={{ color: "rgb(59, 59, 214)" }} />&nbsp;C-201, 2nd Floor, The First, B/h Keshav Baugh Party Plot Nr. Shivalik High-Street, Vastrapur, Ahmedabad, Gujarat 380015, IN</p>
+                        <p><PhoneIcon sx={{ color: "rgb(59, 59, 214)" }} />&nbsp;Contact Number here</p>
+                        <p><EmailIcon sx={{ color: "rgb(59, 59, 214)" }} />&nbsp;sales@indiesemic.com</p>
                     </div>
                 </Col>
                 <Col lg={12} xs={20}>
@@ -30,7 +30,7 @@ const ContactHome = () => {
                                 flexDirection: 'column',
                                 gap: 2,
                                 width: '100%',
-                                mt:3,
+                                mt: 3,
                             }}
                             noValidate
                             autoComplete="off"

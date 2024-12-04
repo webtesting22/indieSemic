@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import "./NumbersComponent.css";
+import "../../Styles/NumbersComponent.css";
 import { Row, Col } from "antd";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import EmojiEventsSharpIcon from "@mui/icons-material/EmojiEventsSharp";

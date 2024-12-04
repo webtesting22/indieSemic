@@ -8,15 +8,16 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import BackBanner from "../../../public/Images/SliderImage.png"
 import TryBanner from "../../../public/Images/TryBanner.jpeg"
 import ChipVideo from "../../../public/Images/ChipVideo.mp4"
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const Hero = () => {
     const [activeIndex, setActiveIndex] = useState(0);
-
     const CarousalImages = [
         {
             image: ChipVideo,
             image: BackBanner,
-            heading: "Innovating the Future of Semiconductors",
-            tagline: "Powering breakthroughs in AI and IoT technology",
+            // heading: "Innovating the Future of Semiconductors",
+            // tagline: "Powering breakthroughs in AI and IoT technology",
         },
         {
             image: "https://images.unsplash.com/photo-1639004643319-a996b810d37e?q=80&w=3018&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -35,7 +36,19 @@ const Hero = () => {
         },
 
     ];
+    useEffect(() => {
+        // Initialize AOS
+        AOS.init({
+            once: false,    // Whether animation should happen only once or every time
+        });
 
+        // Refresh AOS on updates
+        const interval = setInterval(() => {
+            AOS.refresh(); // Refresh AOS animations dynamically
+        }, 500); // Refresh every 500ms
+
+        return () => clearInterval(interval); // Clean up on unmount
+    }, []);
     return (
         <>
             <section id="CarousalContainer">
@@ -74,12 +87,12 @@ const Hero = () => {
                                         /> */}
                                         <div className="overlay"></div>
                                     </div>
-                                    {/* <div className={`slideText `}>
+                                    <div className={`slideText `}>
                                         {item.heading}
                                     </div>
                                     <div className={`slideTagline ${activeIndex === index ? "slideText" : "slideText"}`}>
                                         <p>{item.tagline}</p>
-                                    </div> */}
+                                    </div>
 
                                 </div>
                             </SwiperSlide>
