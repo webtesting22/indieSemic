@@ -8,6 +8,7 @@ import { NavigationData, RFModules, SystemOnChip, Services, Applications, } from
 import { Drawer, Button, Collapse } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import "../../Styles/MegaNavigation.css";
+import IndieSemicLogo from "../../../public/Images/IndieSemicLogo.jpg"
 
 function HideOnScroll(props) {
     const { children, window } = props;
@@ -119,7 +120,7 @@ const MegaNavigation = () => {
                         <Toolbar>
                             <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: "center", marginTop: isScrolled ? "2px" : "20px", marginLeft: isScrolled ? "0px" : "0px", marginRight: isScrolled ? "0px" : "0px", backdropFilter: isScrolled ? "blur(0px)" : "blur(10px)" }}>
                                 <div className="logoContainer">
-                                    <img src="/Images/logo.png" alt="Logo" />
+                                    <img src={IndieSemicLogo} alt="Logo"  style={{boxShadow:"rgb(255 255 255 / 67%) 0px 22px 35px -13px"}}/>
                                 </div>
                                 {windowWidth < 768 ? (
                                     <>

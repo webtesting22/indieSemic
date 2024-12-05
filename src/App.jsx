@@ -19,11 +19,12 @@ function App() {
       {/* Modal */}
       <Modal
         title="Welcome!"
-        open={isModalOpen}
         footer={null}
+        open={isModalOpen}
+        // footer={null}
         onCancel={handleCancel}
       >
-        <p>Welcome to IndieSemiC!</p>
+        <p>Our Website is under development. Stay tuned for the full website launch!</p>
       </Modal>
     </>
   )
