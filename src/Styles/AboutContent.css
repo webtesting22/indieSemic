@@ -228,11 +228,12 @@
   .CompanyContentRow .MiddleImageContainer {
     height: 500px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 2rem 0rem;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* margin: 2rem 0rem; */
     padding-right: 0;
+    background-attachment: scroll;
   }
 
   .CompanyContentRow img {

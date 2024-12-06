@@ -6,40 +6,40 @@ import Back from "/Images/soc.jpg"
 const Achivement = () => {
     const sectionRef = useRef(null);
     const [offsetY, setOffsetY] = useState(0);
-    useEffect(() => {
-        // Intersection Observer to detect visibility of the section
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setIsInView(true);
-                    } else {
-                        setIsInView(false);
-                    }
-                });
-            },
-            {
-                threshold: 0.5,
-            }
-        );
+    // useEffect(() => {
+    //     // Intersection Observer to detect visibility of the section
+    //     const observer = new IntersectionObserver(
+    //         (entries) => {
+    //             entries.forEach((entry) => {
+    //                 if (entry.isIntersecting) {
+    //                     setIsInView(true);
+    //                 } else {
+    //                     setIsInView(false);
+    //                 }
+    //             });
+    //         },
+    //         {
+    //             threshold: 0.5,
+    //         }
+    //     );
 
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
-        }
+    //     if (sectionRef.current) {
+    //         observer.observe(sectionRef.current);
+    //     }
 
-        return () => {
-            if (sectionRef.current) {
-                observer.unobserve(sectionRef.current);
-            }
-        };
-    }, []);
+    //     return () => {
+    //         if (sectionRef.current) {
+    //             observer.unobserve(sectionRef.current);
+    //         }
+    //     };
+    // }, []);
 
 
     return (
         <>
-        
+
             <section id="AchivementContainer" ref={sectionRef} className="section_Padding">
-                <div >
+                <div>
                     <div className="DesignedContainer">
                         <h1 data-aos="fade-up"><span style={{ color: "rgb(74, 144, 226)" }}>Driving Innovation</span> in Semiconductor Technology</h1>
                         <p data-aos="fade-up">Shaping the Future of Technology Through Groundbreaking Semiconductor Design and Innovation.</p>
