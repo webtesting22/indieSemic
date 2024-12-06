@@ -19,7 +19,7 @@ const Achivement = () => {
                 });
             },
             {
-                threshold: 0.5, // Trigger when 50% of the section is visible
+                threshold: 0.5,
             }
         );
 
@@ -37,8 +37,7 @@ const Achivement = () => {
 
     return (
         <>
-
-
+        
             <section id="AchivementContainer" ref={sectionRef} className="section_Padding">
                 <div >
                     <div className="DesignedContainer">
@@ -54,9 +53,10 @@ const Achivement = () => {
 
                             </div>
                             <div className="Title">
-                                <h1> SOC MODULES</h1>
+                                <h1 style={{ fontSize: "75px" }}> SoC</h1>
                             </div>
                             <div className="Content">
+                                <h1 style={{ fontSize: "75px" }}>SoC</h1>
                                 <div>
                                     <h2>The Building Block of Modern Technology</h2>
                                     <p>Semiconductors are materials with electrical conductivity between that of a conductor and an insulator, making them essential in modern electronics.</p>
@@ -74,9 +74,10 @@ const Achivement = () => {
 
                             </div>
                             <div className="Title">
-                                <h1> RF MODULES</h1>
+                                <h1 style={{ fontSize: "75px" }}> RF MODULES</h1>
                             </div>
                             <div className="Content">
+                                <h1 style={{ fontSize: "75px" }}>RF MODULES</h1>
                                 <div>
                                     <h2>The Building Block of Modern Technology</h2>
                                     <p>Semiconductors are materials with electrical conductivity between that of a conductor and an insulator, making them essential in modern electronics.</p>

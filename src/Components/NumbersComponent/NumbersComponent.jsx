@@ -20,7 +20,7 @@ const NumbersComponent = () => {
             values: "50+",
             text: "Customers",
             key: "customers",
-            target: 50,
+            target: 60,
         },
         {
             icon: <EmojiEventsSharpIcon style={{ fontSize: "3rem", color: "white" }} />,
@@ -89,7 +89,7 @@ const NumbersComponent = () => {
 
                     return newCounters;
                 });
-            }, 50);
+            }, 30);
 
             return () => clearInterval(interval);
         }

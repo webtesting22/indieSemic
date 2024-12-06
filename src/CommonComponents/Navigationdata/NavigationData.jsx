@@ -1,8 +1,8 @@
 const NavigationData = [
-    {
-        link: "Home",
-        path: ""
-    },
+    // {
+    //     link: "Home",
+    //     path: ""
+    // },
     // {
     //     link: "RF Modules",
     //     path: ""
@@ -20,7 +20,7 @@ const NavigationData = [
     //     path: ""
     // },
     {
-        link: "About Us",
+        link: "Contact Us",
         path: "/#footerSection"
     },
 ]

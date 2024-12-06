@@ -68,15 +68,22 @@
 }
 
 .logoContainer {
-  width: 150px;
-  
+  width: 121px;
+  height: 84px;
+  overflow: hidden;
+  display: flex;
+  box-shadow: 2px 2px 19px white;
+  align-items: center;
+  justify-content: center;
+
 }
 
 .logoContainer img {
-  width: 70%;
-  aspect-ratio: 3/2;
+  width: 235px;
+  aspect-ratio: 3 / 2;
   object-fit: contain;
   background-color: white;
+  margin-top: 6px;
 }
 
 .navigationContainer {
