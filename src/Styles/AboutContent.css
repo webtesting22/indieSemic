@@ -82,11 +82,18 @@
 
 .CompanyContentRow .MiddleImageContainer {
   height: 500px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-right: 20px;
+  /* height: 100%; */
+  width: 100%;
+  /* overflow: hidden; */
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* padding-right: 20px; */
+  background-attachment: fixed;
+  background-position:right center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('/Images/AboutImage2.jpg');
 }
 
 /* .CompanyContentRow img {

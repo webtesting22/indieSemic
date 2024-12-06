@@ -21,7 +21,7 @@ const NavigationData = [
     // },
     {
         link: "Contact Us",
-        path: "/#footerSection"
+        path: "#footerSection"
     },
 ]
 

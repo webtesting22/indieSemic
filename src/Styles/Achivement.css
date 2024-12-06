@@ -251,4 +251,9 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
     height: 100%;
     object-fit: cover;
   }
+  .AchivementValuesContainer{
+    margin: 0;
+    height: 100%;
+
+  }
 }

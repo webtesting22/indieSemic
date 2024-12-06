@@ -146,7 +146,7 @@ const AboutCompany = () => {
                         <Col lg={1} md={0} xs={0} sm={0} />
                         <Col lg={11}>
                             <div className="MiddleImageContainer">
-                                <Swiper
+                                {/* <Swiper
                                     loop={true}
                                     autoplay={{
                                         delay: 2500, // Delay between slides in milliseconds
@@ -163,7 +163,7 @@ const AboutCompany = () => {
                                             }} />
                                         </SwiperSlide>
                                     ))}
-                                </Swiper>
+                                </Swiper> */}
                                 {/* <img style={{
                                     transform: `translateY(${offsetY * 0.1}px)`,
                                 }} src="https://images.unsplash.com/photo-1726739819428-a8f250e60691?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" /> */}

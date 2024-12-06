@@ -100,14 +100,25 @@
     flex-direction: column;
   }
   .footerLogoContainer {
-    width: 30%;
+    width: 100%;
+    flex-direction: column;
   }
   .SocialMediaLinks {
     margin-top: 20px;
   }
+  .QuateContainer{
+    flex-direction: column;
+  }
+    
 }
 @media (max-width: 576px) {
+  .QuateContainer{
+    padding-bottom: 1rem;
+  }
   .QuateContainer img {
     width: 100px;
+  }
+  .FooterMapContainer{
+    display: none;
   }
 }

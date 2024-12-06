@@ -86,6 +86,7 @@ const MegaNavigation = () => {
                         <a href="#">{item.link}</a>
                     </Collapse.Panel>
                 ));
+
             // case 'About Us':
             //     return AboutUs.map((item, index) => (
             //         <Collapse.Panel header={item.link} key={index}>
@@ -111,8 +112,8 @@ const MegaNavigation = () => {
                 <div id="NavigationBar">
                     <AppBar
                         style={{
-                            backgroundColor: isScrolled ? "white" : "transparent",
-                            backdropFilter: isScrolled ? "blur(0px)" : "blur(0px)",
+                            backgroundColor: isScrolled ? "transparent" : "transparent",
+                            backdropFilter: isScrolled ? "blur(20px)" : "blur(0px)",
                             top: showAppBar ? 0 : '-64px', transition: 'top 0.3s',
                             boxShadow: isScrolled ? "0px 4px 6px rgba(0, 0, 0, 0.1)" : "none",
                         }}
@@ -120,7 +121,7 @@ const MegaNavigation = () => {
                         <Toolbar>
                             <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: "center", marginTop: isScrolled ? "2px" : "20px", marginLeft: isScrolled ? "0px" : "0px", marginRight: isScrolled ? "0px" : "0px", backdropFilter: isScrolled ? "blur(0px)" : "blur(10px)" }}>
                                 <div className="logoContainer">
-                                    <img src={IndieSemicLogo} alt="Logo"  style={{boxShadow:"rgb(255 255 255 / 67%) 0px 22px 35px -13px"}}/>
+                                    <img src={IndieSemicLogo} alt="Logo" style={{ boxShadow: "rgb(255 255 255 / 67%) 0px 22px 35px -13px" }} />
                                 </div>
                                 {windowWidth < 768 ? (
                                     <>
@@ -159,7 +160,10 @@ const MegaNavigation = () => {
                                                 <li key={index} style={{ display: 'inline-block' }}>
                                                     <div className="dropdown">
                                                         <button className="dropbtn" style={{ color: getButtonColor() }}>
-                                                            {item.link}
+                                                            <a href={item.path} style={{ color: getButtonColor() }} // Use the path directly as href
+                                                            >
+                                                                {item.link}
+                                                            </a >
                                                         </button>
                                                         {renderSubNav(item.link) && (
                                                             <div className="dropdown-content">

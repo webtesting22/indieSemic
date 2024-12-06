@@ -2,9 +2,6 @@
   transition: 0.5s;
 }
 
-
-
-
 .dropdown {
   /* position: relative; */
   display: inline-block;
@@ -25,7 +22,7 @@
   transform: translateY(20px);
 }
 
-.dropdown-content>div {
+.dropdown-content > div {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,13 +66,12 @@
 
 .logoContainer {
   width: 121px;
-  height: 84px;
+  height: 80px;
   overflow: hidden;
   display: flex;
   box-shadow: 2px 2px 19px white;
   align-items: center;
   justify-content: center;
-
 }
 
 .logoContainer img {
@@ -115,11 +111,17 @@
   display: none;
 }
 
-#Collapse .ant-collapse .ant-collapse-item:first-child .ant-collapse-expand-icon {
+#Collapse
+  .ant-collapse
+  .ant-collapse-item:first-child
+  .ant-collapse-expand-icon {
   opacity: 0 !important;
 }
 
-#Collapse .ant-collapse .ant-collapse-item:last-child .ant-collapse-expand-icon {
+#Collapse
+  .ant-collapse
+  .ant-collapse-item:last-child
+  .ant-collapse-expand-icon {
   opacity: 0 !important;
 }
 
@@ -146,7 +148,7 @@
 #NavigationBar ul li:hover hr{
   width: 100%;
 } */
-@media (max-width:576px) {
+@media (max-width: 576px) {
   .logoContainer {
     width: 100px;
   }

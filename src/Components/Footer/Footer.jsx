@@ -14,10 +14,7 @@ const Footer = () => {
     return (
         <section className="section_Padding" id="footerSection">
             <div className="QuateContainer">
-                {/* <div>
-                    <h1>Explore Insights & Advancements</h1>
-                    <p>Stay in the loop! Join our newsletter for exclusive updates and insights delivered straight to your inbox.</p>
-                </div> */}
+
                 <div>
                     <div className="footerLogoContainer">
                         <img src="/Images/logo.png" alt="Logo" />
@@ -34,7 +31,7 @@ const Footer = () => {
             </div>
             <div className="FooterContentContainer">
                 <Row>
-                    <Col lg={10} md={24} xs={24}>
+                    <Col lg={10} md={24} xs={24} className="FooterMapContainer">
                         {/* <div>
                             <div className="footerLogoContainer">
                                 <img src="/Images/logo.png" alt="Logo" />
@@ -42,7 +39,7 @@ const Footer = () => {
                             <p>IndieSemiC Private Limited</p>
                             <p><b>Address:</b>&nbsp;<Link to="https://maps.app.goo.gl/mh95Njc42ex6evFx9" target="_blank">C-201, 2nd Floor, The First, B/h Keshav Baugh Party Plot Nr. Shivalik High-Street, Vastrapur, Ahmedabad, Gujarat 380015.</Link></p>
                         </div> */}
-                        <div style={{ width: "100%", height: "100%", display: "flex", }}>
+                        <div style={{ width: "100%", height: "100%", display: "flex", }} >
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d917.9563967364755!2d72.5293045!3d23.0301753!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e84b62b4e39d5%3A0xf2de6400e70fdbbf!2sDevX%3A%20Co-working%20Space%20and%20Startup%20Accelerator!5e0!3m2!1sen!2sin!4v1733212596264!5m2!1sen!2sin"
                                 style={{
@@ -57,20 +54,20 @@ const Footer = () => {
                             ></iframe>
                         </div>
                     </Col>
-                    <Col lg={1} md={0} />
+                    <Col lg={1} md={0} sm={0} xs={0} />
                     <Col lg={6} md={24} xs={24}>
                         <div className="SocialNavigationLinks">
 
                         </div>
                     </Col>
-                    <Col lg={1} md={0} />
+                    <Col lg={1} md={0} xs={0} sm={0} />
                     <Col lg={5} md={24} xs={24}>
                         <div className="SocialMediaLinks">
                             <p>Contact Us</p>
                             <div className="footerSocialIcons">
                                 <div><Link to="mailto:sales@indiesemic.com" target="_blank"><MailIcon sx={{ color: "rgb(74, 144, 226)" }} />sales@indiesemic.com</Link></div>
                                 <div><Link to="https://www.linkedin.com/company/102919226/admin/dashboard/" target="_blank"><LinkedInIcon sx={{ color: "rgb(74, 144, 226)" }} />LinkedIn</Link></div>
-                                <div><Link><PhoneIcon sx={{ color: "rgb(74, 144, 226)" }}/>Contact Number</Link></div>
+                                <div><Link><PhoneIcon sx={{ color: "rgb(74, 144, 226)" }} />Contact Number</Link></div>
                             </div>
                         </div>
                     </Col>
