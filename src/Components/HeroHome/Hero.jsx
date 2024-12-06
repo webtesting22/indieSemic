@@ -8,12 +8,16 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import BackBanner from "../../../public/Images/SliderImage.png"
 import TryBanner from "../../../public/Images/TryBanner.jpeg"
 import ChipVideo from "../../../public/Images/ChipVideo.mp4"
+import MobileBanner from "../../../public/Images/MobileCarousel.png"; // Image for Mobile
+
 const Hero = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
     const [activeIndex, setActiveIndex] = useState(0);
     const CarousalImages = [
         {
-            image: ChipVideo,
-            image: BackBanner,
+            // image: ChipVideo,
+            image: isMobile ? MobileBanner : BackBanner, // Different image for PC/Mobile
             // heading: "Innovating the Future of Semiconductors",
             // tagline: "Powering breakthroughs in AI and IoT technology",
         },
@@ -34,7 +38,16 @@ const Hero = () => {
         },
 
     ];
-  
+    useEffect(() => {
+        const updateScreenSize = () => {
+            setIsMobile(window.innerWidth <= 768); // Mobile if screen width <= 768px
+        };
+
+        updateScreenSize(); // Initial check
+        window.addEventListener("resize", updateScreenSize); // Listen for resize events
+
+        return () => window.removeEventListener("resize", updateScreenSize); // Cleanup
+    }, []);
     return (
         <>
             <section id="CarousalContainer">

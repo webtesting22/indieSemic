@@ -63,7 +63,7 @@ const ContactHome = () => {
                         <div className='sectionHeading'><h2>Contact Us</h2></div>
                         <p className='contactItem'>
                             <LocationOnOutlinedIcon sx={{ color: "#4a90e2" }} />
-                            <Link to="https://maps.app.goo.gl/mh95Njc42ex6evFx9">C-201, 2nd Floor, The First, B/h Keshav Baugh Party Plot Nr. Shivalik High-Street,&nbsp;Vastrapur, Ahmedabad, Gujarat 380015.</Link>
+                            <Link target='_blank' to="https://maps.app.goo.gl/mh95Njc42ex6evFx9">C-201, 2nd Floor, The First, B/h Keshav Baugh Party Plot Nr. Shivalik High-Street,&nbsp;Vastrapur, Ahmedabad, Gujarat 380015.</Link>
                         </p>
                         <p className='contactItem'>
                             <PhoneIcon sx={{ color: "#4a90e2" }} />
