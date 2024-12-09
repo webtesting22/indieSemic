@@ -1,6 +1,20 @@
 #ContactContainer {
   padding-bottom: 4rem;
+  position: relative;
+  background-color: #eaf6ffce  ;
 }
+/* .backGroundAttachmentContact {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-image: url("/Images/bg3.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.1;
+} */
+
 .contactInfoContainer {
   width: 100%;
   height: 100%;
@@ -35,10 +49,10 @@
   justify-content: flex-end;
   align-items: flex-end;
 }
-.contactInfoContainer a{
+.contactInfoContainer a {
   color: black;
 }
-.contactInfoContainer a:hover{
+.contactInfoContainer a:hover {
   color: rgb(74, 144, 226);
 }
 @media (max-width: 576px) {

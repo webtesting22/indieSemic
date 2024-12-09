@@ -120,7 +120,7 @@ const AboutCompany = () => {
                             </div>
                         </Col> */}
 
-                        <Col lg={12}>
+                        <Col lg={12} md={24} xs={24}>
                             <div className="DesignedContainer">
                                 <h1 data-aos="fade-up"  ><span style={{ fontSize: "50px" }}>IndieSemiC</span> <br /> <span style={{ color: "rgb(74, 144, 226)" }} >Making India's Way To Semiconductor</span></h1>
                                 {/* <p data-aos="fade-up">Revolutionizing the future of technology with cutting-edge chip design and development.</p> */}
@@ -144,7 +144,7 @@ const AboutCompany = () => {
                             </div>
                         </Col>
                         <Col lg={1} md={0} xs={0} sm={0} />
-                        <Col lg={11}>
+                        <Col lg={11} md={24} xs={24}>
                             <div className="MiddleImageContainer">
                                 {/* <Swiper
                                     loop={true}

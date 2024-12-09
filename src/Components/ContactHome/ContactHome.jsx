@@ -85,6 +85,9 @@ const ContactHome = () => {
 
     return (
         <section id="ContactContainer" className='section_Padding'>
+          <div className="backGroundAttachmentContact">
+
+</div>
             <Row>
                 <Col lg={11} xs={24}>
                     <div className='contactInfoContainer'>

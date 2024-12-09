@@ -112,7 +112,7 @@ const MegaNavigation = () => {
                 <div id="NavigationBar">
                     <AppBar
                         style={{
-                            backgroundColor: isScrolled ? "transparent" : "transparent",
+                            backgroundColor: isScrolled ? "rgba(255,255,255,0.5)" : "transparent",
                             backdropFilter: isScrolled ? "blur(20px)" : "blur(0px)",
                             top: showAppBar ? 0 : '-64px', transition: 'top 0.3s',
                             boxShadow: isScrolled ? "0px 4px 6px rgba(0, 0, 0, 0.1)" : "none",
@@ -121,8 +121,9 @@ const MegaNavigation = () => {
                         <Toolbar>
                             <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: "center", marginTop: isScrolled ? "2px" : "20px", marginLeft: isScrolled ? "0px" : "0px", marginRight: isScrolled ? "0px" : "0px", backdropFilter: isScrolled ? "blur(0px)" : "blur(10px)" }}>
                                 <div className="logoContainer">
-                                    <img src={IndieSemicLogo} alt="Logo" style={{
-                                        boxShadow: "rgb(255 255 255 / 67%) 0px 22px 35px -13px",
+                                    <img src={logo2} alt="Logo" style={{
+                                        backgroundColor: isScrolled ? "rgba(255,255,255,0.8)" : "transparent",
+                                        boxShadow: isScrolled ? "0px 4px 6px rgba(0, 0, 0, 0.1)" : "none",
                                     }} />
                                 </div>
                                 {windowWidth < 768 ? (
@@ -131,7 +132,7 @@ const MegaNavigation = () => {
                                             type="solid"
                                             icon={<MenuOutlined />}
                                             onClick={toggleDrawer}
-                                            style={{ backgroundColor: "black", color: "white" }}
+                                            style={{ backgroundColor: "black", color: "white",marginRight:"1rem" }}
                                         >
                                         </Button>
                                         <Drawer
@@ -157,7 +158,7 @@ const MegaNavigation = () => {
                                     // Desktop navigation as per original code
                                     <>
 
-                                        <ul style={{ listStyleType: 'none', padding: 0 }}>
+                                        <ul style={{ listStyleType: 'none', padding: 0, paddingRight: "2rem", }}>
                                             {NavigationData.map((item, index) => (
                                                 <li key={index} style={{ display: 'inline-block' }}>
                                                     <div className="dropdown">
@@ -189,7 +190,7 @@ const MegaNavigation = () => {
             </HideOnScroll>
 
             <Toolbar />
-        </React.Fragment>
+        </React.Fragment >
     );
 };
 

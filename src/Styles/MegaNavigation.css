@@ -1,5 +1,6 @@
 .MuiToolbar-root {
   transition: 0.5s;
+  padding: 0 !important;
 }
 
 .dropdown {
@@ -65,20 +66,20 @@
 }
 
 .logoContainer {
-  width: 121px;
-  height: 80px;
+  width: 110px;
   overflow: hidden;
   display: flex;
-  box-shadow: 2px 2px 19px white;
   align-items: center;
   justify-content: center;
+  padding-left: 2rem;
 }
 
 .logoContainer img {
-  width: 235px;
   aspect-ratio: 3 / 2;
   object-fit: contain;
-  margin-top: 6px;
+  width: 100%;
+  opacity: 1;
+  padding: 6px 0;
 }
 
 .navigationContainer {
@@ -149,6 +150,7 @@
 } */
 @media (max-width: 576px) {
   .logoContainer {
-    width: 100px;
+    width: 90px;
+    padding-left: 1rem;
   }
 }

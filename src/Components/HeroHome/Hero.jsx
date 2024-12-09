@@ -9,7 +9,7 @@ import BackBanner from "../../../public/Images/SliderImage.png"
 import TryBanner from "../../../public/Images/TryBanner.jpeg"
 import ChipVideo from "../../../public/Images/ChipVideo.mp4"
 import MobileBanner from "../../../public/Images/MobileCarousel.png"; // Image for Mobile
-
+import newbanner from "/Images/Indiesemic_Mockup (9).jpg";
 const Hero = () => {
     const [isMobile, setIsMobile] = useState(false);
 
@@ -17,7 +17,7 @@ const Hero = () => {
     const CarousalImages = [
         {
             // image: ChipVideo,
-            image: isMobile ? MobileBanner : BackBanner, // Different image for PC/Mobile
+            image:  newbanner,
             // heading: "Innovating the Future of Semiconductors",
             // tagline: "Powering breakthroughs in AI and IoT technology",
         },

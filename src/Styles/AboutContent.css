@@ -89,10 +89,10 @@
   /* justify-content: center; */
   /* padding-right: 20px; */
   background-attachment: fixed;
-  background-position:right center;
+  background-position: right center;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url('/Images/AboutImage2.jpg');
+  background-image: url("/Images/AboutImage2.jpg");
 }
 
 /* .CompanyContentRow img {
@@ -233,6 +233,7 @@
     /* margin: 2rem 0rem; */
     padding-right: 0;
     background-attachment: scroll;
+    background-position: center center;
   }
 
   .CompanyContentRow img {
