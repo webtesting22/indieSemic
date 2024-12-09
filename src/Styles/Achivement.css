@@ -138,6 +138,7 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  overflow: hidden;
 }
 
 #CardColumns > div {

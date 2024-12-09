@@ -47,7 +47,7 @@ const Achivement = () => {
                 </div>
                 <div id="CardColumns">
                     <div>
-                        <div className="BoxEdit">
+                        <div className="BoxEdit" data-aos="fade-right" data-aos-duration="1000">
 
                             <div className="blackoverlay">
 
@@ -69,7 +69,7 @@ const Achivement = () => {
                         </div>
                     </div>
                     <div>
-                        <div className="BoxEdit">
+                        <div className="BoxEdit" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                             <div className="blackoverlay">
 
                             </div>
