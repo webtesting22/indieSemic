@@ -132,7 +132,7 @@ const MegaNavigation = () => {
                                             type="solid"
                                             icon={<MenuOutlined />}
                                             onClick={toggleDrawer}
-                                            style={{ backgroundColor: "black", color: "white",marginRight:"1rem" }}
+                                            style={{ backgroundColor: "black", color: "white", marginRight: "1rem" }}
                                         >
                                         </Button>
                                         <Drawer
@@ -144,13 +144,36 @@ const MegaNavigation = () => {
                                             width={300}
                                         >
                                             <div id='Collapse'>
-                                                <Collapse accordion>
+                                                {/* <Collapse accordion>
                                                     {NavigationData.map((item, index) => (
                                                         <Collapse.Panel header={item.link} key={index}>
                                                             {renderSubNav(item.link)}
                                                         </Collapse.Panel>
                                                     ))}
-                                                </Collapse>
+                                                </Collapse> */}
+                                                <ul style={{ listStyleType: 'none', padding: 0 }}>
+                                                    {NavigationData.map((item, index) => (
+                                                        <li key={index} style={{ marginBottom: '1rem' }}>
+                                                            <a
+                                                                href={item.path} // Use `item.path` for the href
+                                                                style={{
+                                                                    color: "black",
+                                                                    fontSize: "16px",
+                                                                    textDecoration: "none",
+                                                                }}
+                                                                onClick={toggleDrawer} // Close drawer on link click
+                                                            >
+                                                                {item.link}
+                                                            </a>
+                                                            {/* Render sub-navigation if available */}
+                                                            {renderSubNav(item.link) && (
+                                                                <Collapse accordion>
+                                                                    {renderSubNav(item.link)}
+                                                                </Collapse>
+                                                            )}
+                                                        </li>
+                                                    ))}
+                                                </ul>
                                             </div>
                                         </Drawer>
                                     </>
