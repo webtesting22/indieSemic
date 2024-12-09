@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Image } from "antd";
 import "../../Styles/Achivement.css";
 import Back2 from '/Images/AboutImage.jpg';
 import Back from "/Images/soc.jpg"

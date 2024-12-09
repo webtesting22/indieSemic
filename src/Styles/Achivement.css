@@ -60,21 +60,21 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
 
 .blackoverlay {
   position: absolute;
-  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0,0.6);
   height: 100%;
   left: 0px;
   top: 0px;
   width: 100%;
   z-index: 44;
-  background: linear-gradient(
+  /* background: linear-gradient(
     to right,
     rgba(0, 0, 0, 0.5) 70%,
     rgba(0, 0, 0, 0.5) 90%,
     rgb(74, 144, 226, 0) 100%
-  );
+  ); */
   transition: 0.7s;
 }
-
+/* 
 .BoxEdit:hover .blackoverlay {
   position: absolute;
   background-color: rgb(0, 0, 0);
@@ -90,7 +90,7 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
     rgb(0, 0, 0, 0.8) 100%
   );
   transition: 0.7s;
-}
+} */
 
 .Content {
   position: absolute;
@@ -152,12 +152,12 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
   transform: scale(0);
 }
 
-.BoxEdit:hover .Content {
+/* .BoxEdit:hover .Content {
   opacity: 1;
   visibility: visible;
   transition: 0.7s;
   transform: scale(1.1);
-}
+} */
 
 .Title {
   z-index: 10000;
@@ -169,13 +169,12 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
   opacity: 1;
   transition: 0.7s;
 }
-
+/* 
 .BoxEdit:hover .Title {
   opacity: 0;
   transition: 0.7s;
   visibility: hidden;
-  /* transition: 0.5s; */
-}
+} */
 .Content h1 {
   font-size: 75px;
 }
@@ -208,23 +207,6 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
         align-items: center; */
   }
 
-  .Content {
-    position: absolute;
-    width: 90%;
-    height: 100%;
-    left: 0px;
-    top: 0px;
-    z-index: 45;
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    padding-left: 0rem;
-    /* padding: 1rem; */
-    flex-direction: column;
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(0);
-  }
 
   .BoxEdit {
     flex-direction: column;
@@ -237,18 +219,18 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
 
   .blackoverlay {
     position: absolute;
-    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0,0.7);
     height: 100%;
     left: 0px;
-    top: 30%;
+    /* top: 30%; */
     width: 100%;
     z-index: 44;
-    background: linear-gradient(
+    /* background: linear-gradient(
       to top,
       rgba(0, 0, 0, 0.7) 70%,
       rgba(0, 0, 0, 0.3) 90%,
       rgb(74, 144, 226, 0) 100%
-    );
+    ); */
   }
 
   .BoxEdit img {
@@ -261,9 +243,7 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
     height: 100%;
     padding: 4rem 0;
   }
-  .Title {
-    display: none;
-  }
+  
 }
 @media (max-width: 576px) {
   .Content h1 {
