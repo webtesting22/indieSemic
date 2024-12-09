@@ -1,10 +1,8 @@
 .MuiToolbar-root {
   transition: 0.5s;
-  padding: 0 !important;
 }
 
 .dropdown {
-  /* position: relative; */
   display: inline-block;
 }
 
@@ -66,20 +64,19 @@
 }
 
 .logoContainer {
-  width: 110px;
+  width: 121px;
+  height: 80px;
   overflow: hidden;
   display: flex;
+  box-shadow: 2px 2px 19px white;
   align-items: center;
   justify-content: center;
-  padding-left: 2rem;
 }
-
 .logoContainer img {
+  width: 235px;
   aspect-ratio: 3 / 2;
   object-fit: contain;
-  width: 100%;
-  opacity: 1;
-  padding: 6px 0;
+  margin-top: 6px;
 }
 
 .navigationContainer {
@@ -150,10 +147,10 @@
 } */
 @media (max-width: 576px) {
   .logoContainer {
-    width: 90px;
-    padding-left: 1rem;
+    width: 100px;
+    height: 60px;
   }
-  .logoContainer img{
-    padding: 0;
+  .logoContainer img {
+    width: 180px;
   }
 }

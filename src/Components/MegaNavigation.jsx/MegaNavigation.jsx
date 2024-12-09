@@ -111,19 +111,18 @@ const MegaNavigation = () => {
             <HideOnScroll>
                 <div id="NavigationBar">
                     <AppBar
-                        style={{
-                            backgroundColor: isScrolled ? "rgba(255,255,255,0.5)" : "transparent",
+                          style={{
+                            backgroundColor: isScrolled ? "transparent" : "transparent",
                             backdropFilter: isScrolled ? "blur(20px)" : "blur(0px)",
                             top: showAppBar ? 0 : '-64px', transition: 'top 0.3s',
                             boxShadow: isScrolled ? "0px 4px 6px rgba(0, 0, 0, 0.1)" : "none",
                         }}
                     >
                         <Toolbar>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: "center", marginTop: isScrolled ? "2px" : "20px", marginLeft: isScrolled ? "0px" : "0px", marginRight: isScrolled ? "0px" : "0px", backdropFilter: isScrolled ? "blur(0px)" : "blur(10px)" }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: "center", marginTop: isScrolled ? "2px" : "20px", marginLeft: isScrolled ? "0px" : "0px", marginRight: isScrolled ? "0px" : "0px", backdropFilter: isScrolled ? "blur(0px)" : "blur(10px)" }}>
                                 <div className="logoContainer">
-                                    <img src={logo2} alt="Logo" style={{
-                                        backgroundColor: isScrolled ? "rgba(255,255,255,0.8)" : "white",
-                                        boxShadow: isScrolled ? "0px 4px 6px rgba(0, 0, 0, 0.1)" : "none",
+                                    <img src={IndieSemicLogo} alt="Logo" style={{
+                                        boxShadow: "rgb(255 255 255 / 67%) 0px 22px 35px -13px",
                                     }} />
                                 </div>
                                 {windowWidth < 768 ? (
@@ -132,7 +131,7 @@ const MegaNavigation = () => {
                                             type="solid"
                                             icon={<MenuOutlined />}
                                             onClick={toggleDrawer}
-                                            style={{ backgroundColor: "black", color: "white", marginRight: "1rem" }}
+                                            style={{ backgroundColor: "black", color: "white" }}
                                         >
                                         </Button>
                                         <Drawer
