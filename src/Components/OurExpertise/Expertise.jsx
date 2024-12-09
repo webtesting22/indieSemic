@@ -59,21 +59,21 @@ const Expertise = () => {
         //     description: " Developing systems to safeguard data and ensure privacy."
         // },
 
-        // {
-        //     image: HealthCare,
-        //     title: "Health Care",
-        //     description: "Innovating medical technology for improved diagnostics and patient care."
-        // },
-        // {
-        //     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        //     title: "Communication",
-        //     description: "Enabling fast and reliable data exchange across networks."
-        // },
-        // {
-        //     image: Robotics,
-        //     title: "Robotics",
-        //     description: "Designing intelligent machines to automate tasks and enhance efficiency."
-        // }
+        {
+            image: HealthCare,
+            title: "Health Care",
+            description: "Innovating medical technology for improved diagnostics and patient care."
+        },
+        {
+            image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            title: "Communication",
+            description: "Enabling fast and reliable data exchange across networks."
+        },
+        {
+            image: Robotics,
+            title: "Robotics",
+            description: "Designing intelligent machines to automate tasks and enhance efficiency."
+        }
     ];
 
     return (
@@ -158,7 +158,7 @@ const Expertise = () => {
                             <div className='SideContentContainer'>
                                 {/* <h3 data-aos="fade-up">Advancements in Semiconductor Technology</h3> */}
                                 <h3 data-aos='fade-up'>Shaping Tomorrow's Semiconductor Landscape in India</h3>
-                                <p style={{fontSize:"18px"}}> IndieSemic aims to set a critical milestone by achieving a breakthrough in the Fail-Safe Secure Controller SoC and RF modules within the next five years.<br /><br />
+                                <p style={{ fontSize: "18px" }}> IndieSemic aims to set a critical milestone by achieving a breakthrough in the Fail-Safe Secure Controller SoC and RF modules within the next five years.<br /><br />
                                     This milestone encompasses the development and launch of flagship SoCs and RF modules that not only surpass current market offerings in terms of range, power efficiency and data transmission rates; but also introduces novel chipset architecture that significantly reduces production costs and energy consumption.<br /><br />
                                     Success in these endeavors will position India as a leader in efficient SoC designing and development along with secure wireless communication technology, underscoring our commitment to innovation, and paving way for future advancements that will continue to challenge and redefine industry standards.
                                 </p>    {/* <p data-aos="fade-up">Semiconductor technology is at the core of modern electronics, driving innovation in devices like smartphones, computers, and automotive systems. With the continuous evolution of fabrication techniques, semiconductors are becoming smaller, faster, and more efficient. These advancements are essential for powering cutting-edge technologies, from artificial intelligence to 5G networks, revolutionizing industries and enabling the next wave of digital transformation. </p> */}
@@ -178,7 +178,7 @@ const Expertise = () => {
                             <p>From consumer electronics to industrial automation, our semiconductors transform ideas into reality, shaping the modern technological landscape.</p>
                         </div>
                         <br /><br />
-                        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+                        <div className='ExpertiseCardsContainer' >
                             {expertiseCards.map((item, index) => (
                                 <div key={index} className="ExpertiseCards "  >
                                     <div data-aos="fade-up"

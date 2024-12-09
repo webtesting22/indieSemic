@@ -1,7 +1,6 @@
 #expertise-page {
   position: relative;
   background-color: #eaf6ffce;
-
 }
 
 .Overlayimage {
@@ -168,15 +167,24 @@
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
-
+.ExpertiseCardsContainer {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  /* flex-wrap: nowrap; */
+  /* justify-content: center; */
+  width: 100%;
+}
 .ExpertiseCards {
   margin-bottom: 3rem;
   transition: 0.5s;
-  width: 33%;
+  /* width: 33%; */
+  flex: 0 0 calc(33.33% - 20px); /* 3 cards per row with spacing */
+  /* scroll-snap-align: start; Align cards to the start of the scroll container */
+
   /* padding: 12px; */
   transform: translateY(0px);
   height: 100%;
-  overflow: hidden;
 }
 
 .ExpertiseCards > div {
@@ -291,6 +299,9 @@
 }
 
 @media (max-width: 640px) {
+  .ExpertiseCards {
+    flex: 0 0 calc(100% - 20px); /* Full width minus margin */
+  }
   .ExpertiseCards > div {
     padding: 0px;
   }
@@ -300,7 +311,6 @@
     transform: translateY(0px);
     transition: 0.5s;
     width: 100%;
-    padding: 0px;
   }
 
   .ExpertiseCards:hover {
