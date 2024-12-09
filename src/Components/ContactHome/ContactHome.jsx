@@ -85,9 +85,9 @@ const ContactHome = () => {
 
     return (
         <section id="ContactContainer" className='section_Padding'>
-          <div className="backGroundAttachmentContact">
+            <div className="backGroundAttachmentContact">
 
-</div>
+            </div>
             <Row>
                 <Col lg={11} xs={24}>
                     <div className='contactInfoContainer'>
@@ -128,13 +128,16 @@ const ContactHome = () => {
                                 <TextField id="name" label="Name" variant="outlined" value={formValues.name} error={!!formErrors.name}
                                     helperText={formErrors.name}
 
-                                    onChange={handleInputChange} sx={{ flex: 1 }} />
+                                    onChange={handleInputChange} sx={{ flex: { xs: '100%', sm: 1 } }} // Full width on mobile, flex on larger screens
+                                />
                                 <TextField id="email" label="Email" variant="outlined" value={formValues.email} error={!!formErrors.email}
                                     helperText={formErrors.email}
-                                    onChange={handleInputChange} sx={{ flex: 1 }} />
+                                    onChange={handleInputChange} sx={{ flex: { xs: '100%', sm: 1 } }} // Full width on mobile, flex on larger screens
+                                />
                                 <TextField id='contact' label="Contact" variant='outlined' value={formValues.contact} error={!!formErrors.email}
                                     helperText={formErrors.contact}
-                                    onChange={handleInputChange} />
+                                    onChange={handleInputChange} sx={{ flex: { xs: '100%', sm: 1 } }} // Full width on mobile, flex on larger screens
+                                />
                             </Box>
                             <TextField
                                 select

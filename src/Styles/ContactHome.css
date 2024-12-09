@@ -1,7 +1,7 @@
 #ContactContainer {
   padding-bottom: 4rem;
   position: relative;
-  background-color: #eaf6ffce  ;
+  background-color: #eaf6ffce;
 }
 /* .backGroundAttachmentContact {
   height: 100%;
@@ -67,4 +67,5 @@
   .ant-col {
     width: 100%;
   }
+
 }
