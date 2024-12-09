@@ -122,7 +122,7 @@ const MegaNavigation = () => {
                             <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: "center", marginTop: isScrolled ? "2px" : "20px", marginLeft: isScrolled ? "0px" : "0px", marginRight: isScrolled ? "0px" : "0px", backdropFilter: isScrolled ? "blur(0px)" : "blur(10px)" }}>
                                 <div className="logoContainer">
                                     <img src={logo2} alt="Logo" style={{
-                                        backgroundColor: isScrolled ? "rgba(255,255,255,0.8)" : "transparent",
+                                        backgroundColor: isScrolled ? "rgba(255,255,255,0.8)" : "white",
                                         boxShadow: isScrolled ? "0px 4px 6px rgba(0, 0, 0, 0.1)" : "none",
                                     }} />
                                 </div>
