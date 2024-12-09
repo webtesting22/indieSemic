@@ -1,16 +1,15 @@
 import '../../Styles/ContactHome.css'
 import React, { useState } from 'react'
-import { Row, Col } from 'antd'
-// import { Button, Checkbox, Form, Input } from 'antd';
+import { Row, Col, notification } from 'antd'
 import { Button, InputLabel, Select, MenuItem } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import SendIcon from '@mui/icons-material/Send';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { Link } from 'react-router-dom';
+import emailjs from 'emailjs-com';
 const ContactHome = () => {
     const [formValues, setFormValues] = React.useState({
         name: "",
@@ -50,7 +49,36 @@ const ContactHome = () => {
         e.preventDefault();
         if (validateForm()) {
             console.log("Form Submitted", formValues);
-            // Add API call or submission logic here
+            notification.success({
+                message: 'Form Submitted Successfully',
+                description: 'We have received your message and will get back to you shortly.',
+            });
+            const emailData = {
+                name: formValues.name,
+                email: formValues.email,
+                contact: formValues.contact,
+                country: formValues.country,
+                otherCountry: formValues.country === "Others" ? formValues.otherCountry : 'None',
+                message: formValues.message
+            };
+            emailjs.init("he7c_VvdVGJ1i14BP"); // Replace with your actual public API key
+
+            emailjs.send('service_2zloh8u', 'template_ou1ijvg', emailData, 'he7c_VvdVGJ1i14BP')
+                .then(() => {
+                    console.log('Success:');
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+
+            setFormValues({
+                name: "",
+                email: "",
+                contact: "",
+                message: "",
+                country: "",
+                otherCountry: "",
+            });
         }
     };
 
@@ -135,11 +163,10 @@ const ContactHome = () => {
                                 onChange={handleInputChange}
                                 error={!!formErrors.message}
                                 helperText={formErrors.message} />
-                            {/* <Button variant='contained' endIcon={<SendIcon />} type="submit" sx={{ width: "20%" }}>Submit</Button> */}
                             <div className="SideContentContainer">
-                                <button data-aos="fade-left"
+                                <button
                                     type='submit'
-                                    data-aos-duration="1500">
+                                >
                                     <ArrowRightAltIcon />
                                     Submit
                                 </button>

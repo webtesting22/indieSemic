@@ -56,7 +56,7 @@ const Achivement = () => {
                                 <h1 style={{ fontSize: "75px" }}> SoC</h1>
                             </div>
                             <div className="Content">
-                                <h1 style={{ fontSize: "75px" }}>SoC</h1>
+                                <h1 >SoC</h1>
                                 <div>
                                     <h2>The Building Block of Modern Technology</h2>
                                     <p>Semiconductors are materials with electrical conductivity between that of a conductor and an insulator, making them essential in modern electronics.</p>
@@ -77,7 +77,7 @@ const Achivement = () => {
                                 <h1 style={{ fontSize: "75px" }}> RF MODULES</h1>
                             </div>
                             <div className="Content">
-                                <h1 style={{ fontSize: "75px" }}>RF MODULES</h1>
+                                <h1>RF MODULES</h1>
                                 <div>
                                     <h2>The Building Block of Modern Technology</h2>
                                     <p>Semiconductors are materials with electrical conductivity between that of a conductor and an insulator, making them essential in modern electronics.</p>
