@@ -10,6 +10,15 @@ import TextField from '@mui/material/TextField';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { Link } from 'react-router-dom';
 import emailjs from 'emailjs-com';
+
+const indianStates = [
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+    "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand",
+    "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur",
+    "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab",
+    "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura",
+    "Uttar Pradesh", "Uttarakhand", "West Bengal", "Delhi", "Jammu and Kashmir", "Ladakh", "Puducherry"
+];
 const ContactHome = () => {
     const [formValues, setFormValues] = React.useState({
         name: "",
@@ -18,6 +27,7 @@ const ContactHome = () => {
         message: "",
         country: "",
         otherCountry: "", // Additional state for "Others" input
+        state: "", // State field for dropdown
 
     });
     const [formErrors, setFormErrors] = useState({});
@@ -28,8 +38,17 @@ const ContactHome = () => {
     };
     const handleCountryChange = (event) => {
         const selectedCountry = event.target.value;
-        setFormValues((prev) => ({ ...prev, country: selectedCountry, otherCountry: "" })); // Reset otherCountry if not "Others"
+        setFormValues((prev) => ({
+            ...prev,
+            country: selectedCountry,
+            otherCountry: selectedCountry === 'Others' ? '' : 'None', // Reset "Other Country" if not "Others"
+            state: selectedCountry === 'India' ? '' : 'None', // Reset "State" if not "India"
+        }));
     };
+    const handleStateChange = (event) => {
+        setFormValues((prev) => ({ ...prev, state: event.target.value }));
+    };
+
     const validateForm = () => {
         const errors = {};
         if (!formValues.name.trim()) errors.name = "Name is required";
@@ -40,6 +59,8 @@ const ContactHome = () => {
         if (!formValues.country) errors.country = "Country is required";
         if (formValues.country === "Others" && !formValues.otherCountry.trim())
             errors.otherCountry = "Please specify your country";
+        if (formValues.country === "India" && !formValues.state.trim())
+            errors.state = "State is required";
         if (!formValues.message.trim()) errors.message = "Message is required";
 
         setFormErrors(errors);
@@ -54,12 +75,8 @@ const ContactHome = () => {
                 description: 'We have received your message and will get back to you shortly.',
             });
             const emailData = {
-                name: formValues.name,
-                email: formValues.email,
-                contact: formValues.contact,
-                country: formValues.country,
+                ...formValues,
                 otherCountry: formValues.country === "Others" ? formValues.otherCountry : 'None',
-                message: formValues.message
             };
             emailjs.init("he7c_VvdVGJ1i14BP"); // Replace with your actual public API key
 
@@ -78,6 +95,8 @@ const ContactHome = () => {
                 message: "",
                 country: "",
                 otherCountry: "",
+                state: "",
+
             });
         }
     };
@@ -152,6 +171,21 @@ const ContactHome = () => {
                                 <MenuItem value="India">India</MenuItem>
                                 <MenuItem value="Others">Others</MenuItem>
                             </TextField>
+                            {formValues.country === "India" && (
+                                <TextField
+                                    select
+                                    label="State"
+                                    id="state"
+                                    value={formValues.state}
+                                    onChange={handleStateChange}
+                                    error={!!formErrors.state}
+                                    helperText={formErrors.state}
+                                >
+                                    {indianStates.map((state) => (
+                                        <MenuItem key={state} value={state}>{state}</MenuItem>
+                                    ))}
+                                </TextField>
+                            )}
                             {formValues.country === "Others" && (
                                 <TextField
                                     id="otherCountry"

@@ -56,7 +56,10 @@
   color: rgb(74, 144, 226);
 }
 @media (max-width: 576px) {
-  .contactInfoContainer {
+  .contactItem {
+    width: 100%;
+  }
+  .contactInfoContainer{
     align-items: center;
   }
   .contactFormContainer {
@@ -67,5 +70,8 @@
   .ant-col {
     width: 100%;
   }
-
+  .MuiBox-root {
+    flex-direction: column;
+    width: 100%;
+  }
 }
