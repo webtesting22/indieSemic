@@ -267,4 +267,7 @@
   .DesignedContainer h1 {
     font-size: 30px;
   }
+  #AboutCompanyContainer .CompanyContentRow{
+    margin-top: 0rem;
+  }
 }
