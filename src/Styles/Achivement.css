@@ -259,6 +259,7 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
   .AchivementValuesContainer {
     margin: 0;
     height: 100%;
+    padding: 4rem 0;
   }
   .Title {
     display: none;
