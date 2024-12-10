@@ -178,12 +178,14 @@ const Expertise = () => {
 
                 </div>
                 <div className='ContentRow' id='ScrollingAnimation'>
+
                     <div className='StickyComponent'>
-                        <div>
-                            <h2>Revolutionizing Industries with Semiconductor Excellence</h2>
+                        <div className="DesignedContainer" id='Target'>
+                            <h1 style={{ textAlign: "left" }}><span style={{ color: "rgb(74, 144, 226)" }}>Revolutionizing Technology</span> with cutting-edge chip design</h1>
                             <p>From consumer electronics to industrial automation, our semiconductors transform ideas into reality, shaping the modern technological landscape.</p>
                         </div>
-                        <br /><br />
+                        {/* <br /> */}
+                        {/* <br /> */}
                         <div className='ExpertiseCardsContainer' >
                             <Swiper
                                 modules={[Navigation, Pagination]}
