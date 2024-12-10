@@ -9,6 +9,12 @@ import Robotics from "./Robotics.jpeg"
 import HealthCare from "./HealthCare.jpeg"
 import IOTNetwork from "./IOTNetwork.jpg"
 import LeftSide from "./LeftSide.jpeg"
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 const Expertise = () => {
     const [visibleIndexes, setVisibleIndexes] = useState([]);
     const sectionRefs = useRef([]);
@@ -179,27 +185,44 @@ const Expertise = () => {
                         </div>
                         <br /><br />
                         <div className='ExpertiseCardsContainer' >
-                            {expertiseCards.map((item, index) => (
-                                <div key={index} className="ExpertiseCards "  >
-                                    <div data-aos="fade-up"
-                                        data-aos-delay={index * 100}>
-                                        <div className='SmallText'>
-                                            <p>00{index + 1} </p>
-                                        </div>
-                                        <div className='HeightContainer'>
-                                            <div className='ExpertiseImageContainer'>
-                                                <img src={item.image} alt="" />
-                                            </div>
-                                            <br />
-                                            <div className='hoverContainer'>
-                                                <h2>{item.title}</h2>
-                                                <p>{item.description}</p>
-                                            </div>
+                            <Swiper
+                                modules={[Navigation, Pagination]}
+                                navigation
+                                pagination={{ clickable: true }}
+                                spaceBetween={30}
+                                breakpoints={{
+                                    440: { slidesPerView: 1 }, // On small screens, show 1 slide
+                                    768: { slidesPerView: 2 }, // On medium screens, show 2 slides
+                                    1024: { slidesPerView: 3 }, // On large screens, show 3 slides
+                                }}
+                            >
+                                {expertiseCards.map((item, index) => (
+                                    <SwiperSlide key={index}>
 
+                                        <div key={index} className="ExpertiseCards">
+                                            <div data-aos="fade-up"
+                                                data-aos-delay={index * 100}>
+                                                <div className='SmallText'>
+                                                    <p>00{index + 1} </p>
+                                                </div>
+                                                <div className='HeightContainer'>
+                                                    <div className='ExpertiseImageContainer'>
+                                                        <img src={item.image} alt="" />
+                                                    </div>
+                                                    <br />
+                                                    <div className='hoverContainer'>
+                                                        <h2>{item.title}</h2>
+                                                        <p>{item.description}</p>
+                                                    </div>
+
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            ))}
+                                    </SwiperSlide>
+
+                                ))}
+                            </Swiper>
+
                         </div>
                     </div>
 

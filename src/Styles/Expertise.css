@@ -169,21 +169,17 @@
 }
 .ExpertiseCardsContainer {
   display: flex;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
+  /* overflow-x: scroll; */
+  /* scroll-snap-type: x mandatory; */
   overflow-y: hidden;
-  /* flex-wrap: nowrap; */
+  flex-wrap: wrap;
   /* justify-content: center; */
   width: 100%;
 }
 .ExpertiseCards {
   margin-bottom: 3rem;
   transition: 0.5s;
-  /* width: 33%; */
-  flex: 0 0 calc(33.33% - 20px); /* 3 cards per row with spacing */
-  /* scroll-snap-align: start; Align cards to the start of the scroll container */
-
-  /* padding: 12px; */
+  width: 100%;
   transform: translateY(0px);
   height: 100%;
 }
@@ -195,9 +191,7 @@
 .ExpertiseCards:hover {
   margin-bottom: 3rem;
   transform: translateY(-10px);
-  width: 33%;
   background-color: #4a91e235;
-  /* padding: 12px; */
   transition: 1s;
   border-radius: 10px;
 }
@@ -266,13 +260,14 @@
   width: 100%;
   height: 85vh;
 }
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .ExpertiseCards {
     margin-bottom: 3rem;
     transform: translateY(50px);
     transition: 0.5s;
-    width: 40%;
+    width: 100%;
     padding: 10px;
   }
 
@@ -300,9 +295,6 @@
 }
 
 @media (max-width: 640px) {
-  .ExpertiseCards {
-    flex: 0 0 calc(100% - 20px); /* Full width minus margin */
-  }
   .ExpertiseCards > div {
     padding: 0px;
   }
