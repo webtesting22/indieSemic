@@ -15,12 +15,7 @@ const Hero = () => {
 
     const [activeIndex, setActiveIndex] = useState(0);
     const CarousalImages = [
-        {
-            // image: ChipVideo,
-            image: newbanner,
-            // heading: "Innovating the Future of Semiconductors",
-            // tagline: "Powering breakthroughs in AI and IoT technology",
-        },
+       
         {
             image: BackBanner,
         },

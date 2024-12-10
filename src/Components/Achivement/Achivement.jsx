@@ -1,11 +1,23 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Image } from "antd";
+import { Image, Modal } from "antd";
 import "../../Styles/Achivement.css";
 import Back2 from '/Images/AboutImage.jpg';
 import Back from "/Images/soc.jpg"
-
+import AlternateBack2 from "/Images/Indiesemic_Mockup (9).jpg"; // Alternate image for Back2
+import AlternateBack from "/Images/AlternateSoc.jpg"; // Alternate image for Back
 const Achivement = () => {
     const sectionRef = useRef(null);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [modalImage, setModalImage] = useState(""); // State to store the image to show in modal
+
+    const handleImageClick = (alternateImage) => {
+        setModalImage(alternateImage); // Set the alternate image to be displayed
+        setIsModalVisible(true); // Show the modal
+    };
+
+    const handleModalClose = () => {
+        setIsModalVisible(false); // Close the modal
+    };
     const [offsetY, setOffsetY] = useState(0);
     // useEffect(() => {
     //     // Intersection Observer to detect visibility of the section
@@ -64,9 +76,13 @@ const Achivement = () => {
                                 </div>
                             </div>
 
-                            <Image src={Back} alt="" style={{
-                                transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed with the multiplier
-                            }} />
+                            <img src={Back} // Original image
+                                alt=""
+                                onClick={() => handleImageClick(AlternateBack)} // Show alternate image in modal
+                                style={{
+                                    transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed with the multiplier
+                                    cursor: "pointer"
+                                }} />
                         </div>
                     </div>
                     <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
@@ -84,16 +100,28 @@ const Achivement = () => {
                                     <p>Semiconductors are materials with electrical conductivity between that of a conductor and an insulator, making them essential in modern electronics.</p>
                                 </div>
                             </div>
-                            <Image src={Back2} alt="" style={{
-                                transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed with the multiplier
-                            }} />
+                            <img src={Back2} // Original image
+
+                                onClick={() => handleImageClick(AlternateBack2)} // Show alternate image in modal
+                                alt="" style={{
+                                    transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed with the multiplier
+                                    cursor: "pointer"
+                                }} />
                         </div>
                     </div>
                 </div>
                 <div className="FixedImage" />
 
-
-            </section></>
+                <Modal
+                    visible={isModalVisible}
+                    footer={null} // Remove footer
+                    onCancel={handleModalClose} // Close the modal
+                    width={1000}
+                >
+                    <Image src={modalImage} alt="Alternate View" />
+                </Modal>
+            </section>
+            </>
     );
 };
 
