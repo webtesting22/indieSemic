@@ -29,6 +29,8 @@ HideOnScroll.propTypes = {
 };
 
 const MegaNavigation = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
     const [isScrolled, setIsScrolled] = useState(false);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [showAppBar, setShowAppBar] = useState(true);
@@ -58,7 +60,16 @@ const MegaNavigation = () => {
     const toggleDrawer = () => {
         setDrawerVisible(!drawerVisible);
     };
+    useEffect(() => {
+        const updateScreenSize = () => {
+            setIsMobile(window.innerWidth <= 768); // Mobile if screen width <= 768px
+        };
 
+        updateScreenSize(); // Initial check
+        window.addEventListener("resize", updateScreenSize); // Listen for resize events
+
+        return () => window.removeEventListener("resize", updateScreenSize); // Cleanup
+    }, []);
     // A function to render sub-nav based on the main navigation item
     const renderSubNav = (link) => {
         switch (link) {
@@ -111,19 +122,39 @@ const MegaNavigation = () => {
             <HideOnScroll>
                 <div id="NavigationBar">
                     <AppBar
-                          style={{
-                            backgroundColor: isScrolled ? "transparent" : "transparent",
+                        style={{
+                            backgroundColor: isScrolled ? "#ffffff5c" : "transparent",
                             backdropFilter: isScrolled ? "blur(20px)" : "blur(0px)",
                             top: showAppBar ? 0 : '-64px', transition: 'top 0.3s',
                             boxShadow: isScrolled ? "0px 4px 6px rgba(0, 0, 0, 0.1)" : "none",
                         }}
                     >
                         <Toolbar>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: "center", marginTop: isScrolled ? "2px" : "20px", marginLeft: isScrolled ? "0px" : "0px", marginRight: isScrolled ? "0px" : "0px", backdropFilter: isScrolled ? "blur(0px)" : "blur(10px)" }}>
-                                <div className="logoContainer">
-                                    <img src={IndieSemicLogo} alt="Logo" style={{
-                                        boxShadow: "rgb(255 255 255 / 67%) 0px 22px 35px -13px",
-                                    }} />
+                            <div className='navigationbar'  style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                width: '100%',
+                                alignItems: "center",
+                                marginTop: isScrolled ? "2px" : "24px",
+                                marginLeft: isScrolled ? "0px" : "0px",
+                                marginRight: isScrolled ? "0px" : "0px",
+                                backdropFilter: isScrolled ? "blur(0px)" : "blur(10px)"
+                            }}>
+                                <div className="logoContainer"
+                                    style={{
+                                        height: isScrolled ? "85px" : "80px",
+                                        boxShadow: isScrolled ? "none" : "2px 2px 19px white",
+                                    }}
+                                >
+                                    <img
+                                        src={isScrolled ? logo2 : IndieSemicLogo}
+                                        // src={IndieSemicLogo}
+                                        alt="Logo" style={{
+
+                                            width: isScrolled ? "120px" : "235px",
+                                            transition: "0.3s",
+                                            // width: isMobile ? "200px" : "150px",
+                                        }} />
                                 </div>
                                 {windowWidth < 768 ? (
                                     <>

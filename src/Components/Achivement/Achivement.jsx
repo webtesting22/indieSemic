@@ -5,6 +5,8 @@ import Back2 from '/Images/AboutImage.jpg';
 import Back from "/Images/soc.jpg"
 import AlternateBack2 from "/Images/NewBanner.jpeg"; // Alternate image for Back2
 import AlternateBack from "/Images/AlternateSoc.jpg"; // Alternate image for Back
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+
 const Achivement = () => {
     const sectionRef = useRef(null);
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -55,21 +57,30 @@ const Achivement = () => {
                 <div>
                     <div className="DesignedContainer">
                         <h1 data-aos="fade-up"><span style={{ color: "rgb(74, 144, 226)" }}>Driving Innovation</span> in Semiconductor Technology</h1>
-                        <p data-aos="fade-up">Shaping the Future of Technology Through Groundbreaking Semiconductor Design and Innovation.</p>
+                        <p data-aos="fade-up">Shaping the Future of Technology Through Groundbreaking Design and Innovation.</p>
                     </div>
                 </div>
                 <div id="CardColumns">
                     <div data-aos="fade-right" data-aos-duration="1000">
-                        <div className="BoxEdit" >
+                        <div className="BoxEdit"  >
 
                             <div className="blackoverlay">
 
                             </div>
                             <div className="Title">
-                                <h1 style={{ fontSize: "75px" }}> SoC</h1>
+                                <h1 > SoC/SiP</h1>
+                            </div>
+                            <div className="ButtonContainer">
+                                <button data-aos="fade-left"
+                                    onClick={() => handleImageClick(AlternateBack)} // Show alternate image in modal
+                                    data-aos-duration="1500">
+                                    
+                                    Know More
+                                    <ArrowRightAltIcon />
+                                </button>
                             </div>
                             <div className="Content">
-                                <h1 >SoC</h1>
+                                <h1 >SoC </h1>
                                 <div>
                                     <h2>The Building Block of Modern Technology</h2>
                                     <p>Semiconductors are materials with electrical conductivity between that of a conductor and an insulator, making them essential in modern electronics.</p>
@@ -91,7 +102,16 @@ const Achivement = () => {
 
                             </div>
                             <div className="Title">
-                                <h1 style={{ fontSize: "75px" }}> RF MODULES</h1>
+                                <h1> RF MODULES</h1>
+                            </div>
+                            <div className="ButtonContainer">
+                                <button data-aos="fade-left"
+                                    onClick={() => handleImageClick(AlternateBack)} // Show alternate image in modal
+                                    data-aos-duration="1500">
+                                    
+                                    Know More
+                                    <ArrowRightAltIcon />
+                                </button>
                             </div>
                             <div className="Content">
                                 <h1>RF MODULES</h1>
@@ -116,13 +136,13 @@ const Achivement = () => {
                     visible={isModalVisible}
                     footer={null} // Remove footer
                     onCancel={handleModalClose} // Close the modal
-                    width={800}
+                    width={1400}
                     className="ImageModal"
                 >
-                    <Image src={modalImage} alt="Alternate View" />
+                    <img src={modalImage} alt="Alternate View" style={{width:"100%"}} />
                 </Modal>
             </section>
-            </>
+        </>
     );
 };
 

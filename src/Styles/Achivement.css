@@ -62,7 +62,7 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
 
 .blackoverlay {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.3);
   height: 100%;
   left: 0px;
   top: 0px;
@@ -154,10 +154,41 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
   height: 100% !important;
   width: 100%;
 }
-.ant-modal-content{
+.ant-modal-content {
   padding-top: 40px !important;
 }
+.Title h1 {
+  font-size: 60px;
+}
+.ButtonContainer {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  bottom: 30%;
+  text-align: center;
+  background-color: transparent;
+}
+.ButtonContainer button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-size: 23px;
+}
+.ButtonContainer button svg{
+  border: 1px solid white;
+  border-radius: 50%;
+  margin-left: 5px;
+  font-size: 23px;
+}
 @media (max-width: 769px) {
+  .BoxEdit img{
+    pointer-events: none;
+  }
+  .ButtonContainer{
+    display: block;
+  }
   #CardColumns {
     display: flex;
     align-items: center;
@@ -197,7 +228,7 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
 
   .blackoverlay {
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.3);
     height: 100%;
     left: 0px;
     /* top: 30%; */

@@ -8,7 +8,7 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import BackBanner from "../../../public/Images/SliderImage.png"
 import TryBanner from "../../../public/Images/TryBanner.jpeg"
 import ChipVideo from "../../../public/Images/ChipVideo.mp4"
-import MobileBanner from "../../../public/Images/MobileCarousel.png"; // Image for Mobile
+import MobileBanner from "../../../public/Images/Carousel for mobile.png"; // Image for Mobile
 import newbanner from "/Images/Indiesemic_Mockup (9).jpg";
 const Hero = () => {
     const [isMobile, setIsMobile] = useState(false);
@@ -17,23 +17,24 @@ const Hero = () => {
     const CarousalImages = [
        
         {
-            image: BackBanner,
+            image: isMobile ? MobileBanner : BackBanner,
         },
         {
+            header:"Coming Soon!",
             image: "https://images.unsplash.com/photo-1639004643319-a996b810d37e?q=80&w=3018&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             heading: "High-Performance Chips for Modern Devices",
-            tagline: "Efficiency and speed in every transistor",
+            tagline:"Efficiency and speed in every transistor",
         },
-        {
-            image: "/Images/Slider1.webp",
-            heading: "Driving Connectivity with Advanced SoCs",
-            tagline: "Revolutionizing mobile and communication systems",
-        },
-        {
-            image: "/Images/Slider3.jpg",
-            heading: "Sustainable Semiconductor Solutions",
-            tagline: "Eco-friendly innovation for a greener planet",
-        },
+        // {
+        //     image: "/Images/Slider1.webp",
+        //     heading: "Driving Connectivity with Advanced SoCs",
+        //     tagline: "Revolutionizing mobile and communication systems",
+        // },
+        // {
+        //     image: "/Images/Slider3.jpg",
+        //     heading: "Sustainable Semiconductor Solutions",
+        //     tagline: "Eco-friendly innovation for a greener planet",
+        // },
 
     ];
     useEffect(() => {
@@ -58,7 +59,7 @@ const Hero = () => {
                         }}
                         speed={1000}
                         autoplay={{
-                            delay: 3000,
+                            delay: 5000,
                             disableOnInteraction: false,
                         }}
                         // onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
@@ -83,6 +84,9 @@ const Hero = () => {
                                             }}
                                         /> */}
                                         <div className="overlay"></div>
+                                    </div>
+                                    <div className={'Heading'}>
+                                        {item.header}
                                     </div>
                                     <div className={`slideText `}>
                                         {item.heading}

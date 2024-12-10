@@ -24,7 +24,10 @@ function App() {
         // footer={null}
         onCancel={handleCancel}
       >
+
         <p>Our Website is under development. Stay tuned for the full website launch!</p>
+        <br/>
+        <img src="/Images/Loading.jpg" style={{width:"100%"}}/>
       </Modal>
     </>
   )

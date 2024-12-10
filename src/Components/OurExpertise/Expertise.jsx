@@ -10,7 +10,7 @@ import HealthCare from "./HealthCare.jpeg"
 import IOTNetwork from "./IOTNetwork.jpg"
 import LeftSide from "./LeftSide.jpeg"
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -55,15 +55,17 @@ const Expertise = () => {
             description: "Connecting devices for seamless data sharing and automation."
         },
         {
+            // image: "https://plus.unsplash.com/premium_photo-1661878265739-da90bc1af051?q=80&w=1986&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            image: "/Images/Consumer electronics.jpg",
+            title: "Consumer Electronics",
+            description: "Empowering Lives, One Innovation at a Time.",
+            // description: " Developing systems to safeguard data and ensure privacy."
+        },
+        {
             image: "https://plus.unsplash.com/premium_photo-1661878265739-da90bc1af051?q=80&w=1986&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            title: "Consumer Eletronics",
+            title: "Security",
             description: " Developing systems to safeguard data and ensure privacy."
         },
-        // {
-        //     image: "https://plus.unsplash.com/premium_photo-1661878265739-da90bc1af051?q=80&w=1986&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        //     title: "Security",
-        //     description: " Developing systems to safeguard data and ensure privacy."
-        // },
 
         {
             image: HealthCare,
@@ -182,14 +184,20 @@ const Expertise = () => {
                     <div className='StickyComponent'>
                         <div className="DesignedContainer" id='Target'>
                             <h1 style={{ textAlign: "left" }}><span style={{ color: "rgb(74, 144, 226)" }}>Revolutionizing Technology</span> with cutting-edge chip design</h1>
-                            <p>From consumer electronics to industrial automation, our semiconductors transform ideas into reality, shaping the modern technological landscape.</p>
+                            <p>From consumer electronics to industrial automation, our products transform ideas into reality, shaping the modern technological landscape.</p>
                         </div>
                         {/* <br /> */}
                         {/* <br /> */}
                         <div className='ExpertiseCardsContainer' >
                             <Swiper
-                                modules={[Navigation, Pagination]}
+                                modules={[Navigation, Pagination,Autoplay]}
                                 navigation
+                                loop={true}
+                                speed={1000}
+                                autoplay={{
+                                    delay: 1000,
+                                    disableOnInteraction: false,
+                                }}
                                 pagination={{ clickable: true }}
                                 spaceBetween={30}
                                 breakpoints={{

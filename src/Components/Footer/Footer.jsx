@@ -17,7 +17,12 @@ const Footer = () => {
 
                 <div>
                     <div className="footerLogoContainer">
-                        <img src="/Images/logo.png" alt="Logo" />
+                        <div style={{display:"flex",justifyContent:"space-between",width:"100%"}}>
+                            <img src="/Images/logo.png" alt="Logo" />
+                            <div className="mobileOnlyLogo">
+                                <img src="/Images/MakeInIndia2.png" />
+                            </div>
+                        </div>
                         <div>
                             <p>IndieSemiC Private Limited</p>
                             <p><b>Address:</b>&nbsp;<Link to="https://maps.app.goo.gl/mh95Njc42ex6evFx9" target="_blank">C-201, 2nd Floor, The First, B/h Keshav Baugh Party Plot Nr. Shivalik High-Street, Vastrapur, Ahmedabad, Gujarat 380015.</Link></p>
@@ -25,7 +30,7 @@ const Footer = () => {
                     </div>
 
                 </div>
-                <div>
+                <div className="pcOnlyLogo">
                     <img src="/Images/MakeInIndia2.png" />
                 </div>
             </div>
@@ -67,7 +72,7 @@ const Footer = () => {
                             <div className="footerSocialIcons">
                                 <div><Link to="mailto:sales@indiesemic.com" target="_blank"><MailIcon sx={{ color: "rgb(74, 144, 226)" }} />sales@indiesemic.com</Link></div>
                                 <div><Link to="https://www.linkedin.com/company/102919226/admin/dashboard/" target="_blank"><LinkedInIcon sx={{ color: "rgb(74, 144, 226)" }} />LinkedIn</Link></div>
-                                <div><Link><PhoneIcon sx={{ color: "rgb(74, 144, 226)" }} />Contact Number</Link></div>
+                                <div><Link to="tel:918319417238"><PhoneIcon sx={{ color: "rgb(74, 144, 226)" }} />+91-8319417238</Link></div>
                             </div>
                         </div>
                     </Col>

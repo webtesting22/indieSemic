@@ -10,6 +10,7 @@ import TextField from '@mui/material/TextField';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { Link } from 'react-router-dom';
 import emailjs from 'emailjs-com';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const indianStates = [
     "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
@@ -116,9 +117,13 @@ const ContactHome = () => {
                             <Link target='_blank' to="https://maps.app.goo.gl/mh95Njc42ex6evFx9">C-201, 2nd Floor, The First, B/h Keshav Baugh Party Plot Nr. Shivalik High-Street,&nbsp;Vastrapur, Ahmedabad, Gujarat 380015.</Link>
                         </p>
                         <p className='contactItem'>
+                            <LinkedInIcon sx={{ color: "#4a90e2" }} />
+                            <Link to="https://www.linkedin.com/company/102919226/admin/dashboard/">LinkedIn</Link>
+                        </p>
+                        {/* <p className='contactItem'>
                             <PhoneIcon sx={{ color: "#4a90e2" }} />
                             Contact Number here
-                        </p>
+                        </p> */}
                         <p className='contactItem'>
                             <EmailIcon sx={{ color: "#4a90e2" }} />
                             <Link to="mailto:sales@indiesemic.com" target="_blank">sales@indiesemic.com</Link>

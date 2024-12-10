@@ -43,13 +43,13 @@ ul li {
 
 .section_Padding {
   padding: 7rem 4rem;
-  padding-bottom: 0px;
+  /* padding-bottom: 0px; */
 }
 
 @media (min-width: 1500px) and (max-width: 2500px) {
   .section_Padding {
     padding: 4rem 10rem;
-    padding-bottom: 0rem;
+    /* padding-bottom: 0rem; */
   }
 }
 
