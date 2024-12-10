@@ -64,7 +64,7 @@ const Achivement = () => {
                                 </div>
                             </div>
 
-                            <img src={Back} alt="" style={{
+                            <Image src={Back} alt="" style={{
                                 transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed with the multiplier
                             }} />
                         </div>
@@ -84,7 +84,7 @@ const Achivement = () => {
                                     <p>Semiconductors are materials with electrical conductivity between that of a conductor and an insulator, making them essential in modern electronics.</p>
                                 </div>
                             </div>
-                            <img src={Back2} alt="" style={{
+                            <Image src={Back2} alt="" style={{
                                 transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed with the multiplier
                             }} />
                         </div>
