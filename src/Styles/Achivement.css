@@ -185,7 +185,7 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
   height: 100% !important;
   width: 100%;
 }
-.ant-modal-content{
+.ImageModal{
   padding: 40px 20px !important;
 }
 @media (max-width: 769px) {

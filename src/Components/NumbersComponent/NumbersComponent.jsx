@@ -98,14 +98,14 @@ const NumbersComponent = () => {
     return (
         <div ref={sectionRef} className="AchivementValuesContainer">
             <div className="OverlayContainer"></div>
-            <Row style={{width:"100%"}}>
+            <Row style={{ width: "100%" }}>
                 {AchivementvaluesData.map((item, index) => (
                     <Col lg={8} md={12} sm={24} key={index} style={{ width: "100%" }}>
                         <div className="CountersContainer">
                             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                                 {item.icon}&nbsp;
                                 <h1 style={{ color: "white" }}>
-                                {Math.floor(counters[item.key]).toFixed(0)}+
+                                    {Math.floor(counters[item.key]).toFixed(0)}+
                                 </h1>
                             </div>
                             <p style={{ color: "white" }}>{item.text}</p>

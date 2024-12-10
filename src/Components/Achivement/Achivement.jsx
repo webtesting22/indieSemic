@@ -116,7 +116,8 @@ const Achivement = () => {
                     visible={isModalVisible}
                     footer={null} // Remove footer
                     onCancel={handleModalClose} // Close the modal
-                    width={1000}
+                    width={800}
+                    className="ImageModal"
                 >
                     <Image src={modalImage} alt="Alternate View" />
                 </Modal>
