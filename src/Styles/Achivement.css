@@ -14,8 +14,8 @@
   margin: 7rem 4rem;
   justify-content: space-between;
 }
-@media (min-width: 1500px) and (max-width: 2500px){
-  .AchivementValuesContainer{
+@media (min-width: 1500px) and (max-width: 2500px) {
+  .AchivementValuesContainer {
     margin: 4rem 10rem;
   }
 }
@@ -58,7 +58,6 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
   width: 104%;
   height: 113%;
   object-fit: cover;
-  /* margin-top: 2rem; */
 }
 
 .blackoverlay {
@@ -70,26 +69,8 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
   width: 100%;
   z-index: 44;
   pointer-events: none;
-
   transition: 0.7s;
 }
-/* 
-.BoxEdit:hover .blackoverlay {
-  position: absolute;
-  background-color: rgb(0, 0, 0);
-  height: 100%;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  z-index: 44;
-  background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.7) 70%,
-    rgba(0, 0, 0, 0.7) 90%,
-    rgb(0, 0, 0, 0.8) 100%
-  );
-  transition: 0.7s;
-} */
 
 .Content {
   position: absolute;
@@ -151,13 +132,6 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
   transform: scale(0);
 }
 
-/* .BoxEdit:hover .Content {
-  opacity: 1;
-  visibility: visible;
-  transition: 0.7s;
-  transform: scale(1.1);
-} */
-
 .Title {
   z-index: 1000;
   text-align: center;
@@ -168,12 +142,7 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
   opacity: 1;
   transition: 0.7s;
 }
-/* 
-.BoxEdit:hover .Title {
-  opacity: 0;
-  transition: 0.7s;
-  visibility: hidden;
-} */
+
 .Content h1 {
   font-size: 75px;
 }
@@ -185,8 +154,8 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
   height: 100% !important;
   width: 100%;
 }
-.ImageModal{
-  padding: 40px 20px !important;
+.ant-modal-content{
+  padding-top: 40px !important;
 }
 @media (max-width: 769px) {
   #CardColumns {

@@ -3,7 +3,7 @@ import { Image, Modal } from "antd";
 import "../../Styles/Achivement.css";
 import Back2 from '/Images/AboutImage.jpg';
 import Back from "/Images/soc.jpg"
-import AlternateBack2 from "/Images/Indiesemic_Mockup (9).jpg"; // Alternate image for Back2
+import AlternateBack2 from "/Images/NewBanner.jpeg"; // Alternate image for Back2
 import AlternateBack from "/Images/AlternateSoc.jpg"; // Alternate image for Back
 const Achivement = () => {
     const sectionRef = useRef(null);
