@@ -180,6 +180,12 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
   font-size: 23px;
 }
 @media (max-width: 769px) {
+  .Title h1 {
+    font-size: 45px;
+  }
+  .ButtonContainer button {
+    font-size: 1.3rem;
+  }
   .BoxEdit img {
     pointer-events: none;
   }
