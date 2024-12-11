@@ -149,7 +149,7 @@ const ContactHome = () => {
 
                         >
                             <Box sx={{ display: 'flex', gap: 2, width: '100%' }}>
-                                <TextField id="name" label="Name" variant="outlined" value={formValues.name} error={!!formErrors.name}
+                                <TextField id="name" label="Name" color='primary' variant="outlined" value={formValues.name} error={!!formErrors.name}
                                     helperText={formErrors.name}
 
                                     onChange={handleInputChange} sx={{ flex: { xs: '100%', sm: 1 } }} // Full width on mobile, flex on larger screens

@@ -125,12 +125,13 @@ const MegaNavigation = () => {
                         style={{
                             backgroundColor: isScrolled ? "#ffffff5c" : "transparent",
                             backdropFilter: isScrolled ? "blur(20px)" : "blur(0px)",
-                            top: showAppBar ? 0 : '-64px', transition: 'top 0.3s',
+                            top: showAppBar ? 0 : '-104px',
+                            transition: '0.5s ease-in-out',
                             boxShadow: isScrolled ? "0px 4px 6px rgba(0, 0, 0, 0.1)" : "none",
                         }}
                     >
                         <Toolbar>
-                            <div className='navigationbar'  style={{
+                            <div className='navigationbar' style={{
                                 display: 'flex',
                                 justifyContent: 'space-between',
                                 width: '100%',

@@ -5,7 +5,7 @@ import "../../Styles/Hero.css"
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
-import BackBanner from "/Images/SliderImage.png"
+import BackBanner from "/Images/Cutting edge RF modules (1) (1).png"
 import TryBanner from "/Images/TryBanner.jpeg"
 import ChipVideo from "/Images/ChipVideo.mp4"
 import CarouselVideo from "/Images/Cutting edge RF modules.mp4"

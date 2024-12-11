@@ -136,7 +136,7 @@ const Achivement = () => {
                     open={isModalVisible}
                     footer={null} // Remove footer
                     onCancel={handleModalClose} // Close the modal
-                    width={1400}
+                    width={1200}
                     className="ImageModal"
                 >
                     <img src={modalImage} alt="Alternate View" style={{ width: "100%" }} />

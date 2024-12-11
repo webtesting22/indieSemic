@@ -21,6 +21,9 @@
   display: flex;
   flex-direction: column;
 }
+.contactInfoContainer .sectionHeading{
+  margin-bottom: 14px;
+}
 .contactFormContainer {
   width: 100%;
   height: 100%;
