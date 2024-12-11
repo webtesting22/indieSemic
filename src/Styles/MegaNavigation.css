@@ -162,4 +162,7 @@
     width: 110px;
     height: 70px !important;
   }
+  .logoContainer img {
+    width: 225px;
+  }
 }
