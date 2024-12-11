@@ -62,9 +62,7 @@
 .MuiList-root {
   background-color: white !important;
 }
-.MuiList-root:hover {
-  background-color: whitesmoke !important;
-}
+
 @media (max-width: 576px) {
   .contactItem {
     width: 100%;
