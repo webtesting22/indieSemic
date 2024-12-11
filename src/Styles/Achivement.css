@@ -130,6 +130,7 @@ https://images.unsplash.com/photo-1666037813276-dc0046b1d219?q=80&w=2874&auto=fo
 }
 
 .Title {
+  cursor: pointer;
   z-index: 1000;
   text-align: center;
   visibility: visible;

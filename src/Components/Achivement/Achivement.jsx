@@ -67,7 +67,8 @@ const Achivement = () => {
                             <div className="blackoverlay">
 
                             </div>
-                            <div className="Title">
+                            <div className="Title" onClick={() => handleImageClick(AlternateBack)} // Show alternate image in modal
+                            >
                                 <h1 > SoC/SiP</h1>
                             </div>
                             <div className="ButtonContainer">
@@ -101,7 +102,7 @@ const Achivement = () => {
                             <div className="blackoverlay">
 
                             </div>
-                            <div className="Title">
+                            <div className="Title" onClick={() => handleImageClick(AlternateBack2)} >
                                 <h1> RF MODULES</h1>
                             </div>
                             <div className="ButtonContainer">
