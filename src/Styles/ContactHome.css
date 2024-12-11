@@ -21,7 +21,7 @@
   display: flex;
   flex-direction: column;
 }
-.contactInfoContainer .sectionHeading{
+.contactInfoContainer .sectionHeading {
   margin-bottom: 14px;
 }
 .contactFormContainer {
@@ -58,10 +58,11 @@
 .contactInfoContainer a:hover {
   color: rgb(74, 144, 226);
 }
-.css-1q6miuc-MuiButtonBase-root-MuiMenuItem-root.Mui-selected {
+
+.MuiList-root {
   background-color: white !important;
 }
-.css-1q6miuc-MuiButtonBase-root-MuiMenuItem-root:hover{
+.MuiList-root:hover {
   background-color: whitesmoke !important;
 }
 @media (max-width: 576px) {
