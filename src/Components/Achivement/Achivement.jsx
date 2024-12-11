@@ -4,7 +4,7 @@ import "../../Styles/Achivement.css";
 import Back2 from '/Images/AboutImage.jpg';
 import Back from "/Images/soc.jpg"
 import AlternateBack2 from "/Images/NewBanner.jpeg"; // Alternate image for Back2
-import AlternateBack from "/Images/AlternateSoc.jpg"; // Alternate image for Back
+import AlternateBack from "/Images/SoC click pic.png"; // Alternate image for Back
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 
 const Achivement = () => {
