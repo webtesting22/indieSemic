@@ -6,7 +6,7 @@
 
 .FixedImage {
   height: 100%;
-  background-image: url("../../public/Images/AboutContentBack.png");
+  background-image: url("/Images/AboutContentBack.png");
   background-position: center;
   background-size: cover;
   position: absolute;

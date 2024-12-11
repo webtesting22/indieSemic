@@ -147,20 +147,19 @@
 #NavigationBar ul li:hover hr{
   width: 100%;
 } */
- @media (max-width:769px){
-  .navigationbar{
+@media (max-width: 769px) {
+  .navigationbar {
     background-color: white;
-   padding: 10px 0px !important;
+    padding: 10px 0px !important;
     margin-top: 0px !important;
   }
-  .MuiToolbar-root{
+  .MuiToolbar-root {
     background-color: white;
   }
- }
+}
 @media (max-width: 576px) {
   .logoContainer {
     width: 100px;
     height: 70px !important;
   }
- 
 }

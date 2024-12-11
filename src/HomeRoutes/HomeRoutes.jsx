@@ -6,6 +6,7 @@ import ContactHome from "../Components/ContactHome/ContactHome";
 import { ScrollTop } from 'primereact/scrolltop';
 import NumbersComponent from "../Components/NumbersComponent/NumbersComponent";
 import Expertise from "../Components/OurExpertise/Expertise";
+import ExpertiseCards from "../Components/OurExpertise/ExpertiseCards";
 const HomeRoutes = () => {
     return (
         <>
@@ -16,6 +17,7 @@ const HomeRoutes = () => {
             <AboutCompany />
             <Achivement />
             <Expertise />
+            <ExpertiseCards/>
             <NumbersComponent />
             <ContactHome />
         </>

@@ -72,7 +72,7 @@ const Footer = () => {
                             <div className="footerSocialIcons">
                                 <div><Link to="mailto:sales@indiesemic.com" target="_blank"><MailIcon sx={{ color: "rgb(74, 144, 226)" }} />sales@indiesemic.com</Link></div>
                                 <div><Link to="https://www.linkedin.com/company/102919226/admin/dashboard/" target="_blank"><LinkedInIcon sx={{ color: "rgb(74, 144, 226)" }} />LinkedIn</Link></div>
-                                <div><Link to="tel:918319417238"><PhoneIcon sx={{ color: "rgb(74, 144, 226)" }} />+91-8319417238</Link></div>
+                                <div><Link to="tel:919427417598"><PhoneIcon sx={{ color: "rgb(74, 144, 226)" }} />+91-9427417598</Link></div>
                             </div>
                         </div>
                     </Col>

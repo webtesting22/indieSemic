@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import CountUp from "react-countup";
 import "../../Styles/AboutContent.css"
-import AboutContentVideo from "../../../public/Images/AboutContentVideo.mp4"
+import AboutContentVideo from "/Images/AboutContentVideo.mp4"
 import { Row, Col } from "antd";
 import MemoryRoundedIcon from '@mui/icons-material/MemoryRounded';
 import DeveloperBoardIcon from '@mui/icons-material/DeveloperBoard';

@@ -8,7 +8,7 @@ import { NavigationData, RFModules, SystemOnChip, Services, Applications, } from
 import { Drawer, Button, Collapse } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import "../../Styles/MegaNavigation.css";
-import IndieSemicLogo from "../../../public/Images/IndieSemicLogo.jpg"
+import IndieSemicLogo from "/Images/IndieSemicLogo.jpg"
 import logo2 from "/Images/logo.png";
 function HideOnScroll(props) {
     const { children, window } = props;
@@ -170,7 +170,7 @@ const MegaNavigation = () => {
                                             placement="left"
                                             closable={false}
                                             onClose={toggleDrawer}
-                                            visible={drawerVisible}
+                                            open={drawerVisible}
                                             width={300}
                                         >
                                             <div id='Collapse'>

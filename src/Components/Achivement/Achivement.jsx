@@ -74,7 +74,7 @@ const Achivement = () => {
                                 <button data-aos="fade-left"
                                     onClick={() => handleImageClick(AlternateBack)} // Show alternate image in modal
                                     data-aos-duration="1500">
-                                    
+
                                     Know More
                                     <ArrowRightAltIcon />
                                 </button>
@@ -108,7 +108,7 @@ const Achivement = () => {
                                 <button data-aos="fade-left"
                                     onClick={() => handleImageClick(AlternateBack)} // Show alternate image in modal
                                     data-aos-duration="1500">
-                                    
+
                                     Know More
                                     <ArrowRightAltIcon />
                                 </button>
@@ -133,13 +133,13 @@ const Achivement = () => {
                 <div className="FixedImage" />
 
                 <Modal
-                    visible={isModalVisible}
+                    open={isModalVisible}
                     footer={null} // Remove footer
                     onCancel={handleModalClose} // Close the modal
                     width={1400}
                     className="ImageModal"
                 >
-                    <img src={modalImage} alt="Alternate View" style={{width:"100%"}} />
+                    <img src={modalImage} alt="Alternate View" style={{ width: "100%" }} />
                 </Modal>
             </section>
         </>

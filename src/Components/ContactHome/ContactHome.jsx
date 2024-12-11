@@ -172,9 +172,10 @@ const ContactHome = () => {
                                 error={!!formErrors.country}
                                 variant='outlined'
                                 sx={{ width: '100%' }}
+
                             >
-                                <MenuItem value="India">India</MenuItem>
-                                <MenuItem value="Others">Others</MenuItem>
+                                <MenuItem value="India" sx={{ backgroundColor: "white" }}>India</MenuItem>
+                                <MenuItem value="Others" sx={{ backgroundColor: "white" }}>Others</MenuItem>
                             </TextField>
                             {formValues.country === "India" && (
                                 <TextField
@@ -187,7 +188,7 @@ const ContactHome = () => {
                                     helperText={formErrors.state}
                                 >
                                     {indianStates.map((state) => (
-                                        <MenuItem key={state} value={state}>{state}</MenuItem>
+                                        <MenuItem key={state} value={state} sx={{ backgroundColor: "white" }}>{state}</MenuItem>
                                     ))}
                                 </TextField>
                             )}

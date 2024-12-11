@@ -1,7 +1,7 @@
 #ContactContainer {
   padding-bottom: 4rem;
   position: relative;
-  background-color: #eaf6ffce;
+  /* background-color: #eaf6ffce; */
 }
 /* .backGroundAttachmentContact {
   height: 100%;
@@ -55,11 +55,17 @@
 .contactInfoContainer a:hover {
   color: rgb(74, 144, 226);
 }
+.css-1q6miuc-MuiButtonBase-root-MuiMenuItem-root.Mui-selected {
+  background-color: white !important;
+}
+.css-1q6miuc-MuiButtonBase-root-MuiMenuItem-root:hover{
+  background-color: whitesmoke !important;
+}
 @media (max-width: 576px) {
   .contactItem {
     width: 100%;
   }
-  .contactInfoContainer{
+  .contactInfoContainer {
     align-items: center;
   }
   .contactFormContainer {

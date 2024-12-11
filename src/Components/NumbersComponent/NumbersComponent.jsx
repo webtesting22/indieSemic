@@ -41,8 +41,11 @@ const NumbersComponent = () => {
         const handleScroll = () => {
             if (sectionRef.current) {
                 const rect = sectionRef.current.getBoundingClientRect();
+                const isMobile = window.innerWidth <= 768; // Adjust breakpoint as needed
+                const offset = isMobile ? 400 : 150; // Mobile offset vs. Desktop offset
                 const wasInView = isInView;
-                const currentlyInView = rect.top >= 0 && rect.bottom <= window.innerHeight;
+                const currentlyInView = rect.top + offset >= 0 &&
+                    rect.bottom - offset <= window.innerHeight;
 
                 // If section goes out of view, reset counters
                 if (wasInView && !currentlyInView) {
@@ -96,6 +99,7 @@ const NumbersComponent = () => {
     }, [isInView, maxTarget]);
 
     return (
+        <div className="NumberComponentsContainer section_Padding" >
         <div ref={sectionRef} className="AchivementValuesContainer">
             <div className="OverlayContainer"></div>
             <Row style={{ width: "100%" }}>
@@ -113,6 +117,7 @@ const NumbersComponent = () => {
                     </Col>
                 ))}
             </Row>
+        </div>
         </div>
     );
 };
