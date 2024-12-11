@@ -69,7 +69,7 @@ const Achivement = () => {
                             </div>
                             <div className="Title" onClick={() => handleImageClick(AlternateBack)} // Show alternate image in modal
                             >
-                                <h1 > SoC/SiP</h1>
+                                <h1>FLIP CHIP SOC</h1>
                             </div>
                             <div className="ButtonContainer">
                                 <button data-aos="fade-left"
