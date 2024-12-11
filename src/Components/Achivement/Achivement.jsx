@@ -106,7 +106,7 @@ const Achivement = () => {
                             </div>
                             <div className="ButtonContainer">
                                 <button data-aos="fade-left"
-                                    onClick={() => handleImageClick(AlternateBack)} // Show alternate image in modal
+                                    onClick={() => handleImageClick(AlternateBack2)} // Show alternate image in modal
                                     data-aos-duration="1500">
 
                                     Know More
