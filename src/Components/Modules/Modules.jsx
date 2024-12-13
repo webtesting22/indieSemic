@@ -10,7 +10,9 @@ const Modules = () => {
     const CarouselImage = ({ imgSrc, hoverImgSrc, alt }) => {
         const [currentImg, setCurrentImg] = useState(imgSrc);
         const [fade, setFade] = useState(true); // State to control fading
-
+        useEffect(() => {
+            window.scrollTo(0, 0);
+        }, []);
         useEffect(() => {
             const interval = setInterval(() => {
                 setFade(false); // Start fade-out effect
