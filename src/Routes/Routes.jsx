@@ -5,6 +5,7 @@ import HomeRoutes from "../HomeRoutes/HomeRoutes";
 import IndieSemicProduct from "../StoreComponents/ProductPage/indieSemicProduct";
 import Product from "../StoreComponents/ProductPage/Product";
 import Footer from "../Components/Footer/Footer"
+import Modules from "../Components/Modules/Modules";
 const DynamicRoutes = () => {
     return (
         <>
@@ -12,6 +13,7 @@ const DynamicRoutes = () => {
             <Routes>
                 <Route path="/" element={<HomeRoutes />} />
                 <Route path="/product" element={<Product />} />
+                <Route path="/Modules" element={<Modules/>}/>
             </Routes>
             <Footer/>
         </>

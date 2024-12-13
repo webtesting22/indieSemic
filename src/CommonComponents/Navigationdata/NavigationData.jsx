@@ -20,6 +20,10 @@ const NavigationData = [
     //     path: ""
     // },
     {
+        link: "Modules",
+        path: "/Modules",
+    },
+    {
         link: "Contact Us",
         path: "#footerSection"
     },
@@ -58,5 +62,5 @@ const Applications = [
 
 
 
-export {  RFModules, NavigationData, SystemOnChip, Services, Applications }
+export { RFModules, NavigationData, SystemOnChip, Services, Applications }
 

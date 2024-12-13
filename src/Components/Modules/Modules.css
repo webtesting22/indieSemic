@@ -1,0 +1,39 @@
+#ModulesContainer {
+  position: relative;
+
+  background-color: #eaf6ffce;
+}
+.ModuleBanner {
+  height: 100vh;
+  margin-top: -4rem;
+}
+.ModuleBanner div {
+  height: 100%;
+  width: 100%;
+}
+.ModuleBanner div img {
+  width: 100%;
+  height: 100%;
+}
+#ModulesDataContainer .ant-row {
+  padding-bottom: 90px;
+}
+#ModulesDataContainer .SideContentContainer {
+  padding-right: 2rem;
+}
+@media (max-width: 769px) {
+  #ModulesDataContainer .SideContentContainer {
+    padding-right: 0rem;
+  }
+  .ModuleBanner {
+    margin-top: 1.7rem;
+  }
+  #ModulesDataContainer .ant-row {
+    padding-bottom: 20px;
+  }
+}
+@media (max-width: 576px) {
+  .ModuleBanner {
+    height: 40vh;
+  }
+}

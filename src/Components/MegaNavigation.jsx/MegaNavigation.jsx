@@ -146,7 +146,7 @@ const MegaNavigation = () => {
                                         height: isScrolled ? "85px" : "80px",
                                         boxShadow: isScrolled ? "none" : "2px 2px 19px white",
                                     }}
-                                >
+                                ><a href='/'>
                                     <img
                                         src={isScrolled ? logo2 : IndieSemicLogo}
                                         // src={IndieSemicLogo}
@@ -156,6 +156,7 @@ const MegaNavigation = () => {
                                             transition: "0.3s",
                                             // width: isMobile ? "200px" : "150px",
                                         }} />
+                                        </a>
                                 </div>
                                 {windowWidth < 768 ? (
                                     <>

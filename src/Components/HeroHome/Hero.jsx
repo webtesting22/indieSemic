@@ -5,11 +5,11 @@ import "../../Styles/Hero.css"
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
-import BackBanner from "/Images/Cutting edge RF modules (1) (1).png"
+import BackBanner from "/Images/Cutting edge RF modules (1) (2).png"
 import TryBanner from "/Images/TryBanner.jpeg"
 import ChipVideo from "/Images/ChipVideo.mp4"
 import CarouselVideo from "/Images/Cutting edge RF modules.mp4"
-import MobileBanner from "/Images/Carousel for mobile.png"; // Image for Mobile
+import MobileBanner from "/Images/Carousel for mobile (1).png"; // Image for Mobile
 import newbanner from "/Images/Indiesemic_Mockup (9).jpg";
 const Hero = () => {
     const [isMobile, setIsMobile] = useState(false);
