@@ -16,10 +16,33 @@
   height: 100%;
 }
 #ModulesDataContainer .ant-row {
-  padding-bottom: 90px;
+  padding-bottom: 0;
 }
 #ModulesDataContainer .SideContentContainer {
   padding-right: 2rem;
+}
+#ModulesDataContainer .ant-row .ant-col .imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#ModulesDataContainer .ant-row .ant-col .imageContainer img {
+  height: 70%;
+}
+.carousel-image {
+  width: 100%;
+  height: auto;
+  position: relative;
+  transition: opacity 1s ease-in-out; /* Smooth fade effect */
+  opacity: 1;
+}
+
+.carousel-image.fade-out {
+  opacity: 0.9; /* Fade out */
+}
+
+.carousel-image.fade-in {
+  opacity: 1; /* Fade in */
 }
 @media (max-width: 769px) {
   #ModulesDataContainer .SideContentContainer {
