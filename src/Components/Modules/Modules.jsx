@@ -79,14 +79,14 @@ const Modules = () => {
 
     return (
         <>
-            <section id="ModulesContainer">
+            {/* <section id="ModulesContainer">
                 <div className="ModuleBanner">
                     <div>
                         <img src="/Images/AlternateSoc.jpg" />
                     </div>
                 </div>
 
-            </section>
+            </section> */}
             <section className="section_Padding" id="ModulesDataContainer">
                 <div className='ExpertiseCardContainer'>
                     {/* <img src={BackShapeImg} alt="" className='Overlayimage' /> */}
