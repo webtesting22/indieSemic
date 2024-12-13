@@ -23,10 +23,10 @@ const NavigationData = [
         link: "Modules",
         path: "/Modules",
     },
-    {
-        link: "Contact Us",
-        path: "#footerSection"
-    },
+    // {
+    //     link: "Contact Us",
+    //     path: "#footerSection"
+    // },
 ]
 
 const RFModules = [

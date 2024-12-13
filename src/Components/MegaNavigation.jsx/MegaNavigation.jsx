@@ -10,6 +10,7 @@ import { MenuOutlined } from '@ant-design/icons';
 import "../../Styles/MegaNavigation.css";
 import IndieSemicLogo from "/Images/IndieSemicLogo.jpg"
 import logo2 from "/Images/logo.png";
+import {Link} from "react-router-dom"
 function HideOnScroll(props) {
     const { children, window } = props;
     const trigger = useScrollTrigger({
@@ -147,16 +148,16 @@ const MegaNavigation = () => {
                                         boxShadow: isScrolled ? "none" : "2px 2px 19px white",
                                     }}
                                 ><a href='/'>
-                                    <img
-                                        src={isScrolled ? logo2 : IndieSemicLogo}
-                                        // src={IndieSemicLogo}
-                                        alt="Logo" style={{
+                                        <img
+                                            src={isScrolled ? logo2 : IndieSemicLogo}
+                                            // src={IndieSemicLogo}
+                                            alt="Logo" style={{
 
-                                            width: isScrolled ? "120px" : "235px",
-                                            transition: "0.3s",
-                                            // width: isMobile ? "200px" : "150px",
-                                        }} />
-                                        </a>
+                                                width: isScrolled ? "120px" : "235px",
+                                                transition: "0.3s",
+                                                // width: isMobile ? "200px" : "150px",
+                                            }} />
+                                    </a>
                                 </div>
                                 {windowWidth < 768 ? (
                                     <>
@@ -186,8 +187,8 @@ const MegaNavigation = () => {
                                                 <ul style={{ listStyleType: 'none', padding: 0 }}>
                                                     {NavigationData.map((item, index) => (
                                                         <li key={index} style={{ marginBottom: '1rem' }}>
-                                                            <a
-                                                                href={item.path} // Use `item.path` for the href
+                                                            <Link
+                                                                to={item.path} // Use `item.path` for the href
                                                                 style={{
                                                                     color: "black",
                                                                     fontSize: "16px",
@@ -196,7 +197,7 @@ const MegaNavigation = () => {
                                                                 onClick={toggleDrawer} // Close drawer on link click
                                                             >
                                                                 {item.link}
-                                                            </a>
+                                                            </Link>
                                                             {/* Render sub-navigation if available */}
                                                             {/* {renderSubNav(item.link) && (
                                                                 <Collapse accordion>
@@ -218,10 +219,10 @@ const MegaNavigation = () => {
                                                 <li key={index} style={{ display: 'inline-block' }}>
                                                     <div className="dropdown">
                                                         <button className="dropbtn" style={{ color: getButtonColor() }}>
-                                                            <a href={item.path} style={{ color: getButtonColor() }} // Use the path directly as href
+                                                            <Link to={item.path} style={{ color: getButtonColor() }} // Use the path directly as href
                                                             >
                                                                 {item.link}
-                                                            </a >
+                                                            </Link>
                                                         </button>
                                                         {/* {renderSubNav(item.link) && (
                                                             <div className="dropdown-content">
