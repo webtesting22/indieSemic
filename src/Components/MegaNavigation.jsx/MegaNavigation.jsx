@@ -198,11 +198,11 @@ const MegaNavigation = () => {
                                                                 {item.link}
                                                             </a>
                                                             {/* Render sub-navigation if available */}
-                                                            {renderSubNav(item.link) && (
+                                                            {/* {renderSubNav(item.link) && (
                                                                 <Collapse accordion>
                                                                     {renderSubNav(item.link)}
                                                                 </Collapse>
-                                                            )}
+                                                            )} */}
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -223,13 +223,13 @@ const MegaNavigation = () => {
                                                                 {item.link}
                                                             </a >
                                                         </button>
-                                                        {renderSubNav(item.link) && (
+                                                        {/* {renderSubNav(item.link) && (
                                                             <div className="dropdown-content">
                                                                 <div>
-                                                                    {renderSubNav(item.link)} {/* Render sub-nav */}
+                                                                    {renderSubNav(item.link)} 
                                                                 </div>
                                                             </div>
-                                                        )}
+                                                        )} */}
                                                     </div>
                                                 </li>
                                             ))}
