@@ -89,20 +89,19 @@ const Modules = () => {
             </section>
             <section className="section_Padding" id="ModulesDataContainer">
                 <div className='ExpertiseCardContainer'>
-                    <img src={BackShapeImg} alt="" className='Overlayimage' />
+                    {/* <img src={BackShapeImg} alt="" className='Overlayimage' /> */}
                     <div className="DesignedContainer" id='Target'>
                         <h1 style={{ textAlign: "left" }}><span style={{ color: "rgb(74, 144, 226)" }}>Versatile Modules</span>  for Tomorrow’s Smart Technologies</h1>
                         {/* <p>Revolutionizing the future of technology with cutting-edge chip design and development.</p> */}
                     </div>
-
+                        <br /><br />
                     <div className='ContentRow' style={{ overflow: "hidden" }}>
                         {contentData.map((item, index) => {
                             const isEven = index % 2 === 0;
 
                             return (
-                                <Row key={index} gutter={[16, 16]}>
+                                <Row key={index} gutter={[16, 16]} className={isEven ? 'even-row' : 'odd-row'}>
                                     {isEven ? (
-                                        // Even index: image on the left, content on the right
                                         <>
                                             <Col lg={12} xs={24}>
                                                 <CarouselImage
@@ -112,25 +111,19 @@ const Modules = () => {
                                                 />
                                             </Col>
                                             <Col lg={12} xs={24}>
-                                                <div className='SideContentContainer'>
-                                                    <h3 data-aos='fade-up'>{item.title}</h3>
+                                                <div className="SideContentContainer">
+                                                    <h3 data-aos="fade-up">{item.title}</h3>
                                                     <h4 className="moduleTagline">{item.subtitle}</h4>
-                                                    <p style={{ fontSize: "18px" }}>
-                                                        {item.text}
-                                                    </p>
-                                                    <div style={{ display: "flex" }}>
+                                                    <p style={{ fontSize: "18px" }}>{item.text}</p>
+                                                    <div style={{ display: "flex",padding:"20px 0px" }}>
                                                         <a href="#ModuleContactContainer">
-                                                            <button
-                                                                type='submit'
-                                                            >
+                                                            <button type="submit">
                                                                 <ArrowRightAltIcon />
                                                                 Know More
                                                             </button>
                                                         </a>
                                                         <a href={item.attachmentPath} download>
-                                                            <button
-                                                                type='submit'
-                                                            >
+                                                            <button type="submit">
                                                                 <ArrowRightAltIcon />
                                                                 Download Datasheet
                                                             </button>
@@ -138,31 +131,23 @@ const Modules = () => {
                                                     </div>
                                                 </div>
                                             </Col>
-
                                         </>
                                     ) : (
-                                        // Odd index: content on the left, image on the right
                                         <>
                                             <Col lg={12} xs={24}>
-                                                <div className='SideContentContainer'>
-                                                    <h3 data-aos='fade-up'>{item.title}</h3>
+                                                <div className="SideContentContainer">
+                                                    <h3 data-aos="fade-up">{item.title}</h3>
                                                     <h4 className="moduleTagline">{item.subtitle}</h4>
-                                                    <p style={{ fontSize: "18px" }}>
-                                                        {item.text}
-                                                    </p>
-                                                    <div style={{ display: "flex" }}>
+                                                    <p style={{ fontSize: "18px" }}>{item.text}</p>
+                                                    <div style={{ display: "flex",padding:"20px 0px" }}>
                                                         <a href="#ModuleContactContainer">
-                                                            <button
-                                                                type='submit'
-                                                            >
+                                                            <button type="submit">
                                                                 <ArrowRightAltIcon />
                                                                 Know More
                                                             </button>
                                                         </a>
                                                         <a href={item.attachmentPath} download>
-                                                            <button
-                                                                type='submit'
-                                                            >
+                                                            <button type="submit">
                                                                 <ArrowRightAltIcon />
                                                                 Download Datasheet
                                                             </button>
@@ -180,6 +165,7 @@ const Modules = () => {
                                         </>
                                     )}
                                 </Row>
+
                             );
                         })}
                     </div>
