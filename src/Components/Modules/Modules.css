@@ -1,7 +1,9 @@
 #ModulesContainer {
   position: relative;
-
   background-color: #eaf6ffce;
+}
+.moduleTagline {
+  padding-top: 10px;
 }
 .ModuleBanner {
   height: 100vh;
@@ -14,6 +16,9 @@
 .ModuleBanner div img {
   width: 100%;
   height: 100%;
+}
+#ModulesDataContainer .ContentRow {
+  margin-top: 0;
 }
 #ModulesDataContainer .ant-row {
   padding-bottom: 0;
@@ -36,7 +41,9 @@
   transition: opacity 1s ease-in-out; /* Smooth fade effect */
   opacity: 1;
 }
-
+#ModuleContactContainer .section_Padding {
+  padding: 0 !important;
+}
 .carousel-image.fade-out {
   opacity: 0.9; /* Fade out */
 }
@@ -45,8 +52,16 @@
   opacity: 1; /* Fade in */
 }
 @media (max-width: 769px) {
+  #ModulesDataContainer .ant-row .ant-col .imageContainer img {
+    height: 100%;
+  }
   #ModulesDataContainer .SideContentContainer {
     padding-right: 0rem;
+  }
+  #ModulesDataContainer .ant-row {
+    flex-direction: column !important;
+    align-items: center; /* Center items */
+
   }
   .ModuleBanner {
     margin-top: 1.7rem;

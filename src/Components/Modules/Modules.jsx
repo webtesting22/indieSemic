@@ -4,6 +4,7 @@ import { Row, Col } from 'antd';
 import LeftSide from "../OurExpertise/LeftSide.jpeg"
 import BackShapeImg from "../OurExpertise/BackShapeImg.svg"
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import ContactHome from "../ContactHome/ContactHome";
 
 const Modules = () => {
     const CarouselImage = ({ imgSrc, hoverImgSrc, alt }) => {
@@ -90,7 +91,7 @@ const Modules = () => {
                 <div className='ExpertiseCardContainer'>
                     <img src={BackShapeImg} alt="" className='Overlayimage' />
                     <div className="DesignedContainer" id='Target'>
-                        <h1 style={{ textAlign: "left" }}><span style={{ color: "rgb(74, 144, 226)" }}>Innovating Tomorrow’s Chips</span> with Precision and Excellence Today</h1>
+                        <h1 style={{ textAlign: "left" }}><span style={{ color: "rgb(74, 144, 226)" }}>Versatile Modules</span>  for Tomorrow’s Smart Technologies</h1>
                         {/* <p>Revolutionizing the future of technology with cutting-edge chip design and development.</p> */}
                     </div>
 
@@ -103,14 +104,14 @@ const Modules = () => {
                                     {isEven ? (
                                         // Even index: image on the left, content on the right
                                         <>
-                                            <Col lg={12}>
+                                            <Col lg={12} xs={24}>
                                                 <CarouselImage
                                                     imgSrc={item.imgSrc}
                                                     hoverImgSrc={item.hoverImgSrc}
                                                     alt={item.title}
                                                 />
                                             </Col>
-                                            <Col lg={12}>
+                                            <Col lg={12} xs={24}>
                                                 <div className='SideContentContainer'>
                                                     <h3 data-aos='fade-up'>{item.title}</h3>
                                                     <h4 className="moduleTagline">{item.subtitle}</h4>
@@ -118,12 +119,14 @@ const Modules = () => {
                                                         {item.text}
                                                     </p>
                                                     <div style={{ display: "flex" }}>
-                                                        <button
-                                                            type='submit'
-                                                        >
-                                                            <ArrowRightAltIcon />
-                                                            Know More
-                                                        </button>
+                                                        <a href="#ModuleContactContainer">
+                                                            <button
+                                                                type='submit'
+                                                            >
+                                                                <ArrowRightAltIcon />
+                                                                Know More
+                                                            </button>
+                                                        </a>
                                                         <a href={item.attachmentPath} download>
                                                             <button
                                                                 type='submit'
@@ -140,7 +143,7 @@ const Modules = () => {
                                     ) : (
                                         // Odd index: content on the left, image on the right
                                         <>
-                                            <Col lg={12}>
+                                            <Col lg={12} xs={24}>
                                                 <div className='SideContentContainer'>
                                                     <h3 data-aos='fade-up'>{item.title}</h3>
                                                     <h4 className="moduleTagline">{item.subtitle}</h4>
@@ -148,12 +151,14 @@ const Modules = () => {
                                                         {item.text}
                                                     </p>
                                                     <div style={{ display: "flex" }}>
-                                                        <button
-                                                            type='submit'
-                                                        >
-                                                            <ArrowRightAltIcon />
-                                                            Know More
-                                                        </button>
+                                                        <a href="#ModuleContactContainer">
+                                                            <button
+                                                                type='submit'
+                                                            >
+                                                                <ArrowRightAltIcon />
+                                                                Know More
+                                                            </button>
+                                                        </a>
                                                         <a href={item.attachmentPath} download>
                                                             <button
                                                                 type='submit'
@@ -165,7 +170,7 @@ const Modules = () => {
                                                     </div>
                                                 </div>
                                             </Col>
-                                            <Col lg={12}>
+                                            <Col lg={12} xs={24}>
                                                 <CarouselImage
                                                     imgSrc={item.imgSrc}
                                                     hoverImgSrc={item.hoverImgSrc}
@@ -179,7 +184,11 @@ const Modules = () => {
                         })}
                     </div>
                 </div>
+                <div id="ModuleContactContainer">
+                    <ContactHome />
+                </div>
             </section>
+
         </>
     )
 }
