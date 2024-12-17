@@ -96,7 +96,7 @@ const Modules = () => {
                         <h1 style={{ textAlign: "left" }}><span style={{ color: "rgb(74, 144, 226)" }}>Versatile Modules</span>  for Tomorrow’s Smart Technologies</h1>
                         {/* <p>Revolutionizing the future of technology with cutting-edge chip design and development.</p> */}
                     </div>
-                        <br /><br />
+                    <br /><br />
                     <div className='ContentRow' style={{ overflow: "hidden" }}>
                         {contentData.map((item, index) => {
                             const isEven = index % 2 === 0;
@@ -115,9 +115,9 @@ const Modules = () => {
                                             <Col lg={12} xs={24}>
                                                 <div className="SideContentContainer">
                                                     <h3 data-aos="fade-up">{item.title}</h3>
-                                                    <h4 className="moduleTagline">{item.subtitle}</h4>
-                                                    <p style={{ fontSize: "18px" }}>{item.text}</p>
-                                                    <div style={{ display: "flex",padding:"20px 0px" }}>
+                                                    <h4 className="moduleTagline" data-aos="fade-up" data-aos-delay="100">{item.subtitle}</h4>
+                                                    <p style={{ fontSize: "18px" }} data-aos="fade-up" data-aos-delay="200">{item.text}</p>
+                                                    <div style={{ display: "flex", padding: "20px 0px" }}>
                                                         <a href="#ModuleContactContainer">
                                                             <button type="submit">
                                                                 <ArrowRightAltIcon />
@@ -139,9 +139,9 @@ const Modules = () => {
                                             <Col lg={12} xs={24}>
                                                 <div className="SideContentContainer">
                                                     <h3 data-aos="fade-up">{item.title}</h3>
-                                                    <h4 className="moduleTagline">{item.subtitle}</h4>
-                                                    <p style={{ fontSize: "18px" }}>{item.text}</p>
-                                                    <div style={{ display: "flex",padding:"20px 0px" }}>
+                                                    <h4 className="moduleTagline" data-aos="fade-up" data-aos-delay="100">{item.subtitle}</h4>
+                                                    <p style={{ fontSize: "18px" }} data-aos="fade-up" data-aos-delay="200">{item.text}</p>
+                                                    <div style={{ display: "flex", padding: "20px 0px" }}>
                                                         <a href="#ModuleContactContainer">
                                                             <button type="submit">
                                                                 <ArrowRightAltIcon />
