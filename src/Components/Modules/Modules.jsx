@@ -77,6 +77,14 @@ const Modules = () => {
             hoverImgSrc: "/ISC Modules for website/5. ISC-nRF-5340-7002-A/B.png",
             attachmentPath: "/ISC Modules for website/5. ISC-nRF-5340-7002-A/ISC_nRF5340_7002_A_Datasheet.pdf",
         },
+        {
+            title: "ISC-nRF7002-A",
+            subtitle: "A compact WiFi 6 Companion based on Nordic’s nRF7002 chip",
+            text: `ISC_NRF7002_A module is a powerful, highly flexible, ultra-low power WiFi 6 module using Nordic’s nRF7002 SoC. With an integrated PCB trace antenna, it allows faster time to market with reduced development cost. The nRF7002 is a companion IC, providing seamless Wi-Fi connectivity and Wi-Fi-based locationing (SSID sniffing of local Wi-Fi hubs). With the support for Wi-Fi 6, we bring added benefits to IoT applications including further efficiency gains that supportlong-life, battery-powered Wi-Fi operation.`,
+            imgSrc: "/ISC Modules for website/6. ISC_nRF7002/ISC-nRF7002-A F.png",
+            hoverImgSrc: "/ISC Modules for website/6. ISC_nRF7002/ISC-nRF7002-A B.png",
+            attachmentPath: "/ISC Modules for website/6. ISC_nRF7002/ISC_nRF7002_A_Datasheet_v0.1.pdf",
+        },
     ];
 
     return (

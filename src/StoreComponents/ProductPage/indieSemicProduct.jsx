@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TopContainerBanner from "../../CommonComponents/Navigationdata/TopContainerBanner";
 import LocalGroceryStoreSharpIcon from "@mui/icons-material/LocalGroceryStoreSharp";
 import { Row, Col, Card } from "antd";
@@ -11,9 +11,24 @@ import ShoppingCartSharpIcon from '@mui/icons-material/ShoppingCartSharp';
 import GridViewSharpIcon from '@mui/icons-material/GridViewSharp';
 import ViewModuleSharpIcon from '@mui/icons-material/ViewModuleSharp';
 import ViewCompactSharpIcon from '@mui/icons-material/ViewCompactSharp';
+import { useNavigate } from "react-router-dom";
 import Cart from "../Cart/Cart";
 import SingleProductPage from "../../CommonComponents/Navigationdata/SingleProductPage/SingleProduct";
+import { Swiper, SwiperSlide } from 'swiper/react';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
+
+// import required modules
+import { FreeMode, Pagination } from 'swiper/modules';
 const IndieSemicProduct = () => {
+    const navigate = useNavigate();  // Use navigate hook for v6
+
+    const handleClick = (product) => {
+        // Push to the separate product page, passing the product as state
+        navigate("/indiesemicproduct", { state: { product } });
+    };
     const [columnSpan, setColumnSpan] = useState({ lg: 6, md: 8 }); // Default to 6 (for 12/12 view)
     const { products } = useProductContext();
 
@@ -21,6 +36,26 @@ const IndieSemicProduct = () => {
     // State to manage icons for each product
     const [compareStates, setCompareStates] = useState({});
     const [favoriteStates, setFavoriteStates] = useState({});
+
+    const [productsData, setProductsData] = useState([]);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('http://localhost:4040/api/indieSemic/getProducts');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setProductsData(data.products); // Set products array
+                console.log(data.products); // Log the products array to the console
+            } catch (error) {
+                console.error('Error fetching the products:', error);
+            }
+        };
+
+        fetchProducts();
+    }, []);
     const handleLayoutChange = (layout) => {
         if (layout === "first") {
             setColumnSpan({ lg: 6, md: 12 }); // Two columns per row
@@ -48,6 +83,13 @@ const IndieSemicProduct = () => {
         }));
     };
 
+
+    const CarousalDemoData = [
+        {
+            image: ""
+        }
+    ]
+
     return (
         <>
             <TopContainerBanner
@@ -57,6 +99,24 @@ const IndieSemicProduct = () => {
                 link="Products"
             />
             <section className="section_Padding">
+                <div className="ProductSliderContainer">
+                    <Swiper
+                        slidesPerView={3}
+                        spaceBetween={30}
+                        freeMode={true}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        modules={[FreeMode, Pagination]}
+                        className="mySwiper"
+                    >
+                        <SwiperSlide>
+                            <div>
+
+                            </div>
+                        </SwiperSlide>
+                    </Swiper>
+                </div>
                 <div className="ToolsAndFeatures">
                     <div onClick={() => handleLayoutChange("first")} style={{ cursor: "pointer" }}>
                         <ViewCompactSharpIcon />
@@ -69,66 +129,17 @@ const IndieSemicProduct = () => {
                     </div>
                 </div>
                 <div style={{ padding: "20px" }}>
-                    <Row>
-                        {products.map((product) => (
-                            <Col lg={columnSpan.lg} md={columnSpan.md} key={product.id}>
-                                <div className="ProductCard">
-                                    <div className="HoverableButtons">
-                                        {/* Compare Button */}
-                                        <div
-                                            className="CompareButton"
-                                            onClick={() => toggleCompareIcon(product.id)}
-                                            style={{
-                                                cursor: "pointer",
-                                                transition: "transform 0.3s",
-                                            }}
-                                        >
-                                            {compareStates[product.id] ? (
-                                                <DoneSharpIcon />
-                                            ) : (
-                                                <CompareArrowsSharpIcon />
-                                            )}
-                                        </div>
-
-                                        {/* Wishlist Button */}
-                                        <div
-                                            className="WishListButton"
-                                            onClick={() => toggleFavoriteIcon(product.id)}
-                                            style={{
-                                                cursor: "pointer",
-                                                transition: "transform 0.3s",
-                                            }}
-                                        >
-                                            {favoriteStates[product.id] ? (
-                                                <DoneSharpIcon />
-                                            ) : (
-                                                <FavoriteBorderSharpIcon />
-                                            )}
-                                        </div>
+                    <div className="product-container">
+                        <Row>
+                            {productsData.map((product) => (
+                                <Col lg={6} md={8}>
+                                    <div key={product._id} className="product-card" onClick={() => handleClick(product)}>
+                                        <h2>{product.title}</h2>
                                     </div>
-                                    <div className="CombineContainer">
-                                        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>
-                                            <div className="ImageContainer">
-                                                <img alt={product.title} src={product.image} />
-                                            </div>
-                                            <div className="ProducardContent">
-                                                <div className="AddToCardBtn">
-                                                    <button className="cart-button" >
-                                                        <span className="cart-text">Add To Cart</span>
-                                                        <span className="cart-icon" >
-                                                            <ShoppingCartSharpIcon />{/* FontAwesome cart icon */}
-                                                        </span>
-                                                    </button>
-                                                </div>
-                                                <h4>{product.title}</h4>
-                                                <h5>{` $${product.price}`}</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Col>
-                        ))}
-                    </Row>
+                                </Col>
+                            ))}
+                        </Row>
+                    </div>
                 </div>
             </section>
         </>

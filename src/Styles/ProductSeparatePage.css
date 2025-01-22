@@ -1,0 +1,28 @@
+#ProductSeparatePage {
+    /* margin-top: 5rem; */
+    padding: 7rem 4rem;
+}
+
+.view-images {
+    display: flex;
+    flex-direction: column;
+}
+
+.ImagesSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-images {
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.main-images img{
+    width: 100%;
+}
