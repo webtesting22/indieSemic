@@ -85,6 +85,22 @@ const Modules = () => {
             hoverImgSrc: "/ISC Modules for website/6. ISC_nRF7002/ISC-nRF7002-A B.png",
             attachmentPath: "/ISC Modules for website/6. ISC_nRF7002/ISC_nRF7002_A_Datasheet_v0.1.pdf",
         },
+        {
+            title: "ISC-SX1262-B",
+            subtitle: "An advanced LORA Module based on Semtech’s SX1262 chip",
+            text: `Compact and portable, the ISC-SX1262-B  module is used for ultra-long-range extended frequency communication, and its radio frequency chip SX1262 mainly uses LoRa™ remote modem, which is used for ultra-long range extended frequency communication. It offers more advanced features and is ideal for applications requiring high performance and flexibility, such as industrial IoT, logistics, and more complex wireless systems.`,
+            imgSrc: "/ISC Modules for website/7. ISC-sx1262-B/ISC-SX1262-B F.png",
+            hoverImgSrc: "/ISC Modules for website/7. ISC-sx1262-B/ISC-SX1262-B B.png",
+            attachmentPath: "/ISC Modules for website/7. ISC-sx1262-B/ISC_SX1262_LORA_V0.2 1_Datasheet.pdf",
+        },
+        {
+            title: "ISC-LLCC68-B",
+            subtitle: "An advanced LORA Module based on Semtech’s LLCC68 chip",
+            text: `Compact, portable, and designed primarily for cost-sensitive, large-volume applications, the ISC-LLCC68-B  module is used for long-range extended frequency communication, and its radio frequency chip LLCC68 mainly uses LoRa™ remote modem, which is used for long range extended frequency communication. It has strong anti-interference resistance and can minimize current consumption.`,
+            imgSrc: "/ISC Modules for website/8. ISC-LLCC68-B/ISC-LLCC68-B F.png",
+            hoverImgSrc: "/ISC Modules for website/8. ISC-LLCC68-B/ISC-LLCC68-B B.png",
+            attachmentPath: "/ISC Modules for website/8. ISC-LLCC68-B/ISC-LLCC68-B Datasheet.pdf",
+        },
     ];
 
     return (
