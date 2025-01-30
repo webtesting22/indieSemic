@@ -1,0 +1,156 @@
+.HeighContainer {
+    height: 800px;
+    overflow: hidden;
+    position: relative;
+    margin-top: -64px;
+}
+
+.HeighContainer>div {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+.OverlaySeparationback {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: rgba(0, 0, 0, 0.692);
+    height: 100%;
+    width: 100%;
+}
+
+.HeighContainer div img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.AbsoluteContentContainer {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    /* width: 100%; */
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.AbsoluteContentContainer>div:first-child {
+    padding: 0px 40px;
+    width: 50%;
+}
+
+.AbsoluteContentContainer>div h1 {
+    color: white;
+    font-size: 3.5em;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.BottomContentContainer {
+    position: absolute;
+    bottom: 20px;
+    left: 0px;
+    right: 0px;
+    background-color: rgba(255, 255, 255, 0.129);
+    margin: 0px 40px;
+    padding: 30px 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    color: white;
+    display: flex;
+}
+
+.BottomContentContainer div:first-child {
+    width: 70%;
+}
+
+.BottomContentContainer div:first-child h2 {
+    width: 60%;
+}
+
+#SOCMainContainer {
+    background-color: rgb(10, 10, 10);
+    color: white;
+}
+
+.ImagesGalleryContainer img {
+    width: 100%;
+}
+
+.ImagesGalleryContainer .ant-row .ant-col {
+    padding: 10px;
+}
+
+.ImagesGalleryContainer .ant-row .ant-col div {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid transparent;
+}
+
+.ImagesGalleryContainer .ant-row .ant-col div:hover {
+    border: 1px solid rgb(74, 144, 226);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.ChiprelatedDescriptionContainer {
+    padding: 20px 0px;
+    background-color: black;
+    margin: 7rem 0rem;
+}
+
+.ChiprelatedDescriptionContainer img {
+    width: 100%;
+}
+
+.ChiprelatedDescriptionContainer .ant-row .ant-col .RightSideContentContainerAboutChip {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ChiprelatedDescriptionContainer .ant-row .ant-col .RightSideContentContainerAboutChip>div {
+    margin: 20px 0px;
+}
+
+.ChiprelatedDescriptionContainer .ant-row .ant-col .RightSideContentContainerAboutChip>div div {
+    padding: 20px 0px;
+}
+
+.fadeImage img {
+    width: 100%;
+    /* Adjust as needed */
+    height: auto;
+    /* Maintain aspect ratio */
+    animation: fadeEffect 4s infinite;
+    /* 2s fade-in, 2s fade-out, infinite loop */
+}
+
+@keyframes fadeEffect {
+    0% {
+        opacity: 0;
+        /* Fully transparent */
+    }
+
+    25% {
+        opacity: 1;
+        /* Fully visible */
+    }
+
+    75% {
+        opacity: 1;
+        /* Hold visibility */
+    }
+
+    100% {
+        opacity: 0;
+        /* Fade out */
+    }
+}
