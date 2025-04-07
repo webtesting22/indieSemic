@@ -1,7 +1,14 @@
 .ProductCard {
     position: relative;
+    background-color: #EEF7FF;
+    padding: 20px;
+    transition: .5s;
 }
 
+.ProductCard:hover{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    transition: .5s;
+}
 .ImageContainer {
     height: 250px;
     width: 250px;
@@ -169,4 +176,45 @@
     /* height: 38px;
     width: 30px; */
     opacity: 0.4;
+}
+
+
+.ProductTitle{
+    margin-bottom: 5px;
+    margin-top: 30px;
+}
+.tagline{
+    margin-top: 0px;
+}
+
+
+.ant-tabs-nav::before {
+    border: none !important;
+}
+
+.ant-tabs-tab {
+    background-color: white !important;
+    padding: 10px 20px !important;
+}
+
+.ant-tabs-tab:hover {
+    color: black !important;
+}
+
+.ant-tabs-tab-active {
+    background-color: rgb(74, 144, 226) !important;
+    padding: 10px 20px !important;
+
+}
+
+.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: white !important;
+}
+
+.ant-tabs-tab-active .ant-tabs-tab-btn:hover {
+    color: white !important;
+}
+
+.ant-tabs-ink-bar {
+    display: none !important;
 }

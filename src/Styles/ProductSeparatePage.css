@@ -1,6 +1,7 @@
 #ProductSeparatePage {
     /* margin-top: 5rem; */
     padding: 7rem 4rem;
+
 }
 
 .view-images {
@@ -25,4 +26,44 @@
 }
 .main-images img{
     width: 100%;
+}
+.TopImagemainContainer, .ProductDescriptionContainer{
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 20px;
+}
+.ProductDescriptionContainer{
+    margin-top: 30px;
+}
+
+.TabDescriptionContainer{
+    /* background-color: red; */
+    padding: 30px 0px;
+   
+}
+
+#ProductSeparatePage .tagline{
+    color: rgb(74, 144, 226);
+    font-weight: 500;
+}
+
+#ProductSeparatePage .Description{
+    line-height: 24px;
+}
+.mainImageContainer{
+    height: 100%;
+}
+.mainImageContainer img{
+    height: 100%;
+    object-fit: cover;
+}
+
+.TabDescriptionContainer li, .TabDescriptionContainer a{
+    color: black !important;
+}
+
+@media (max-width:900px){
+    #ProductSeparatePage {
+        /* margin-top: 5rem; */
+        padding: 7rem 1rem;
+    }
 }
