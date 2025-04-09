@@ -8,7 +8,7 @@ const ProductState = ({ children }) => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch("http://localhost:4040/api/indieSemic/getAllProducts");
+                const response = await fetch("https://testapi.prepseed.com/indieSemic/getAllProducts");
                 const data = await response.json();
                 setProducts(data);
                 // console.log(data);
