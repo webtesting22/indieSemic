@@ -31,12 +31,17 @@ const IndieSemicProduct = () => {
                                         <div className="mainImageContainer">
                                             <img
                                                 src={product.mainImages?.[0] || "default-image.jpg"}
-                                                alt={product.title}
-                                                style={{ width: "100%" }}
+                                                alt={`${product.title} front`}
+                                            />
+                                            <img
+                                                src={product.mainImages?.[1] || product.mainImages?.[0] || "default-image.jpg"}
+                                                alt={`${product.title} back`}
                                             />
                                         </div>
+
                                         <div className="ProductDetailsContainer">
                                             <h2 className="ProductTitle">{product.title}</h2>
+                                            <br />
                                             <p className="tagline">{product.tagline || "No tagline available"}</p>
                                             {/* <p className="price">₹{product.price}</p> */}
                                         </div>
