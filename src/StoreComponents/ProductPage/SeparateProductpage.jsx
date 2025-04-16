@@ -1,15 +1,12 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import "../../Styles/ProductSeparatePage.css";
-import { Row, Col, Tabs, Image, Button } from "antd";
+import { Row, Col, Tabs, Image } from "antd";
 import { FiCopy, FiCheck } from "react-icons/fi";
-import Cart from "../Cart/Cart";
-import { useProductContext } from "../Context/ProductContext";
 const { TabPane } = Tabs;
 
 const SeparateProductPage = () => {
     const { id } = useParams();
-    const { addToCart } = useProductContext();
     const [product, setProduct] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
     const [allProducts, setAllProducts] = useState([]);
@@ -25,7 +22,7 @@ const SeparateProductPage = () => {
     useEffect(() => {
         const fetchProductDetails = async () => {
             try {
-                const response = await fetch(`https://testapi.prepseed.com/indieSemic/getAllProducts?id=${id}`);
+                const response = await fetch(`http://localhost:4040/api/indieSemic/getAllProducts?id=${id}`);
                 const data = await response.json();
                 setProduct(data.product);
                 setSelectedImage(data.product.mainImages?.[0] || null);
@@ -36,7 +33,7 @@ const SeparateProductPage = () => {
 
         const fetchAllProducts = async () => {
             try {
-                const response = await fetch(`https://testapi.prepseed.com/indieSemic/getAllProducts`);
+                const response = await fetch(`http://localhost:4040/api/indieSemic/getAllProducts`);
                 const data = await response.json();
                 if (data.products) {
                     setAllProducts(data.products.filter((p) => p._id !== id));
@@ -74,10 +71,6 @@ const SeparateProductPage = () => {
         // Append `?rel=0` to disable related videos from other channels
         return embedUrl.includes("?") ? `${embedUrl}&rel=0` : `${embedUrl}?rel=0`;
     };
-    const handleBuyNow = () => {
-        addToCart(product);  // Add the product to the cart
-    };
-
 
 
     if (!product) {
@@ -214,12 +207,7 @@ const SeparateProductPage = () => {
                                     dangerouslySetInnerHTML={{ __html: product.productDescription }}
                                 />
                             )}
-                            <Button
-                                type="primary"
-                                onClick={handleBuyNow}
-                            >
-                                Buy Now
-                            </Button>
+                            
                         </div>
                     </Col>
                 </Row>
