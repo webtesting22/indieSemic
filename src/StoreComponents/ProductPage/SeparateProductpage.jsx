@@ -22,7 +22,7 @@ const SeparateProductPage = () => {
     useEffect(() => {
         const fetchProductDetails = async () => {
             try {
-                const response = await fetch(`http://localhost:4040/api/indieSemic/getAllProducts?id=${id}`);
+                const response = await fetch(`https://testapi.prepseed.com/indieSemic/getAllProducts?id=${id}`);
                 const data = await response.json();
                 setProduct(data.product);
                 setSelectedImage(data.product.mainImages?.[0] || null);
@@ -33,7 +33,7 @@ const SeparateProductPage = () => {
 
         const fetchAllProducts = async () => {
             try {
-                const response = await fetch(`http://localhost:4040/api/indieSemic/getAllProducts`);
+                const response = await fetch(`https://testapi.prepseed.com/indieSemic/getAllProducts`);
                 const data = await response.json();
                 if (data.products) {
                     setAllProducts(data.products.filter((p) => p._id !== id));
