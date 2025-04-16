@@ -1,12 +1,10 @@
-import React from "react";
-import { Drawer, Button, Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+import React, { useState } from "react";
+import { Drawer, Button, Box, Typography, List, ListItem, ListItemText } from "@mui/material";
 import { useProductContext } from "../Context/ProductContext";
 
 const Cart = () => {
-    const { cartItems } = useProductContext();
+    const { cartItems, removeFromCart } = useProductContext();
     const [open, setOpen] = useState(false);
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
     const toggleDrawer = (open) => {
         setOpen(open);
@@ -14,37 +12,39 @@ const Cart = () => {
 
     return (
         <>
-            <div>
-                <Button variant="contained" onClick={() => toggleDrawer(true)}>
-                    Open Cart
-                </Button>
-                <Drawer
-                    anchor={isMobile ? "right" : "bottom"}
-                    open={open}
-                    onClose={() => toggleDrawer(false)}
+            <Button variant="contained" onClick={() => toggleDrawer(true)}>
+                Open Cart
+            </Button>
+            <Drawer
+                anchor="right"
+                open={open}
+                onClose={() => toggleDrawer(false)}
+            >
+                <Box
+                    sx={{
+                        width: 300,
+                        padding: "16px",
+                        backgroundColor: "#f4f4f4",
+                    }}
                 >
-                    <Box
-                        sx={{
-                            width: isMobile ? "250px" : "100%",
-                            height: isMobile ? "100%" : "300px",
-                            padding: "16px",
-                            backgroundColor: "#f4f4f4",
-                        }}
-                    >
-                        <Typography variant="h6">Your Cart</Typography>
-                        {cartItems.length > 0 ? (
-                            cartItems.map((item, index) => (
-                                <Box key={index} sx={{ margin: "10px 0" }}>
-                                    <Typography variant="body1">{item.title}</Typography>
-                                    <Typography variant="body2">{`Price: $${item.price}`}</Typography>
-                                </Box>
-                            ))
-                        ) : (
-                            <Typography variant="body2">Your cart is empty.</Typography>
-                        )}
-                    </Box>
-                </Drawer>
-            </div>
+                    <Typography variant="h6">Your Cart</Typography>
+                    {cartItems.length > 0 ? (
+                        <List>
+                            {cartItems.map((item, index) => (
+                                <ListItem key={index}>
+                                    <ListItemText primary={item.title} secondary={`₹${item.price}`} />
+                                    <Button onClick={() => removeFromCart(item._id)}>Remove</Button>
+                                </ListItem>
+                            ))}
+                        </List>
+                    ) : (
+                        <Typography variant="body2">Your cart is empty.</Typography>
+                    )}
+                    <Button variant="contained" onClick={() => toggleDrawer(false)}>
+                        Close
+                    </Button>
+                </Box>
+            </Drawer>
         </>
     );
 };

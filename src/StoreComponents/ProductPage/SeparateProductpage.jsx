@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import "../../Styles/ProductSeparatePage.css";
-import { Row, Col, Tabs, Image } from "antd";
+import { Row, Col, Tabs, Image, Button } from "antd";
 import { FiCopy, FiCheck } from "react-icons/fi";
+import Cart from "../Cart/Cart";
+import { useProductContext } from "../Context/ProductContext";
 const { TabPane } = Tabs;
 
 const SeparateProductPage = () => {
     const { id } = useParams();
+    const { addToCart } = useProductContext();
     const [product, setProduct] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
     const [allProducts, setAllProducts] = useState([]);
@@ -71,6 +74,10 @@ const SeparateProductPage = () => {
         // Append `?rel=0` to disable related videos from other channels
         return embedUrl.includes("?") ? `${embedUrl}&rel=0` : `${embedUrl}?rel=0`;
     };
+    const handleBuyNow = () => {
+        addToCart(product);  // Add the product to the cart
+    };
+
 
 
     if (!product) {
@@ -103,7 +110,6 @@ const SeparateProductPage = () => {
                                         <Image
                                             src={selectedImage || "default-image.jpg"}
                                             alt={product?.title}
-
                                             style={{ width: "100%", borderRadius: "8px" }}
                                         />
                                     )}
@@ -208,6 +214,12 @@ const SeparateProductPage = () => {
                                     dangerouslySetInnerHTML={{ __html: product.productDescription }}
                                 />
                             )}
+                            <Button
+                                type="primary"
+                                onClick={handleBuyNow}
+                            >
+                                Buy Now
+                            </Button>
                         </div>
                     </Col>
                 </Row>

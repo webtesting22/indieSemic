@@ -183,6 +183,7 @@
 .ProductTitle {
     margin-bottom: 5px;
     margin-top: 30px;
+    font-size: 18px;
 }
 
 .tagline {
@@ -238,4 +239,16 @@
 
 .ProductCard:hover .mainImageContainer img:last-child {
     opacity: 1;
+}
+
+
+.ProductPreviewImage .ant-image,
+.ProductPreviewImage .ant-image-mask {
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+}
+
+.ProductPreviewImage {
+    overflow: hidden;
 }
