@@ -252,3 +252,11 @@
 .ProductPreviewImage {
     overflow: hidden;
 }
+.AntImageContainer .ant-image{
+    width: 70px;
+    height: 70px;
+}
+.AntImageContainer {
+    display: flex;
+    gap: 10px;
+}

@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import "../../Styles/ProductSeparatePage.css";
-import { Row, Col, Tabs, Image } from "antd";
+import { Row, Col, Tabs, Image, Button, notification } from "antd";
 import { FiCopy, FiCheck } from "react-icons/fi";
+import ProductContext from "../Context/ProductContext";
 const { TabPane } = Tabs;
 
 const SeparateProductPage = () => {
+    const { products, addToCart, cartItems } = useContext(ProductContext);
+    console.log('name', name)
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
     const [allProducts, setAllProducts] = useState([]);
     const [copiedProductId, setCopiedProductId] = useState(null);
-
+    const [buttonText, setButtonText] = useState("Add To Cart");
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const handleCopyLink = (e, productId) => {
         e.preventDefault();
         const url = `${window.location.origin}/product/${productId}`;
@@ -19,6 +23,22 @@ const SeparateProductPage = () => {
         setCopiedProductId(productId);
         setTimeout(() => setCopiedProductId(null), 1500);
     };
+
+    const handleAddToCart = (product) => {
+        addToCart(product);
+
+        // Disable the button and change the text
+        setButtonText("Product Added");
+        setIsButtonDisabled(true);
+
+        // Show a success notification
+        notification.success({
+            message: "Product Added",
+            description: `${product.title} has been added to your cart.`,
+            placement: "topRight",
+        });
+    };
+
     useEffect(() => {
         const fetchProductDetails = async () => {
             try {
@@ -74,8 +94,9 @@ const SeparateProductPage = () => {
 
 
     if (!product) {
-        return <h2>Loading Product...</h2>;
+        return <h2></h2>;
     }
+    const isProductInCart = cartItems.some(item => item._id === product?._id);
 
     const thumbnails = [product.mainImages?.[0], ...(product.mainImages || [])];
 
@@ -85,7 +106,6 @@ const SeparateProductPage = () => {
                 <Row gutter={[16, 16]}>
                     <Col lg={10} md={24}>
                         <div>
-
                             <div className="mainImageContainer">
                                 <div>
                                     {isYouTubeLink(selectedImage) ? (
@@ -207,8 +227,16 @@ const SeparateProductPage = () => {
                                     dangerouslySetInnerHTML={{ __html: product.productDescription }}
                                 />
                             )}
-                            
+
                         </div>
+
+                        <Button
+                            type="primary"
+                            onClick={() => handleAddToCart(product)}
+                            disabled={isButtonDisabled || isProductInCart}  // Disable button if product is already in cart
+                        >
+                            {isProductInCart ? "Product Added" : buttonText}
+                        </Button>
                     </Col>
                 </Row>
             </div>

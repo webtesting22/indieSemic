@@ -6,12 +6,12 @@ import ProductContext from "../Context/ProductContext";
 import SeparateProductPage from "./SeparateProductpage";
 import Cart from "../Cart/Cart";
 // import SeparateProductPage from "./SeparateProductpage";
-const Product = () => {
+const IndividualProduct = () => {
     return (
         <>
             <ProductState>
-            <IndieSemicProduct />
-                {/* <SeparateProductPage /> */}
+            {/* <IndieSemicProduct /> */}
+                <SeparateProductPage />
                
                 {/* <Cart/> */}
             </ProductState>
@@ -19,5 +19,5 @@ const Product = () => {
     );
 };
 
-export default Product;
+export default IndividualProduct;
 

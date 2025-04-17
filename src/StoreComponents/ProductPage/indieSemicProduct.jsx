@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { Link } from "react-router-dom";
 import TopContainerBanner from "../../CommonComponents/Navigationdata/TopContainerBanner";
 import LocalGroceryStoreSharpIcon from "@mui/icons-material/LocalGroceryStoreSharp";
@@ -7,16 +7,17 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { Row, Col, Input, Button, Tabs, Modal, Table, Checkbox, Image } from "antd";
-import { useProductContext } from "../Context/ProductContext";
+import ProductContext from "../Context/ProductContext";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import html2canvas from 'html2canvas';
+import Cart from "../Cart/Cart";
 const { TabPane } = Tabs;
 
 const IndieSemicProduct = () => {
-    const { products } = useProductContext();
-    const productList = products?.products || [];
-
+    const { products, addToCart } = useContext(ProductContext);
+    const productList = products || [];
+    console.log("name", products)
     // State management for filters
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
@@ -53,6 +54,10 @@ const IndieSemicProduct = () => {
         setMaxPrice(value[1]);
     };
 
+    const handleAddToCart = (product) => {
+        addToCart(product);
+    };
+
     // Reset all filters to default values
     const resetFilters = () => {
         setSelectedCategory(null); // Reset category filter
@@ -63,12 +68,13 @@ const IndieSemicProduct = () => {
 
     // Filter products based on selected category, search query, and price range
     const filteredProducts = productList.filter((product) => {
-        const categoryMatch = selectedCategory ? product.category === selectedCategory : true; // Show all if no category is selected
+        const categoryMatch = selectedCategory ? product.category === selectedCategory : true;
         const searchMatch = product.title.toLowerCase().includes(searchQuery.toLowerCase());
         const priceMatch = product.price >= minPrice && product.price <= maxPrice;
 
         return categoryMatch && searchMatch && priceMatch;
     });
+
 
     // Extract unique categories, excluding null, undefined, or empty categories
     const categories = [
@@ -176,29 +182,15 @@ const IndieSemicProduct = () => {
             key: "quantity",
             render: (_, product) => (
                 <Input
-                type="number"
-                min="1"
-                value={productQuantities[product._id] || 0}
-                onChange={(e) => handleQuantityChange(product._id, e.target.value)}
-                disabled={!selectedProducts.includes(product._id)}  // Disable quantity input when product is not selected
-            />
+                    type="number"
+                    min="1"
+                    value={productQuantities[product._id] || 0}
+                    onChange={(e) => handleQuantityChange(product._id, e.target.value)}
+                    disabled={!selectedProducts.includes(product._id)}  // Disable quantity input when product is not selected
+                />
             ),
         },
-        // {
-        //     title: "Unit Rate (₹)",
-        //     dataIndex: "price",
-        //     key: "price",
-        //     render: (_, product) => `₹${product.price}`,
-        // },
-        // {
-        //     title: "Total (₹)",
-        //     key: "total",
-        //     render: (_, product) => {
-        //         const quantity = productQuantities[product._id] || 0;
-        //         const total = quantity * product.price;
-        //         return `₹${total}`;
-        //     },
-        // },
+
     ];
 
 
@@ -335,6 +327,7 @@ const IndieSemicProduct = () => {
                                                         ? `${product.title.slice(0, 40)}...`
                                                         : product.title}
                                                 </h2>
+                                                
                                             </div>
                                         </div>
                                     </Link>
@@ -348,7 +341,7 @@ const IndieSemicProduct = () => {
                     </Row>
                 </div>
             </section>
-
+            <Cart/>
             {/* Modal for Get Quotation */}
             <Modal
                 title="Get Quotation"
@@ -359,7 +352,7 @@ const IndieSemicProduct = () => {
                     <Button key="back" onClick={() => setIsModalOpen(false)}>
                         Cancel
                     </Button>,
-                    <Button key="submit" type="primary"  disabled={isButtonDisabled}  onClick={sendQuotationEmail}>
+                    <Button key="submit" type="primary" disabled={isButtonDisabled} onClick={sendQuotationEmail}>
                         Send Quotation
                     </Button>,
                 ]}
@@ -445,32 +438,6 @@ const IndieSemicProduct = () => {
                 >
                     Get Quotation
                 </Button>
-                {/* <div ref={contentRef} style={{
-                    padding: '20px',
-                    width: '210mm',
-                    height: '297mm',
-                    position: 'absolute',
-                    top: '-9999px', // Move the content off-screen
-                    left: '-9999px', // Move the content off-screen
-                    visibility: 'visible', // Ensure visibility for capturing
-                    zIndex: -9999, // Keep it out of view but still in the DOM
-                }}>
-                    <div style={{ textAlign: 'center' }}>
-                        <h1>Quotation</h1>
-                        <p>Name: John Doe</p>
-                        <p>Company: ABC Ltd.</p>
-                        <p>Product: Some Product</p>
-                        <p>Price: ₹2000</p>
-                        <Table
-                            rowKey="_id"
-                            columns={columns}
-                            dataSource={filteredProducts.filter((product) => selectedProducts.includes(product._id))}
-                            pagination={false}
-                            style={{ marginTop: "20px" }}
-                        />
-                    </div>
-                </div> */}
-
             </Modal>
         </>
     );
