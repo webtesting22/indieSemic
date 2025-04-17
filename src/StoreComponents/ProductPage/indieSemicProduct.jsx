@@ -35,6 +35,7 @@ const IndieSemicProduct = () => {
     });
     const [selectedProducts, setSelectedProducts] = useState([]);
     const [productQuantities, setProductQuantities] = useState({});
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     const contentRef = useRef();
     // Handle category change
     const handleCategoryChange = (category) => {
@@ -90,21 +91,24 @@ const IndieSemicProduct = () => {
 
     // Handle quantity change
     const handleQuantityChange = (productId, quantity) => {
-        setProductQuantities((prev) => ({
-            ...prev,
-            [productId]: quantity,
-        }));
+        const updatedQuantities = { ...productQuantities, [productId]: quantity };
+        setProductQuantities(updatedQuantities);
+        validateButtonState(updatedQuantities);
     };
 
-    // Handle product selection
     const handleProductSelect = (productId, isSelected) => {
         if (isSelected) {
+            // Add product to selectedProducts
             setSelectedProducts((prev) => [...prev, productId]);
         } else {
+            // Remove product from selectedProducts
             setSelectedProducts((prev) => prev.filter((id) => id !== productId));
         }
     };
-
+    const validateButtonState = (updatedQuantities) => {
+        const isValid = selectedProducts.length > 0 && selectedProducts.every((id) => updatedQuantities[id] > 0);
+        setIsButtonDisabled(!isValid);
+    };
     // Generate PDF for quotation
 
 
@@ -172,34 +176,91 @@ const IndieSemicProduct = () => {
             key: "quantity",
             render: (_, product) => (
                 <Input
-                    type="number"
-                    min="1"
-                    value={productQuantities[product._id] || 0}
-                    onChange={(e) => handleQuantityChange(product._id, e.target.value)}
-                />
+                type="number"
+                min="1"
+                value={productQuantities[product._id] || 0}
+                onChange={(e) => handleQuantityChange(product._id, e.target.value)}
+                disabled={!selectedProducts.includes(product._id)}  // Disable quantity input when product is not selected
+            />
             ),
         },
-        {
-            title: "Unit Rate (₹)",
-            dataIndex: "price",
-            key: "price",
-            render: (_, product) => `₹${product.price}`,
-        },
-        {
-            title: "Total (₹)",
-            key: "total",
-            render: (_, product) => {
-                const quantity = productQuantities[product._id] || 0;
-                const total = quantity * product.price;
-                return `₹${total}`;
-            },
-        },
+        // {
+        //     title: "Unit Rate (₹)",
+        //     dataIndex: "price",
+        //     key: "price",
+        //     render: (_, product) => `₹${product.price}`,
+        // },
+        // {
+        //     title: "Total (₹)",
+        //     key: "total",
+        //     render: (_, product) => {
+        //         const quantity = productQuantities[product._id] || 0;
+        //         const total = quantity * product.price;
+        //         return `₹${total}`;
+        //     },
+        // },
     ];
+
+
+
+
+    const sendQuotationEmail = async () => {
+        const emailBody = `
+          <h1>Quotation Details</h1>
+          <p><b>Name:</b> ${userDetails.name}</p>
+          <p><b>Company:</b> ${userDetails.company}</p>
+          <p><b>Email:</b> ${userDetails.email}</p>
+          <p><b>Contact:</b> ${userDetails.contact}</p>
+          <p><b>Address:</b> ${userDetails.address}</p>
+          <table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th>Product Image</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${selectedProducts.map((productId) => {
+            const product = productList.find((prod) => prod._id === productId);
+            return `
+                  <tr>
+                    <td><img src="${product.mainImages[0]}" width="80" /></td>
+                    <td>${product.title}</td>
+                    <td>${productQuantities[productId]}</td>
+                  </tr>
+                `;
+        }).join("")}
+            </tbody>
+          </table>
+        `;
+
+        const subject = "Quotation Request";
+
+        try {
+            const response = await fetch("https://testapi.prepseed.com/autosend/sendEmailIndiesemic", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: userDetails.email,
+                    emailBody: emailBody,
+                    subject: subject,
+                }),
+            });
+            const result = await response.json();
+            if (result.success) {
+                console.log("Email sent successfully");
+            } else {
+                console.error("Error sending email");
+            }
+        } catch (error) {
+            console.error("Error sending email:", error);
+        }
+    };
     return (
         <>
-
-
-
             <TopContainerBanner
                 image="https://plus.unsplash.com/premium_photo-1681426694953-4d78658193dc?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 DynamicHeading="Store"
@@ -298,8 +359,8 @@ const IndieSemicProduct = () => {
                     <Button key="back" onClick={() => setIsModalOpen(false)}>
                         Cancel
                     </Button>,
-                    <Button key="submit" type="primary" onClick={generatePDF}>
-                        Get Quotation Download
+                    <Button key="submit" type="primary"  disabled={isButtonDisabled}  onClick={sendQuotationEmail}>
+                        Send Quotation
                     </Button>,
                 ]}
                 width={1000}
@@ -377,8 +438,14 @@ const IndieSemicProduct = () => {
                     pagination={false}
                     style={{ marginTop: "20px" }}
                 />
-
-                <div ref={contentRef} style={{
+                <Button
+                    type="primary"
+                    onClick={handleGetQuotation}
+                    style={{ marginTop: "20px" }}
+                >
+                    Get Quotation
+                </Button>
+                {/* <div ref={contentRef} style={{
                     padding: '20px',
                     width: '210mm',
                     height: '297mm',
@@ -388,15 +455,12 @@ const IndieSemicProduct = () => {
                     visibility: 'visible', // Ensure visibility for capturing
                     zIndex: -9999, // Keep it out of view but still in the DOM
                 }}>
-                    {/* Your HTML content for the PDF */}
                     <div style={{ textAlign: 'center' }}>
                         <h1>Quotation</h1>
                         <p>Name: John Doe</p>
                         <p>Company: ABC Ltd.</p>
                         <p>Product: Some Product</p>
                         <p>Price: ₹2000</p>
-
-                        {/* Dynamically render only the selected products */}
                         <Table
                             rowKey="_id"
                             columns={columns}
@@ -405,7 +469,7 @@ const IndieSemicProduct = () => {
                             style={{ marginTop: "20px" }}
                         />
                     </div>
-                </div>
+                </div> */}
 
             </Modal>
         </>
