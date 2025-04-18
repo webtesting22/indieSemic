@@ -1,0 +1,12 @@
+.ant-btn {
+    background-color: rgb(74, 144, 226);
+    border-radius: 0px;
+    padding: 20px 20px !important;
+    margin: 20px 0px;
+    transition: .5s;
+}
+
+.ant-btn:hover{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transition: .5s;
+}

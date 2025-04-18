@@ -4,6 +4,8 @@ import "../../Styles/ProductSeparatePage.css";
 import { Row, Col, Tabs, Image, Button, notification } from "antd";
 import { FiCopy, FiCheck } from "react-icons/fi";
 import ProductContext from "../Context/ProductContext";
+import { FaShoppingCart } from "react-icons/fa";
+
 const { TabPane } = Tabs;
 
 const SeparateProductPage = () => {
@@ -235,6 +237,7 @@ const SeparateProductPage = () => {
                             onClick={() => handleAddToCart(product)}
                             disabled={isButtonDisabled || isProductInCart}  // Disable button if product is already in cart
                         >
+                            <FaShoppingCart />
                             {isProductInCart ? "Product Added" : buttonText}
                         </Button>
                     </Col>

@@ -260,3 +260,16 @@
     display: flex;
     gap: 10px;
 }
+.ant-tabs-nav{
+    margin: 0px !important;
+}
+.ant-tabs-tab{
+    margin: 0 0 0 10px !important;
+}
+
+#OpenCartButton{
+    position: fixed;
+    bottom: 20px;
+    right: 40px;
+    z-index: 5;
+}

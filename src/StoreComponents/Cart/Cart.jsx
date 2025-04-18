@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Button, Drawer, Typography, List, Card, InputNumber, Image } from "antd";
 import ProductContext from "../Context/ProductContext";
+import { BsFillCartCheckFill } from "react-icons/bs";
 
 const Cart = () => {
     const { cartItems, removeFromCart } = useContext(ProductContext);
@@ -46,6 +47,7 @@ const Cart = () => {
         <>
             {/* Button to open cart drawer */}
             <Button
+            id="OpenCartButton"
                 type="primary"
                 onClick={() => toggleDrawer(true)}
                 style={{
@@ -58,11 +60,12 @@ const Cart = () => {
                     padding: "10px 20px",
                 }}
             >
-                Open Cart
+                <BsFillCartCheckFill />
             </Button>
 
             {/* Drawer component */}
             <Drawer
+                title={<> <Typography.Title level={4} style={{ margin: "0px" }}>Your Cart</Typography.Title></>}
                 anchor="right"
                 open={open}
                 onClose={() => toggleDrawer(false)}
@@ -73,7 +76,7 @@ const Cart = () => {
                     height: "100%",
                 }}
             >
-                <Typography.Title level={4}>Your Cart</Typography.Title>
+
 
                 {/* If cart has items */}
                 {cartItems.length > 0 ? (

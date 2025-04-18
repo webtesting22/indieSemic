@@ -12,6 +12,8 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import html2canvas from 'html2canvas';
 import Cart from "../Cart/Cart";
+import { RiResetRightLine } from "react-icons/ri";
+
 const { TabPane } = Tabs;
 
 const IndieSemicProduct = () => {
@@ -184,7 +186,7 @@ const IndieSemicProduct = () => {
                 <Input
                     type="number"
                     min="1"
-                    value={productQuantities[product._id] || 0}
+                    value={productQuantities[product._id] || ""}
                     onChange={(e) => handleQuantityChange(product._id, e.target.value)}
                     disabled={!selectedProducts.includes(product._id)}  // Disable quantity input when product is not selected
                 />
@@ -261,40 +263,45 @@ const IndieSemicProduct = () => {
             />
             <section className="AllProductsContainer section_Padding">
                 <div className="FiltersAndButtonsContainer">
-                    <div>
-                        <Button type="primary" onClick={handleGetQuotation}>
-                            Get Quotation
-                        </Button>
-                    </div>
+
 
                     {/* Search Bar */}
-                    <div className="searchBarContainer">
-                        <Input
-                            placeholder="Search by name or category"
-                            value={searchQuery}
-                            onChange={handleSearchChange}
-                            style={{ width: 300 }}
-                        />
-                    </div>
-                    <br />
+
 
                     {/* Category Tabs */}
                     <div className="categoryTabsContainer">
-                        <Tabs onChange={handleCategoryChange} activeKey={selectedCategory}>
-                            <TabPane tab="All Products" key="All Products">
-                                {/* Show all products if no category is selected */}
-                            </TabPane>
-                            {categories.map((category) => (
-                                <TabPane tab={category} key={category}>
-                                    {/* Filter by category */}
-                                </TabPane>
-                            ))}
-                        </Tabs>
-                        <div className="resetButtonContainer" style={{ marginTop: "20px" }}>
-                            <Button onClick={resetFilters} type="primary" danger>
-                                Reset Filters
-                            </Button>
-                        </div>
+                        <Row>
+                            <Col lg={18} md={24} style={{ width: "100%" }}>
+                                <br />
+                                <Tabs onChange={handleCategoryChange} activeKey={selectedCategory} style={{ margin: "0px" }}>
+                                    <TabPane tab="All Products" key="All Products">
+
+                                    </TabPane>
+                                    {categories.map((category) => (
+                                        <TabPane tab={category} key={category} style={{ margin: "0px" }}>
+                                            {/* Filter by category */}
+                                        </TabPane>
+                                    ))}
+                                </Tabs>
+                            </Col>
+                            <Col lg={6} md={24} style={{ width: "100%" }}>
+                                <br />
+                                <div style={{ display: "flex", gap: "10px" }}>
+                                    <div className="resetButtonContainer" >
+                                        <Button onClick={resetFilters} type="primary" danger style={{ margin: "0px" }}>
+                                            <RiResetRightLine />Reset Filters
+                                        </Button>
+                                    </div>
+                                    <div>
+                                        <Button type="primary" onClick={handleGetQuotation} style={{ margin: "0px" }}>
+                                            Get Quotation
+                                        </Button>
+                                    </div>
+                                </div>
+                            </Col>
+                        </Row>
+
+
                     </div>
                 </div>
                 <br /><br />
@@ -304,6 +311,16 @@ const IndieSemicProduct = () => {
                             <span>Total Products: {filteredProducts.length}</span>
                         </div>
                     </div>
+                    <br />
+                    <div className="searchBarContainer">
+                        <Input
+                            placeholder="Search by name or category"
+                            value={searchQuery}
+                            onChange={handleSearchChange}
+                            style={{ width: 300 }}
+                        />
+                    </div>
+                    <br />
                     <Row gutter={[16, 16]}>
                         {filteredProducts.length > 0 ? (
                             filteredProducts.map((product) => (
@@ -327,7 +344,7 @@ const IndieSemicProduct = () => {
                                                         ? `${product.title.slice(0, 40)}...`
                                                         : product.title}
                                                 </h2>
-                                                
+
                                             </div>
                                         </div>
                                     </Link>
@@ -341,7 +358,7 @@ const IndieSemicProduct = () => {
                     </Row>
                 </div>
             </section>
-            <Cart/>
+            <Cart />
             {/* Modal for Get Quotation */}
             <Modal
                 title="Get Quotation"
@@ -431,13 +448,13 @@ const IndieSemicProduct = () => {
                     pagination={false}
                     style={{ marginTop: "20px" }}
                 />
-                <Button
+                {/* <Button
                     type="primary"
                     onClick={handleGetQuotation}
                     style={{ marginTop: "20px" }}
                 >
                     Get Quotation
-                </Button>
+                </Button> */}
             </Modal>
         </>
     );
