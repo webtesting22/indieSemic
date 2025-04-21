@@ -5,6 +5,7 @@ import { Row, Col, Tabs, Image, Button, notification } from "antd";
 import { FiCopy, FiCheck } from "react-icons/fi";
 import ProductContext from "../Context/ProductContext";
 import { FaShoppingCart } from "react-icons/fa";
+import Cart from "../Cart/Cart";
 
 const { TabPane } = Tabs;
 
@@ -191,6 +192,8 @@ const SeparateProductPage = () => {
                         </div>
                     </Col>
 
+
+                    <Cart />
                     <Col lg={14} md={24}>
                         <div className="ProductDetailsContainer DesignedContainer">
                             <button

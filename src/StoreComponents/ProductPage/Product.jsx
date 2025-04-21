@@ -10,9 +10,9 @@ const Product = () => {
     return (
         <>
             <ProductState>
-            <IndieSemicProduct />
+                <IndieSemicProduct />
                 {/* <SeparateProductPage /> */}
-               
+
                 {/* <Cart/> */}
             </ProductState>
         </>

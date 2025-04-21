@@ -9,10 +9,11 @@ import Modules from "../Components/Modules/Modules";
 import SOCModule from "../Components/SOCModule/SOCModule";
 import SeparateProductPage from "../StoreComponents/ProductPage/SeparateProductpage";
 import IndividualProduct from "../StoreComponents/ProductPage/individualProduct";
+import NavigationWrap from "../Components/MegaNavigation.jsx/MegaNavigatioIndex";
 const DynamicRoutes = () => {
     return (
         <>
-            <MegaNavigation />
+            <NavigationWrap />
             <Routes>
                 <Route path="/" element={<HomeRoutes />} />
                 <Route path="/product" element={<Product />} />

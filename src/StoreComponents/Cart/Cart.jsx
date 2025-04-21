@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Button, Drawer, Typography, List, Card, InputNumber, Image } from "antd";
 import ProductContext from "../Context/ProductContext";
 import { BsFillCartCheckFill } from "react-icons/bs";
-
+import { MdDelete } from "react-icons/md";
 const Cart = () => {
     const { cartItems, removeFromCart } = useContext(ProductContext);
     const [open, setOpen] = useState(false);
@@ -47,7 +47,7 @@ const Cart = () => {
         <>
             {/* Button to open cart drawer */}
             <Button
-            id="OpenCartButton"
+                id="OpenCartButton"
                 type="primary"
                 onClick={() => toggleDrawer(true)}
                 style={{
@@ -90,21 +90,9 @@ const Cart = () => {
                                     borderRadius: "10px",
                                     boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
                                 }}
-                                actions={[
-                                    <Button
-                                        type="danger"
-                                        onClick={() => removeFromCart(item._id)}
-                                        style={{
-                                            backgroundColor: "#ff4d4f",
-                                            color: "#fff",
-                                            borderColor: "#ff4d4f",
-                                        }}
-                                    >
-                                        Remove
-                                    </Button>,
-                                ]}
                             >
                                 <div>
+
                                     <div className="AntImageContainer">
                                         <Image
                                             src={item.mainImages?.[0] || "default-image.jpg"}
@@ -121,24 +109,51 @@ const Cart = () => {
                                     </div>
                                     <br />
 
-                                    <div>
+                                    <div style={{ display: "Flex", justifyContent: "space-between", alignItems: "center" }}>
                                         <Typography.Text strong>₹{item.price}</Typography.Text>
+                                        <Button
+                                            type="danger"
+                                            onClick={() => removeFromCart(item._id)}
+                                            style={{
+                                                backgroundColor: "#ff4d4f",
+                                                color: "#fff",
+                                                borderColor: "#ff4d4f",
+                                                margin: "0px",
+                                                padding: "10px",
+                                            }}
+                                        >
+                                            <MdDelete />
+                                        </Button>
                                     </div>
                                 </div>
 
                                 {/* Quantity Input */}
                                 <div style={{ marginTop: "10px" }}>
                                     <Typography.Text>Quantity</Typography.Text>
-                                    <InputNumber
-                                        min={1}
-                                        max={100}
-                                        value={quantities[item._id] || 1}
-                                        onChange={(value) =>
-                                            handleQuantityChange(item._id, value)
-                                        }
-                                        style={{ width: "100%", marginTop: "10px" }}
-                                    />
+                                    <div style={{ display: "flex", alignItems: "center", marginTop: "10px" }}>
+                                        <Button
+                                            onClick={() => handleQuantityChange(item._id, Math.max(1, (quantities[item._id] || 1) - 1))}
+                                            size="small"
+                                        >
+                                            -
+                                        </Button>
+                                        <InputNumber
+                                            min={1}
+                                            max={100}
+                                            value={quantities[item._id] || 1}
+                                            onChange={(value) => handleQuantityChange(item._id, value)}
+                                            style={{ width: "50px", margin: "0 8px", textAlign: "center" }}
+                                            controls={false} // hide built-in buttons
+                                        />
+                                        <Button
+                                            onClick={() => handleQuantityChange(item._id, Math.min(100, (quantities[item._id] || 1) + 1))}
+                                            size="small"
+                                        >
+                                            +
+                                        </Button>
+                                    </div>
                                 </div>
+
                             </Card>
                         ))}
                     </div>
@@ -147,8 +162,11 @@ const Cart = () => {
                 )}
 
                 {/* Total Price */}
-                <div style={{ marginTop: "20px", fontWeight: "bold", fontSize: "18px" }}>
-                    <div>Total: ₹{getTotalPrice()}</div>
+                <div style={{ marginTop: "20px", fontWeight: "bold", fontSize: "18px", display: "flex", justifyContent: "space-between" }}>
+                    <div style={{ fontSize: "16px" }}>
+                        Total:
+                    </div>
+                    <div style={{ color: "gray", fontSize: "16px" }}> ₹{getTotalPrice()}</div>
                 </div>
 
                 {/* Close Button */}

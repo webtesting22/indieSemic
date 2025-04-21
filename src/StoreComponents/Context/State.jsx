@@ -5,7 +5,7 @@ import ProductContext from "./ProductContext"; // Make sure this is the correct 
 const ProductState = ({ children }) => {
     const [products, setProducts] = useState([]);
     const [cartItems, setCartItems] = useState([]);
-let name="sfhsdafdf"
+    let name = "sfhsdafdf"
     useEffect(() => {
         // Fetch products
         const fetchProducts = async () => {
@@ -41,7 +41,7 @@ let name="sfhsdafdf"
     };
 
     return (
-        <ProductContext.Provider value={{ products, cartItems, addToCart, removeFromCart,name }}>
+        <ProductContext.Provider value={{ products, cartItems, addToCart, removeFromCart, name }}>
             {children}
         </ProductContext.Provider>
     );

@@ -366,9 +366,9 @@ const IndieSemicProduct = () => {
                 // onOk={generateQuotationPDF}
                 onCancel={() => setIsModalOpen(false)}
                 footer={[
-                    <Button key="back" onClick={() => setIsModalOpen(false)}>
-                        Cancel
-                    </Button>,
+                    // <Button key="back" onClick={() => setIsModalOpen(false)}>
+                    //     Cancel
+                    // </Button>,
                     <Button key="submit" type="primary" disabled={isButtonDisabled} onClick={sendQuotationEmail}>
                         Send Quotation
                     </Button>,
