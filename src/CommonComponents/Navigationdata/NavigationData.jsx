@@ -1,19 +1,19 @@
 const NavigationData = [
+    {
+        link: "Home",
+        path: ""
+    },
     // {
-    //     link: "Home",
-    //     path: ""
+    //     link: "Products",
+    //     path: "/product"
     // },
     // {
-    //     link: "RF Modules",
-    //     path: ""
-    // },
-    // {
-    //     link: "System on Chip (SoCS)",
-    //     path: ""
+    //     link: "Processor/SoC",
+    //     path: "/socmodule"
     // },
     // {
     //     link: "Services",
-    //     path: ""
+    //     path: "/services"
     // },
     // {
     //     link: "Applications",

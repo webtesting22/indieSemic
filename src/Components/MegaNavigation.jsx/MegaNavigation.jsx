@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
@@ -10,7 +10,8 @@ import { MenuOutlined } from '@ant-design/icons';
 import "../../Styles/MegaNavigation.css";
 import IndieSemicLogo from "/Images/IndieSemicLogo.jpg"
 import logo2 from "/Images/logo.png";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
+import { Row, Col, Card } from 'antd';
 function HideOnScroll(props) {
     const { children, window } = props;
     const trigger = useScrollTrigger({
@@ -28,15 +29,25 @@ HideOnScroll.propTypes = {
     children: PropTypes.element,
     window: PropTypes.func,
 };
-
+import ProductContext from '../../StoreComponents/Context/ProductContext';
 const MegaNavigation = () => {
     const [isMobile, setIsMobile] = useState(false);
-
     const [isScrolled, setIsScrolled] = useState(false);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [showAppBar, setShowAppBar] = useState(true);
     const [drawerVisible, setDrawerVisible] = useState(false);  // To manage drawer visibility
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const { products, addToCart } = useContext(ProductContext);
+    const categories = [...new Set(products.map(p => p.category))];
+    const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+
+    const filteredProducts = products.filter(p => p.category === selectedCategory);
+
+    const handleCategoryHover = (category) => {
+        setSelectedCategory(category);
+    };
+
+
     useEffect(() => {
         const handleScroll = () => {
             const scrollY = window.scrollY || document.documentElement.scrollTop;
@@ -114,7 +125,7 @@ const MegaNavigation = () => {
         if (windowWidth < 768) {
             return "white";
         }
-        return isScrolled ? "black" : "white";
+        return isScrolled ? "black" : "black";
     };
 
     return (
@@ -131,16 +142,16 @@ const MegaNavigation = () => {
                             boxShadow: isScrolled ? "0px 4px 6px rgba(0, 0, 0, 0.1)" : "none",
                         }}
                     >
-                        <Toolbar>
+                        <Toolbar style={{ padding: isScrolled ? "0px" : "20px 50px" }}>
                             <div className='navigationbar' style={{
                                 display: 'flex',
                                 justifyContent: 'space-between',
                                 width: '100%',
                                 alignItems: "center",
-                                marginTop: isScrolled ? "2px" : "24px",
                                 marginLeft: isScrolled ? "0px" : "0px",
                                 marginRight: isScrolled ? "0px" : "0px",
-                                backdropFilter: isScrolled ? "blur(0px)" : "blur(10px)"
+                                backdropFilter: isScrolled ? "blur(0px)" : "blur(10px)",
+                                background: isScrolled ? "white" : "white"
                             }}>
                                 <div className="logoContainer"
                                     style={{
@@ -198,12 +209,6 @@ const MegaNavigation = () => {
                                                             >
                                                                 {item.link}
                                                             </Link>
-                                                            {/* Render sub-navigation if available */}
-                                                            {/* {renderSubNav(item.link) && (
-                                                                <Collapse accordion>
-                                                                    {renderSubNav(item.link)}
-                                                                </Collapse>
-                                                            )} */}
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -211,34 +216,64 @@ const MegaNavigation = () => {
                                         </Drawer>
                                     </>
                                 ) : (
-                                    // Desktop navigation as per original code
                                     <>
 
-                                        <ul style={{ listStyleType: 'none', padding: 0, paddingRight: "2rem", }}>
+                                        <ul style={{ listStyleType: 'none', padding: 0, paddingRight: "2rem", margin: "0px" }}>
                                             {NavigationData.map((item, index) => (
                                                 <li key={index} style={{ display: 'inline-block' }}>
                                                     <div className="dropdown">
-                                                        <button className="dropbtn" style={{ color: getButtonColor() }}>
-                                                            <Link to={item.path} style={{ color: getButtonColor() }} // Use the path directly as href
-                                                            >
-                                                                {item.link}
-                                                            </Link>
-                                                        </button>
-                                                        {/* {renderSubNav(item.link) && (
-                                                            <div className="dropdown-content">
-                                                                <div>
-                                                                    {renderSubNav(item.link)} 
+                                                        <div className="dropdown-with-mega">
+                                                            <button className="dropbtn" style={{ color: getButtonColor() }}>
+                                                                <Link to={item.path} style={{ color: getButtonColor() }}>
+                                                                    {item.link}
+                                                                </Link>
+                                                            </button>
+
+                                                            {item.link === "Products" && (
+                                                                <div className="mega-menu">
+                                                                    <div className='InsideSetContainer'>
+                                                                        <Row>
+                                                                            <Col lg={8} md={10}>
+                                                                                <div className="category-list">
+                                                                                    {categories.map(category => (
+                                                                                        <div
+                                                                                            key={category}
+                                                                                            className={`category-item ${category === selectedCategory ? 'active' : ''}`}
+                                                                                            onMouseEnter={() => handleCategoryHover(category)}
+                                                                                        >
+                                                                                            <p>{category}</p>
+                                                                                        </div>
+                                                                                    ))}
+                                                                                </div>
+                                                                            </Col>
+                                                                            <Col lg={16} md={14}>
+                                                                                <Row gutter={[16, 16]}>
+                                                                                    {filteredProducts.slice(0, 3).map(product => (
+                                                                                        <Col span={8} key={product._id}>
+                                                                                            <Link to={`/product/${product._id}`}>
+                                                                                                <Card
+                                                                                                    hoverable
+                                                                                                    cover={<img src={product.mainImages[0]} alt={product.title} />}
+                                                                                                >
+                                                                                                    <Card.Meta title={product.title} />
+                                                                                                </Card>
+                                                                                            </Link>
+                                                                                        </Col>
+                                                                                    ))}
+                                                                                </Row>
+                                                                            </Col>
+                                                                        </Row>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        )} */}
+                                                            )}
+                                                        </div>
+
                                                     </div>
                                                 </li>
                                             ))}
                                         </ul>
-
                                     </>
                                 )}
-                                {/* <hr /> */}
                             </div>
                         </Toolbar>
                     </AppBar>
