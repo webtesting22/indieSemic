@@ -6,13 +6,27 @@ import "../../Styles/Product.css";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-import { Row, Col, Input, Button, Tabs, Modal, Table, Checkbox, Image } from "antd";
+import { Row, Col, Input, Button, Tabs, Modal, Table, Checkbox, Image, Typography, Alert, Tag, Tooltip,message } from "antd";
 import ProductContext from "../Context/ProductContext";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import html2canvas from 'html2canvas';
 import Cart from "../Cart/Cart";
 import { RiResetRightLine } from "react-icons/ri";
+import {
+    UserOutlined,
+    MailOutlined,
+    PhoneOutlined,
+    BankOutlined,
+    IdcardOutlined,
+    HomeOutlined,
+    SearchOutlined,
+    InfoCircleOutlined,
+    MinusOutlined,
+    PlusOutlined,
+    ExclamationCircleOutlined,
+    CheckCircleOutlined
+} from "@ant-design/icons";
 
 const { TabPane } = Tabs;
 
@@ -25,7 +39,7 @@ const IndieSemicProduct = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(10000); // Assuming max price is 10,000 for the price range filter
-
+    const [formValid, setFormValid] = useState(false);
     // State management for modal
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [userDetails, setUserDetails] = useState({
@@ -39,6 +53,9 @@ const IndieSemicProduct = () => {
     const [selectedProducts, setSelectedProducts] = useState([]);
     const [productQuantities, setProductQuantities] = useState({});
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+    const [emailError, setEmailError] = useState("");
+    const [emailStatus, setEmailStatus] = useState("");
+
     const contentRef = useRef();
     // Handle category change
     const handleCategoryChange = (category) => {
@@ -88,14 +105,47 @@ const IndieSemicProduct = () => {
         setIsModalOpen(true);
     };
 
-    // Handle input changes for user details
+    // Updated handleInputChange with form validation
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setUserDetails((prev) => ({
-            ...prev,
+        const updatedDetails = {
+            ...userDetails,
             [name]: value,
-        }));
+        };
+        setUserDetails(updatedDetails);
+
+        // Email validation for the email field
+        if (name === "email") {
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            if (value && !emailRegex.test(value)) {
+                setEmailError("Please enter a valid email address");
+                setEmailStatus("error");
+            } else {
+                setEmailError("");
+                setEmailStatus(value ? "success" : "");
+            }
+        }
+
+        // Check if required fields are filled and valid
+        const requiredFieldsFilled =
+            updatedDetails.name.trim() !== "" &&
+            updatedDetails.contact.trim() !== "" &&
+            updatedDetails.email.trim() !== "" &&
+            (name === "email" ? emailStatus !== "error" : true);
+
+        setFormValid(requiredFieldsFilled);
+
+        // If form becomes invalid, reset product selections
+        if (!requiredFieldsFilled && selectedProducts.length > 0) {
+            setSelectedProducts([]);
+            setProductQuantities({});
+        }
+
+        // Update button state based on new validity
+        validateButtonState(productQuantities, [], requiredFieldsFilled);
     };
+
 
     // Handle quantity change
     const handleQuantityChange = (productId, quantity) => {
@@ -105,76 +155,93 @@ const IndieSemicProduct = () => {
     };
 
     const handleProductSelect = (productId, isSelected) => {
+        // Only allow selection if form is valid
+        if (!formValid) {
+            return; // Prevent selection if the required form fields aren't filled
+        }
+
         if (isSelected) {
             // Add product to selectedProducts
             setSelectedProducts((prev) => [...prev, productId]);
+
+            // Set initial quantity to 1 if not already set
+            if (!productQuantities[productId]) {
+                handleQuantityChange(productId, 1);
+            }
         } else {
             // Remove product from selectedProducts
             setSelectedProducts((prev) => prev.filter((id) => id !== productId));
         }
     };
+
+
+
+    // Updated validateButtonState to check both form validity and product selection
     const validateButtonState = (updatedQuantities) => {
-        const isValid = selectedProducts.length > 0 && selectedProducts.every((id) => updatedQuantities[id] > 0);
+        // Button is enabled only if form is valid AND at least one product is selected with quantity
+        const isValid =
+            formValid &&
+            selectedProducts.length > 0 &&
+            selectedProducts.every((id) => updatedQuantities[id] > 0);
+
         setIsButtonDisabled(!isValid);
     };
-    // Generate PDF for quotation
 
-
-    // Function to generate and download the PDF
-    const generatePDF = () => {
-        // Ensure that the content is rendered first
-        setTimeout(() => {
-            console.log(contentRef.current); // Ensure the DOM element is valid
-            if (!contentRef.current) {
-                console.error("Invalid contentRef element");
-                return;
-            }
-
-            html2canvas(contentRef.current, {
-                allowTaint: true,
-                useCORS: true,
-            }).then((canvas) => {
-                const imgData = canvas.toDataURL('image/png');
-                const doc = new jsPDF();
-                doc.addImage(imgData, 'PNG', 0, 0, 210, 297);
-                doc.save('quotation.pdf');
-            });
-        }, 100); // Small delay (100ms) to ensure the content is rendered
-    };
-
-    // Table columns for product list
+    // Updated Table columns with disabled state based on form validity
     const columns = [
         {
             title: "Sr No.",
             key: "srno",
-            render: (_, __, index) => index + 1, // Render serial number
+            width: 80,
+            render: (_, __, index) => <Typography.Text strong>{index + 1}</Typography.Text>,
         },
         {
             title: "Select",
             dataIndex: "select",
             key: "select",
+            width: 80,
             render: (_, product) => (
                 <Checkbox
                     checked={selectedProducts.includes(product._id)}
                     onChange={(e) => handleProductSelect(product._id, e.target.checked)}
+                    disabled={!formValid} // Disable checkbox if form is not valid
+                    style={{ transform: "scale(1.2)" }}
                 />
             ),
         },
         {
-            title: "Product Name",
+            title: "Product Details",
             dataIndex: "title",
             key: "title",
             render: (_, product) => (
-                <div style={{ display: 'flex', alignItems: 'center' }} className="ProductPreviewImage">
-                    {/* Small product image */}
-                    <Image
-
-                        src={product.mainImages?.[0] || 'default-image.jpg'}
-                        alt={product.title}
-
-                    />
-                    {/* Product name */}
-                    <span>{product.title}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    {/* Product image */}
+                    <div style={{
+                        width: "70px",
+                        height: "70px",
+                        borderRadius: "4px",
+                        overflow: "hidden",
+                        border: "1px solid #f0f0f0"
+                    }}>
+                        <img
+                            src={product.mainImages?.[0] || "default-image.jpg"}
+                            alt={product.title}
+                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                        />
+                    </div>
+                    {/* Product info */}
+                    <div>
+                        <Typography.Text strong style={{ fontSize: "15px" }}>
+                            {product.title}
+                        </Typography.Text>
+                        {product.category && (
+                            <div>
+                                <Tag color="blue" style={{ marginTop: "6px" }}>
+                                    {product.category}
+                                </Tag>
+                            </div>
+                        )}
+                    </div>
                 </div>
             ),
         },
@@ -182,19 +249,62 @@ const IndieSemicProduct = () => {
             title: "Quantity",
             dataIndex: "quantity",
             key: "quantity",
+            width: 150,
             render: (_, product) => (
-                <Input
-                    type="number"
-                    min="1"
-                    value={productQuantities[product._id] || ""}
-                    onChange={(e) => handleQuantityChange(product._id, e.target.value)}
-                    disabled={!selectedProducts.includes(product._id)}  // Disable quantity input when product is not selected
-                />
+                <div style={{ display: "flex", alignItems: "center" }}>
+                    <button
+                        onClick={() => {
+                            const currentQty = parseInt(productQuantities[product._id]) || 0;
+                            if (currentQty > 1) {
+                                handleQuantityChange(product._id, currentQty - 1);
+                            }
+                        }}
+                        disabled={!selectedProducts.includes(product._id) || !formValid}
+                        style={{
+                            border: "none",
+                            background: "none",
+                            cursor: "pointer",
+                            fontSize: "16px",
+                            padding: "0 8px"
+                        }}
+                    >
+                        -
+                    </button>
+                    <Input
+                        type="number"
+                        min="1"
+                        value={productQuantities[product._id] || ""}
+                        onChange={(e) => handleQuantityChange(product._id, e.target.value)}
+                        disabled={!selectedProducts.includes(product._id) || !formValid}
+                        style={{
+                            width: "90px",
+                            textAlign: "center",
+                            borderRadius: "0",
+                            margin: "0 -1px",
+                            WebkitAppearance: "none",
+                            MozAppearance: "textfield"
+                        }}
+                    />
+                    <button
+                        onClick={() => {
+                            const currentQty = parseInt(productQuantities[product._id]) || 0;
+                            handleQuantityChange(product._id, currentQty + 1);
+                        }}
+                        disabled={!selectedProducts.includes(product._id) || !formValid}
+                        style={{
+                            border: "none",
+                            background: "none",
+                            cursor: "pointer",
+                            fontSize: "16px",
+                            padding: "0 8px"
+                        }}
+                    >
+                        +
+                    </button>
+                </div>
             ),
         },
-
     ];
-
 
 
 
@@ -246,6 +356,7 @@ const IndieSemicProduct = () => {
             const result = await response.json();
             if (result.success) {
                 console.log("Email sent successfully");
+                message.success("Quotation request sent successfully!");
             } else {
                 console.error("Error sending email");
             }
@@ -344,7 +455,6 @@ const IndieSemicProduct = () => {
                                                         ? `${product.title.slice(0, 40)}...`
                                                         : product.title}
                                                 </h2>
-
                                             </div>
                                         </div>
                                     </Link>
@@ -361,100 +471,231 @@ const IndieSemicProduct = () => {
             <Cart />
             {/* Modal for Get Quotation */}
             <Modal
-                title="Get Quotation"
+                title={
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                        <div style={{
+                            backgroundColor: "#1890ff",
+                            width: "4px",
+                            height: "20px",
+                            borderRadius: "2px"
+                        }}></div>
+                        <Typography.Title level={4} style={{ margin: 0 }}>
+                            Request Product Quotation
+                        </Typography.Title>
+                    </div>
+                }
                 visible={isModalOpen}
-                // onOk={generateQuotationPDF}
                 onCancel={() => setIsModalOpen(false)}
                 footer={[
-                    // <Button key="back" onClick={() => setIsModalOpen(false)}>
+                    // <Button
+                    //     key="cancel"
+                    //     onClick={() => setIsModalOpen(false)}
+                    //     style={{ borderRadius: "4px" }}
+                    // >
                     //     Cancel
                     // </Button>,
-                    <Button key="submit" type="primary" disabled={isButtonDisabled} onClick={sendQuotationEmail}>
-                        Send Quotation
+                    <Button
+                        key="submit"
+                        type="primary"
+                        disabled={isButtonDisabled}
+                        onClick={sendQuotationEmail}
+                        style={{
+                            backgroundColor: "#1890ff",
+                            borderRadius: "4px"
+                        }}
+                    >
+                        Send Quotation Request
                     </Button>,
                 ]}
                 width={1000}
+                centered
+                bodyStyle={{ padding: "24px" }}
+                style={{ top: 20 }}
             >
-                {/* User Details Form */}
-                <div>
-                    <p><b>User Details:</b></p>
-                    <Row gutter={[16, 16]}>
-                        <Col span={12}>
+                <div style={{
+                    border: "1px solid #f0f0f0",
+                    borderRadius: "8px",
+                    padding: "20px",
+                    marginBottom: "24px",
+                    background: "#fafafa"
+                }}>
+                    <Typography.Title level={5} style={{ marginTop: 0, marginBottom: "16px" }}>
+                        Contact Information
+                        <span style={{ color: "#ff4d4f", marginLeft: "4px" }}>*</span>
+                    </Typography.Title>
+
+                    <Row gutter={[24, 24]}>
+                        <Col span={8}>
+                            <div style={{ marginBottom: "8px" }}>
+                                <Typography.Text strong>Full Name</Typography.Text>
+                                <span style={{ color: "#ff4d4f", marginLeft: "4px" }}>*</span>
+                            </div>
                             <Input
                                 name="name"
-                                placeholder="Name"
+                                placeholder="Enter your full name"
                                 value={userDetails.name}
                                 onChange={handleInputChange}
+                                style={{ borderRadius: "4px" }}
+                                prefix={<UserOutlined style={{ color: "#bfbfbf" }} />}
                             />
                         </Col>
-                        <Col span={12}>
-                            <Input
-                                name="company"
-                                placeholder="Company (Optional)"
-                                value={userDetails.company}
-                                onChange={handleInputChange}
-                            />
-                        </Col>
-                        <Col span={12}>
-                            <Input
-                                name="designation"
-                                placeholder="Designation (Optional)"
-                                value={userDetails.designation}
-                                onChange={handleInputChange}
-                            />
-                        </Col>
-                        <Col span={12}>
+                        <Col span={8}>
+                            <div style={{ marginBottom: "8px" }}>
+                                <Typography.Text strong>Email Address</Typography.Text>
+                                <span style={{ color: "#ff4d4f", marginLeft: "4px" }}>*</span>
+                            </div>
                             <Input
                                 name="email"
-                                placeholder="Email ID"
+                                placeholder="Enter your email address"
                                 value={userDetails.email}
                                 onChange={handleInputChange}
+                                style={{ borderRadius: "4px" }}
+                                prefix={<MailOutlined style={{ color: "#bfbfbf" }} />}
+                                status={emailStatus}
+                                suffix={
+                                    emailStatus === "error" ? (
+                                        <Tooltip title={emailError}>
+                                            <ExclamationCircleOutlined style={{ color: "#ff4d4f" }} />
+                                        </Tooltip>
+                                    ) : emailStatus === "success" ? (
+                                        <CheckCircleOutlined style={{ color: "#52c41a" }} />
+                                    ) : null
+                                }
                             />
+                            {emailError && (
+                                <div style={{ color: "#ff4d4f", fontSize: "12px", marginTop: "4px" }}>
+                                    {emailError}
+                                </div>
+                            )}
                         </Col>
-                        <Col span={12}>
+                        <Col span={8}>
+                            <div style={{ marginBottom: "8px" }}>
+                                <Typography.Text strong>Contact Number</Typography.Text>
+                                <span style={{ color: "#ff4d4f", marginLeft: "4px" }}>*</span>
+                            </div>
                             <Input
+                                type="number"
                                 name="contact"
-                                placeholder="Contact Number"
+                                placeholder="Enter your phone number"
                                 value={userDetails.contact}
                                 onChange={handleInputChange}
+                                style={{ borderRadius: "4px" }}
+                                prefix={<PhoneOutlined style={{ color: "#bfbfbf" }} />}
                             />
                         </Col>
-                        <Col span={12}>
+                        <Col span={8}>
+                            <div style={{ marginBottom: "8px" }}>
+                                <Typography.Text strong>Company</Typography.Text>
+                                <span style={{ color: "#d9d9d9", marginLeft: "4px", fontSize: "12px" }}>
+                                    (Optional)
+                                </span>
+                            </div>
+                            <Input
+                                name="company"
+                                placeholder="Enter your company name"
+                                value={userDetails.company}
+                                onChange={handleInputChange}
+                                style={{ borderRadius: "4px" }}
+                                prefix={<BankOutlined style={{ color: "#bfbfbf" }} />}
+                            />
+                        </Col>
+                        <Col span={8}>
+                            <div style={{ marginBottom: "8px" }}>
+                                <Typography.Text strong>Designation</Typography.Text>
+                                <span style={{ color: "#d9d9d9", marginLeft: "4px", fontSize: "12px" }}>
+                                    (Optional)
+                                </span>
+                            </div>
+                            <Input
+                                name="designation"
+                                placeholder="Enter your job title"
+                                value={userDetails.designation}
+                                onChange={handleInputChange}
+                                style={{ borderRadius: "4px" }}
+                                prefix={<IdcardOutlined style={{ color: "#bfbfbf" }} />}
+                            />
+                        </Col>
+                        <Col span={8}>
+                            <div style={{ marginBottom: "8px" }}>
+                                <Typography.Text strong>Address</Typography.Text>
+                                <span style={{ color: "#d9d9d9", marginLeft: "4px", fontSize: "12px" }}>
+                                    (Optional)
+                                </span>
+                            </div>
                             <Input
                                 name="address"
-                                placeholder="Address (Optional)"
+                                placeholder="Enter your address"
                                 value={userDetails.address}
                                 onChange={handleInputChange}
+                                style={{ borderRadius: "4px" }}
+                                prefix={<HomeOutlined style={{ color: "#bfbfbf" }} />}
                             />
                         </Col>
                     </Row>
+
+                    {!formValid && (
+                        <Alert
+                            message="Please fill all required fields marked with * to proceed with product selection."
+                            type="info"
+                            showIcon
+                            style={{ marginTop: "16px", borderRadius: "4px" }}
+                        />
+                    )}
                 </div>
-                <br />
-                <br />
-                <div className="searchBarContainer">
-                    <p><b>Search Products</b></p>
-                    <Input
-                        placeholder="Search by name or category"
-                        value={searchQuery}
-                        onChange={handleSearchChange}
-                        style={{ width: 300 }}
+
+                <div style={{
+                    border: "1px solid #f0f0f0",
+                    borderRadius: "8px",
+                    padding: "20px",
+                    background: "#fafafa"
+                }}>
+                    <Typography.Title level={5} style={{ marginTop: 0, marginBottom: "16px", display: "flex", justifyContent: "space-between" }}>
+                        <span>Select Products for Quotation</span>
+                        <div className="searchBarContainer" style={{ display: "flex", alignItems: "center" }}>
+                            <Input
+                                placeholder="Search products"
+                                value={searchQuery}
+                                onChange={handleSearchChange}
+                                style={{ width: 250, borderRadius: "4px" }}
+                                prefix={<SearchOutlined style={{ color: "#bfbfbf" }} />}
+                                allowClear
+                            />
+                        </div>
+                    </Typography.Title>
+
+                    {!formValid && (
+                        <div style={{
+                            padding: "16px",
+                            background: "rgba(0,0,0,0.02)",
+                            borderRadius: "4px",
+                            marginBottom: "16px",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "8px"
+                        }}>
+                            <InfoCircleOutlined style={{ color: "#1890ff" }} />
+                            <Typography.Text type="secondary">
+                                Complete your contact information above to enable product selection.
+                            </Typography.Text>
+                        </div>
+                    )}
+
+                    {/* Product Selection Table */}
+                    <Table
+                        rowKey="_id"
+                        columns={columns}
+                        dataSource={filteredProducts}
+                        pagination={false}
+                        style={{ marginTop: "20px" }}
                     />
-                </div>
-                {/* Product Selection Table */}
-                <Table
-                    rowKey="_id"
-                    columns={columns}
-                    dataSource={filteredProducts}
-                    pagination={false}
-                    style={{ marginTop: "20px" }}
-                />
-                {/* <Button
+                    {/* <Button
                     type="primary"
                     onClick={handleGetQuotation}
                     style={{ marginTop: "20px" }}
                 >
                     Get Quotation
                 </Button> */}
+                </div>
             </Modal>
         </>
     );

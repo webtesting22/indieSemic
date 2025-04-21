@@ -252,24 +252,128 @@
 .ProductPreviewImage {
     overflow: hidden;
 }
-.AntImageContainer .ant-image{
-    width: 70px;
-    height: 70px;
-}
+
 .AntImageContainer {
     display: flex;
     gap: 10px;
 }
-.ant-tabs-nav{
+
+.ant-tabs-nav {
     margin: 0px !important;
 }
-.ant-tabs-tab{
+
+.ant-tabs-tab {
     margin: 0 0 0 10px !important;
 }
 
-#OpenCartButton{
+#OpenCartButton {
     position: fixed;
     bottom: 20px;
     right: 40px;
     z-index: 5;
+}
+
+.ProductCartTitle {
+    padding: 0px 10px;
+    margin-top: 0px;
+}
+
+.AntImageContainer .ant-row .ant-col:nth-child(3) button {
+    background-color: transparent !important;
+    border: none;
+    box-shadow: none;
+    margin: 0px;
+}
+
+.ant-drawer {
+    z-index: 34535353534545435;
+}
+
+/* Custom styles for the Swiper carousel in the Cart component */
+
+/* Make sure navigation arrows are visible */
+.swiper-button-next,
+.swiper-button-prev {
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Style pagination bullets */
+.swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background-color: #1890ff;
+    opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background-color: #1890ff;
+}
+
+/* Add a subtle hover effect to the cards */
+.swiper-slide .ant-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.swiper-slide .ant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the "Add to Cart" button */
+.swiper-slide .ant-card-actions {
+    background-color: transparent;
+    border-top: none;
+    padding: 0 12px 12px;
+}
+
+/* Set height for consistent card display */
+.swiper-slide .ant-card-body {
+    height: 120px;
+    overflow: hidden;
+}
+
+/* Handle spacing for pagination */
+.swiper-container {
+    padding-bottom: 40px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 32px;
+        height: 32px;
+    }
+
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 14px;
+    }
+
+    .swiper-slide .ant-card-body {
+        height: auto;
+        max-height: 100px;
+    }
+}
+
+.ant-input[type="number"]::-webkit-outer-spin-button,
+.ant-input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.ant-input[type="number"] {
+    -moz-appearance: textfield;
 }
