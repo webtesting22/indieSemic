@@ -10,6 +10,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { MdDelete } from "react-icons/md";
 
 const Cart = () => {
     const { cartItems, removeFromCart, addToCart, products } = useContext(ProductContext);
@@ -148,7 +149,7 @@ const Cart = () => {
                 anchor="right"
                 open={open}
                 onClose={() => toggleDrawer(false)}
-                width={isMobile ? "100%" : "100%"}
+                width={isMobile ? "100%" : "70%"}
                 style={{
                     backgroundColor: "#fff",
                     padding: isMobile ? "16px" : "24px 40px",
@@ -257,7 +258,7 @@ const Cart = () => {
                                                 value={quantities[item._id] || 1}
                                                 onChange={(value) => handleQuantityChange(item._id, value)}
                                                 style={{
-                                                    width: "50px",
+                                                    width: "80px",
                                                     margin: "0 8px",
                                                     textAlign: "center"
                                                 }}
@@ -281,13 +282,10 @@ const Cart = () => {
                                     </>
                                 ) : (
                                     <>
-                                        {/* Desktop layout */}
-                                        {/* Item Number */}
                                         <div style={{ textAlign: "center", fontSize: "14px" }}>
                                             <b> {String(index + 1).padStart(2, '0')}</b>
                                         </div>
 
-                                        {/* Product Info */}
                                         <div style={{ display: "flex", alignItems: "center" }}>
                                             <div style={{ width: "80px", height: "100px", marginRight: "20px" }}>
                                                 <img
@@ -374,7 +372,7 @@ const Cart = () => {
                                                     marginLeft: "16px"
                                                 }}
                                             >
-                                                ×
+                                                <MdDelete style={{ color: "Red" }} />
                                             </button>
                                         </div>
                                     </>

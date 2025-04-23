@@ -378,3 +378,152 @@
     -moz-appearance: textfield;
 }
 
+
+
+/* Add these styles to your Product.css file */
+
+/* Base styles for sidebar */
+.sidebar-container {
+    border-right: 1px solid #e8e8e8;
+}
+
+.left-sidebar {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    /* height: 100%; */
+}
+
+.sidebar-title {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.left-sidebar .category-list {
+    height: unset !important;
+}
+
+.category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-list li {
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.category-list li:hover {
+    background-color: #e6f7ff;
+}
+
+.active-category {
+    background-color: #1890ff !important;
+    color: white;
+    font-weight: 500;
+}
+
+.filter-controls {
+    margin-top: 20px;
+}
+
+/* Mobile filter button */
+.mobile-filter-button {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px 0;
+}
+
+.mobile-product-count {
+    font-weight: 500;
+}
+
+
+/* Mobile styling for Ant Design drawer */
+.filter-drawer .ant-drawer-body {
+    padding: 0;
+}
+
+.filter-drawer .left-sidebar {
+    border-radius: 0;
+    height: 100%;
+}
+
+/* Count display styling */
+.countShowContainer {
+    font-weight: 500;
+    color: #555;
+    text-align: center;
+}
+
+.SearchProductContainerWithCount {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 30px;
+}
+
+.SearchProductContainerWithCount>div {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .SearchProductContainerWithCount>div {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    /* Hide desktop sidebar on mobile */
+    .desktop-sidebar {
+        display: none;
+    }
+
+    /* Show mobile filter button */
+    .mobile-filter-button {
+        display: flex;
+    }
+
+    .ProductCard {
+        margin-bottom: 10px;
+        padding: 10px !important;
+    }
+
+    .ProductTitle {
+        font-size: 14px;
+    }
+
+    .AllProductsContainer.section_Padding {
+        padding: 10px !important;
+    }
+
+    /* Make drawer cover more screen space */
+    .filter-drawer .ant-drawer-content-wrapper {
+        width: 80% !important;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .ProductCard .mainImageContainer img {
+        height: 120px;
+    }
+
+    .ProductTitle {
+        font-size: 12px;
+    }
+}

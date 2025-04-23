@@ -6,6 +6,7 @@ import { FiCopy, FiCheck } from "react-icons/fi";
 import ProductContext from "../Context/ProductContext";
 import { FaShoppingCart } from "react-icons/fa";
 import Cart from "../Cart/Cart";
+import GetQuotationModal from "./GetQuatationModal";
 
 const { TabPane } = Tabs;
 
@@ -235,14 +236,21 @@ const SeparateProductPage = () => {
 
                         </div>
 
-                        <Button
-                            type="primary"
-                            onClick={() => handleAddToCart(product)}
-                            disabled={isButtonDisabled || isProductInCart}  // Disable button if product is already in cart
-                        >
-                            <FaShoppingCart />
-                            {isProductInCart ? "Product Added" : buttonText}
-                        </Button>
+                        <div style={{display:"flex",alignItems:"center",gap:"20px"}}>
+                            <div>
+                                <Button
+                                    type="primary"
+                                    onClick={() => handleAddToCart(product)}
+                                    disabled={isButtonDisabled || isProductInCart}  // Disable button if product is already in cart
+                                >
+                                    <FaShoppingCart />
+                                    {isProductInCart ? "Product Added" : buttonText}
+                                </Button>
+                            </div>
+                            <div>
+                                <GetQuotationModal />
+                            </div>
+                        </div>
                     </Col>
                 </Row>
             </div>

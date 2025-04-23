@@ -57,7 +57,7 @@
 .mainImageContainer {
     height: 100%;
     position: relative;
-    min-height: 300px;
+    min-height: 200px;
 }
 
 
@@ -104,6 +104,9 @@
     top: 0px;
 }
 @media (max-width:900px) {
+    .mainImageContainer{
+        min-height: 130px;
+    }
     #ProductOtherImagesContainer {
         height: 130px;
         overflow: hidden;
