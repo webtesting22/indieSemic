@@ -4,47 +4,39 @@ import "./SOCModule.css"
 import { Row, Col } from "antd";
 
 const SOCModule = () => {
-
     const PointsData = [
         {
-            SocCardTitle: "Efficiency",
-            SocCardDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            SocCardImage: "",
+            SocCardTitle: "- Targets next-gen Automotive & ADAS systems",
         },
         {
-            SocCardTitle: "Reliability",
-            SocCardDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            SocCardImage: "",
+            SocCardTitle: "- Integrated support for Radar, Lidar, Camera feeds",
         },
         {
-            SocCardTitle: "Innovative",
-            SocCardDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            SocCardImage: "",
+            SocCardTitle: "- On-chip AI acceleration – for real-time vision compute",
+        },
+        {
+            SocCardTitle: "- Optimized for neural net inferencing at the edge",
+        },
+        {
+            SocCardTitle: "- Secure, modular, scalable—designed for critical safety",
         },
     ]
-
 
     const ImageGalleryImages = [
         {
             SocImage: "https://cdn.prod.website-files.com/673df36634025fb6cd805026/673df36634025fb6cd805077_service_3-2.webp",
-
         },
         {
             SocImage: "https://cdn.prod.website-files.com/673df36634025fb6cd805026/673df36634025fb6cd805077_service_3-2.webp",
-
         },
         {
             SocImage: "https://cdn.prod.website-files.com/673df36634025fb6cd805026/673df36634025fb6cd805077_service_3-2.webp",
-
         },
 
     ]
-
-
     return (
         <>
             <section>
-
                 <div className="HeighContainer">
                     <div>
                         <div className="OverlaySeparationback">
@@ -55,7 +47,10 @@ const SOCModule = () => {
                     <div className="AbsoluteContentContainer">
                         <div>
                             <div>
-                                <h1 data-aos="fade-up" data-aos-duration="1400">Empowering businesses with cutting-edge technology solutions</h1>
+                                <h1 data-aos="fade-up" data-aos-duration="1400" className="ContainerHeading" style={{ color: "white" }}>India's Silicon Breakthrough: IndieSemic’s RISC-V Revolution</h1>
+                                <p style={{ color: "white" }}>From microcontroller to multi-core AI—empowering automotive and surveillance systems with homegrown precision.</p>
+                                <br />
+                                <button>Get in Touch</button>
                             </div>
                             <div className="BottomContentContainer">
                                 <div>
@@ -70,9 +65,9 @@ const SOCModule = () => {
                 </div>
                 <div className="section_Padding" id="SOCMainContainer">
                     <div>
-                        <h2>Innovative Problem-Solving for Your Business Needs</h2>
-                        <p style={{ color: "rgb(74, 144, 226)" }}>Solutions</p>
+                        <h2 className="ContainerHeading">Engineered at the Edge—India’s Own RISC-V Microcontroller</h2>
                     </div>
+                    <br /><br />
                     <div className="ImagesGalleryContainer">
                         <Row>
                             {ImageGalleryImages.map((item, index) => (
@@ -85,8 +80,13 @@ const SOCModule = () => {
                         </Row>
                     </div>
                     <div className="ChiprelatedDescriptionContainer" style={{ overflow: "hidden" }}>
+                        <div>
+                            <h2 className="ContainerHeading">Introducing Project “Vajra”: India’s Quad-Core AI Processor</h2>
+                            <p>Designed for vision. Built for autonomy. Powered by RISC-V.</p>
+                        </div>
+                        <br /><br />
                         <Row>
-                            <Col lg={12} data-aos="fade-right" data-aos-animation="3000" >
+                            <Col lg={12} data-aos="fade-right" data-aos-animation="3000" data-aos-delay="400" >
                                 <div className="fadeImage">
                                     <img
                                         src="https://cdn.prod.website-files.com/673df36634025fb6cd805026/673df36634025fb6cd805094_FIN_Service_02-min.jpg"
@@ -94,15 +94,12 @@ const SOCModule = () => {
                                     />
                                 </div>
                             </Col>
-                            <Col lg={12} data-aos="fade-left" data-aos-animation="3000" >
+                            <Col lg={12} data-aos="fade-left" data-aos-animation="3000" data-aos-delay="800" >
                                 <div className="RightSideContentContainerAboutChip">
-                                    <h2>Innovative Problem-Solving for Your Business Needs</h2>
-                                    <p style={{ color: "rgb(74, 144, 226)" }}>Solutions</p>
                                     <div>
                                         {PointsData.map((item, index) => (
                                             <div key={index}>
                                                 <h2>{item.SocCardTitle}</h2>
-                                                <p>{item.SocCardDescription}</p>
                                             </div>
                                         ))}
 

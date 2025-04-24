@@ -33,7 +33,6 @@
     position: absolute;
     left: 0px;
     right: 0px;
-    /* width: 100%; */
     height: 100%;
     display: flex;
     align-items: center;
@@ -44,8 +43,8 @@
     width: 50%;
 }
 
-.AbsoluteContentContainer>div h1 {
-    color: white;
+.ContainerHeading {
+    color: rgb(63, 125, 196);
     font-size: 3.5em;
     font-weight: 400;
     line-height: 1.2;
@@ -74,8 +73,8 @@
 }
 
 #SOCMainContainer {
-    background-color: rgb(10, 10, 10);
-    color: white;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
 }
 
 .ImagesGalleryContainer img {
@@ -101,7 +100,7 @@
 
 .ChiprelatedDescriptionContainer {
     padding: 20px 0px;
-    background-color: black;
+    background-color: rgb(255, 255, 255);
     margin: 7rem 0rem;
 }
 
@@ -114,6 +113,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-left: 40px;
 }
 
 .ChiprelatedDescriptionContainer .ant-row .ant-col .RightSideContentContainerAboutChip>div {
@@ -124,33 +124,48 @@
     padding: 20px 0px;
 }
 
+.fadeImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .fadeImage img {
     width: 100%;
-    /* Adjust as needed */
-    height: auto;
-    /* Maintain aspect ratio */
+    max-height: 500px;
     animation: fadeEffect 4s infinite;
-    /* 2s fade-in, 2s fade-out, infinite loop */
 }
 
 @keyframes fadeEffect {
     0% {
         opacity: 0;
-        /* Fully transparent */
     }
 
     25% {
         opacity: 1;
-        /* Fully visible */
     }
 
     75% {
         opacity: 1;
-        /* Hold visibility */
     }
 
     100% {
         opacity: 0;
-        /* Fade out */
     }
+}
+
+.AbsoluteContentContainer button {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    transition: .5s;
+}
+
+.AbsoluteContentContainer button:hover {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    background-color: rgb(74, 144, 226);
+    color: white;
+    transition: .5s;
 }
