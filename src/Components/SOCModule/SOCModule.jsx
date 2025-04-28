@@ -34,6 +34,31 @@ const SOCModule = () => {
         },
 
     ]
+
+
+
+    const OurPositioningData = [
+        {
+            title: "Sovereign Tech",
+            icon: "/Images/SOCIcons/SovereignTech.svg",
+            description: "Independence from global IP silos"
+        },
+        {
+            title: "Custom for Bharat",
+            icon: "/Images/SOCIcons/CustomforBharat.svg",
+            description: "Tuned for Indian terrains, use-cases & costs"
+        },
+        {
+            title: "Global Standards",
+            icon: "/Images/SOCIcons/GlobalStandards.svg",
+            description: "Built with automotive-grade reliability & ISO compliance"
+        },
+        {
+            title: "Scalable IP",
+            icon: "/Images/SOCIcons/ScalableIP.svg",
+            description: "Core architecture extendable from smart sensors to autonomous vehicles"
+        },
+    ]
     return (
         <>
             <section>
@@ -50,7 +75,7 @@ const SOCModule = () => {
                                 <h1 data-aos="fade-up" data-aos-duration="1400" className="ContainerHeading" style={{ color: "white" }}>India's Silicon Breakthrough: IndieSemic’s RISC-V Revolution</h1>
                                 <p style={{ color: "white" }}>From microcontroller to multi-core AI—empowering automotive and surveillance systems with homegrown precision.</p>
                                 <br />
-                                <button>Get in Touch</button>
+                                <button className="SOCButton">Get in Touch</button>
                             </div>
                             <div className="BottomContentContainer">
                                 <div>
@@ -64,21 +89,7 @@ const SOCModule = () => {
                     </div>
                 </div>
                 <div className="section_Padding" id="SOCMainContainer">
-                    <div>
-                        <h2 className="ContainerHeading">Engineered at the Edge—India’s Own RISC-V Microcontroller</h2>
-                    </div>
                     <br /><br />
-                    <div className="ImagesGalleryContainer">
-                        <Row>
-                            {ImageGalleryImages.map((item, index) => (
-                                <Col lg={8} md={12} style={{ width: "100%" }} key={index} data-aos="fade-up" data-aos-animation="1200" data-aos-delay={index * 300}>
-                                    <div>
-                                        <img src={item.SocImage} alt="" />
-                                    </div>
-                                </Col>
-                            ))}
-                        </Row>
-                    </div>
                     <div className="ChiprelatedDescriptionContainer" style={{ overflow: "hidden" }}>
                         <div>
                             <h2 className="ContainerHeading">Introducing Project “Vajra”: India’s Quad-Core AI Processor</h2>
@@ -102,13 +113,37 @@ const SOCModule = () => {
                                                 <h2>{item.SocCardTitle}</h2>
                                             </div>
                                         ))}
-
                                     </div>
                                 </div>
                             </Col>
                         </Row>
                     </div>
+                    <div className="AnimatedCardsContainerEdit">
+                        <div className="sensor-tech-section">
+                            <h2 className="ContainerHeading text-center">
+                                Engineered at the Edge—India’s Own RISC-V Microcontroller
+                            </h2>
+                            <div className="sensor-features-container">
+                                <Row gutter={24}>
+                                    {OurPositioningData.map((feature, index) => (
+                                        <Col lg={12} md={24} sm={24} key={index}>
+                                            <div className="sensor-feature-card" data-aos="fade-up" data-aos-delay={index * 200}>
+                                                <img src={feature.icon} alt="Indiesemic Microcontroller Cards Images" />
+                                                <h3>{feature.title}</h3>
+                                                <p style={{ margin: "0px" }}>{feature.description}</p>
+                                            </div>
+                                        </Col>
+                                    ))}
+                                </Row>
+                            </div>
+                        </div>
+                        <div style={{ display: "flex", gap: "20px", justifyContent: "center" }}>
+                            <button className="SOCButton">Download Tech Brief</button>
+                            <button className="SOCButton">Get in Touch with Our Team</button>
+                        </div>
+                    </div>
                 </div>
+
             </section>
         </>
     )
