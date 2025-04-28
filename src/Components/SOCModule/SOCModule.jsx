@@ -22,6 +22,7 @@ const SOCModule = () => {
         },
     ]
 
+
     const ImageGalleryImages = [
         {
             SocImage: "https://cdn.prod.website-files.com/673df36634025fb6cd805026/673df36634025fb6cd805077_service_3-2.webp",
@@ -59,6 +60,30 @@ const SOCModule = () => {
             description: "Core architecture extendable from smart sensors to autonomous vehicles"
         },
     ]
+
+
+    const OurPositioningData2 = [
+        {
+            SocCardTitle: "- Single-core 32-bit RISC-V MCU – Successfully taped out",
+            icon: "/Images/SOCIcons/SovereignTech.svg",
+            description: "Independence from global IP silos"
+        },
+        {
+            SocCardTitle: "- Designed for embedded, low-power smart systems",
+            icon: "/Images/SOCIcons/SovereignTech.svg",
+            description: "Independence from global IP silos"
+        },
+        {
+            SocCardTitle: "- Developed with a lean, agile silicon team in India",
+            icon: "/Images/SOCIcons/SovereignTech.svg",
+            description: "Independence from global IP silos"
+        },
+        {
+            SocCardTitle: "- Paving the path for custom silicon innovation at scale",
+            icon: "/Images/SOCIcons/SovereignTech.svg",
+            description: "Independence from global IP silos"
+        },
+    ]
     return (
         <>
             <section>
@@ -92,6 +117,34 @@ const SOCModule = () => {
                     <br /><br />
                     <div className="ChiprelatedDescriptionContainer" style={{ overflow: "hidden" }}>
                         <div>
+                            <h2 className="ContainerHeading">Engineered at the Edge—India’s Own RISC-V Microcontroller</h2>
+                            {/* <p>Designed for vision. Built for autonomy. Powered by RISC-V.</p> */}
+                        </div>
+                        <br /><br />
+                        <Row>
+                            <Col lg={12} data-aos="fade-left" data-aos-animation="3000" data-aos-delay="800" >
+                                <div className="RightSideContentContainerAboutChip" style={{ margin: "0px" }}>
+                                    <div>
+                                        {OurPositioningData2.map((item, index) => (
+                                            <div key={index}>
+                                                <h2>{item.SocCardTitle}</h2>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </Col>
+                            <Col lg={12} data-aos="fade-right" data-aos-animation="3000" data-aos-delay="400" >
+                                <div className="fadeImage">
+                                    <img
+                                        src="https://cdn.prod.website-files.com/673df36634025fb6cd805026/673df36634025fb6cd805094_FIN_Service_02-min.jpg"
+                                        alt="Smooth Fading Image"
+                                    />
+                                </div>
+                            </Col>
+                        </Row>
+                    </div>
+                    <div className="ChiprelatedDescriptionContainer" style={{ overflow: "hidden" }}>
+                        <div>
                             <h2 className="ContainerHeading">Introducing Project “Vajra”: India’s Quad-Core AI Processor</h2>
                             <p>Designed for vision. Built for autonomy. Powered by RISC-V.</p>
                         </div>
@@ -118,6 +171,7 @@ const SOCModule = () => {
                             </Col>
                         </Row>
                     </div>
+
                     <div className="AnimatedCardsContainerEdit">
                         <div className="sensor-tech-section">
                             <h2 className="ContainerHeading text-center">
@@ -141,6 +195,15 @@ const SOCModule = () => {
                             <button className="SOCButton">Download Tech Brief</button>
                             <button className="SOCButton">Get in Touch with Our Team</button>
                         </div>
+                    </div>
+                    <br /><br />
+
+                </div>
+                <div className="ImageStickyContainer">
+                    <div>
+                        <h1 className="ContainerHeading">Be a Part of India’s Semiconductor Future</h1>
+                        <p>We’re partnering with Tier-1s, OEMs, and Innovators to redefine compute in motion.</p>
+                        <p><b><i>“Join our journey. Let’s make India the brain of the machines that move the world.”</i></b></p>
                     </div>
                 </div>
 

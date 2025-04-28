@@ -69,6 +69,44 @@
   /* Fade in */
 }
 
+
+.ImageStickyContainer{
+  height: 70vh;
+  overflow: hidden;
+  position: relative;
+  background-image: url("/Images/blue-circuit-board-shows-complexity-technology-generated-by-ai_188544-31023.jpg");
+  background-attachment: fixed;
+}
+
+.ImageStickyContainer::after{
+  content: "";
+  display: inline-block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #0000007a;
+  opacity: 1;
+  z-index: 1;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+}
+.ImageStickyContainer div:nth-child(1){
+  position: absolute;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    z-index: 10;
+}
+.ImageStickyContainer div:nth-child(1) h1{
+  color: white !important;
+}
 @media (max-width: 769px) {
   #ModulesDataContainer .ContentRow {
     margin-top: 0;
@@ -115,3 +153,4 @@
 
 
 }
+
