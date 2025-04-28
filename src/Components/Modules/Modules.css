@@ -107,6 +107,12 @@
 .ImageStickyContainer div:nth-child(1) h1{
   color: white !important;
 }
+
+.NewBackSection{
+  background-color: #eaf6ffce !important;
+  padding: 7rem 4rem !important; 
+  position: relative;
+}
 @media (max-width: 769px) {
   #ModulesDataContainer .ContentRow {
     margin-top: 0;

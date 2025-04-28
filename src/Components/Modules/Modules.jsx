@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react"
 import "./Modules.css"
 import { Row, Col } from 'antd';
-import LeftSide from "../OurExpertise/LeftSide.jpeg"
-import BackShapeImg from "../OurExpertise/BackShapeImg.svg"
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import ContactHome from "../ContactHome/ContactHome";
 
@@ -115,7 +113,6 @@ const Modules = () => {
             </section> */}
             <section className="section_Padding" id="ModulesDataContainer">
                 <div className='ExpertiseCardContainer'>
-                    {/* <img src={BackShapeImg} alt="" className='Overlayimage' /> */}
                     <div className="DesignedContainer" id='Target'>
                         <h1 style={{ textAlign: "left" }}><span style={{ color: "rgb(74, 144, 226)" }}>Versatile Modules</span>  for Tomorrow’s Smart Technologies</h1>
                         {/* <p>Revolutionizing the future of technology with cutting-edge chip design and development.</p> */}

@@ -113,7 +113,7 @@ const SOCModule = () => {
                         </div>
                     </div>
                 </div>
-                <div className="section_Padding" id="SOCMainContainer">
+                <div className="section_Padding" id="SOCMainContainer" style={{paddingBottom:"0px"}}>
                     <br /><br />
                     <div className="ChiprelatedDescriptionContainer" style={{ overflow: "hidden" }}>
                         <div>
@@ -143,35 +143,41 @@ const SOCModule = () => {
                             </Col>
                         </Row>
                     </div>
-                    <div className="ChiprelatedDescriptionContainer" style={{ overflow: "hidden" }}>
-                        <div>
-                            <h2 className="ContainerHeading">Introducing Project “Vajra”: India’s Quad-Core AI Processor</h2>
-                            <p>Designed for vision. Built for autonomy. Powered by RISC-V.</p>
-                        </div>
-                        <br /><br />
-                        <Row>
-                            <Col lg={12} data-aos="fade-right" data-aos-animation="3000" data-aos-delay="400" >
-                                <div className="fadeImage">
-                                    <img
-                                        src="https://cdn.prod.website-files.com/673df36634025fb6cd805026/673df36634025fb6cd805094_FIN_Service_02-min.jpg"
-                                        alt="Smooth Fading Image"
-                                    />
-                                </div>
-                            </Col>
-                            <Col lg={12} data-aos="fade-left" data-aos-animation="3000" data-aos-delay="800" >
-                                <div className="RightSideContentContainerAboutChip">
-                                    <div>
-                                        {PointsData.map((item, index) => (
-                                            <div key={index}>
-                                                <h2>{item.SocCardTitle}</h2>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </Col>
-                        </Row>
-                    </div>
 
+
+
+
+                </div>
+                <div className="ChiprelatedDescriptionContainer NewBackSection" style={{ overflow: "hidden" }}>
+                <img src="/Images/BackShapeImg.svg" alt="" className="BackShapeImg Overlayimage" />
+                    <div>
+                        <h2 className="ContainerHeading">Introducing Project “Vajra”: India’s Quad-Core AI Processor</h2>
+                        <p>Designed for vision. Built for autonomy. Powered by RISC-V.</p>
+                    </div>
+                    <br /><br />
+                    <Row>
+                        <Col lg={12} data-aos="fade-right" data-aos-animation="3000" data-aos-delay="400" >
+                            <div className="fadeImage">
+                                <img
+                                    src="https://cdn.prod.website-files.com/673df36634025fb6cd805026/673df36634025fb6cd805094_FIN_Service_02-min.jpg"
+                                    alt="Smooth Fading Image"
+                                />
+                            </div>
+                        </Col>
+                        <Col lg={12} data-aos="fade-left" data-aos-animation="3000" data-aos-delay="800" >
+                            <div className="RightSideContentContainerAboutChip">
+                                <div>
+                                    {PointsData.map((item, index) => (
+                                        <div key={index}>
+                                            <h2>{item.SocCardTitle}</h2>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                </div>
+                <div className="section_Padding" style={{paddingTop:"0px"}}>
                     <div className="AnimatedCardsContainerEdit">
                         <div className="sensor-tech-section">
                             <h2 className="ContainerHeading text-center">
@@ -196,9 +202,8 @@ const SOCModule = () => {
                             <button className="SOCButton">Get in Touch with Our Team</button>
                         </div>
                     </div>
-                    <br /><br />
-
                 </div>
+                <br /><br />
                 <div className="ImageStickyContainer">
                     <div>
                         <h1 className="ContainerHeading">Be a Part of India’s Semiconductor Future</h1>
