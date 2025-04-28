@@ -114,6 +114,11 @@
   position: relative;
 }
 @media (max-width: 769px) {
+  .NewBackSection{
+    background-color: #eaf6ffce !important;
+    padding: 4rem 1rem !important; 
+    position: relative;
+  }
   #ModulesDataContainer .ContentRow {
     margin-top: 0;
     margin-bottom: 0rem;

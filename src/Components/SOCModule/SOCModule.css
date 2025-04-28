@@ -264,3 +264,37 @@
     object-fit: contain;
     margin-bottom: 30px;
 }
+
+@media (max-width: 768px) {
+    .ContainerHeading {
+        color: rgb(63, 125, 196);
+        font-size: 3rem;
+        font-weight: 400;
+        line-height: 1.2;
+    }
+    .ChiprelatedDescriptionContainer .ant-row .ant-col .RightSideContentContainerAboutChip {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 0px;
+    }
+    .AbsoluteContentContainer>div:first-child {
+        padding: 0px 10px;
+        width: 100%;
+    }
+    .BottomContentContainer {
+        
+        display: flex;
+        flex-direction: column;
+        margin: 0px !important;
+        bottom: 0px  !important;
+    }
+    .BottomContentContainer div:first-child {
+        width: 100%;
+    }
+    
+    .BottomContentContainer div:first-child h2 {
+        width: 100%;
+    }
+}
