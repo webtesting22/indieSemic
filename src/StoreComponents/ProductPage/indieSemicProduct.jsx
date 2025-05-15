@@ -105,6 +105,9 @@ const IndieSemicProduct = () => {
             />
             <section className="AllProductsContainer section_Padding">
                 {/* Mobile Filter Button */}
+                <div className="productPagebackground">
+                <img src="/Images/BackShapeImg.svg" alt="" />
+            </div>
                 <div className="mobile-filter-button">
                     <Button
                         type="primary"

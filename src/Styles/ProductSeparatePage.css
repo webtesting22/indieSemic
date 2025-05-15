@@ -35,8 +35,16 @@
     padding: 20px;
 }
 
+.TopImagemainContainer {
+    background-color: rgb(241, 241, 241);
+}
+
 .ProductDescriptionContainer {
     margin-top: 30px;
+}
+
+.ProductDescriptionContainer .ant-tabs-tab {
+    border-radius: 20px !important;
 }
 
 .TabDescriptionContainer {
@@ -95,18 +103,26 @@
 .thumbnailRow .ant-row .ant-col {
     padding: 5px;
 }
-.ProductDetailsContainer{
+
+.ProductDetailsContainer {
     position: relative;
 }
-.ProductDetailsContainer button{
+
+.ProductDetailsContainer button {
     position: absolute;
     right: 0px;
     top: 0px;
 }
+
 @media (max-width:900px) {
-    .mainImageContainer{
+    .ProductDetailsContainer {
+        position: relative;
+    }
+
+    .mainImageContainer {
         min-height: 130px;
     }
+
     #ProductOtherImagesContainer {
         height: 130px;
         overflow: hidden;

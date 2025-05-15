@@ -2,23 +2,24 @@ import React from "react";
 import SOCBackImahe from "./TryBanner.jpg"
 import "./SOCModule.css"
 import { Row, Col } from "antd";
+import { IoArrowRedoCircle } from "react-icons/io5";
 
 const SOCModule = () => {
     const PointsData = [
         {
-            SocCardTitle: "- Targets next-gen Automotive & ADAS systems",
+            SocCardTitle: "Targets next-gen Automotive & ADAS systems",
         },
         {
-            SocCardTitle: "- Integrated support for Radar, Lidar, Camera feeds",
+            SocCardTitle: "Integrated support for Radar, Lidar, Camera feeds",
         },
         {
-            SocCardTitle: "- On-chip AI acceleration – for real-time vision compute",
+            SocCardTitle: "On-chip AI acceleration – for real-time vision compute",
         },
         {
-            SocCardTitle: "- Optimized for neural net inferencing at the edge",
+            SocCardTitle: "Optimized for neural net inferencing at the edge",
         },
         {
-            SocCardTitle: "- Secure, modular, scalable—designed for critical safety",
+            SocCardTitle: "Secure, modular, scalable—designed for critical safety",
         },
     ]
 
@@ -64,22 +65,22 @@ const SOCModule = () => {
 
     const OurPositioningData2 = [
         {
-            SocCardTitle: "- Single-core 32-bit RISC-V MCU – Successfully taped out",
+            SocCardTitle: "Single-core 32-bit RISC-V MCU – Successfully taped out",
             icon: "/Images/SOCIcons/SovereignTech.svg",
             description: "Independence from global IP silos"
         },
         {
-            SocCardTitle: "- Designed for embedded, low-power smart systems",
+            SocCardTitle: "Designed for embedded, low-power smart systems",
             icon: "/Images/SOCIcons/SovereignTech.svg",
             description: "Independence from global IP silos"
         },
         {
-            SocCardTitle: "- Developed with a lean, agile silicon team in India",
+            SocCardTitle: "Developed with a lean, agile silicon team in India",
             icon: "/Images/SOCIcons/SovereignTech.svg",
             description: "Independence from global IP silos"
         },
         {
-            SocCardTitle: "- Paving the path for custom silicon innovation at scale",
+            SocCardTitle: "Paving the path for custom silicon innovation at scale",
             icon: "/Images/SOCIcons/SovereignTech.svg",
             description: "Independence from global IP silos"
         },
@@ -113,7 +114,7 @@ const SOCModule = () => {
                         </div>
                     </div>
                 </div>
-                <div className="section_Padding" id="SOCMainContainer" style={{paddingBottom:"0px"}}>
+                <div className="section_Padding" id="SOCMainContainer" style={{ paddingBottom: "0px" }}>
                     <br /><br />
                     <div className="ChiprelatedDescriptionContainer" style={{ overflow: "hidden" }}>
                         <div>
@@ -126,8 +127,8 @@ const SOCModule = () => {
                                 <div className="RightSideContentContainerAboutChip" style={{ margin: "0px" }}>
                                     <div>
                                         {OurPositioningData2.map((item, index) => (
-                                            <div key={index}>
-                                                <h2>{item.SocCardTitle}</h2>
+                                            <div key={index} style={{display:"flex",alignItems:"center",gap:"10px"}}>
+                                                <IoArrowRedoCircle style={{fontSize:"30px"}}/><h2>{item.SocCardTitle}</h2>
                                             </div>
                                         ))}
                                     </div>
@@ -149,7 +150,7 @@ const SOCModule = () => {
 
                 </div>
                 <div className="ChiprelatedDescriptionContainer NewBackSection" style={{ overflow: "hidden" }}>
-                <img src="/Images/BackShapeImg.svg" alt="" className="BackShapeImg Overlayimage" />
+                    <img src="/Images/BackShapeImg.svg" alt="" className="BackShapeImg Overlayimage" />
                     <div>
                         <h2 className="ContainerHeading">Introducing Project “Vajra”: India’s Quad-Core AI Processor</h2>
                         <p>Designed for vision. Built for autonomy. Powered by RISC-V.</p>
@@ -168,8 +169,8 @@ const SOCModule = () => {
                             <div className="RightSideContentContainerAboutChip">
                                 <div>
                                     {PointsData.map((item, index) => (
-                                        <div key={index}>
-                                            <h2>{item.SocCardTitle}</h2>
+                                        <div key={index} style={{display:"flex",alignItems:"center",gap:"10px"}}>
+                                            <IoArrowRedoCircle style={{fontSize:"30px"}}/><h2>{item.SocCardTitle}</h2>
                                         </div>
                                     ))}
                                 </div>
@@ -177,7 +178,7 @@ const SOCModule = () => {
                         </Col>
                     </Row>
                 </div>
-                <div className="section_Padding" style={{paddingTop:"0px"}}>
+                <div className="section_Padding" style={{ paddingTop: "0px" }}>
                     <div className="AnimatedCardsContainerEdit">
                         <div className="sensor-tech-section">
                             <h2 className="ContainerHeading text-center">

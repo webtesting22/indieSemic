@@ -160,7 +160,7 @@
     padding: 12px 20px;
     border-radius: 5px;
     transition: .5s;
-    background-color: black;
+    background-color: rgb(63, 125, 196);
     color: white;
 }
 
@@ -213,11 +213,41 @@
     align-items: center;
     position: relative;
     border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid rgb(63, 125, 196);
 }
 
 .sensor-feature-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgb(63, 125, 196);
+}
+
+.sensor-feature-card::after {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: -7px;
+    height: 50px;
+    width: 50px;
+    background-color: rgb(63, 125, 196);
+    z-index: -1;
+    border-radius: 20px 10px 0px 10px;
+    transition: .5s;
+
+}
+
+.sensor-feature-card::before {
+    content: "";
+    position: absolute;
+    right: -7px;
+    bottom: -7px;
+    height: 50px;
+    width: 50px;
+    background-color: rgb(63, 125, 196);
+    z-index: -1;
+    border-radius: 10px 10px 20px 0px;
+    transition: .5s;
+
 }
 
 .feature-indicator {
@@ -272,6 +302,7 @@
         font-weight: 400;
         line-height: 1.2;
     }
+
     .ChiprelatedDescriptionContainer .ant-row .ant-col .RightSideContentContainerAboutChip {
         height: 100%;
         display: flex;
@@ -279,21 +310,24 @@
         justify-content: center;
         margin-left: 0px;
     }
+
     .AbsoluteContentContainer>div:first-child {
         padding: 0px 10px;
         width: 100%;
     }
+
     .BottomContentContainer {
-        
+
         display: flex;
         flex-direction: column;
         margin: 0px !important;
-        bottom: 0px  !important;
+        bottom: 0px !important;
     }
+
     .BottomContentContainer div:first-child {
         width: 100%;
     }
-    
+
     .BottomContentContainer div:first-child h2 {
         width: 100%;
     }
