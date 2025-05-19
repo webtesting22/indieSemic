@@ -10,6 +10,7 @@ import SOCModule from "../Components/SOCModule/SOCModule";
 import SeparateProductPage from "../StoreComponents/ProductPage/SeparateProductpage";
 import IndividualProduct from "../StoreComponents/ProductPage/individualProduct";
 import NavigationWrap from "../Components/MegaNavigation.jsx/MegaNavigatioIndex";
+import Services from "../Components/Services/Services";
 const DynamicRoutes = () => {
     return (
         <>
@@ -20,6 +21,7 @@ const DynamicRoutes = () => {
                 <Route path="/product/:id" element={<IndividualProduct />} />
                 <Route path="/Modules" element={<Modules />} />
                 <Route path="/socmodule" element={<SOCModule />} />
+                <Route path="/services" element={<Services />} />
             </Routes>
             <Footer />
         </>

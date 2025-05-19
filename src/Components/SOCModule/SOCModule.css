@@ -296,9 +296,12 @@
 }
 
 @media (max-width: 768px) {
+    .SOCButton{
+        display: none;
+    }
     .ContainerHeading {
         color: rgb(63, 125, 196);
-        font-size: 3rem;
+        font-size: 30px;
         font-weight: 400;
         line-height: 1.2;
     }
