@@ -38,9 +38,8 @@ const MegaNavigation = () => {
     const [drawerVisible, setDrawerVisible] = useState(false);  // To manage drawer visibility
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const { products, addToCart } = useContext(ProductContext);
-    const categories = [...new Set(products.map(p => p.category))];
+    const categories = [...new Set(products?.map(p => p.category))];
     const [selectedCategory, setSelectedCategory] = useState(categories[0]);
-
     const filteredProducts = products.filter(p => p.category === selectedCategory);
 
     const handleCategoryHover = (category) => {
@@ -180,7 +179,19 @@ const MegaNavigation = () => {
                                         >
                                         </Button>
                                         <Drawer
-
+                                            title={<>
+                                                <div style={{display:"flex",justifyContent:"end"}}>
+                                                <Button
+                                                    type="text"
+                                                    icon={"X"}
+                                                    onClick={toggleDrawer}
+                                                    style={{
+                                                        fontSize: '16px',
+                                                        padding: '0 8px',
+                                                    }}
+                                                />
+                                                </div>
+                                            </>}
                                             placement="left"
                                             closable={false}
                                             onClose={toggleDrawer}
@@ -188,6 +199,7 @@ const MegaNavigation = () => {
                                             width={300}
                                         >
                                             <div id='Collapse'>
+
                                                 {/* <Collapse accordion>
                                                     {NavigationData.map((item, index) => (
                                                         <Collapse.Panel header={item.link} key={index}>
@@ -196,15 +208,16 @@ const MegaNavigation = () => {
                                                     ))}
                                                 </Collapse> */}
                                                 <ul style={{ listStyleType: 'none', padding: 0 }}>
-                                                    {NavigationData.map((item, index) => (
+                                                {NavigationData.slice(0, NavigationData.length - 4).map((item, index) => (
                                                         <li key={index} style={{ marginBottom: '1rem' }}>
                                                             <Link
                                                                 to={item.path} // Use `item.path` for the href
                                                                 style={{
-                                                                    color: "black",
                                                                     fontSize: "16px",
                                                                     textDecoration: "none",
+
                                                                 }}
+                                                                className='MobileNavigationLink'
                                                                 onClick={toggleDrawer} // Close drawer on link click
                                                             >
                                                                 {item.link}
@@ -219,7 +232,7 @@ const MegaNavigation = () => {
                                     <>
 
                                         <ul style={{ listStyleType: 'none', padding: 0, paddingRight: "2rem", margin: "0px" }}>
-                                            {NavigationData.map((item, index) => (
+                                        {NavigationData.slice(0, NavigationData.length - 4).map((item, index) => (
                                                 <li key={index} style={{ display: 'inline-block' }}>
                                                     <div className="dropdown">
                                                         <div className="dropdown-with-mega">
@@ -267,7 +280,6 @@ const MegaNavigation = () => {
                                                                 </div>
                                                             )}
                                                         </div>
-
                                                     </div>
                                                 </li>
                                             ))}

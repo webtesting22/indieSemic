@@ -11,6 +11,10 @@ import SeparateProductPage from "../StoreComponents/ProductPage/SeparateProductp
 import IndividualProduct from "../StoreComponents/ProductPage/individualProduct";
 import NavigationWrap from "../Components/MegaNavigation.jsx/MegaNavigatioIndex";
 import Services from "../Components/Services/Services";
+import TermsandConditions from "../Components/TermsAndConditionPages/TermsandConditions";
+import PrivacyPolicy from "../Components/TermsAndConditionPages/PrivacyPolicy";
+import ShippingDeliveryPolicy from "../Components/TermsAndConditionPages/ShippingandDeliveryPolicy";
+import CancellationRefundPolicy from "../Components/TermsAndConditionPages/CancellationandRefundPolicy";
 const DynamicRoutes = () => {
     return (
         <>
@@ -22,6 +26,10 @@ const DynamicRoutes = () => {
                 <Route path="/Modules" element={<Modules />} />
                 <Route path="/socmodule" element={<SOCModule />} />
                 <Route path="/services" element={<Services />} />
+                <Route path="/terms-and-conditions" element={<TermsandConditions />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/shipping-delivery-policy" element={<ShippingDeliveryPolicy />} />
+                <Route path="/cancellation-refund-policy" element={<CancellationRefundPolicy />} />
             </Routes>
             <Footer />
         </>

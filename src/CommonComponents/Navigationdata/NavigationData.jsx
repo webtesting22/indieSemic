@@ -1,12 +1,12 @@
 const NavigationData = [
-    {
-        link: "Home",
-        path: ""
-    },
     // {
-    //     link: "Products",
-    //     path: "/product"
+    //     link: "Home",
+    //     path: ""
     // },
+    {
+        link: "Products",
+        path: "/product"
+    },
     // {
     //     link: "Processor/SoC",
     //     path: "/socmodule"
@@ -22,6 +22,23 @@ const NavigationData = [
     {
         link: "Modules",
         path: "/Modules",
+    },
+    
+    {
+        link: "Terms and Conditions",
+        path: "/terms-and-conditions",
+    },
+    {
+        link: "Privacy Policy",
+        path: "/privacy-policy",
+    },
+    {
+        link: "Shipping Delivery Policy",
+        path: "/shipping-delivery-policy",
+    },
+    {
+        link: "Cancellation Refund Policy",
+        path: "/cancellation-refund-policy",
     },
     // {
     //     link: "Contact Us",
