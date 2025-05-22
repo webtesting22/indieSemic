@@ -3,10 +3,10 @@ const NavigationData = [
     //     link: "Home",
     //     path: ""
     // },
-    {
-        link: "Products",
-        path: "/product"
-    },
+    // {
+    //     link: "Products",
+    //     path: "/product"
+    // },
     // {
     //     link: "Processor/SoC",
     //     path: "/socmodule"
