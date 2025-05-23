@@ -385,180 +385,180 @@ const GetQuotationModal = () => {
                                 </Button>
                             </div>
                         </div>
-                       </>
+                    </>
                 ]}
-                        width={1000}
-                        centered
-                        bodyStyle={{ padding: "24px" }}
-                        style={{ top: 20 }}
+                width={1000}
+                centered
+                bodyStyle={{ padding: "24px" }}
+                style={{ top: 20 }}
             >
-                        <div style={{
-                            border: "1px solid #f0f0f0",
-                            borderRadius: "8px",
-                            padding: "20px",
-                            marginBottom: "24px",
-                            background: "#fafafa"
-                        }}>
-                            <Typography.Title level={5} style={{ marginTop: 0, marginBottom: "16px" }}>
-                                Contact Information
+                <div style={{
+                    border: "1px solid #f0f0f0",
+                    borderRadius: "8px",
+                    padding: "20px",
+                    marginBottom: "24px",
+                    background: "#fafafa"
+                }}>
+                    <Typography.Title level={5} style={{ marginTop: 0, marginBottom: "16px" }}>
+                        Contact Information
+                        <span style={{ color: "#ff4d4f", marginLeft: "4px" }}>*</span>
+                    </Typography.Title>
+
+                    <Row gutter={[24, 24]}>
+                        <Col span={8}>
+                            <div style={{ marginBottom: "8px" }}>
+                                <Typography.Text strong>Full Name</Typography.Text>
                                 <span style={{ color: "#ff4d4f", marginLeft: "4px" }}>*</span>
-                            </Typography.Title>
-
-                            <Row gutter={[24, 24]}>
-                                <Col span={8}>
-                                    <div style={{ marginBottom: "8px" }}>
-                                        <Typography.Text strong>Full Name</Typography.Text>
-                                        <span style={{ color: "#ff4d4f", marginLeft: "4px" }}>*</span>
-                                    </div>
-                                    <Input
-                                        name="name"
-                                        placeholder="Enter your full name"
-                                        value={userDetails.name}
-                                        onChange={handleInputChange}
-                                        style={{ borderRadius: "4px" }}
-                                        prefix={<UserOutlined style={{ color: "#bfbfbf" }} />}
-                                    />
-                                </Col>
-                                <Col span={8}>
-                                    <div style={{ marginBottom: "8px" }}>
-                                        <Typography.Text strong>Email Address</Typography.Text>
-                                        <span style={{ color: "#ff4d4f", marginLeft: "4px" }}>*</span>
-                                    </div>
-                                    <Input
-                                        name="email"
-                                        placeholder="Enter your email address"
-                                        value={userDetails.email}
-                                        onChange={handleInputChange}
-                                        style={{ borderRadius: "4px" }}
-                                        prefix={<MailOutlined style={{ color: "#bfbfbf" }} />}
-                                        status={emailStatus}
-                                        suffix={
-                                            emailStatus === "error" ? (
-                                                <Tooltip title={emailError}>
-                                                    <ExclamationCircleOutlined style={{ color: "#ff4d4f" }} />
-                                                </Tooltip>
-                                            ) : emailStatus === "success" ? (
-                                                <CheckCircleOutlined style={{ color: "#52c41a" }} />
-                                            ) : null
-                                        }
-                                    />
-                                    {emailError && (
-                                        <div style={{ color: "#ff4d4f", fontSize: "12px", marginTop: "4px" }}>
-                                            {emailError}
-                                        </div>
-                                    )}
-                                </Col>
-                                <Col span={8}>
-                                    <div style={{ marginBottom: "8px" }}>
-                                        <Typography.Text strong>Contact Number</Typography.Text>
-                                        <span style={{ color: "#ff4d4f", marginLeft: "4px" }}>*</span>
-                                    </div>
-                                    <Input
-                                        type="number"
-                                        name="contact"
-                                        placeholder="Enter your phone number"
-                                        value={userDetails.contact}
-                                        onChange={handleInputChange}
-                                        style={{ borderRadius: "4px" }}
-                                        prefix={<PhoneOutlined style={{ color: "#bfbfbf" }} />}
-                                    />
-                                </Col>
-                                <Col span={8}>
-                                    <div style={{ marginBottom: "8px" }}>
-                                        <Typography.Text strong>Company</Typography.Text>
-                                        <span style={{ color: "#d9d9d9", marginLeft: "4px", fontSize: "12px" }}>
-                                            (Optional)
-                                        </span>
-                                    </div>
-                                    <Input
-                                        name="company"
-                                        placeholder="Enter your company name"
-                                        value={userDetails.company}
-                                        onChange={handleInputChange}
-                                        style={{ borderRadius: "4px" }}
-                                        prefix={<BankOutlined style={{ color: "#bfbfbf" }} />}
-                                    />
-                                </Col>
-                                <Col span={8}>
-                                    <div style={{ marginBottom: "8px" }}>
-                                        <Typography.Text strong>Designation</Typography.Text>
-                                        <span style={{ color: "#d9d9d9", marginLeft: "4px", fontSize: "12px" }}>
-                                            (Optional)
-                                        </span>
-                                    </div>
-                                    <Input
-                                        name="designation"
-                                        placeholder="Enter your job title"
-                                        value={userDetails.designation}
-                                        onChange={handleInputChange}
-                                        style={{ borderRadius: "4px" }}
-                                        prefix={<IdcardOutlined style={{ color: "#bfbfbf" }} />}
-                                    />
-                                </Col>
-                                <Col span={8}>
-                                    <div style={{ marginBottom: "8px" }}>
-                                        <Typography.Text strong>Address</Typography.Text>
-                                        <span style={{ color: "#d9d9d9", marginLeft: "4px", fontSize: "12px" }}>
-                                            (Optional)
-                                        </span>
-                                    </div>
-                                    <Input
-                                        name="address"
-                                        placeholder="Enter your address"
-                                        value={userDetails.address}
-                                        onChange={handleInputChange}
-                                        style={{ borderRadius: "4px" }}
-                                        prefix={<HomeOutlined style={{ color: "#bfbfbf" }} />}
-                                    />
-                                </Col>
-                            </Row>
-
-                            {!formValid && (
-                                <Alert
-                                    message="Please fill all required fields marked with * to proceed with product selection."
-                                    type="info"
-                                    showIcon
-                                    style={{ marginTop: "16px", borderRadius: "4px" }}
-                                />
+                            </div>
+                            <Input
+                                name="name"
+                                placeholder="Enter your full name"
+                                value={userDetails.name}
+                                onChange={handleInputChange}
+                                style={{ borderRadius: "4px" }}
+                                prefix={<UserOutlined style={{ color: "#bfbfbf" }} />}
+                            />
+                        </Col>
+                        <Col span={8}>
+                            <div style={{ marginBottom: "8px" }}>
+                                <Typography.Text strong>Email Address</Typography.Text>
+                                <span style={{ color: "#ff4d4f", marginLeft: "4px" }}>*</span>
+                            </div>
+                            <Input
+                                name="email"
+                                placeholder="Enter your email address"
+                                value={userDetails.email}
+                                onChange={handleInputChange}
+                                style={{ borderRadius: "4px" }}
+                                prefix={<MailOutlined style={{ color: "#bfbfbf" }} />}
+                                status={emailStatus}
+                                suffix={
+                                    emailStatus === "error" ? (
+                                        <Tooltip title={emailError}>
+                                            <ExclamationCircleOutlined style={{ color: "#ff4d4f" }} />
+                                        </Tooltip>
+                                    ) : emailStatus === "success" ? (
+                                        <CheckCircleOutlined style={{ color: "#52c41a" }} />
+                                    ) : null
+                                }
+                            />
+                            {emailError && (
+                                <div style={{ color: "#ff4d4f", fontSize: "12px", marginTop: "4px" }}>
+                                    {emailError}
+                                </div>
                             )}
+                        </Col>
+                        <Col span={8}>
+                            <div style={{ marginBottom: "8px" }}>
+                                <Typography.Text strong>Contact Number</Typography.Text>
+                                <span style={{ color: "#ff4d4f", marginLeft: "4px" }}>*</span>
+                            </div>
+                            <Input
+                                type="number"
+                                name="contact"
+                                placeholder="Enter your phone number"
+                                value={userDetails.contact}
+                                onChange={handleInputChange}
+                                style={{ borderRadius: "4px" }}
+                                prefix={<PhoneOutlined style={{ color: "#bfbfbf" }} />}
+                            />
+                        </Col>
+                        <Col span={8}>
+                            <div style={{ marginBottom: "8px" }}>
+                                <Typography.Text strong>Company</Typography.Text>
+                                <span style={{ color: "#d9d9d9", marginLeft: "4px", fontSize: "12px" }}>
+                                    (Optional)
+                                </span>
+                            </div>
+                            <Input
+                                name="company"
+                                placeholder="Enter your company name"
+                                value={userDetails.company}
+                                onChange={handleInputChange}
+                                style={{ borderRadius: "4px" }}
+                                prefix={<BankOutlined style={{ color: "#bfbfbf" }} />}
+                            />
+                        </Col>
+                        <Col span={8}>
+                            <div style={{ marginBottom: "8px" }}>
+                                <Typography.Text strong>Designation</Typography.Text>
+                                <span style={{ color: "#d9d9d9", marginLeft: "4px", fontSize: "12px" }}>
+                                    (Optional)
+                                </span>
+                            </div>
+                            <Input
+                                name="designation"
+                                placeholder="Enter your job title"
+                                value={userDetails.designation}
+                                onChange={handleInputChange}
+                                style={{ borderRadius: "4px" }}
+                                prefix={<IdcardOutlined style={{ color: "#bfbfbf" }} />}
+                            />
+                        </Col>
+                        <Col span={8}>
+                            <div style={{ marginBottom: "8px" }}>
+                                <Typography.Text strong>Address</Typography.Text>
+                                <span style={{ color: "#d9d9d9", marginLeft: "4px", fontSize: "12px" }}>
+                                    (Optional)
+                                </span>
+                            </div>
+                            <Input
+                                name="address"
+                                placeholder="Enter your address"
+                                value={userDetails.address}
+                                onChange={handleInputChange}
+                                style={{ borderRadius: "4px" }}
+                                prefix={<HomeOutlined style={{ color: "#bfbfbf" }} />}
+                            />
+                        </Col>
+                    </Row>
+
+                    {!formValid && (
+                        <Alert
+                            message="Please fill all required fields marked with * to proceed with product selection."
+                            type="info"
+                            showIcon
+                            style={{ marginTop: "16px", borderRadius: "4px" }}
+                        />
+                    )}
+                </div>
+
+                <div style={{
+                    border: "1px solid #f0f0f0",
+                    borderRadius: "8px",
+                    padding: "20px",
+                    background: "#fafafa"
+                }}>
+                    <Typography.Title level={5} style={{ marginTop: 0, marginBottom: "16px", display: "flex", justifyContent: "space-between" }}>
+                        <span>Select Products for Quotation</span>
+                        <div className="searchBarContainer" style={{ display: "flex", alignItems: "center" }}>
+                            <Input
+                                placeholder="Search products"
+                                value={searchQuery}
+                                onChange={handleSearchChange}
+                                style={{ width: 250, borderRadius: "4px" }}
+                                prefix={<SearchOutlined style={{ color: "#bfbfbf" }} />}
+                                allowClear
+                            />
                         </div>
-
+                    </Typography.Title>
+                    {!formValid && (
                         <div style={{
-                            border: "1px solid #f0f0f0",
-                            borderRadius: "8px",
-                            padding: "20px",
-                            background: "#fafafa"
+                            padding: "16px",
+                            background: "rgba(0,0,0,0.02)",
+                            borderRadius: "4px",
+                            marginBottom: "16px",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "8px"
                         }}>
-                            <Typography.Title level={5} style={{ marginTop: 0, marginBottom: "16px", display: "flex", justifyContent: "space-between" }}>
-                                <span>Select Products for Quotation</span>
-                                <div className="searchBarContainer" style={{ display: "flex", alignItems: "center" }}>
-                                    <Input
-                                        placeholder="Search products"
-                                        value={searchQuery}
-                                        onChange={handleSearchChange}
-                                        style={{ width: 250, borderRadius: "4px" }}
-                                        prefix={<SearchOutlined style={{ color: "#bfbfbf" }} />}
-                                        allowClear
-                                    />
-                                </div>
-                            </Typography.Title>
-                            {!formValid && (
-                                <div style={{
-                                    padding: "16px",
-                                    background: "rgba(0,0,0,0.02)",
-                                    borderRadius: "4px",
-                                    marginBottom: "16px",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: "8px"
-                                }}>
-                                    <InfoCircleOutlined style={{ color: "#1890ff" }} />
-                                    <Typography.Text type="secondary">
-                                        Complete your contact information above to enable product selection.
-                                    </Typography.Text>
-                                </div>
-                            )}
-                            {/* <div>
+                            <InfoCircleOutlined style={{ color: "#1890ff" }} />
+                            <Typography.Text type="secondary">
+                                Complete your contact information above to enable product selection.
+                            </Typography.Text>
+                        </div>
+                    )}
+                    {/* <div>
                         <Select
                             mode="multiple"
                             placeholder="Select Categories"
@@ -575,125 +575,125 @@ const GetQuotationModal = () => {
                         </Select>
 
                     </div> */}
-                            <br />
+                    <br />
 
 
-                            {/* Product Selection Table */}
-                            <Button
-                                type="primary"
-                                onClick={() => setIsProductSelectorOpen(true)}
-                                style={{ marginBottom: 16 }}
-                            >
-                                + Add Products
-                            </Button>
+                    {/* Product Selection Table */}
+                    <Button
+                        type="primary"
+                        onClick={() => setIsProductSelectorOpen(true)}
+                        style={{ marginBottom: 16 }}
+                    >
+                        + Add Products
+                    </Button>
 
-                            <Table
-                                rowKey="_id"
-                                columns={columns}
-                                dataSource={productList.filter((product) =>
-                                    selectedProducts.includes(product._id)
-                                )}
-                                pagination={false}
-                            />
+                    <Table
+                        rowKey="_id"
+                        columns={columns}
+                        dataSource={productList.filter((product) =>
+                            selectedProducts.includes(product._id)
+                        )}
+                        pagination={false}
+                    />
 
 
-                            {/* <Button
+                    {/* <Button
                     type="primary"
                     onClick={handleGetQuotation}
                     style={{ marginTop: "20px" }}
                 >
                     Get Quotation
                 </Button> */}
-                        </div>
-                    </Modal >
-                    <Modal
-                        title="Select Products to Import"
-                        open={isProductSelectorOpen}
-                        onCancel={() => setIsProductSelectorOpen(false)}
-                        onOk={() => {
-                            // Merge new products with already selected ones
-                            const merged = [...new Set([...selectedProducts, ...tempSelectedProducts])];
-                            setSelectedProducts(merged);
+                </div>
+            </Modal >
+            <Modal
+                title="Select Products to Import"
+                open={isProductSelectorOpen}
+                onCancel={() => setIsProductSelectorOpen(false)}
+                onOk={() => {
+                    // Merge new products with already selected ones
+                    const merged = [...new Set([...selectedProducts, ...tempSelectedProducts])];
+                    setSelectedProducts(merged);
 
-                            // Initialize quantities
-                            tempSelectedProducts.forEach((id) => {
-                                if (!productQuantities[id]) {
-                                    handleQuantityChange(id, 1);
-                                }
-                            });
+                    // Initialize quantities
+                    tempSelectedProducts.forEach((id) => {
+                        if (!productQuantities[id]) {
+                            handleQuantityChange(id, 1);
+                        }
+                    });
 
-                            setIsProductSelectorOpen(false);
-                            setTempSelectedProducts([]);
-                        }}
-                        width={900}
-                    >
-                        <Row gutter={16} style={{ marginBottom: 16 }}>
-                            <Col span={12}>
-                                <Input
-                                    placeholder="Search products"
-                                    value={searchQuery}
-                                    onChange={handleSearchChange}
-                                    prefix={<SearchOutlined />}
-                                    allowClear
-                                />
-                            </Col>
-                            <Col span={12}>
-                                <Select
-                                    mode="multiple"
-                                    placeholder="Select Categories"
-                                    value={selectedCategory}
-                                    onChange={(value) => {
-                                        // Handle "All" selection logic
-                                        if (value.includes("ALL_CATEGORIES")) {
-                                            // If user selects "All Categories", set all category values
-                                            setSelectedCategory(categories);
-                                        } else {
-                                            setSelectedCategory(value);
-                                        }
-                                    }}
-                                    allowClear
-                                    style={{ width: "100%" }}
-                                >
-                                    {/* All option */}
-                                    <Select.Option value="ALL_CATEGORIES">All Categories</Select.Option>
-
-                                    {/* Dynamic options */}
-                                    {categories.map((cat) => (
-                                        <Select.Option key={cat} value={cat}>
-                                            {cat}
-                                        </Select.Option>
-                                    ))}
-                                </Select>
-                            </Col>
-
-                        </Row>
-
-                        <Table
-                            rowKey="_id"
-                            dataSource={filteredProducts}
-                            pagination={{ pageSize: 100 }}
-                            rowSelection={{
-                                selectedRowKeys: tempSelectedProducts,
-                                onChange: setTempSelectedProducts,
-                            }}
-                            columns={[
-                                {
-                                    title: "Product",
-                                    render: (_, item) => (
-                                        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                                            <img src={item.mainImages?.[0]} width={50} />
-                                            <div>
-                                                <b>{item.title}</b>
-                                                <div>
-                                                    <Tag>{item.category}</Tag>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ),
-                                },
-                            ]}
+                    setIsProductSelectorOpen(false);
+                    setTempSelectedProducts([]);
+                }}
+                width={900}
+            >
+                <Row gutter={16} style={{ marginBottom: 16 }}>
+                    <Col span={12}>
+                        <Input
+                            placeholder="Search products"
+                            value={searchQuery}
+                            onChange={handleSearchChange}
+                            prefix={<SearchOutlined />}
+                            allowClear
                         />
-                    </Modal>
+                    </Col>
+                    <Col span={12}>
+                        <Select
+                            mode="multiple"
+                            placeholder="Select Categories"
+                            value={selectedCategory}
+                            onChange={(value) => {
+                                // Handle "All" selection logic
+                                if (value.includes("ALL_CATEGORIES")) {
+                                    // If user selects "All Categories", set all category values
+                                    setSelectedCategory(categories);
+                                } else {
+                                    setSelectedCategory(value);
+                                }
+                            }}
+                            allowClear
+                            style={{ width: "100%" }}
+                        >
+                            {/* All option */}
+                            <Select.Option value="ALL_CATEGORIES">All Categories</Select.Option>
+
+                            {/* Dynamic options */}
+                            {categories.map((cat) => (
+                                <Select.Option key={cat} value={cat}>
+                                    {cat}
+                                </Select.Option>
+                            ))}
+                        </Select>
+                    </Col>
+
+                </Row>
+
+                <Table
+                    rowKey="_id"
+                    dataSource={filteredProducts}
+                    pagination={{ pageSize: 100 }}
+                    rowSelection={{
+                        selectedRowKeys: tempSelectedProducts,
+                        onChange: setTempSelectedProducts,
+                    }}
+                    columns={[
+                        {
+                            title: "Product",
+                            render: (_, item) => (
+                                <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                                    <img src={item.mainImages?.[0]} width={50} />
+                                    <div>
+                                        <b>{item.title}</b>
+                                        <div>
+                                            <Tag>{item.category}</Tag>
+                                        </div>
+                                    </div>
+                                </div>
+                            ),
+                        },
+                    ]}
+                />
+            </Modal>
 
         </>
     )
