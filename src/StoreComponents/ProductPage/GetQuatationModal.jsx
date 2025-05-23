@@ -15,6 +15,7 @@ import {
     CheckCircleOutlined
 } from "@ant-design/icons";
 import ProductContext from "../Context/ProductContext";
+import { IoDocumentTextSharp } from "react-icons/io5";
 const GetQuotationModal = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedProducts, setSelectedProducts] = useState([]);
@@ -29,7 +30,6 @@ const GetQuotationModal = () => {
     const [emailStatus, setEmailStatus] = useState("");
     const [isProductSelectorOpen, setIsProductSelectorOpen] = useState(false);
     const [tempSelectedProducts, setTempSelectedProducts] = useState([]);
-
 
     const [userDetails, setUserDetails] = useState({
         name: "",
@@ -50,27 +50,6 @@ const GetQuotationModal = () => {
         setSearchQuery(e.target.value);
     };
 
-    const handleCategoryChange = (category) => {
-        setSelectedCategory(category);
-    };
-    // Handle price range change
-    const handlePriceChange = (value) => {
-        setMinPrice(value[0]);
-        setMaxPrice(value[1]);
-    };
-
-    const handleAddToCart = (product) => {
-        addToCart(product);
-    };
-
-    // Reset all filters to default values
-    const resetFilters = () => {
-        setSelectedCategory(null); // Reset category filter
-        setSearchQuery(""); // Reset search query
-        setMinPrice(0); // Reset min price
-        setMaxPrice(10000); // Reset max price
-    };
-    // Extract unique categories from the products
     const categories = [
         ...new Set(productList.map((product) => product.category))
     ].filter((category) => category && category.trim() !== "");
@@ -79,8 +58,6 @@ const GetQuotationModal = () => {
     const filteredProducts = productList.filter((product) => {
         const categoryMatch =
             selectedCategory.length === 0 || selectedCategory.includes(product.category);
-
-
         const searchMatch = product.title.toLowerCase().includes(searchQuery.toLowerCase());
         const priceMatch = product.price >= minPrice && product.price <= maxPrice;
 
@@ -136,7 +113,6 @@ const GetQuotationModal = () => {
         validateButtonState(productQuantities, [], requiredFieldsFilled);
     };
 
-
     // Handle quantity change
     const handleQuantityChange = (productId, quantity) => {
         const updatedQuantities = { ...productQuantities, [productId]: quantity };
@@ -163,8 +139,6 @@ const GetQuotationModal = () => {
             setSelectedProducts((prev) => prev.filter((id) => id !== productId));
         }
     };
-
-
 
     // Updated validateButtonState to check both form validity and product selection
     const validateButtonState = (updatedQuantities) => {
@@ -376,8 +350,8 @@ const GetQuotationModal = () => {
 
     return (
         <>
-            <Button type="primary" onClick={handleGetQuotation} style={{ margin: "0px" }}>
-                Get Quotation
+            <Button type="primary" onClick={handleGetQuotation} className="enhanced-add-to-cart-btn">
+                <IoDocumentTextSharp />Get Quotation
             </Button>
             <Modal
                 title={
@@ -396,18 +370,18 @@ const GetQuotationModal = () => {
                 visible={isModalOpen}
                 onCancel={() => setIsModalOpen(false)}
                 footer={[
+                    <>
+                    
+                    <div style={{display:"flex",justifyContent:"end"}}>
                     <Button
                         key="submit"
                         type="primary"
                         disabled={isButtonDisabled}
                         onClick={sendQuotationEmail}
-                        style={{
-                            backgroundColor: "#1890ff",
-                            borderRadius: "4px"
-                        }}
+                        className="enhanced-add-to-cart-btn"
                     >
                         Send Quotation Request
-                    </Button>,
+                    </Button></div></>
                 ]}
                 width={1000}
                 centered
