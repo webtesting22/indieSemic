@@ -544,6 +544,10 @@
     border-top: 1px solid #e2e8f0;
 }
 
+.product-tabs-section .ant-tabs-nav-wrap {
+    overflow: unset !important;
+}
+
 .tabs-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -599,10 +603,15 @@
     display: none !important;
 }
 
+.enhanced-tabs .ant-tabs-tab-active .tab-label {
+    color: white;
+}
+
 .tab-label {
     display: flex;
     align-items: center;
     gap: 8px;
+
 }
 
 .tab-label .anticon {

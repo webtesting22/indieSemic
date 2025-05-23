@@ -295,12 +295,12 @@ const SeparateProductPage = () => {
                                         </div>
                                     </div>
 
-                                    <div className="wishlist-section">
+                                    {/* <div className="wishlist-section">
                                         <button className="wishlist-btn">
                                             <FaHeart />
                                             <span>Add to Wishlist</span>
                                         </button>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </Col>
