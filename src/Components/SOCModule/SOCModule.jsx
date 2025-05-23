@@ -2,47 +2,9 @@ import React from "react";
 import SOCBackImage from "./TryBanner.jpg";
 import "./SOCModule.css";
 import { Row, Col } from "antd";
+import { Link } from "react-router-dom";
 import { IoArrowRedoCircle, IoHardwareChip, IoFlash, IoShield, IoCog } from "react-icons/io5";
-const GlobalStandardsIcon = () => (
-    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="24" cy="24" r="20" stroke="currentColor" strokeWidth="2" fill="none"/>
-        <circle cx="24" cy="24" r="14" stroke="currentColor" strokeWidth="1.5" fill="none" opacity="0.7"/>
-        <circle cx="24" cy="24" r="8" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.5"/>
-        <path d="M24 4 L26 10 L24 16 L22 10 Z" fill="currentColor"/>
-        <path d="M44 24 L38 26 L32 24 L38 22 Z" fill="currentColor"/>
-        <path d="M24 44 L22 38 L24 32 L26 38 Z" fill="currentColor"/>
-        <path d="M4 24 L10 22 L16 24 L10 26 Z" fill="currentColor"/>
-        <circle cx="24" cy="24" r="3" fill="currentColor"/>
-        <path d="M15 15 L19 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M33 15 L29 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M15 33 L19 29" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M33 33 L29 29" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-    </svg>
-);
 
-const ScalableIPIcon = () => (
-    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="8" y="16" width="32" height="20" rx="4" stroke="currentColor" strokeWidth="2" fill="none"/>
-        <rect x="12" y="20" width="6" height="6" rx="1" fill="currentColor" opacity="0.8"/>
-        <rect x="21" y="20" width="6" height="6" rx="1" fill="currentColor" opacity="0.6"/>
-        <rect x="30" y="20" width="6" height="6" rx="1" fill="currentColor" opacity="0.4"/>
-        <rect x="12" y="28" width="6" height="4" rx="1" fill="currentColor" opacity="0.6"/>
-        <rect x="21" y="28" width="6" height="4" rx="1" fill="currentColor" opacity="0.4"/>
-        <rect x="30" y="28" width="6" height="4" rx="1" fill="currentColor" opacity="0.2"/>
-        <path d="M24 6 L28 10 L24 14 L20 10 Z" fill="currentColor"/>
-        <path d="M24 14 L24 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M24 36 L24 38" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M24 38 L28 42 L24 46 L20 42 Z" fill="currentColor"/>
-        <circle cx="12" cy="12" r="2" fill="currentColor" opacity="0.7"/>
-        <circle cx="36" cy="12" r="2" fill="currentColor" opacity="0.7"/>
-        <circle cx="12" cy="36" r="2" fill="currentColor" opacity="0.7"/>
-        <circle cx="36" cy="36" r="2" fill="currentColor" opacity="0.7"/>
-        <path d="M12 12 L16 16" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.5"/>
-        <path d="M36 12 L32 16" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.5"/>
-        <path d="M12 36 L16 32" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.5"/>
-        <path d="M36 36 L32 32" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.5"/>
-    </svg>
-);
 const SOCModule = () => {
     const microcontrollerFeatures = [
         {
@@ -227,8 +189,8 @@ const SOCModule = () => {
                         </Row>
                     </div>
                     <div className="soc-action-buttons">
-                        <button className="soc-cta-button soc-primary">Download Tech Brief</button>
-                        <button className="soc-cta-button soc-secondary">Get in Touch with Our Team</button>
+                        {/* <button className="soc-cta-button soc-primary">Download Tech Brief</button> */}
+                        <Link to="/"><button className="soc-cta-button soc-secondary">Get in Touch with Our Team</button></Link>
                     </div>
                 </div>
             </section>
