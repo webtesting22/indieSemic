@@ -7,12 +7,26 @@ import ProductContext from "../Context/ProductContext";
 import { FaShoppingCart } from "react-icons/fa";
 import Cart from "../Cart/Cart";
 import GetQuotationModal from "./GetQuatationModal";
-
+import {
+    ZoomInOutlined,
+    PlayCircleOutlined,
+    InfoCircleOutlined,
+    FileTextOutlined,
+    SettingOutlined,
+    DownloadOutlined,
+    AppstoreOutlined
+} from '@ant-design/icons';
+import {
+    FaHeart,
+    FaStar,
+    FaCheckCircle,
+    FaTruck,
+    FaShieldAlt
+} from "react-icons/fa";
 const { TabPane } = Tabs;
-
 const SeparateProductPage = () => {
     const { products, addToCart, cartItems } = useContext(ProductContext);
-    console.log('name', name)
+    // console.log('name', name)
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
@@ -20,6 +34,7 @@ const SeparateProductPage = () => {
     const [copiedProductId, setCopiedProductId] = useState(null);
     const [buttonText, setButtonText] = useState("Add To Cart");
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+    const apibaseUrl = import.meta.env.VITE_BASE_URL;
     const handleCopyLink = (e, productId) => {
         e.preventDefault();
         const url = `${window.location.origin}/product/${productId}`;
@@ -46,7 +61,7 @@ const SeparateProductPage = () => {
     useEffect(() => {
         const fetchProductDetails = async () => {
             try {
-                const response = await fetch(`https://testapi.prepseed.com/indieSemic/getAllProducts?id=${id}`);
+                const response = await fetch(`${apibaseUrl}/indieSemic/getAllProducts?id=${id}`);
                 const data = await response.json();
                 setProduct(data.product);
                 setSelectedImage(data.product.mainImages?.[0] || null);
@@ -57,7 +72,7 @@ const SeparateProductPage = () => {
 
         const fetchAllProducts = async () => {
             try {
-                const response = await fetch(`https://testapi.prepseed.com/indieSemic/getAllProducts`);
+                const response = await fetch(`${apibaseUrl}/indieSemic/getAllProducts`);
                 const data = await response.json();
                 if (data.products) {
                     setAllProducts(data.products.filter((p) => p._id !== id));
@@ -105,77 +120,69 @@ const SeparateProductPage = () => {
     const thumbnails = [product.mainImages?.[0], ...(product.mainImages || [])];
 
     return (
-        <section id="ProductSeparatePage">
-            <div className="TopImagemainContainer">
-                <Row gutter={[16, 16]}>
-                    <Col lg={10} md={24}>
-                        <div>
-                            <div className="mainImageContainer">
-                                <div>
-                                    {isYouTubeLink(selectedImage) ? (
-                                        <iframe
-                                            width="100%"
-                                            height="400"
-                                            src={getYouTubeEmbedUrl(selectedImage)}
-                                            title="YouTube video"
-                                            frameBorder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowFullScreen
-                                            style={{ borderRadius: "8px" }}
-                                        ></iframe>
-                                    ) : (
-                                        <Image
-                                            src={selectedImage || "default-image.jpg"}
-                                            alt={product?.title}
-                                            style={{ width: "100%", borderRadius: "8px" }}
-                                        />
-                                    )}
-                                </div>
-                            </div>
+        <section id="ProductSeparatePage" className="enhanced-product-page">
+            <div className="product-container">
+                {/* Enhanced Breadcrumb Section */}
+                <div className="breadcrumb-section">
+                    <div className="breadcrumb-content">
+                        <span>
+                            <Link to="/product" className="breadcrumb-link">All Products</Link>
+                            <span className="breadcrumb-separator"> {">"} </span>
+                            <span className="breadcrumb-current">{product.title}</span>
+                        </span>
+                    </div>
+                </div>
 
-                            <div
-                                className="thumbnailRow"
-                                style={{
-                                    marginTop: "10px",
-                                    display: "flex",
-                                    gap: "8px",
-                                    flexWrap: "wrap",
-                                    justifyContent: "space-around",
-                                }}
-                            >
-                                <Row style={{ width: "100%" }}>
+                {/* Main Product Section */}
+                <div className="product-main-section">
+                    <Row gutter={[32, 32]}>
+                        {/* Enhanced Image Gallery */}
+                        <Col lg={12} md={24}>
+                            <div className="image-gallery-container">
+                                <div className="main-image-wrapper">
+                                    <div className="main-image-container">
+                                        {isYouTubeLink(selectedImage) ? (
+                                            <iframe
+                                                width="100%"
+                                                height="100%"
+                                                src={getYouTubeEmbedUrl(selectedImage)}
+                                                title="YouTube video"
+                                                frameBorder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowFullScreen
+                                            ></iframe>
+                                        ) : (
+                                            <>
+                                                <Image
+                                                    src={selectedImage || "default-image.jpg"}
+                                                    alt={product?.title}
+                                                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                                />
+                                                <div className="image-overlay">
+                                                    <ZoomInOutlined style={{ fontSize: '24px' }} />
+                                                </div>
+                                            </>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {/* Enhanced Thumbnail Grid */}
+                                <div className="thumbnail-grid">
                                     {thumbnails.map((thumb, idx) => (
-                                        <Col lg={6} md={8}>
-                                            <div
-                                                key={idx}
-                                                style={{
-                                                    // width: "20%",
-                                                    // height: "80px",
-                                                    border:
-                                                        selectedImage === thumb
-                                                            ? "2px solid #1890ff"
-                                                            : "1px solid #ccc",
-                                                    borderRadius: "4px",
-                                                    overflow: "hidden",
-                                                    cursor: "pointer",
-                                                }}
-                                                id="ProductOtherImagesContainer"
-                                                onMouseEnter={() => setSelectedImage(thumb)}
-                                            >
-                                                {isImageFile(thumb) ? (
-                                                    <img
-                                                        src={thumb}
-                                                        alt={`thumb-${idx}`}
-                                                        style={{
-                                                            width: "100%",
-                                                            height: "100%",
-                                                            objectFit: "cover",
-                                                        }}
-                                                        onClick={() => window.scrollTo(0, 0)}
-                                                    />
-                                                ) : isYouTubeLink(thumb) ? (
+                                        <div
+                                            key={idx}
+                                            className={`thumbnail-item ${selectedImage === thumb ? 'active' : ''}`}
+                                            onMouseEnter={() => setSelectedImage(thumb)}
+                                            onClick={() => window.scrollTo(0, 0)}
+                                        >
+                                            {isImageFile(thumb) ? (
+                                                <img
+                                                    src={thumb}
+                                                    alt={`thumb-${idx}`}
+                                                />
+                                            ) : isYouTubeLink(thumb) ? (
+                                                <>
                                                     <iframe
-                                                        onClick={() => window.scrollTo(0, 0)}
                                                         width="100%"
                                                         height="100%"
                                                         src={getYouTubeEmbedUrl(thumb)}
@@ -184,225 +191,298 @@ const SeparateProductPage = () => {
                                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                                         allowFullScreen
                                                     ></iframe>
-                                                ) : null}
-                                            </div>
-                                        </Col>
+                                                    <div className="video-overlay">
+                                                        <PlayCircleOutlined />
+                                                    </div>
+                                                </>
+                                            ) : null}
+                                        </div>
                                     ))}
-                                </Row>
+                                </div>
                             </div>
-                        </div>
-                    </Col>
+                        </Col>
 
+                        <Cart />
 
-                    <Cart />
-                    <Col lg={14} md={24}>
-                        <div className="ProductDetailsContainer DesignedContainer">
-                            <button
-                                onClick={(e) => handleCopyLink(e, product._id)}
-                                style={{
-                                    padding: "6px 8px",
-                                    backgroundColor: "black",
-                                    color: "white",
-                                    border: "none",
-                                    borderRadius: "4px",
-                                    cursor: "pointer",
-                                    fontSize: "0.875rem",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: "6px",
-                                    transition: "all 0.3s ease"
-                                }}
-                            >
-                                {copiedProductId === product._id ? (
-                                    <>
-                                        <FiCheck style={{ color: "white", transition: "0.3s" }} />
+                        {/* Enhanced Product Info */}
+                        <Col lg={12} md={24}>
+                            <div className="product-info-section">
+                                {/* Enhanced Product Header */}
+                                <div className="product-header">
+                                    <button
+                                        onClick={(e) => handleCopyLink(e, product._id)}
+                                        className="share-button"
+                                    >
+                                        {copiedProductId === product._id ? (
+                                            <>
+                                                <FiCheck />
+                                                <span>Copied!</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <FiCopy />
+                                                <span>Share</span>
+                                            </>
+                                        )}
+                                    </button>
 
-                                    </>
-                                ) : (
-                                    <>
-                                        <FiCopy style={{ color: "white", transition: "0.3s" }} />
+                                    <div className="product-title-section">
+                                        <h1 className="product-title">{product.title || "No Title"}</h1>
+                                        <h2 className="product-tagline">{product.tagline || "No Tagline"}</h2>
+                                    </div>
 
-                                    </>
-                                )}
-                            </button>
-                            <h2>{product.title || "No Title"}</h2>
-                            <h1 className="tagline">{product.tagline || "No Tagline"}</h1>
-                            {product.productDescription && (
-                                <p
-                                    className="Description"
-                                    dangerouslySetInnerHTML={{ __html: product.productDescription }}
-                                />
-                            )}
+                                    {/* Product Meta Info */}
+                                    <div className="product-meta">
+                                        <div className="rating-section">
+                                            <div className="stars">
+                                                {[1, 2, 3, 4, 5].map((star) => (
+                                                    <FaStar key={star} className="star-icon filled" />
+                                                ))}
+                                            </div>
+                                            <span className="rating-text">4.8 (124 reviews)</span>
+                                        </div>
 
-                        </div>
+                                        <div className="availability-section">
+                                            <FaCheckCircle className="availability-icon" />
+                                            <span className="availability-text">In Stock - Ready to Ship</span>
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <div style={{display:"flex",alignItems:"center",gap:"20px"}}>
-                            <div>
-                                <Button
-                                    type="primary"
-                                    onClick={() => handleAddToCart(product)}
-                                    disabled={isButtonDisabled || isProductInCart}  // Disable button if product is already in cart
-                                >
-                                    <FaShoppingCart />
-                                    {isProductInCart ? "Product Added" : buttonText}
-                                </Button>
+                                {/* Enhanced Product Description */}
+                                <div className="product-description-section">
+                                    {product.productDescription && (
+                                        <div
+                                            className="product-description"
+                                            dangerouslySetInnerHTML={{ __html: product.productDescription }}
+                                        />
+                                    )}
+                                </div>
+
+                                {/* Trust Badges */}
+                                <div className="trust-badges">
+                                    <div className="trust-badge">
+                                        <FaShieldAlt className="badge-icon" />
+                                        <span>2 Year Warranty</span>
+                                    </div>
+                                    <div className="trust-badge">
+                                        <FaTruck className="badge-icon" />
+                                        <span>Free Shipping</span>
+                                    </div>
+                                    <div className="trust-badge">
+                                        <FaCheckCircle className="badge-icon" />
+                                        <span>Quality Assured</span>
+                                    </div>
+                                </div>
+
+                                {/* Enhanced Action Buttons */}
+                                <div className="action-buttons-section">
+                                    <div className="primary-actions">
+                                        <Button
+                                            type="primary"
+                                            onClick={() => handleAddToCart(product)}
+                                            className="enhanced-add-to-cart-btn"
+                                            disabled={isButtonDisabled || isProductInCart}
+                                        >
+                                            <FaShoppingCart className="cart-icon" />
+                                            <span className="button-text">
+                                                {isProductInCart ? "Product Added" : buttonText}
+                                            </span>
+                                        </Button>
+
+                                        <div className="secondary-action">
+                                            <GetQuotationModal />
+                                        </div>
+                                    </div>
+
+                                    <div className="wishlist-section">
+                                        <button className="wishlist-btn">
+                                            <FaHeart />
+                                            <span>Add to Wishlist</span>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <GetQuotationModal />
-                            </div>
-                        </div>
-                    </Col>
-                </Row>
-            </div>
+                        </Col>
+                    </Row>
+                </div>
 
-            <div className="ProductDescriptionContainer">
-                <Tabs defaultActiveKey="1">
-                    {[
-                        { key: "1", title: "Overview", content: product?.tabs?.overview },
-                        { key: "2", title: "Specifications", content: product?.tabs?.specifications },
-                        { key: "3", title: "Pin Layout", content: product?.tabs?.pinLayout },
-                        {
-                            key: "4",
-                            title: "Downloads",
-                            content: product?.tabs?.downloadsDocuments?.length > 0
-                                ? product.tabs.downloadsDocuments
-                                : null,
-                        },
-                        {
-                            key: "5",
-                            title: "Related Products",
-                            content: product?.tabs?.relatedProducts?.length > 0
-                                ? product.tabs.relatedProducts
-                                : null,
-                        },
-                    ].map(
-                        (tab) =>
-                            tab.content && (
-                                <TabPane tab={tab.title} key={tab.key}>
-                                    {tab.key === "1" ? (
-                                        <div className="TabDescriptionContainer">
-                                            <img
-                                                src={tab.content}
-                                                alt="Overview"
-                                                style={{ width: "100%", maxWidth: "100%", objectFit: "contain" }}
-                                            />
-                                        </div>
-                                    ) : tab.key === "2" && Array.isArray(tab.content) ? (
-                                        <div className="TabDescriptionContainer">
-                                            {tab.content.map((img, idx) => (
-                                                <img
-                                                    key={idx}
-                                                    src={img}
-                                                    alt={`spec-${idx}`}
-                                                    style={{ width: '100%', maxWidth: "100%", marginBottom: '1rem' }}
-                                                />
-                                            ))}
-                                        </div>
-                                    ) : tab.key === "3" && Array.isArray(tab.content) ? (
-                                        <div className="TabDescriptionContainer">
-                                            {tab.content.map((img, idx) => (
-                                                <img
-                                                    key={idx}
-                                                    src={img}
-                                                    alt={`spec-${idx}`}
-                                                    style={{ width: '100%', maxWidth: "100%", marginBottom: '1rem' }}
-                                                />
-                                            ))}
-                                        </div>
-                                    ) : tab.key === "4" ? (
-                                        <div className="TabDescriptionContainer">
-                                            {product.tabs.downloadsDocuments.map((download, idx) => (
-                                                <Row
-                                                    key={idx}
-                                                    gutter={[16, 16]}
-                                                    style={{
-                                                        marginBottom: "12px",
-                                                        padding: "12px 16px",
-                                                        border: "1px solid #f0f0f0",
-                                                        borderRadius: "8px",
-                                                        alignItems: "center"
-                                                    }}
-                                                >
-                                                    <Col lg={16} xs={24}>
-                                                        <span style={{ fontWeight: "500" }}>{download.name}</span>
-                                                    </Col>
-
-                                                    <Col lg={8} xs={24}>
-                                                        <a
-                                                            href={download.url}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            style={{
-                                                                padding: "6px 12px",
-                                                                backgroundColor: "#1890ff",
-                                                                color: "white",
-                                                                borderRadius: "4px",
-                                                                display: "inline-block",
-                                                                textDecoration: "none",
-                                                                fontWeight: "500"
-                                                            }}
-                                                        >
-                                                            Download
-                                                        </a>
-                                                    </Col>
-                                                </Row>
-                                            ))}
-                                        </div>
-
-                                    ) : tab.key === "5" ? (
-                                        <div className="TabDescriptionContainer">
-                                            <Row gutter={[16, 16]} style={{ marginTop: "16px" }}>
-                                                {allProducts.map((related, idx) => (
-                                                    <Col key={idx} lg={4} md={8} sm={12} xs={12}>
-                                                        <Link
-                                                            to={`/product/${related._id}`}
-                                                            onClick={() => window.scrollTo(0, 0)}
-                                                            style={{
-                                                                display: "block",
-                                                                border: "1px solid #f0f0f0",
-                                                                borderRadius: "8px",
-                                                                overflow: "hidden",
-                                                                textDecoration: "none",
-                                                                color: "inherit",
-                                                                transition: "box-shadow 0.2s",
-                                                            }}
-                                                        >
-                                                            <div style={{ height: "180px", overflow: "hidden" }}>
+                {/* Enhanced Tabs Section */}
+                <div className="product-tabs-section">
+                    <div className="tabs-container">
+                        <Tabs defaultActiveKey="1" className="enhanced-tabs">
+                            {[
+                                {
+                                    key: "1",
+                                    title: "Overview",
+                                    content: product?.tabs?.overview,
+                                    icon: <InfoCircleOutlined />
+                                },
+                                {
+                                    key: "2",
+                                    title: "Specifications",
+                                    content: product?.tabs?.specifications,
+                                    icon: <FileTextOutlined />
+                                },
+                                {
+                                    key: "3",
+                                    title: "Pin Layout",
+                                    content: product?.tabs?.pinLayout,
+                                    icon: <SettingOutlined />
+                                },
+                                {
+                                    key: "4",
+                                    title: "Downloads",
+                                    content: product?.tabs?.downloadsDocuments?.length > 0
+                                        ? product.tabs.downloadsDocuments
+                                        : null,
+                                    icon: <DownloadOutlined />
+                                },
+                                {
+                                    key: "5",
+                                    title: "Related Products",
+                                    content: product?.tabs?.relatedProducts?.length > 0
+                                        ? product.tabs.relatedProducts
+                                        : null,
+                                    icon: <AppstoreOutlined />
+                                },
+                            ].map(
+                                (tab) =>
+                                    tab.content && (
+                                        <TabPane
+                                            tab={
+                                                <span className="tab-label">
+                                                    {tab.icon}
+                                                    {tab.title}
+                                                </span>
+                                            }
+                                            key={tab.key}
+                                        >
+                                            {tab.key === "1" ? (
+                                                <div className="TabDescriptionContainer">
+                                                    <div className="overview-image-container">
+                                                        <img
+                                                            src={tab.content}
+                                                            alt="Overview"
+                                                            className="overview-image"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            ) : tab.key === "2" && Array.isArray(tab.content) ? (
+                                                <div className="TabDescriptionContainer">
+                                                    <div className="specifications-grid">
+                                                        {tab.content.map((img, idx) => (
+                                                            <div key={idx} className="spec-image-container">
                                                                 <img
-                                                                    src={related.mainImages?.[0] || "default-image.jpg"}
-                                                                    alt={related.title}
-                                                                    style={{
-                                                                        width: "100%",
-                                                                        height: "100%",
-                                                                        objectFit: "cover",
-                                                                    }}
+                                                                    src={img}
+                                                                    alt={`spec-${idx}`}
+                                                                    className="spec-image"
                                                                 />
                                                             </div>
-                                                            <div style={{ padding: "10px" }}>
-                                                                <h4 style={{ marginBottom: "4px" }}>{related.title}</h4>
-                                                                <p style={{ margin: 0, fontWeight: "bold", color: "#1890ff" }}>
-                                                                    ₹{related.price}
-                                                                </p>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            ) : tab.key === "3" && Array.isArray(tab.content) ? (
+                                                <div className="TabDescriptionContainer">
+                                                    <div className="pinlayout-grid">
+                                                        {tab.content.map((img, idx) => (
+                                                            <div key={idx} className="pinlayout-image-container">
+                                                                <img
+                                                                    src={img}
+                                                                    alt={`pin-layout-${idx}`}
+                                                                    className="pinlayout-image"
+                                                                />
                                                             </div>
-                                                        </Link>
-                                                    </Col>
-                                                ))}
-                                            </Row>
-                                        </div>
-
-                                    ) : (
-                                        <div className="TabDescriptionContainer">
-                                            <p>{tab.content}</p>
-                                        </div>
-                                    )}
-                                </TabPane>
-                            )
-                    )}
-                </Tabs>
-
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            ) : tab.key === "4" ? (
+                                                <div className="TabDescriptionContainer">
+                                                    <div className="downloads-list">
+                                                        {product.tabs.downloadsDocuments.map((download, idx) => (
+                                                            <div key={idx} className="download-item-enhanced">
+                                                                <Row gutter={[20, 16]} align="middle">
+                                                                    <Col lg={16} xs={24}>
+                                                                        <div className="download-info">
+                                                                            <FileTextOutlined className="download-icon" />
+                                                                            <div className="download-details">
+                                                                                <span className="download-name">
+                                                                                    {idx + 1}. {download.name}
+                                                                                </span>
+                                                                                <span className="download-meta">PDF Document</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </Col>
+                                                                    <Col lg={8} xs={24}>
+                                                                        <a
+                                                                            href={download.url}
+                                                                            target="_blank"
+                                                                            rel="noopener noreferrer"
+                                                                            className="download-button-enhanced"
+                                                                        >
+                                                                            <DownloadOutlined />
+                                                                            <span>Download</span>
+                                                                        </a>
+                                                                    </Col>
+                                                                </Row>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            ) : tab.key === "5" ? (
+                                                <div className="TabDescriptionContainer">
+                                                    <div className="related-products-section">
+                                                        <h3 className="related-title">You might also like</h3>
+                                                        <Row gutter={[24, 24]}>
+                                                            {allProducts.map((related, idx) => (
+                                                                <Col key={idx} lg={6} md={8} sm={12} xs={12}>
+                                                                    <Link
+                                                                        to={`/product/${related._id}`}
+                                                                        onClick={() => window.scrollTo(0, 0)}
+                                                                        className="related-product-card-enhanced"
+                                                                    >
+                                                                        <div className="related-image-container">
+                                                                            <img
+                                                                                src={related.mainImages?.[0] || "default-image.jpg"}
+                                                                                alt={related.title}
+                                                                                className="related-product-image"
+                                                                            />
+                                                                            <div className="related-overlay">
+                                                                                <span>View Product</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="related-product-info">
+                                                                            <h4 className="related-product-title">{related.title}</h4>
+                                                                            <div className="related-price-section">
+                                                                                <span className="related-price">₹{related.price?.toLocaleString()}</span>
+                                                                                <div className="related-rating">
+                                                                                    <FaStar className="star-mini" />
+                                                                                    <span>4.5</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </Link>
+                                                                </Col>
+                                                            ))}
+                                                        </Row>
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className="TabDescriptionContainer">
+                                                    <p className="tab-content-text">{tab.content}</p>
+                                                </div>
+                                            )}
+                                        </TabPane>
+                                    )
+                            )}
+                        </Tabs>
+                    </div>
+                </div>
             </div>
-        </section >
+        </section>
     );
 };
 
 export default SeparateProductPage;
+
+
