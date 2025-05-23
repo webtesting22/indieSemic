@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import TopContainerBanner from "../../CommonComponents/Navigationdata/TopContainerBanner";
 import LocalGroceryStoreSharpIcon from "@mui/icons-material/LocalGroceryStoreSharp";
@@ -12,7 +12,11 @@ import Cart from "../Cart/Cart";
 import { RiResetRightLine } from "react-icons/ri";
 import { MenuOutlined, FilterOutlined } from "@ant-design/icons";
 import GetQuotationModal from "./GetQuatationModal";
-
+const imageList = [
+    "/Images/ProductPageBackl.jpg",
+    "https://images.unsplash.com/photo-1689852500942-3a705d709342?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1592659762303-90081d34b277?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+];
 const IndieSemicProduct = () => {
     const { products, addToCart } = useContext(ProductContext);
     const productList = products || [];
@@ -21,7 +25,22 @@ const IndieSemicProduct = () => {
     const [selectedCategory, setSelectedCategory] = useState("All Products"); // Set default to "All Products"
     const [searchQuery, setSearchQuery] = useState("");
     const [drawerVisible, setDrawerVisible] = useState(false);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [fade, setFade] = useState(true);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setFade(false); // start fade out
+            setTimeout(() => {
+                setCurrentImageIndex((prev) => (prev + 1) % imageList.length);
+                setFade(true); // fade in next image
+            }, 300); // match fade-out duration
+        }, 2000);
 
+        return () => clearInterval(interval);
+    }, []);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     // Handle category change
     const handleCategoryChange = (category) => {
         setSelectedCategory(category === "All Products" ? "All Products" : category);
@@ -96,103 +115,298 @@ const IndieSemicProduct = () => {
     );
 
     return (
-        <>
-            <TopContainerBanner
-                image="https://plus.unsplash.com/premium_photo-1681426694953-4d78658193dc?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                DynamicHeading="Store"
-                icon={<LocalGroceryStoreSharpIcon style={{ color: "#fff" }} />}
-                link="Products"
-            />
-            <section className="AllProductsContainer section_Padding">
-                {/* Mobile Filter Button */}
-                <div className="productPagebackground">
-                <img src="/Images/BackShapeImg.svg" alt="" />
-            </div>
-                <div className="mobile-filter-button">
-                    <Button
-                        type="primary"
-                        icon={<FilterOutlined />}
-                        onClick={toggleDrawer}
-                    >
-                        Filters
-                    </Button>
-                    {/* <span className="mobile-product-count">Products: {filteredProducts.length}</span> */}
+        <div className="modern-products-page">
+            {/* Enhanced Hero Section */}
+            <div className="hero-section-wrapper">
+                <div className="hero-image-container">
+                    <img
+                        src={imageList[currentImageIndex]}
+                        alt="Hero Background"
+                        className={`hero-background-image ${fade ? 'fade-in' : 'fade-out'}`}
+                    />
+                    <div className="hero-overlay"></div>
                 </div>
-                <div className="SearchProductContainerWithCount">
-                    <div>
-
-                        <div className="countShowContainer" >
-                            <span>Total&nbsp;Products:&nbsp;{filteredProducts.length}</span>
+                <div className="hero-content-container">
+                    <div className="hero-content">
+                        <div className="hero-text-wrapper">
+                            <h1 className="hero-main-title">Precision in Every Layer</h1>
+                            <p className="hero-subtitle">Crafting semiconductors for flawless performance.</p>
+                            <div className="hero-stats-container">
+                                <div className="stat-box">
+                                    <span className="stat-number">{productList.length}+</span>
+                                    <span className="stat-text">Products</span>
+                                </div>
+                                <div className="stat-box">
+                                    <span className="stat-number">99%</span>
+                                    <span className="stat-text">Quality</span>
+                                </div>
+                                <div className="stat-box">
+                                    <span className="stat-number">24/7</span>
+                                    <span className="stat-text">Support</span>
+                                </div>
+                            </div>
                         </div>
-                        <div className="searchBarContainer" style={{width:"100%"}}>
-                            <Input
-                                placeholder="Search by name"
-                                value={searchQuery}
-                                onChange={handleSearchChange}
-                                style={{ width: "100%" }}
-                            />
-                        </div>
-
                     </div>
                 </div>
-                {/* Mobile Drawer for Filters */}
+            </div>
+
+            {/* Main Products Section */}
+            <section className="products-main-section">
+                {/* Background Pattern */}
+                <div className="background-pattern">
+                    <img src="/Images/BackShapeImg.svg" alt="Background Pattern" />
+                </div>
+
+                {/* Enhanced Header Controls */}
+                <div className="products-header-container">
+                    {/* Breadcrumb */}
+                    <div className="breadcrumb-wrapper">
+                        <div className="breadcrumb-content">
+                            <Link to="/" className="breadcrumb-item">Home</Link>
+                            <span className="breadcrumb-divider">{">"}</span>
+                            <span className="breadcrumb-current">Products</span>
+                        </div>
+                    </div>
+
+                    {/* Controls Section */}
+                    <div className="controls-section">
+                        {/* Mobile Controls */}
+                        <div className="mobile-controls-wrapper">
+                            <Button
+                                type="primary"
+                                icon={<FilterOutlined />}
+                                onClick={toggleDrawer}
+                                className="mobile-filter-button"
+                            >
+                                Filters
+                            </Button>
+                            <div className="mobile-count-display">
+                                <span className="count-text">{filteredProducts.length} Products</span>
+                            </div>
+                        </div>
+
+                        {/* Desktop Controls */}
+                        <div className="desktop-controls-wrapper">
+                            <div className="products-count-section">
+                                <div className="count-badge">
+                                    <span className="count-label">Total Products:</span>
+                                    <span className="count-value">{filteredProducts.length}</span>
+                                </div>
+                            </div>
+                            <div className="search-section">
+                                <div className="search-input-wrapper">
+                                    <Input
+                                        placeholder="Search semiconductors by name..."
+                                        value={searchQuery}
+                                        onChange={handleSearchChange}
+                                        className="modern-search-input"
+                                        prefix={<span className="search-prefix-icon">🔍</span>}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Enhanced Filter Drawer */}
                 <Drawer
-                    title="Filter Products"
+                    title={
+                        <div className="drawer-title-wrapper">
+                            <FilterOutlined className="drawer-title-icon" />
+                            <span>Filter Products</span>
+                        </div>
+                    }
                     placement="left"
                     onClose={toggleDrawer}
                     open={drawerVisible}
-                    className="filter-drawer"
+                    className="modern-filter-drawer"
                 >
-                    <SidebarContent />
+                    <div className="drawer-sidebar-content">
+                        <div className="categories-section">
+                            <h3 className="section-title">Categories</h3>
+                            <div className="categories-list">
+                                <div
+                                    className={`category-option ${selectedCategory === "All Products" ? "active" : ""}`}
+                                    onClick={() => handleCategoryChange("All Products")}
+                                >
+                                    <span className="category-text">All Products</span>
+                                    <span className="category-badge">{productList.length}</span>
+                                </div>
+                                {categories.map((category) => {
+                                    const categoryCount = productList.filter(p => p.category === category).length;
+                                    return (
+                                        <div
+                                            key={category}
+                                            className={`category-option ${selectedCategory === category ? "active" : ""}`}
+                                            onClick={() => handleCategoryChange(category)}
+                                        >
+                                            <span className="category-text">{category}</span>
+                                            <span className="category-badge">{categoryCount}</span>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+                        <div className="filter-actions">
+                            <Button
+                                onClick={resetFilters}
+                                className="reset-button"
+                                icon={<RiResetRightLine />}
+                                danger
+                            >
+                                Reset Filters
+                            </Button>
+                            <div className="quotation-wrapper">
+                                <GetQuotationModal />
+                            </div>
+                        </div>
+                    </div>
                 </Drawer>
 
-                <Row gutter={[24, 24]}>
-                    {/* Left Side - Categories (desktop only) */}
-                    <Col lg={5} md={8} sm={0} xs={0} className="sidebar-container desktop-sidebar">
-                        <SidebarContent />
-                    </Col>
-
-                    {/* Right Side - Products */}
-                    <Col lg={19} md={16} sm={24} xs={24}>
-                        <Row gutter={[16, 16]}>
-                            {filteredProducts.length > 0 ? (
-                                filteredProducts.map((product) => (
-                                    <Col lg={6} md={12} sm={12} xs={12} key={product._id}>
-                                        <Link to={`/product/${product._id}`} style={{ textDecoration: "none", color: "inherit" }}>
-                                            <div className="ProductCard">
-                                                <div className="mainImageContainer">
-                                                    <img
-                                                        src={product.mainImages?.[0] || "default-image.jpg"}
-                                                        alt={`${product.title} front`}
-                                                    />
-                                                    <img
-                                                        src={product.mainImages?.[1] || product.mainImages?.[0] || "default-image.jpg"}
-                                                        alt={`${product.title} back`}
-                                                    />
+                {/* Main Content Grid */}
+                <div className="content-grid-wrapper">
+                    <Row gutter={[32, 32]}>
+                        {/* Desktop Sidebar */}
+                        <Col lg={6} md={8} sm={0} xs={0} className="desktop-sidebar-wrapper">
+                            <div className="desktop-sidebar-container">
+                                <div className="categories-section">
+                                    <h3 className="section-title">Categories</h3>
+                                    <div className="categories-list">
+                                        <div
+                                            className={`category-option ${selectedCategory === "All Products" ? "active" : ""}`}
+                                            onClick={() => handleCategoryChange("All Products")}
+                                        >
+                                            <span className="category-text">All Products</span>
+                                            <span className="category-badge">{productList.length}</span>
+                                        </div>
+                                        {categories.map((category) => {
+                                            const categoryCount = productList.filter(p => p.category === category).length;
+                                            return (
+                                                <div
+                                                    key={category}
+                                                    className={`category-option ${selectedCategory === category ? "active" : ""}`}
+                                                    onClick={() => handleCategoryChange(category)}
+                                                >
+                                                    <span className="category-text">{category}</span>
+                                                    <span className="category-badge">{categoryCount}</span>
                                                 </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
 
-                                                <div className="ProductDetailsContainer">
-                                                    <h2 className="ProductTitle">
-                                                        {product.title?.length > 40
-                                                            ? `${product.title.slice(0, 40)}...`
-                                                            : product.title}
-                                                    </h2>
-                                                </div>
-                                            </div>
-                                        </Link>
-                                    </Col>
-                                ))
-                            ) : (
-                                <Col span={24}>
-                                    <h2>No Products Available</h2>
-                                </Col>
-                            )}
-                        </Row>
-                    </Col>
-                </Row>
+                                <div className="filter-actions">
+                                    <Button
+                                        onClick={resetFilters}
+                                        className="reset-button"
+                                        icon={<RiResetRightLine />}
+                                        danger
+                                    >
+                                        Reset Filters
+                                    </Button>
+                                    <div className="quotation-wrapper">
+                                        <GetQuotationModal />
+                                    </div>
+                                </div>
+                            </div>
+                        </Col>
+
+                        {/* Products Grid */}
+                        <Col lg={18} md={16} sm={24} xs={24}>
+                            <div className="products-grid-section">
+                                {filteredProducts.length > 0 ? (
+                                    <Row gutter={[24, 24]}>
+                                        {filteredProducts.map((product) => (
+                                            <Col lg={8} md={12} sm={24} xs={24} key={product._id}>
+                                                <Link
+                                                    to={`/product/${product._id}`}
+                                                    className="product-link-wrapper"
+                                                >
+                                                    <div className="modern-product-card">
+                                                        <div className="product-image-section">
+                                                            <div className="image-container">
+                                                                <img
+                                                                    src={product.mainImages?.[0] || "default-image.jpg"}
+                                                                    alt={`${product.title} primary`}
+                                                                    className="product-image primary-image"
+                                                                />
+                                                                <img
+                                                                    src={product.mainImages?.[1] || product.mainImages?.[0] || "default-image.jpg"}
+                                                                    alt={`${product.title} secondary`}
+                                                                    className="product-image secondary-image"
+                                                                />
+                                                            </div>
+                                                            <div className="product-overlay">
+                                                                <div className="overlay-content">
+                                                                    <span className="view-text">View Product</span>
+                                                                    <div className="overlay-arrow">→</div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="product-badge">
+                                                                <span>Latest</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="product-info-section">
+                                                            <div className="product-content">
+                                                                <h3 className="product-title">
+                                                                    {product.title?.length > 45
+                                                                        ? `${product.title.slice(0, 45)}...`
+                                                                        : product.title}
+                                                                </h3>
+                                                                <div className="product-meta-info">
+                                                                    <div className="rating-section">
+                                                                        <div className="star-rating">
+                                                                            {[1, 2, 3, 4, 5].map(star => (
+                                                                                <span key={star} className="star">★</span>
+                                                                            ))}
+                                                                        </div>
+                                                                        <span className="rating-value">4.8</span>
+                                                                    </div>
+                                                                    <div className="category-tag">
+                                                                        {product.category || 'Electronics'}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div className="product-action">
+                                                                <div className="action-btn">
+                                                                    <span className="btn-text">View Details</span>
+                                                                    <span className="btn-icon">→</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </Link>
+                                            </Col>
+                                        ))}
+                                    </Row>
+                                ) : (
+                                    <div className="no-products-section">
+                                        <div className="no-products-content">
+                                            <div className="no-products-icon">📦</div>
+                                            <h3 className="no-products-title">No Products Found</h3>
+                                            <p className="no-products-text">
+                                                Try adjusting your search criteria or browse all categories.
+                                            </p>
+                                            <Button
+                                                type="primary"
+                                                onClick={resetFilters}
+                                                className="reset-search-button"
+                                            >
+                                                Reset Search
+                                            </Button>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </Col>
+                    </Row>
+                </div>
             </section>
             <Cart />
-        </>
+        </div>
     );
 };
 
