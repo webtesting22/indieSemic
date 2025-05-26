@@ -82,7 +82,7 @@ const SOCModule = () => {
                         <p className="soc-hero-subtitle">
                             From microcontroller to multi-core AI—empowering automotive and surveillance systems with homegrown precision.
                         </p>
-                        <button className="soc-cta-button">Get in Touch</button>
+                        {/* <button className="soc-cta-button">Get in Touch</button> */}
                     </div>
                     <div className="soc-hero-info">
                         <h2>Transforming Businesses with Cutting-Edge Solutions</h2>

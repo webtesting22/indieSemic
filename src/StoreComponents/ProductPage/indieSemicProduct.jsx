@@ -12,6 +12,8 @@ import Cart from "../Cart/Cart";
 import { RiResetRightLine } from "react-icons/ri";
 import { MenuOutlined, FilterOutlined } from "@ant-design/icons";
 import GetQuotationModal from "./GetQuatationModal";
+import { FiSearch } from "react-icons/fi";
+
 const imageList = [
     "/Images/ProductPageBackl.jpg",
     "https://images.unsplash.com/photo-1689852500942-3a705d709342?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -161,16 +163,37 @@ const IndieSemicProduct = () => {
                 <div className="products-header-container">
                     {/* Breadcrumb */}
                     <div className="breadcrumb-wrapper">
-                        <div className="breadcrumb-content">
-                            <Link to="/" className="breadcrumb-item">Home</Link>
-                            <span className="breadcrumb-divider">{">"}</span>
-                            <span className="breadcrumb-current">Products</span>
+                        <div style={{ display: "flex", gap: "10px",justifyContent:"space-between" }}>
+                            <div className="breadcrumb-content">
+                                <Link to="/" className="breadcrumb-item">Home</Link>
+                                <span className="breadcrumb-divider">{">"}</span>
+                                <span className="breadcrumb-current">Products</span>
+                            </div>
+                            
+                            <Button
+                                type="primary"
+                                icon={<FilterOutlined />}
+                                onClick={toggleDrawer}
+                                className="mobile-filter-button"
+                            >
+                                Filters
+                            </Button>
+                        </div>
+                        <div className="search-section">
+                            <div className="search-input-wrapper">
+                                <Input
+                                    placeholder="Search semiconductors by name..."
+                                    value={searchQuery}
+                                    onChange={handleSearchChange}
+                                    className="modern-search-input"
+                                    prefix={<FiSearch style={{ margin: "0px 10px", fontSize: "20px" }} />}
+                                />
+                            </div>
                         </div>
                     </div>
 
                     {/* Controls Section */}
-                    <div className="controls-section">
-                        {/* Mobile Controls */}
+                    {/* <div className="controls-section">
                         <div className="mobile-controls-wrapper">
                             <Button
                                 type="primary"
@@ -183,29 +206,11 @@ const IndieSemicProduct = () => {
                             <div className="mobile-count-display">
                                 <span className="count-text">{filteredProducts.length} Products</span>
                             </div>
+                            
                         </div>
 
-                        {/* Desktop Controls */}
-                        <div className="desktop-controls-wrapper">
-                            <div className="products-count-section">
-                                <div className="count-badge">
-                                    <span className="count-label">Total Products:</span>
-                                    <span className="count-value">{filteredProducts.length}</span>
-                                </div>
-                            </div>
-                            <div className="search-section">
-                                <div className="search-input-wrapper">
-                                    <Input
-                                        placeholder="Search semiconductors by name..."
-                                        value={searchQuery}
-                                        onChange={handleSearchChange}
-                                        className="modern-search-input"
-                                        prefix={<span className="search-prefix-icon">🔍</span>}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                      
+                    </div> */}
                 </div>
 
                 {/* Enhanced Filter Drawer */}
@@ -355,14 +360,17 @@ const IndieSemicProduct = () => {
                                                                         ? `${product.title.slice(0, 45)}...`
                                                                         : product.title}
                                                                 </h3>
-                                                                <div className="product-meta-info">
-                                                                    <div className="rating-section">
+                                                                <div className="product-meta-info" style={{ gap: "20px" }}>
+                                                                    {/* <div className="rating-section">
                                                                         <div className="star-rating">
                                                                             {[1, 2, 3, 4, 5].map(star => (
                                                                                 <span key={star} className="star">★</span>
                                                                             ))}
                                                                         </div>
                                                                         <span className="rating-value">4.8</span>
+                                                                    </div> */}
+                                                                    <div className="category-tag">
+                                                                        Technology
                                                                     </div>
                                                                     <div className="category-tag">
                                                                         {product.category || 'Electronics'}

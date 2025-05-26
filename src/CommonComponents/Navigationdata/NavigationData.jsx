@@ -8,16 +8,12 @@ const NavigationData = [
     //     path: "/product"
     // },
     // {
-    //     link: "Processor/SoC",
+    //     link: "SOC",
     //     path: "/socmodule"
     // },
     // {
     //     link: "Services",
     //     path: "/services"
-    // },
-    // {
-    //     link: "Applications",
-    //     path: ""
     // },
     {
         link: "Modules",

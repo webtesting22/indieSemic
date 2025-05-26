@@ -155,7 +155,7 @@ const MegaNavigation = () => {
                                 <div className="logoContainer"
                                     style={{
                                         height: isScrolled ? "85px" : "80px",
-                                        boxShadow: isScrolled ? "none" : "2px 2px 19px white",
+                                        // boxShadow: isScrolled ? "none" : "2px 2px 19px white",
                                     }}
                                 ><a href='/'>
                                         <img
@@ -163,7 +163,7 @@ const MegaNavigation = () => {
                                             // src={IndieSemicLogo}
                                             alt="Logo" style={{
 
-                                                width: isScrolled ? "120px" : "235px",
+                                                width: isScrolled ? "120px" : "200px",
                                                 transition: "0.3s",
                                                 // width: isMobile ? "200px" : "150px",
                                             }} />

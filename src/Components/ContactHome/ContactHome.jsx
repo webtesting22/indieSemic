@@ -1,5 +1,5 @@
 import '../../Styles/ContactHome.css'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Row, Col, notification } from 'antd'
 import { Button, InputLabel, Select, MenuItem } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
@@ -11,15 +11,9 @@ import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { Link } from 'react-router-dom';
 import emailjs from 'emailjs-com';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { Country, State } from 'country-state-city';
+import SendIcon from '@mui/icons-material/Send';
 
-const indianStates = [
-    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
-    "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand",
-    "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur",
-    "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab",
-    "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura",
-    "Uttar Pradesh", "Uttarakhand", "West Bengal", "Delhi", "Jammu and Kashmir", "Ladakh", "Puducherry"
-];
 const ContactHome = () => {
     const [formValues, setFormValues] = React.useState({
         name: "",
@@ -27,27 +21,47 @@ const ContactHome = () => {
         contact: "",
         message: "",
         country: "",
-        otherCountry: "", // Additional state for "Others" input
-        state: "", // State field for dropdown
-
+        otherCountry: "",
+        state: "",
     });
+    
+    const [countries, setCountries] = useState([]);
+    const [states, setStates] = useState([]);
     const [formErrors, setFormErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    useEffect(() => {
+        const countryList = Country.getAllCountries();
+        setCountries(countryList);
+    }, []);
+
+    const handleCountryChange = (event) => {
+        const selectedCountryCode = event.target.value;
+        
+        setFormValues((prev) => ({
+            ...prev,
+            country: selectedCountryCode,
+            state: '',
+        }));
+        
+        const stateList = State.getStatesOfCountry(selectedCountryCode);
+        setStates(stateList);
+    };
 
     const handleInputChange = (e) => {
         const { id, value } = e.target;
         setFormValues((prev) => ({ ...prev, [id]: value }));
+        // Clear error when user starts typing
+        if (formErrors[id]) {
+            setFormErrors((prev) => ({ ...prev, [id]: '' }));
+        }
     };
-    const handleCountryChange = (event) => {
-        const selectedCountry = event.target.value;
-        setFormValues((prev) => ({
-            ...prev,
-            country: selectedCountry,
-            otherCountry: selectedCountry === 'Others' ? '' : 'None', // Reset "Other Country" if not "Others"
-            state: selectedCountry === 'India' ? '' : 'None', // Reset "State" if not "India"
-        }));
-    };
+
     const handleStateChange = (event) => {
         setFormValues((prev) => ({ ...prev, state: event.target.value }));
+        if (formErrors.state) {
+            setFormErrors((prev) => ({ ...prev, state: '' }));
+        }
     };
 
     const validateForm = () => {
@@ -65,164 +79,281 @@ const ContactHome = () => {
         if (!formValues.message.trim()) errors.message = "Message is required";
 
         setFormErrors(errors);
-        return Object.keys(errors).length === 0; // Return true if no errors
+        return Object.keys(errors).length === 0;
     };
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (validateForm()) {
-            console.log("Form Submitted", formValues);
-            notification.success({
-                message: 'Form Submitted Successfully',
-                description: 'We have received your message and will get back to you shortly.',
-            });
-            const emailData = {
-                ...formValues,
-                otherCountry: formValues.country === "Others" ? formValues.otherCountry : 'None',
-            };
-            emailjs.init("he7c_VvdVGJ1i14BP"); // Replace with your actual public API key
-
-            emailjs.send('service_2zloh8u', 'template_ou1ijvg', emailData, 'he7c_VvdVGJ1i14BP')
-                .then(() => {
-                    console.log('Success:');
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
+            setIsSubmitting(true);
+            
+            try {
+                const emailData = {
+                    ...formValues,
+                    otherCountry: formValues.country === "Others" ? formValues.otherCountry : 'None',
+                };
+                
+                emailjs.init("he7c_VvdVGJ1i14BP");
+                
+                await emailjs.send('service_2zloh8u', 'template_ou1ijvg', emailData, 'he7c_VvdVGJ1i14BP');
+                
+                notification.success({
+                    message: 'Message Sent Successfully!',
+                    description: 'Thank you for reaching out. We will get back to you shortly.',
+                    placement: 'topRight',
+                    duration: 4,
                 });
 
-            setFormValues({
-                name: "",
-                email: "",
-                contact: "",
-                message: "",
-                country: "",
-                otherCountry: "",
-                state: "",
-
-            });
+                setFormValues({
+                    name: "",
+                    email: "",
+                    contact: "",
+                    message: "",
+                    country: "",
+                    otherCountry: "",
+                    state: "",
+                });
+                setStates([]);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                notification.error({
+                    message: 'Failed to Send Message',
+                    description: 'Something went wrong. Please try again later.',
+                    placement: 'topRight',
+                });
+            } finally {
+                setIsSubmitting(false);
+            }
         }
     };
 
-
     return (
-        <section id="ContactContainer" className='section_Padding'>
-            <div className="backGroundAttachmentContact">
-
+        <section id="contact-container" className='contact-section'>
+            <div className="contact-background">
+                <div className="contact-background-overlay"></div>
             </div>
-            <Row>
-                <Col lg={11} xs={24}>
-                    <div className='contactInfoContainer'>
-                        <div className='sectionHeading'><h2>Contact Us</h2></div>
-                        <p className='contactItem'>
-                            <LocationOnOutlinedIcon sx={{ color: "#4a90e2" }} />
-                            <Link target='_blank' to="https://maps.app.goo.gl/mh95Njc42ex6evFx9">C-201, 2nd Floor, The First, B/h Keshav Baugh Party Plot Nr. Shivalik High-Street,&nbsp;Vastrapur, Ahmedabad, Gujarat 380015.</Link>
-                        </p>
-                        <p className='contactItem'>
-                            <LinkedInIcon sx={{ color: "#4a90e2" }} />
-                            <Link to="https://www.linkedin.com/company/102919226/admin/dashboard/">LinkedIn</Link>
-                        </p>
-                        {/* <p className='contactItem'>
-                            <PhoneIcon sx={{ color: "#4a90e2" }} />
-                            Contact Number here
-                        </p> */}
-                        <p className='contactItem'>
-                            <EmailIcon sx={{ color: "#4a90e2" }} />
-                            <Link to="mailto:sales@indiesemic.com" target="_blank">sales@indiesemic.com</Link>
-                        </p>
-                    </div>
-                </Col>
-                <Col lg={1} md={0} />
-                <Col lg={12} xs={24}>
-                    <div className='contactFormContainer'>
-                        <div className='sectionHeading'><h2>Reach Out To Us!</h2></div>
-                        <Box
-                            component="form"
-                            sx={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                gap: 2,
-                                width: '100%',
-                                mt: 3,
-                            }}
-                            noValidate
-                            autoComplete="off"
-                            onSubmit={handleSubmit}
-
-                        >
-                            <Box sx={{ display: 'flex', gap: 2, width: '100%' }}>
-                                <TextField id="name" label="Name" color='primary' variant="outlined" value={formValues.name} error={!!formErrors.name}
-                                    helperText={formErrors.name}
-
-                                    onChange={handleInputChange} sx={{ flex: { xs: '100%', sm: 1 } }} // Full width on mobile, flex on larger screens
-                                />
-                                <TextField id="email" label="Email" variant="outlined" value={formValues.email} error={!!formErrors.email}
-                                    helperText={formErrors.email}
-                                    onChange={handleInputChange} sx={{ flex: { xs: '100%', sm: 1 } }} // Full width on mobile, flex on larger screens
-                                />
-                                <TextField id='contact' label="Contact" variant='outlined' value={formValues.contact} error={!!formErrors.email}
-                                    helperText={formErrors.contact}
-                                    onChange={handleInputChange} sx={{ flex: { xs: '100%', sm: 1 } }} // Full width on mobile, flex on larger screens
-                                />
-                            </Box>
-                            <TextField
-                                select
-                                label="Country"
-                                id="country"
-                                value={formValues.country}
-                                onChange={handleCountryChange}
-                                error={!!formErrors.country}
-                                variant='outlined'
-                                sx={{ width: '100%' }}
-
-                            >
-                                <MenuItem value="India" sx={{ backgroundColor: "white" }}>India</MenuItem>
-                                <MenuItem value="Others" sx={{ backgroundColor: "white" }}>Others</MenuItem>
-                            </TextField>
-                            {formValues.country === "India" && (
-                                <TextField
-                                    select
-                                    label="State"
-                                    id="state"
-                                    value={formValues.state}
-                                    onChange={handleStateChange}
-                                    error={!!formErrors.state}
-                                    helperText={formErrors.state}
-                                >
-                                    {indianStates.map((state) => (
-                                        <MenuItem key={state} value={state} sx={{ backgroundColor: "white" }}>{state}</MenuItem>
-                                    ))}
-                                </TextField>
-                            )}
-                            {formValues.country === "Others" && (
-                                <TextField
-                                    id="otherCountry"
-                                    label="Please specify your country"
-                                    variant="outlined"
-                                    value={formValues.otherCountry}
-                                    onChange={handleInputChange}
-                                    error={!!formErrors.otherCountry}
-                                    helperText={formErrors.otherCountry}
-                                />
-                            )}
-                            {formErrors.country && <p style={{ color: 'red', fontSize: '0.8em' }}>{formErrors.country}</p>}
-
-                            <TextField id="message" label="Message" variant="outlined" multiline rows={4} value={formValues.message}
-                                onChange={handleInputChange}
-                                error={!!formErrors.message}
-                                helperText={formErrors.message} />
-                            <div className="SideContentContainer">
-                                <button
-                                    type='submit'
-                                >
-                                    <ArrowRightAltIcon />
-                                    Submit
-                                </button>
+            
+            <div className="contact-content">
+                <div className="section-title">
+                    <h2>Get In Touch</h2>
+                    <p>Ready to transform your business? Let's start the conversation.</p>
+                </div>
+                
+                <Row gutter={[48, 32]} align="middle">
+                    <Col lg={11} md={24} xs={24}>
+                        <div className='contact-info-container'>
+                            <div className='contact-info-header'>
+                                <h3>Contact Information</h3>
+                                <p>Reach out to us through any of these channels</p>
                             </div>
-                        </Box>
-
-                    </div>
-                </Col>
-            </Row>
+                            
+                            <div className='contact-items'>
+                                <div className='contact-item'>
+                                    <div className='contact-icon'>
+                                        <LocationOnOutlinedIcon />
+                                    </div>
+                                    <div className='contact-details'>
+                                        <h4>Our Office</h4>
+                                        <Link 
+                                            target='_blank' 
+                                            to="https://maps.app.goo.gl/mh95Njc42ex6evFx9"
+                                            className='contact-link'
+                                        >
+                                            C-201, 2nd Floor, The First, B/h Keshav Baugh Party Plot Nr. Shivalik High-Street, Vastrapur, Ahmedabad, Gujarat 380015.
+                                        </Link>
+                                    </div>
+                                </div>
+                                
+                                <div className='contact-item'>
+                                    <div className='contact-icon'>
+                                        <LinkedInIcon />
+                                    </div>
+                                    <div className='contact-details'>
+                                        <h4>LinkedIn</h4>
+                                        <Link 
+                                            to="https://www.linkedin.com/company/102919226/admin/dashboard/"
+                                            target="_blank"
+                                            className='contact-link'
+                                        >
+                                            Connect with us on LinkedIn
+                                        </Link>
+                                    </div>
+                                </div>
+                                
+                                <div className='contact-item'>
+                                    <div className='contact-icon'>
+                                        <EmailIcon />
+                                    </div>
+                                    <div className='contact-details'>
+                                        <h4>Email Us</h4>
+                                        <Link 
+                                            to="mailto:sales@indiesemic.com" 
+                                            target="_blank"
+                                            className='contact-link'
+                                        >
+                                            sales@indiesemic.com
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Col>
+                    
+                    <Col lg={1} md={0} />
+                    
+                    <Col lg={12} md={24} xs={24}>
+                        <div className='contact-form-container'>
+                            <div className='form-header'>
+                                <h3>Send us a Message</h3>
+                                <p>Fill out the form below and we'll get back to you soon</p>
+                            </div>
+                            
+                            <Box
+                                component="form"
+                                className="contact-form"
+                                onSubmit={handleSubmit}
+                                noValidate
+                                autoComplete="off"
+                            >
+                                <div className="form-row">
+                                    <TextField 
+                                        id="name" 
+                                        label="Full Name" 
+                                        variant="outlined" 
+                                        value={formValues.name}
+                                        error={!!formErrors.name}
+                                        helperText={formErrors.name}
+                                        onChange={handleInputChange}
+                                        className="form-field"
+                                        fullWidth
+                                    />
+                                </div>
+                                
+                                <div className="form-row">
+                                    <TextField 
+                                        id="email" 
+                                        label="Email Address" 
+                                        variant="outlined" 
+                                        type="email"
+                                        value={formValues.email}
+                                        error={!!formErrors.email}
+                                        helperText={formErrors.email}
+                                        onChange={handleInputChange}
+                                        className="form-field"
+                                        fullWidth
+                                    />
+                                    <TextField 
+                                        id='contact' 
+                                        label="Phone Number" 
+                                        variant='outlined' 
+                                        value={formValues.contact}
+                                        error={!!formErrors.contact}
+                                        helperText={formErrors.contact}
+                                        onChange={handleInputChange}
+                                        className="form-field"
+                                        fullWidth
+                                    />
+                                </div>
+                                
+                                <div className="form-row">
+                                    <TextField
+                                        select
+                                        label="Country"
+                                        id="country"
+                                        value={formValues.country}
+                                        onChange={handleCountryChange}
+                                        error={!!formErrors.country}
+                                        helperText={formErrors.country}
+                                        className="form-field"
+                                        fullWidth
+                                    >
+                                        {countries.map((country) => (
+                                            <MenuItem key={country.isoCode} value={country.isoCode}>
+                                                {country.name}
+                                            </MenuItem>
+                                        ))}
+                                    </TextField>
+                                    
+                                    {states.length > 0 && (
+                                        <TextField
+                                            select
+                                            label="State"
+                                            id="state"
+                                            value={formValues.state}
+                                            onChange={handleStateChange}
+                                            error={!!formErrors.state}
+                                            helperText={formErrors.state}
+                                            className="form-field"
+                                            fullWidth
+                                        >
+                                            {states.map((state) => (
+                                                <MenuItem key={state.isoCode} value={state.name}>
+                                                    {state.name}
+                                                </MenuItem>
+                                            ))}
+                                        </TextField>
+                                    )}
+                                </div>
+                                
+                                {formValues.country === "Others" && (
+                                    <div className="form-row">
+                                        <TextField
+                                            id="otherCountry"
+                                            label="Please specify your country"
+                                            variant="outlined"
+                                            value={formValues.otherCountry}
+                                            onChange={handleInputChange}
+                                            error={!!formErrors.otherCountry}
+                                            helperText={formErrors.otherCountry}
+                                            className="form-field"
+                                            fullWidth
+                                        />
+                                    </div>
+                                )}
+                                
+                                <div className="form-row">
+                                    <TextField 
+                                        id="message" 
+                                        label="Your Message" 
+                                        variant="outlined" 
+                                        multiline 
+                                        rows={4} 
+                                        value={formValues.message}
+                                        onChange={handleInputChange}
+                                        error={!!formErrors.message}
+                                        helperText={formErrors.message}
+                                        className="form-field"
+                                        fullWidth
+                                    />
+                                </div>
+                                
+                                <div className="form-submit">
+                                    <button
+                                        type='submit'
+                                        className={`submit-btn ${isSubmitting ? 'submitting' : ''}`}
+                                        disabled={isSubmitting}
+                                    >
+                                        {isSubmitting ? (
+                                            <>
+                                                <div className="loading-spinner"></div>
+                                                Sending...
+                                            </>
+                                        ) : (
+                                            <>
+                                                <SendIcon className="btn-icon" />
+                                                Send Message
+                                            </>
+                                        )}
+                                    </button>
+                                </div>
+                            </Box>
+                        </div>
+                    </Col>
+                </Row>
+            </div>
         </section>
     )
 }
+
 export default ContactHome;

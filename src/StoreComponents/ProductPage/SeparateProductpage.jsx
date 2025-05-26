@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import "../../Styles/ProductSeparatePage.css";
-import { Row, Col, Tabs, Image, Button, notification } from "antd";
+import { Row, Col, Tabs, Image, Button, notification,message } from "antd";
 import { FiCopy, FiCheck } from "react-icons/fi";
 import ProductContext from "../Context/ProductContext";
 import { FaShoppingCart } from "react-icons/fa";
@@ -118,7 +118,15 @@ const SeparateProductPage = () => {
     const isProductInCart = cartItems.some(item => item._id === product?._id);
 
     const thumbnails = [product.mainImages?.[0], ...(product.mainImages || [])];
-
+    const handleCopy = (productId) => {
+        navigator.clipboard.writeText(productId).then(() => {
+          setCopiedProductId(productId); // your state update
+          message.success('Link Copied to clipboard', 1.5); // success notification
+          setTimeout(() => {
+            setCopiedProductId(null);
+          }, 2000);
+        });
+      };
     return (
         <section id="ProductSeparatePage" className="enhanced-product-page">
             <div className="product-container">
@@ -210,7 +218,8 @@ const SeparateProductPage = () => {
                                 {/* Enhanced Product Header */}
                                 <div className="product-header">
                                     <button
-                                        onClick={(e) => handleCopyLink(e, product._id)}
+                                    
+                                    onClick={() => handleCopy(product._id)} style={{ cursor: 'pointer' }}
                                         className="share-button"
                                     >
                                         {copiedProductId === product._id ? (
@@ -263,15 +272,15 @@ const SeparateProductPage = () => {
                                 <div className="trust-badges">
                                     <div className="trust-badge">
                                         <FaShieldAlt className="badge-icon" />
-                                        <span>2 Year Warranty</span>
+                                        {/* <span>2 Year Warranty</span> */}
                                     </div>
                                     <div className="trust-badge">
                                         <FaTruck className="badge-icon" />
-                                        <span>Free Shipping</span>
+                                        {/* <span>Free Shipping</span> */}
                                     </div>
                                     <div className="trust-badge">
                                         <FaCheckCircle className="badge-icon" />
-                                        <span>Quality Assured</span>
+                                        {/* <span>Quality Assured</span> */}
                                     </div>
                                 </div>
 

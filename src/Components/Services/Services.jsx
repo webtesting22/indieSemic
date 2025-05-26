@@ -104,7 +104,7 @@ const Services = () => {
                     <div className="services-cta">
                         <div className="services-cta-content">
                             <h3>Ready to Get Started?</h3>
-                            <p>Let's discuss how we can help bring your RF and embedded projects to life.</p>
+                            <p>Let's discuss how we can help bring your products to life.</p>
                             <div className="services-cta-buttons">
                                 {/* <button className="services-cta-button services-primary">
                                     <IoSettings />

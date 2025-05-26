@@ -60,7 +60,20 @@
   border: none;
   cursor: pointer;
   font-size: 16px;
-  padding: 0px;
+  padding: 8px 15px;
+  color: black;
+}
+
+.dropbtn:hover {
+  background-color: #1890ff;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+}
+
+.dropbtn:hover a {
+  color: white !important;
+
 }
 
 .logoContainer {
@@ -71,6 +84,7 @@
   /* box-shadow: 2px 2px 19px white; */
   align-items: center;
   justify-content: center;
+  margin-left: 15px;
 }
 
 .logoContainer img {
@@ -87,7 +101,7 @@
 }
 
 #Collapse {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 #Collapse .ant-collapse {
@@ -128,7 +142,7 @@
 }
 
 #NavigationBar ul li {
-  margin: 0px 20px;
+  margin: 0px 10px;
 }
 
 .MuiPaper-root {
@@ -136,6 +150,22 @@
 }
 
 @media (max-width: 769px) {
+  .dropbtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 8px 15px;
+    color: black;
+  }
+
+  .dropbtn:hover {
+    background-color: #1890ff;
+    color: black;
+    padding: 8px 15px;
+    border-radius: 20px;
+  }
+
   .navigationbar {
     background-color: white;
     padding: 10px 0px !important;
@@ -228,9 +258,7 @@
 }
 
 .category-list p {
-  /* height: 100%; */
   display: flex;
-  /* flex-direction: column; */
   justify-content: space-between;
   color: black;
   margin-left: 30px;
@@ -271,4 +299,32 @@
 
 .category-list .active p {
   color: #1890ff !important;
+}
+
+
+@media (max-width:900px) {
+  .MobileNavigationLink {
+    padding: 10px 20px;
+    color: black;
+  }
+
+  .MobileNavigationLink {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .MobileNavigationLink::before {
+    content: "";
+    height: 5px;
+    width: 5px;
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+  }
+}
+
+
+.navigationbar{
+  border-radius: 16px;
 }

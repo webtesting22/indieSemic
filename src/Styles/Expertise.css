@@ -116,6 +116,7 @@
   background: transparent;
   border: none;
   transition: 0.5s;
+  font-size: 17px;
 }
 
 .SideContentContainer button:hover {

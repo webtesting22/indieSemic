@@ -138,6 +138,7 @@ const Cart = () => {
                     fontSize: "16px",
                     fontWeight: "bold",
                     padding: "10px 20px",
+                    borderRadius:"50%"
                 }}
             >
                 <BsFillCartCheckFill />

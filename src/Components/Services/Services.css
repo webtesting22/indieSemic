@@ -41,7 +41,7 @@
     bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
+    width: 140px;
     height: 4px;
     background: linear-gradient(90deg, rgb(63, 125, 196), rgb(74, 144, 226));
     border-radius: 2px;
