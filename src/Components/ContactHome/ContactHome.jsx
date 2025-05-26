@@ -24,7 +24,7 @@ const ContactHome = () => {
         otherCountry: "",
         state: "",
     });
-    
+
     const [countries, setCountries] = useState([]);
     const [states, setStates] = useState([]);
     const [formErrors, setFormErrors] = useState({});
@@ -37,13 +37,13 @@ const ContactHome = () => {
 
     const handleCountryChange = (event) => {
         const selectedCountryCode = event.target.value;
-        
+
         setFormValues((prev) => ({
             ...prev,
             country: selectedCountryCode,
             state: '',
         }));
-        
+
         const stateList = State.getStatesOfCountry(selectedCountryCode);
         setStates(stateList);
     };
@@ -86,17 +86,17 @@ const ContactHome = () => {
         e.preventDefault();
         if (validateForm()) {
             setIsSubmitting(true);
-            
+
             try {
                 const emailData = {
                     ...formValues,
                     otherCountry: formValues.country === "Others" ? formValues.otherCountry : 'None',
                 };
-                
+
                 emailjs.init("he7c_VvdVGJ1i14BP");
-                
+
                 await emailjs.send('service_2zloh8u', 'template_ou1ijvg', emailData, 'he7c_VvdVGJ1i14BP');
-                
+
                 notification.success({
                     message: 'Message Sent Successfully!',
                     description: 'Thank you for reaching out. We will get back to you shortly.',
@@ -114,7 +114,7 @@ const ContactHome = () => {
                     state: "",
                 });
                 setStates([]);
-                
+
             } catch (error) {
                 console.error('Error:', error);
                 notification.error({
@@ -133,15 +133,15 @@ const ContactHome = () => {
             <div className="contact-background">
                 <div className="contact-background-overlay"></div>
             </div>
-            
+
             <div className="contact-content">
                 <div className="section-title">
                     <h2>Get In Touch</h2>
                     <p>Ready to transform your business? Let's start the conversation.</p>
                 </div>
-                
-                <Row gutter={[48, 32]} align="middle">
-                    <Col lg={11} md={24} xs={24}>
+
+                <Row gutter={[48, 32]} align="middle" style={{display:"flex",justifyContent:"center"}}>
+                    {/* <Col lg={11} md={24} xs={24}>
                         <div className='contact-info-container'>
                             <div className='contact-info-header'>
                                 <h3>Contact Information</h3>
@@ -199,16 +199,16 @@ const ContactHome = () => {
                             </div>
                         </div>
                     </Col>
-                    
-                    <Col lg={1} md={0} />
-                    
-                    <Col lg={12} md={24} xs={24}>
+                     */}
+                    {/* <Col lg={1} md={0} /> */}
+
+                    <Col lg={14} md={24} xs={24}>
                         <div className='contact-form-container'>
                             <div className='form-header'>
                                 <h3>Send us a Message</h3>
                                 <p>Fill out the form below and we'll get back to you soon</p>
                             </div>
-                            
+
                             <Box
                                 component="form"
                                 className="contact-form"
@@ -217,10 +217,10 @@ const ContactHome = () => {
                                 autoComplete="off"
                             >
                                 <div className="form-row">
-                                    <TextField 
-                                        id="name" 
-                                        label="Full Name" 
-                                        variant="outlined" 
+                                    <TextField
+                                        id="name"
+                                        label="Full Name"
+                                        variant="outlined"
                                         value={formValues.name}
                                         error={!!formErrors.name}
                                         helperText={formErrors.name}
@@ -229,12 +229,12 @@ const ContactHome = () => {
                                         fullWidth
                                     />
                                 </div>
-                                
+
                                 <div className="form-row">
-                                    <TextField 
-                                        id="email" 
-                                        label="Email Address" 
-                                        variant="outlined" 
+                                    <TextField
+                                        id="email"
+                                        label="Email Address"
+                                        variant="outlined"
                                         type="email"
                                         value={formValues.email}
                                         error={!!formErrors.email}
@@ -243,10 +243,10 @@ const ContactHome = () => {
                                         className="form-field"
                                         fullWidth
                                     />
-                                    <TextField 
-                                        id='contact' 
-                                        label="Phone Number" 
-                                        variant='outlined' 
+                                    <TextField
+                                        id='contact'
+                                        label="Phone Number"
+                                        variant='outlined'
                                         value={formValues.contact}
                                         error={!!formErrors.contact}
                                         helperText={formErrors.contact}
@@ -255,7 +255,7 @@ const ContactHome = () => {
                                         fullWidth
                                     />
                                 </div>
-                                
+
                                 <div className="form-row">
                                     <TextField
                                         select
@@ -274,7 +274,7 @@ const ContactHome = () => {
                                             </MenuItem>
                                         ))}
                                     </TextField>
-                                    
+
                                     {states.length > 0 && (
                                         <TextField
                                             select
@@ -295,7 +295,7 @@ const ContactHome = () => {
                                         </TextField>
                                     )}
                                 </div>
-                                
+
                                 {formValues.country === "Others" && (
                                     <div className="form-row">
                                         <TextField
@@ -311,14 +311,14 @@ const ContactHome = () => {
                                         />
                                     </div>
                                 )}
-                                
+
                                 <div className="form-row">
-                                    <TextField 
-                                        id="message" 
-                                        label="Your Message" 
-                                        variant="outlined" 
-                                        multiline 
-                                        rows={4} 
+                                    <TextField
+                                        id="message"
+                                        label="Your Message"
+                                        variant="outlined"
+                                        multiline
+                                        rows={4}
                                         value={formValues.message}
                                         onChange={handleInputChange}
                                         error={!!formErrors.message}
@@ -327,7 +327,7 @@ const ContactHome = () => {
                                         fullWidth
                                     />
                                 </div>
-                                
+
                                 <div className="form-submit">
                                     <button
                                         type='submit'
