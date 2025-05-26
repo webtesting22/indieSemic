@@ -119,14 +119,17 @@ const SeparateProductPage = () => {
 
     const thumbnails = [product.mainImages?.[0], ...(product.mainImages || [])];
     const handleCopy = (productId) => {
-        navigator.clipboard.writeText(productId).then(() => {
-          setCopiedProductId(productId); // your state update
-          message.success('Link Copied to clipboard', 1.5); // success notification
+        const productUrl = `${window.location.origin}/product/${productId}`;
+      
+        navigator.clipboard.writeText(productUrl).then(() => {
+          setCopiedProductId(productId); // update state to show "Copied!"
+          message.success('Link Copied to clipboard', 1.5); // antd message
           setTimeout(() => {
             setCopiedProductId(null);
           }, 2000);
         });
       };
+      
     return (
         <section id="ProductSeparatePage" className="enhanced-product-page">
             <div className="product-container">
