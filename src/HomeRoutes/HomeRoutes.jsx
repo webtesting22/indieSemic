@@ -32,7 +32,7 @@ const HomeRoutes = () => {
                         onError={handleVideoError}
                         playsInline
                     >
-                        <source src="/Images/HomePageLogoLoader.mp4" type="video/mp4" />
+                        <source src="/Images/HomePageLogoLoader.MOV" type="video/mp4" />
                         {/* Fallback if video doesn't load */}
                         <div className="video-fallback">
                             <div className="fallback-loader">
