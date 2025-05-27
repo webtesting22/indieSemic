@@ -127,7 +127,7 @@ const SOCModule = () => {
 
             {/* Vajra Project Section */}
             <section className="soc-section soc-dark-section">
-                <div className="soc-container">
+                <div className="soc-container" style={{background:"transparent"}}>
                     <div className="soc-content-block">
                         <div className="soc-section-header">
                             <h2 className="soc-section-heading">
@@ -175,7 +175,7 @@ const SOCModule = () => {
                     <div className="soc-cards-grid">
                         <Row gutter={[24, 24]}>
                             {positioningData.map((feature, index) => (
-                                <Col lg={12} md={12} sm={24} key={index}>
+                                <Col lg={12} md={12} sm={24} key={index} style={{width:"100%"}}>
                                     <div className="soc-positioning-card">
                                         <div className="soc-card-icon">
                                             <img src={feature.icon} alt={feature.title} />
@@ -197,7 +197,7 @@ const SOCModule = () => {
 
             {/* Call to Action Section */}
             <section className="soc-cta-section">
-                <div className="soc-container">
+                <div className="soc-container" style={{background:"transparent"}}>
                     <div className="soc-cta-content">
                         <h1 className="soc-cta-heading">
                             Be a Part of India's Semiconductor Future
