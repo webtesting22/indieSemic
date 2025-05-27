@@ -27,7 +27,7 @@ const SOCModule = () => {
 
     const vajraFeatures = [
         {
-            title: "Targets next-gen Automotive & ADAS systems",
+            title: "Targets next-gen Automotive & Surveillance systems",
         },
         {
             title: "Integrated support for Radar, Lidar, Camera feeds",
@@ -114,7 +114,7 @@ const SOCModule = () => {
                             <Col lg={12} md={24}>
                                 <div className="soc-image-container">
                                     <img
-                                        src="https://cdn.prod.website-files.com/673df36634025fb6cd805026/673df36634025fb6cd805094_FIN_Service_02-min.jpg"
+                                        src="https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/inventoryManagement/vkKlF2gjcC4ruNia40tv/2 (4).jpg"
                                         alt="RISC-V Microcontroller"
                                         className="soc-feature-image"
                                     />
@@ -141,7 +141,7 @@ const SOCModule = () => {
                             <Col lg={12} md={24}>
                                 <div className="soc-image-container">
                                     <img
-                                        src="https://cdn.prod.website-files.com/673df36634025fb6cd805026/673df36634025fb6cd805094_FIN_Service_02-min.jpg"
+                                        src="https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/inventoryManagement/UBDwOQMdOlLiZ0JHGzCf/6.jpg"
                                         alt="Vajra AI Processor"
                                         className="soc-feature-image soc-glow-effect"
                                     />
