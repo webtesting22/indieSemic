@@ -398,6 +398,12 @@
     gap: 10px;
 }
 
+.modern-products-page .categories-list .category-option:first-child{
+    display: none !important;
+}
+
+
+
 .modern-products-page .category-option {
     display: flex;
     justify-content: space-between;

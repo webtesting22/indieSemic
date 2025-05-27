@@ -24,7 +24,8 @@ const IndieSemicProduct = () => {
     const productList = products || [];
 
     // State management for filters
-    const [selectedCategory, setSelectedCategory] = useState("All Products"); // Set default to "All Products"
+    const [selectedCategory, setSelectedCategory] = useState(""); // Empty string = All Products
+    // Set default to "All Products"
     const [searchQuery, setSearchQuery] = useState("");
     const [drawerVisible, setDrawerVisible] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -58,8 +59,9 @@ const IndieSemicProduct = () => {
 
     // Reset all filters to default values
     const resetFilters = () => {
-        setSelectedCategory("All Products"); // Reset category filter to "All Products"
-        setSearchQuery(""); // Reset search query
+        setSelectedCategory("");
+  setSelectedBrand("");
+  setSelectedPriceRange([minPrice, maxPrice]);
     };
 
     // Toggle filter drawer for mobile view
@@ -69,7 +71,8 @@ const IndieSemicProduct = () => {
 
     // Filter products based on selected category, search query, and price range
     const filteredProducts = productList.filter((product) => {
-        const categoryMatch = selectedCategory === "All Products" ? true : product.category === selectedCategory;
+        const categoryMatch = !selectedCategory || product.category === selectedCategory;
+
         const searchMatch = product.title.toLowerCase().includes(searchQuery.toLowerCase());
 
         return categoryMatch && searchMatch;
@@ -134,12 +137,12 @@ const IndieSemicProduct = () => {
                             <h1 className="hero-main-title">Precision in Every Layer</h1>
                             <p className="hero-subtitle">Crafting semiconductors for flawless performance.</p>
                             <div className="hero-stats-container">
-                                <div className="stat-box">
+                                {/* <div className="stat-box">
                                     <span className="stat-number">{productList.length}+</span>
                                     <span className="stat-text">Products</span>
-                                </div>
+                                </div> */}
                                 <div className="stat-box">
-                                    <span className="stat-number">99%</span>
+                                    <span className="stat-number">100%</span>
                                     <span className="stat-text">Quality</span>
                                 </div>
                                 <div className="stat-box">
