@@ -72,7 +72,7 @@ const SOCModule = () => {
             <section className="soc-hero">
                 <div className="soc-hero-background">
                     <div className="soc-hero-overlay"></div>
-                    <img src={SOCBackImage} alt="Semiconductor Innovation" />
+                    <img src="/Images/SOCBack.jpeg" alt="Semiconductor Innovation" />
                 </div>
                 <div className="soc-hero-content">
                     <div className="soc-hero-text">
