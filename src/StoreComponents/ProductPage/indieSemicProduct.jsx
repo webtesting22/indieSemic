@@ -60,8 +60,8 @@ const IndieSemicProduct = () => {
     // Reset all filters to default values
     const resetFilters = () => {
         setSelectedCategory("");
-  setSelectedBrand("");
-  setSelectedPriceRange([minPrice, maxPrice]);
+        setSelectedBrand("");
+        setSelectedPriceRange([minPrice, maxPrice]);
     };
 
     // Toggle filter drawer for mobile view
@@ -136,7 +136,7 @@ const IndieSemicProduct = () => {
                         <div className="hero-text-wrapper">
                             <h1 className="hero-main-title">Precision in Every Layer</h1>
                             <p className="hero-subtitle">Crafting semiconductors for flawless performance.</p>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -153,13 +153,13 @@ const IndieSemicProduct = () => {
                 <div className="products-header-container">
                     {/* Breadcrumb */}
                     <div className="breadcrumb-wrapper">
-                        <div style={{ display: "flex", gap: "10px",justifyContent:"space-between" }}>
+                        <div style={{ display: "flex", gap: "10px", justifyContent: "space-between" }}>
                             <div className="breadcrumb-content">
                                 <Link to="/" className="breadcrumb-item">Home</Link>
                                 <span className="breadcrumb-divider">{">"}</span>
                                 <span className="breadcrumb-current">Products</span>
                             </div>
-                            
+
                             <Button
                                 type="primary"
                                 icon={<FilterOutlined />}
@@ -300,9 +300,14 @@ const IndieSemicProduct = () => {
                                     >
                                         Reset Filters
                                     </Button>
-                                    <div className="quotation-wrapper">
-                                        <GetQuotationModal />
-                                    </div>
+
+                                </div>
+
+                            </div>
+                            <br />
+                            <div className="desktop-sidebar-container">
+                                <div className="quotation-wrapper">
+                                    <GetQuotationModal />
                                 </div>
                             </div>
                         </Col>

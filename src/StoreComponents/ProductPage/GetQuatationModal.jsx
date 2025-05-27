@@ -350,6 +350,7 @@ const GetQuotationModal = () => {
 
     return (
         <>
+        <b style={{textAlign:"center",fontWeight:"700",fontSize:"19px"}}>For Bulk Orders:</b>
             <Button type="primary" onClick={handleGetQuotation} className="enhanced-add-to-cart-btn">
                 <IoDocumentTextSharp />Get Quotation
             </Button>

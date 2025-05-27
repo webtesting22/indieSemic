@@ -31,6 +31,7 @@ const HomeRoutes = () => {
                         onEnded={handleVideoEnd}
                         onError={handleVideoError}
                         playsInline
+                        style={{ boxShadow: "none" }}
                     >
                         <source src="/Images/HomePageloaderVideo.mp4" type="video/mp4" />
                         {/* Fallback if video doesn't load */}
@@ -46,8 +47,8 @@ const HomeRoutes = () => {
             <div className={`main-content ${showLoader ? 'content-hidden' : 'content-visible'}`}>
                 <ScrollTop style={{ zIndex: "1000000", backgroundColor: 'black' }} />
                 <Hero />
-                <AboutCompany /> 
-                <Achivement /> 
+                <AboutCompany />
+                <Achivement />
                 <Expertise />
                 <ExpertiseCards />
                 <NumbersComponent />

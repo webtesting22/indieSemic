@@ -126,6 +126,7 @@ const Cart = () => {
     return (
         <>
             {/* Button to open cart drawer */}
+
             <Button
                 id="OpenCartButton"
                 type="primary"
@@ -135,16 +136,22 @@ const Cart = () => {
                     backgroundColor: "#1890ff",
                     borderColor: "#1890ff",
                     color: "#fff",
-                    fontSize: "16px",
+                    fontSize: "32px",
                     fontWeight: "bold",
                     padding: "10px 20px",
-                    borderRadius:"50%"
+                    borderRadius: "50%"
                 }}
             >
-                <BsFillCartCheckFill />
+                <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+                    {cartItems.length > 0 ? (
+                        <span style={{ fontSize: "14px" }}>{cartItems.length}</span>
+                    ) : null}
+                    <BsFillCartCheckFill />
+                </div>
             </Button>
 
             {/* Drawer component */}
+
             <Drawer
                 title={<Typography.Title level={4} style={{ marginBottom: "0px" }}>Cart</Typography.Title>}
                 anchor="right"

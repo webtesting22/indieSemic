@@ -23,6 +23,10 @@ import {
     FaTruck,
     FaShieldAlt
 } from "react-icons/fa";
+import { GrTechnology } from "react-icons/gr";
+import { GiIndiaGate } from "react-icons/gi";
+import { FaIndianRupeeSign } from "react-icons/fa6";
+
 import ContactHome from "../../Components/ContactHome/ContactHome";
 const { TabPane } = Tabs;
 const SeparateProductPage = () => {
@@ -43,15 +47,20 @@ const SeparateProductPage = () => {
         setCopiedProductId(productId);
         setTimeout(() => setCopiedProductId(null), 1500);
     };
-
+    const isProductInCart = cartItems.some(item => item._id === product?._id);
+    // Sync button state with cart content
+    useEffect(() => {
+        if (isProductInCart) {
+            setButtonText("Product Added");
+            setIsButtonDisabled(true);
+        } else {
+            setButtonText("Add to Cart");
+            setIsButtonDisabled(false);
+        }
+    }, [isProductInCart]);
     const handleAddToCart = (product) => {
-        addToCart(product);
+        addToCart(product); // should update cartItems
 
-        // Disable the button and change the text
-        setButtonText("Product Added");
-        setIsButtonDisabled(true);
-
-        // Show a success notification
         notification.success({
             message: "Product Added",
             description: `${product.title} has been added to your cart.`,
@@ -116,7 +125,7 @@ const SeparateProductPage = () => {
     if (!product) {
         return <h2></h2>;
     }
-    const isProductInCart = cartItems.some(item => item._id === product?._id);
+
 
     const thumbnails = [product.mainImages?.[0], ...(product.mainImages || [])];
     const handleCopy = (productId) => {
@@ -276,30 +285,40 @@ const SeparateProductPage = () => {
                                 <div className="trust-badges">
                                     <div className="trust-badge">
                                         <FaShieldAlt className="badge-icon" />
-                                        {/* <span>2 Year Warranty</span> */}
+                                        <span>Quality Assured</span>
                                     </div>
                                     <div className="trust-badge">
-                                        <FaTruck className="badge-icon" />
-                                        {/* <span>Free Shipping</span> */}
+                                        <GrTechnology className="badge-icon" />
+                                        <span>Cutting Edge Technology</span>
                                     </div>
                                     <div className="trust-badge">
-                                        <FaCheckCircle className="badge-icon" />
-                                        {/* <span>Quality Assured</span> */}
+                                        <GiIndiaGate className="badge-icon" />
+                                        <span>Made In India</span>
                                     </div>
                                 </div>
 
+                                <div className="priceContainer">
+                                    <p >
+                                        <FaIndianRupeeSign />
+                                        {product.price + 100}
+                                    </p>
+                                    <p style={{ marginBottom: 0 }}>
+                                        <FaIndianRupeeSign />
+                                        {product.price}
+                                    </p>
+                                </div>
                                 {/* Enhanced Action Buttons */}
                                 <div className="action-buttons-section">
                                     <div className="primary-actions">
                                         <Button
                                             type="primary"
                                             onClick={() => handleAddToCart(product)}
-                                            className="enhanced-add-to-cart-btn"
-                                            disabled={isButtonDisabled || isProductInCart}
+                                            className="enhanced-add-to-cart-btn addToCart"
+                                            disabled={isProductInCart}
                                         >
                                             <FaShoppingCart className="cart-icon" />
                                             <span className="button-text">
-                                                {isProductInCart ? "Product Added" : buttonText}
+                                                {isProductInCart ? "Product Added" : "Add to Cart"}
                                             </span>
                                         </Button>
 

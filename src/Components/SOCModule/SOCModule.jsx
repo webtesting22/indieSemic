@@ -214,7 +214,7 @@ const SOCModule = () => {
                     <div className="soc-cards-grid">
                         <Row gutter={[24, 24]}>
                             {positioningData.map((feature, index) => (
-                                <Col lg={12} md={12} sm={24} key={index} style={{ width: "100%" }}>
+                                <Col lg={6} md={12} sm={24} key={index} style={{ width: "100%" }}>
                                     <div className="soc-positioning-card">
                                         <div className="soc-card-icon">
                                             <img src={feature.icon} alt={feature.title} />

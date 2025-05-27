@@ -588,7 +588,7 @@
 }
 
 .enhanced-tabs .ant-tabs-tab-active {
-    background: rgb(74, 144, 226) !important;
+    background: rgb(50 115 191)  !important;
     color: white !important;
     box-shadow: 0 6px 20px rgba(74, 144, 226, 0.3) !important;
     transform: translateY(-2px);
@@ -1103,4 +1103,30 @@
     .TabDescriptionContainer {
         padding: 1.5rem 1rem;
     }
+}
+
+.secondary-action b{
+display: none;
+}
+
+.addToCart{
+    background: linear-gradient(135deg, rgb(34 85 145) 0%, rgb(87 148 220) 100%) !important;
+}
+
+.priceContainer p{
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 25px;
+    margin: 0px;
+}
+
+.priceContainer{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.priceContainer p:first-child{
+    color: gray;
+    text-Decoration: line-through;
 }
