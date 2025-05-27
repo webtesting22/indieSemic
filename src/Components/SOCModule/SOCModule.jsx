@@ -92,7 +92,7 @@ const SOCModule = () => {
             </section>
 
             {/* Microcontroller Section */}
-            <section className="soc-section">
+            <section className="soc-section backset">
                 <div className="soc-container">
                     <div className="soc-content-block">
                         <h2 className="soc-section-heading">

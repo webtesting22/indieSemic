@@ -139,9 +139,27 @@
   position: relative;
   z-index: 2;
   padding: 20px 40px;
-  background-color: rgb(244, 244, 244);
+  background-color: rgba(244, 244, 244, 0.527);
   border: 1px solid #16213e3a;
   border-radius: 20px;
+}
+
+.backset {
+  position: relative;
+}
+
+.backset::before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  background-image: url('https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/inventoryManagement/EeAQkCsLsza8bTvVSQnV/360_F_425652429_A311W0NFAGrxzsTtmOQEkczAl3d3GlYG.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.2;
+  background-attachment: fixed;
 }
 
 .soc-content-block {
