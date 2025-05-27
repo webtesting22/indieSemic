@@ -15,6 +15,7 @@
   top: 0px;
   opacity: 0.2;
   background-attachment: fixed;
+  visibility: hidden;
 }
 
 .VideoContainer {
@@ -83,6 +84,7 @@
   height: 500px;
   /* height: 100%; */
   width: 100%;
+  border-radius: 20px;
   /* overflow: hidden; */
   /* display: flex; */
   /* align-items: center; */
@@ -229,6 +231,7 @@
   .CompanyContentRow .MiddleImageContainer {
     height: 500px;
     overflow: hidden;
+    border-radius: 20px;
     /* display: flex; */
     /* align-items: center; */
     /* justify-content: center; */

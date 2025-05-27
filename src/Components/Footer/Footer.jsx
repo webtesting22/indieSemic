@@ -18,7 +18,7 @@ const Footer = () => {
                 <div>
                     <div className="footerLogoContainer">
                         <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
-                            <Link to="/"><img src="/Images/logocropped.jpg" alt="Logo" /></Link>
+                            <Link to="/"><img src="/Images/FooterLogo.png" alt="Logo" /></Link>
                             <div className="mobileOnlyLogo">
                                 <img src="/Images/MakeInIndia2.png" />
                             </div>
