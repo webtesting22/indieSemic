@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import "../../Styles/ProductSeparatePage.css";
-import { Row, Col, Tabs, Image, Button, notification,message } from "antd";
+import { Row, Col, Tabs, Image, Button, notification, message } from "antd";
 import { FiCopy, FiCheck } from "react-icons/fi";
 import ProductContext from "../Context/ProductContext";
 import { FaShoppingCart } from "react-icons/fa";
@@ -23,6 +23,7 @@ import {
     FaTruck,
     FaShieldAlt
 } from "react-icons/fa";
+import ContactHome from "../../Components/ContactHome/ContactHome";
 const { TabPane } = Tabs;
 const SeparateProductPage = () => {
     const { products, addToCart, cartItems } = useContext(ProductContext);
@@ -120,16 +121,16 @@ const SeparateProductPage = () => {
     const thumbnails = [product.mainImages?.[0], ...(product.mainImages || [])];
     const handleCopy = (productId) => {
         const productUrl = `${window.location.origin}/product/${productId}`;
-      
+
         navigator.clipboard.writeText(productUrl).then(() => {
-          setCopiedProductId(productId); // update state to show "Copied!"
-          message.success('Link Copied to clipboard', 1.5); // antd message
-          setTimeout(() => {
-            setCopiedProductId(null);
-          }, 2000);
+            setCopiedProductId(productId); // update state to show "Copied!"
+            message.success('Link Copied to clipboard', 1.5); // antd message
+            setTimeout(() => {
+                setCopiedProductId(null);
+            }, 2000);
         });
-      };
-      
+    };
+
     return (
         <section id="ProductSeparatePage" className="enhanced-product-page">
             <div className="product-container">
@@ -221,8 +222,8 @@ const SeparateProductPage = () => {
                                 {/* Enhanced Product Header */}
                                 <div className="product-header">
                                     <button
-                                    
-                                    onClick={() => handleCopy(product._id)} style={{ cursor: 'pointer' }}
+
+                                        onClick={() => handleCopy(product._id)} style={{ cursor: 'pointer' }}
                                         className="share-button"
                                     >
                                         {copiedProductId === product._id ? (
@@ -489,6 +490,9 @@ const SeparateProductPage = () => {
                             )}
                         </Tabs>
                     </div>
+                </div>
+                <div>
+                    <ContactHome />
                 </div>
             </div>
         </section>

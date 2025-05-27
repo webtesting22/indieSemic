@@ -47,7 +47,7 @@ const HomeRoutes = () => {
                 <ScrollTop style={{ zIndex: "1000000", backgroundColor: 'black' }} />
                 <Hero />
                 <AboutCompany />
-                <Achivement />
+                <Achivement /> 
                 <Expertise />
                 <ExpertiseCards />
                 <NumbersComponent />

@@ -7,26 +7,26 @@ const Services = () => {
     const CardsData = [
         {
             icon: "https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/inventoryManagement/wt6HSLTbpXfHYLoXw3hk/WhatsApp Image 2025-05-16 at 10.25.03.jpeg",
-            title: "Custom RF & Embedded Design Services",
-            content: "Need something beyond our standard modules? We offer full-spectrum design services—from schematic to layout—for RF and embedded solutions. Whether it's custom form factors, additional interfaces, or performance tuning, we've got you covered.",
-            pointsTitle: "What We Offer",
+            title: "Embedded Design Services",
+            content: "Need something beyond our modules? We offer full-spectrum design services—from schematic layout to PCBA—for embedded products. Whether it's custom form factors, additional interfaces, firmware development, we've got you covered.",
+            pointsTitle: "What we offer:",
             offerPoints: [
-                "Tailored board designs based on our RF modules",
-                "Integration with sensors, MCUs, or wireless protocols",
-                "Prototyping and testing included"
+                "Tailored Hardware Designs based on our modules",
+                "Firmware development",
+                "Integration with sensors, actuators, or wireless protocols",
+                "Prototyping support"
             ],
             gradient: "linear-gradient(135deg, rgba(63, 125, 196, 0.1) 0%, rgba(74, 144, 226, 0.05) 100%)",
             // accentIcon: <IoRocket />
         },
         {
             icon: "https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/inventoryManagement/BrD78HtcKhLJBHsbti2I/circuit-vector-icon-can-be-used-electrician-tools-iconset_717774-82672 (1).jpg",
-            title: "Technical Support for Our Modules",
-            content: "Already using our RF modules? We offer reliable technical support to help you bring your idea to life smoothly. From integration advice to debugging help—we're with you all the way.",
-            pointsTitle: "Support Includes",
+            title: "Technical Support",
+            content: "Already using our Modules? We offer reliable technical support to help you bring your idea to life smoothly. From integration advice to debugging help—we're with you all the way.",
+            pointsTitle: "Supports includes",
             offerPoints: [
-                "Datasheets, reference designs & sample code",
-                "Email/portal support for debugging",
-                "Help with antenna tuning, RF performance, firmware"
+                "⁠Detasheets, reference designs, and sample codes",
+                "Email and call support for debugging",
             ],
             gradient: "linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(63, 125, 196, 0.05) 100%)",
             // accentIcon: <IoSupport />
