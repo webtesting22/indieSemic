@@ -139,7 +139,7 @@
   position: relative;
   z-index: 2;
   padding: 20px 40px;
-  background-color: rgba(244, 244, 244, 0.527);
+  background-color: rgb(244, 244, 244);
   border: 1px solid #16213e3a;
   border-radius: 20px;
 }
