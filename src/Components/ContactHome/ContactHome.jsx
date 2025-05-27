@@ -202,7 +202,7 @@ const ContactHome = () => {
                      */}
                     {/* <Col lg={1} md={0} /> */}
 
-                    <Col lg={14} md={24} xs={24}>
+                    <Col lg={20} md={24} xs={24}>
                         <div className='contact-form-container'>
                             <div className='form-header'>
                                 <h3>Send us a Message</h3>

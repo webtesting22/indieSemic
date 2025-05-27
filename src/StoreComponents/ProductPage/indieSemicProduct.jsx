@@ -136,20 +136,7 @@ const IndieSemicProduct = () => {
                         <div className="hero-text-wrapper">
                             <h1 className="hero-main-title">Precision in Every Layer</h1>
                             <p className="hero-subtitle">Crafting semiconductors for flawless performance.</p>
-                            <div className="hero-stats-container">
-                                {/* <div className="stat-box">
-                                    <span className="stat-number">{productList.length}+</span>
-                                    <span className="stat-text">Products</span>
-                                </div> */}
-                                <div className="stat-box">
-                                    <span className="stat-number">100%</span>
-                                    <span className="stat-text">Quality</span>
-                                </div>
-                                <div className="stat-box">
-                                    <span className="stat-number">24/7</span>
-                                    <span className="stat-text">Support</span>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -372,9 +359,9 @@ const IndieSemicProduct = () => {
                                                                         </div>
                                                                         <span className="rating-value">4.8</span>
                                                                     </div> */}
-                                                                    <div className="category-tag">
+                                                                    {/* <div className="category-tag">
                                                                         Technology
-                                                                    </div>
+                                                                    </div> */}
                                                                     <div className="category-tag">
                                                                         {product.category || 'Electronics'}
                                                                     </div>

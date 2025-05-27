@@ -245,21 +245,21 @@ const SeparateProductPage = () => {
                                     </div>
 
                                     {/* Product Meta Info */}
-                                    {/* <div className="product-meta">
-                                        <div className="rating-section">
+                                    <div className="product-meta">
+                                        {/* <div className="rating-section">
                                             <div className="stars">
                                                 {[1, 2, 3, 4, 5].map((star) => (
                                                     <FaStar key={star} className="star-icon filled" />
                                                 ))}
                                             </div>
                                             <span className="rating-text">4.8 (124 reviews)</span>
-                                        </div>
+                                        </div> */}
 
                                         <div className="availability-section">
                                             <FaCheckCircle className="availability-icon" />
                                             <span className="availability-text">In Stock - Ready to Ship</span>
                                         </div>
-                                    </div> */}
+                                    </div>
                                 </div>
 
                                 {/* Enhanced Product Description */}

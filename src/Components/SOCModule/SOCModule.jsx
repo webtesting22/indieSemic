@@ -66,6 +66,14 @@ const SOCModule = () => {
         },
     ];
 
+
+    const MarqueeDate = Array(50).fill({ text: "Coming Soon" });
+
+    // Repeat MarqueeDate to reach 150 items
+    const repeatedMarqueeData = Array.from({ length: 150 }, (_, i) => ({
+        ...MarqueeDate[i % MarqueeDate.length],
+        id: i,
+    }));
     return (
         <div className="soc-module">
             {/* Hero Section */}
@@ -114,7 +122,7 @@ const SOCModule = () => {
                             <Col lg={12} md={24}>
                                 <div className="soc-image-container">
                                     <img
-                                        src="https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/inventoryManagement/vkKlF2gjcC4ruNia40tv/2 (4).jpg"
+                                        src="https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/inventoryManagement/UBDwOQMdOlLiZ0JHGzCf/6.jpg"
                                         alt="RISC-V Microcontroller"
                                         className="soc-feature-image"
                                     />
@@ -127,24 +135,55 @@ const SOCModule = () => {
 
             {/* Vajra Project Section */}
             <section className="soc-section soc-dark-section">
-                <div className="soc-container" style={{background:"transparent"}}>
+                <div className="marquee-wrapper">
+                    <div className="marquee-content">
+                        <ul>
+                            {MarqueeDate.map((item, index) => (
+                                <li key={index}>
+                                    {item.text}!
+                                </li>
+                            ))}
+
+                        </ul>
+                    </div>
+                </div>
+                <br /><br />
+                <div className="soc-container" style={{ background: "transparent" }}>
                     <div className="soc-content-block">
                         <div className="soc-section-header">
                             <h2 className="soc-section-heading">
-                                Introducing Project "Vajra": India's Quad-Core AI Processor
+                                Introducing Project "ISC-R1": India's Quad-Core AI Processor
                             </h2>
                             <p className="soc-section-subtitle">
                                 Designed for vision. Built for autonomy. Powered by RISC-V.
                             </p>
                         </div>
                         <Row gutter={[32, 32]} align="middle">
-                            <Col lg={12} md={24}>
-                                <div className="soc-image-container">
-                                    <img
+                            <Col lg={12} md={24} style={{ minHeight: "500px" }}>
+                                <div className="soc-image-container" style={{ height: "500px", width: "90%", borderRadius: "20px", paddingRight: "20px" }}>
+                                    {/* <img
                                         src="https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/inventoryManagement/UBDwOQMdOlLiZ0JHGzCf/6.jpg"
                                         alt="Vajra AI Processor"
                                         className="soc-feature-image soc-glow-effect"
-                                    />
+                                    /> */}
+                                    <video
+                                        className="loader-video"
+                                        autoPlay
+                                        muted
+                                        // onEnded={handleVideoEnd}
+                                        // onError={handleVideoError}
+                                        playsInline
+                                        style={{ height: "100%", width: "100%", borderRadius: "20px" }}
+                                    >
+                                        <source src="/Images/SocPageVideo.mp4" type="video/mp4" />
+                                        {/* Fallback if video doesn't load */}
+                                        <div className="video-fallback">
+                                            <div className="fallback-loader">
+                                                <div className="spinner"></div>
+                                                <p>Loading...</p>
+                                            </div>
+                                        </div>
+                                    </video>
                                 </div>
                             </Col>
                             <Col lg={12} md={24}>
@@ -175,7 +214,7 @@ const SOCModule = () => {
                     <div className="soc-cards-grid">
                         <Row gutter={[24, 24]}>
                             {positioningData.map((feature, index) => (
-                                <Col lg={12} md={12} sm={24} key={index} style={{width:"100%"}}>
+                                <Col lg={12} md={12} sm={24} key={index} style={{ width: "100%" }}>
                                     <div className="soc-positioning-card">
                                         <div className="soc-card-icon">
                                             <img src={feature.icon} alt={feature.title} />
@@ -197,7 +236,7 @@ const SOCModule = () => {
 
             {/* Call to Action Section */}
             <section className="soc-cta-section">
-                <div className="soc-container" style={{background:"transparent"}}>
+                <div className="soc-container" style={{ background: "transparent" }}>
                     <div className="soc-cta-content">
                         <h1 className="soc-cta-heading">
                             Be a Part of India's Semiconductor Future

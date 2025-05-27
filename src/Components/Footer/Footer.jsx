@@ -18,7 +18,7 @@ const Footer = () => {
                 <div>
                     <div className="footerLogoContainer">
                         <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
-                            <Link to="/"><img src="/Images/FooterLogo.png" alt="Logo" /></Link>
+                            <Link to="/"><img src="/Images/FooterLogoAdjust.png" alt="Logo" /></Link>
                             <div className="mobileOnlyLogo">
                                 <img src="/Images/MakeInIndia2.png" />
                             </div>
@@ -43,7 +43,7 @@ const Footer = () => {
                             <p style={{ marginTop: "0px" }}>Navigate</p>
                             <ul style={{ paddingLeft: "10px" }}>
                                 {NavigationData.map((item, index) => (
-                                    <Link to={item.path}><li style={{ margin: "10px 0px" }} key={index}>{item.link}</li></Link>
+                                    <Link to={item.path} key={index}><li style={{ margin: "10px 0px" }} key={index}>{item.link}</li></Link>
                                 ))}
                             </ul>
                         </div>

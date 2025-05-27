@@ -147,6 +147,7 @@ const MegaNavigation = () => {
                                 justifyContent: 'space-between',
                                 width: '100%',
                                 alignItems: "center",
+                                borderRadius: isScrolled ? "0px" : "20px",
                                 marginLeft: isScrolled ? "0px" : "0px",
                                 marginRight: isScrolled ? "0px" : "0px",
                                 backdropFilter: isScrolled ? "blur(0px)" : "blur(10px)",
