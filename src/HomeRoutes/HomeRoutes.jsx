@@ -23,7 +23,7 @@ const HomeRoutes = () => {
     return (
         <>
             {showLoader && (
-                <div className="video-loader-container">
+                <div className="video-loader-container"  style={{ boxShadow: "none" }}>
                     <video
                         className="loader-video"
                         autoPlay
@@ -31,7 +31,7 @@ const HomeRoutes = () => {
                         onEnded={handleVideoEnd}
                         onError={handleVideoError}
                         playsInline
-                        style={{ boxShadow: "none" }}
+                        style={{ boxShadow: "none",transform:"unset" }}
                     >
                         <source src="/Images/HomePageLoaderVideoNew.mp4" type="video/mp4" />
                         {/* Fallback if video doesn't load */}
