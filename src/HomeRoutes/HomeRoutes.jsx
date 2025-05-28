@@ -33,7 +33,7 @@ const HomeRoutes = () => {
                         playsInline
                         style={{ boxShadow: "none" }}
                     >
-                        <source src="/Images/HomePageloaderVideo.mp4" type="video/mp4" />
+                        <source src="/Images/HomePageLoaderVideoNew.mp4" type="video/mp4" />
                         {/* Fallback if video doesn't load */}
                         <div className="video-fallback">
                             <div className="fallback-loader">

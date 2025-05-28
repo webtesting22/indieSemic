@@ -19,7 +19,7 @@ const Hero = () => {
     const CarousalImages = [
 
         {
-            image: isMobile ? MobileBanner : BackBanner,
+            image: isMobile ? MobileBanner : "/Images/HomePageBanner.jpg",
         },
         {
             image: CarouselVideo,
