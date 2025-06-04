@@ -588,7 +588,7 @@
 }
 
 .enhanced-tabs .ant-tabs-tab-active {
-    background: rgb(50 115 191)  !important;
+    background: rgb(50 115 191) !important;
     color: white !important;
     box-shadow: 0 6px 20px rgba(74, 144, 226, 0.3) !important;
     transform: translateY(-2px);
@@ -624,7 +624,7 @@
     border-radius: 16px;
     padding: 3rem;
     border: 1px solid #e2e8f0;
-    min-height: 400px;
+    min-height: 200px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     animation: fadeInUp 0.5s ease;
 }
@@ -649,7 +649,7 @@
 
 .overview-image {
     width: 100%;
-    max-width: 800px;
+    /* max-width: 800px; */
     height: auto;
     border-radius: 12px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
@@ -985,18 +985,23 @@
 }
 
 @media (max-width: 768px) {
+    .share-button {
+        top: -40px;
+    }
+
     .product-tabs-section {
         background: #f8fafc;
-        padding: 3rem 1rem;
+        padding: 3rem 0.5rem;
         border-top: 1px solid #e2e8f0;
     }
-    
-/* 
+
+    /* 
 .product-tabs-section .ant-tabs-nav-wrap {
     overflow: hidden !important;
 } */
     .enhanced-product-page {
         padding: 1rem 0.5rem;
+        margin-top: 4rem;
     }
 
     .product-container {
@@ -1029,6 +1034,8 @@
 
     .trust-badges {
         justify-content: center;
+        flex-direction: column;
+        gap: 0.5rem;
     }
 
     .primary-actions {
@@ -1083,7 +1090,7 @@
     }
 
     .product-title-section {
-        margin-right: 80px;
+        margin-right: 0px;
     }
 
     .enhanced-tabs .ant-tabs-nav {
@@ -1105,28 +1112,327 @@
     }
 }
 
-.secondary-action b{
-display: none;
+.secondary-action b {
+    display: none;
 }
 
-.addToCart{
+.addToCart {
     background: linear-gradient(135deg, rgb(34 85 145) 0%, rgb(87 148 220) 100%) !important;
 }
 
-.priceContainer p{
-    display: flex;
-    align-items: center;
-    font-weight: 700;
-    font-size: 25px;
-    margin: 0px;
+.price-container {
+    padding: 1rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    max-width: 300px;
 }
 
-.priceContainer{
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.price-group {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
-.priceContainer p:first-child{
-    color: gray;
-    text-Decoration: line-through;
+
+.original-price {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #6c757d;
+    text-decoration: line-through;
+    font-weight: 500;
+    font-size: 1.1rem;
 }
+
+.current-price {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #198754;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.rupee-icon {
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+.discount-badge {
+    background: linear-gradient(135deg, #ff6b6b, #ff5252);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
+}
+
+.price-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 0.75rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.gst-info {
+    font-size: 0.75rem;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.savings {
+    font-size: 0.8rem;
+    color: #198754;
+    font-weight: 600;
+}
+
+@media (max-width: 480px) {
+    .price-container {
+        padding: 0.75rem;
+        max-width: 100%;
+    }
+
+    .price-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .current-price {
+        font-size: 1.3rem;
+    }
+
+    .original-price {
+        font-size: 1rem;
+    }
+}
+
+
+/* Fixed Left Sidebar Container */
+.variant-suggestion-wrapper {
+    position: fixed;
+    left: 0;
+    bottom: 0%;
+    transform: translateY(-20%);
+    width: 280px;
+    max-height: 80vh;
+    background: #ffffff;
+    border-radius: 0 15px 15px 0;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+    padding: 20px 15px 15px 15px;
+    z-index: 1000;
+    overflow-y: auto;
+    border-left: 4px solid #007bff;
+    transition: left 0.3s ease-in-out;
+  }
+  
+  /* Hidden state */
+  .variant-suggestion-wrapper.hidden {
+    left: -300px;
+  }
+  
+  /* Close Button */
+  .variant-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff4757;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    z-index: 1001;
+  }
+  
+  .variant-close-btn:hover {
+    background: #ff3742;
+    transform: scale(1.1);
+  }
+  
+  /* Toggle Button (appears when sidebar is hidden) */
+  .variant-toggle-btn {
+    position: fixed;
+    left: 280px;
+    bottom: 10%;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0 10px 10px 0;
+    padding: 15px 8px;
+    cursor: pointer;
+    z-index: 999;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 555555555;
+    /* opacity: 0;
+    visibility: hidden; */
+  }
+  
+  .variant-toggle-btn.show {
+    opacity: 1;
+    visibility: visible;
+    left: 0;
+  }
+  
+  .variant-toggle-btn:hover {
+    background: #0056b3;
+  }
+  
+  /* Heading Style */
+  .variant-heading {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 15px 0;
+    text-align: center;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+  }
+  
+  /* Variant List Container */
+  .variant-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  /* Individual Variant Card */
+  .variant-card {
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .variant-card:hover {
+    background: #e3f2fd;
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-color: #007bff;
+  }
+  
+  /* Product Image */
+  .variant-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 12px;
+    border: 1px solid #ddd;
+    flex-shrink: 0;
+  }
+  
+  /* Product Info */
+  .variant-info {
+    flex: 1;
+    min-width: 0; /* Allows text truncation */
+  }
+  
+  .variant-info h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin: 0 0 4px 0;
+    line-height: 1.3;
+    /* Truncate long titles */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .variant-info p {
+    font-size: 13px;
+    font-weight: 600;
+    color: #007bff;
+    margin: 0;
+  }
+  
+  /* Scrollbar Styling */
+  .variant-suggestion-wrapper::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .variant-suggestion-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 2px;
+  }
+  
+  .variant-suggestion-wrapper::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 2px;
+  }
+  
+  .variant-suggestion-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #0056b3;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .variant-suggestion-wrapper {
+      width: 250px;
+      padding: 15px 10px 10px 10px;
+    }
+    
+    .variant-image {
+      width: 40px;
+      height: 40px;
+      margin-right: 8px;
+    }
+    
+    .variant-info h4 {
+      font-size: 12px;
+    }
+    
+    .variant-info p {
+      font-size: 11px;
+    }
+    
+    .variant-toggle-btn {
+      padding: 12px 10px;
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .variant-suggestion-wrapper {
+      width: 220px;
+    }
+   
+    .variant-toggle-btn{
+        left: 220px;
+    }
+    .variant-suggestion-wrapper.hidden {
+      left: -240px;
+    }
+    
+    .variant-toggle-btn {
+      padding: 10px 10px;
+      font-size: 12px;
+    }
+  }
