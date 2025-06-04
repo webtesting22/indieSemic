@@ -17,7 +17,7 @@ import PrivacyPolicy from "../Components/TermsAndConditionPages/PrivacyPolicy";
 import ShippingDeliveryPolicy from "../Components/TermsAndConditionPages/ShippingandDeliveryPolicy";
 import CancellationRefundPolicy from "../Components/TermsAndConditionPages/CancellationandRefundPolicy";
 import ProductPurchaseVerificationModal from "../StoreComponents/ProductPage/ProductPurchesVerficationModal/ProductPurchaseVerification";
-import Dashboard from "../Components/Dashboard/Dashboard";
+// import Dashboard from "../Components/Dashboard/Dashboard";
 import DashboardWrapper from "../Components/Dashboard/DashboardWrapper";
 const DynamicRoutes = () => {
     const location = useLocation();
