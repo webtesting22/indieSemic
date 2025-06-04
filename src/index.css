@@ -15,11 +15,13 @@ svg.p-icon {
 h2 {
   font-weight: 500;
 }
+
 a {
   color: white;
   font-family: "Signika Negative", sans-serif;
 
 }
+
 h1,
 h2,
 h3,
@@ -106,5 +108,72 @@ a {
   100% {
     width: 0;
     /* Collapses the underline */
+  }
+}
+
+
+
+.order-summary {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.summary-row:last-child {
+  border-bottom: none;
+}
+
+.total-row {
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  /* border-top: 2px solid #dee2e6; */
+  border-bottom: none;
+  font-weight: 600;
+}
+
+.label {
+  font-size: 1rem;
+  color: #495057;
+  font-weight: 500;
+}
+
+.value {
+  font-size: 1rem;
+  color: #212529;
+  font-weight: 600;
+}
+
+.total-row .label,
+.total-row .value {
+  font-size: 1.125rem;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .order-summary {
+    margin-top: 1rem;
+    padding: 1rem;
+  }
+
+  .label,
+  .value {
+    font-size: 0.9rem;
+  }
+
+  .total-row .label,
+  .total-row .value {
+    font-size: 1rem;
   }
 }

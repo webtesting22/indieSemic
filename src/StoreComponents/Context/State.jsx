@@ -1,47 +1,61 @@
-// ProductState.js
 import React, { useState, useEffect } from "react";
-import ProductContext from "./ProductContext"; // Make sure this is the correct import path
+import ProductContext from "./ProductContext";
 
 const ProductState = ({ children }) => {
     const [products, setProducts] = useState([]);
     const [cartItems, setCartItems] = useState([]);
-    let name = "sfhsdafdf"
+    const apibaseUrl = import.meta.env.VITE_BASE_URL;
+    const [loadingProducts, setLoadingProducts] = useState(false);
+    const name = "sfhsdafdf";
+
     useEffect(() => {
-        // Fetch products
-        const fetchProducts = async () => {
-            const response = await fetch("https://testapi.prepseed.com/indieSemic/getAllProducts");
-            const data = await response.json();
-            setProducts(data.products);
-        };
-
-        fetchProducts();
-
-        // Load cart items from localStorage if they exist
+        // Only load cart items from localStorage
         const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
         setCartItems(storedCartItems);
     }, []);
 
-    const addToCart = (product) => {
-        // Check if the product is already in the cart
-        const existingProduct = cartItems.find(item => item._id === product._id);
+    const fetchProducts = async () => {
+        if (products.length > 0) return; // Don't fetch again if already fetched
 
-        if (!existingProduct) {
-            // If the product doesn't exist, add it to the cart
-            setCartItems((prevCart) => {
-                const updatedCart = [...prevCart, product];
-                localStorage.setItem("cartItems", JSON.stringify(updatedCart));  // Save to localStorage
-                return updatedCart;
-            });
+        try {
+            setLoadingProducts(true);
+            const response = await fetch(`${apibaseUrl}/indieSemic/getAllProducts`);
+            const data = await response.json();
+            setProducts(data.products || []);
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        } finally {
+            setLoadingProducts(false);
         }
     };
+
+    const addToCart = (product) => {
+        const existingProduct = cartItems.find(item => item._id === product._id);
+        if (!existingProduct) {
+            const updatedCart = [...cartItems, product];
+            setCartItems(updatedCart);
+            localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+        }
+    };
+
     const removeFromCart = (productId) => {
-        const updatedCart = cartItems.filter((item) => item._id !== productId);
+        const updatedCart = cartItems.filter(item => item._id !== productId);
         setCartItems(updatedCart);
-        localStorage.setItem("cartItems", JSON.stringify(updatedCart));  // Save to localStorage
+        localStorage.setItem("cartItems", JSON.stringify(updatedCart));
     };
 
     return (
-        <ProductContext.Provider value={{ products, cartItems, addToCart, removeFromCart, name }}>
+        <ProductContext.Provider
+            value={{
+                products,
+                cartItems,
+                addToCart,
+                removeFromCart,
+                fetchProducts,
+                loadingProducts,
+                name,
+            }}
+        >
             {children}
         </ProductContext.Provider>
     );

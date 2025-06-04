@@ -350,7 +350,8 @@ const GetQuotationModal = () => {
 
     return (
         <>
-        <b style={{textAlign:"center",fontWeight:"700",fontSize:"19px"}}>For Bulk Orders:</b>
+            <b style={{ textAlign: "center", fontWeight: "700", fontSize: "19px" }}>For Bulk Orders:</b>
+            {/* <br /> */}
             <Button type="primary" onClick={handleGetQuotation} className="enhanced-add-to-cart-btn">
                 <IoDocumentTextSharp />Get Quotation
             </Button>
@@ -390,7 +391,7 @@ const GetQuotationModal = () => {
                 ]}
                 width={1000}
                 centered
-                bodyStyle={{ padding: "24px" }}
+                // bodyStyle={{ padding: "24px" }}
                 style={{ top: 20 }}
             >
                 <div style={{
@@ -406,7 +407,7 @@ const GetQuotationModal = () => {
                     </Typography.Title>
 
                     <Row gutter={[24, 24]}>
-                        <Col span={8}>
+                        <Col lg={8} md={12} sm={24} style={{ width: "100%" }}>
                             <div style={{ marginBottom: "8px" }}>
                                 <Typography.Text strong>Full Name</Typography.Text>
                                 <span style={{ color: "#ff4d4f", marginLeft: "4px" }}>*</span>
@@ -420,7 +421,7 @@ const GetQuotationModal = () => {
                                 prefix={<UserOutlined style={{ color: "#bfbfbf" }} />}
                             />
                         </Col>
-                        <Col span={8}>
+                        <Col lg={8} md={12} sm={24} style={{ width: "100%" }}>
                             <div style={{ marginBottom: "8px" }}>
                                 <Typography.Text strong>Email Address</Typography.Text>
                                 <span style={{ color: "#ff4d4f", marginLeft: "4px" }}>*</span>
@@ -449,7 +450,7 @@ const GetQuotationModal = () => {
                                 </div>
                             )}
                         </Col>
-                        <Col span={8}>
+                        <Col lg={8} md={12} sm={24} style={{ width: "100%" }}>
                             <div style={{ marginBottom: "8px" }}>
                                 <Typography.Text strong>Contact Number</Typography.Text>
                                 <span style={{ color: "#ff4d4f", marginLeft: "4px" }}>*</span>
@@ -464,7 +465,7 @@ const GetQuotationModal = () => {
                                 prefix={<PhoneOutlined style={{ color: "#bfbfbf" }} />}
                             />
                         </Col>
-                        <Col span={8}>
+                        <Col lg={8} md={12} sm={24} style={{ width: "100%" }}>
                             <div style={{ marginBottom: "8px" }}>
                                 <Typography.Text strong>Company</Typography.Text>
                                 <span style={{ color: "#d9d9d9", marginLeft: "4px", fontSize: "12px" }}>
@@ -480,7 +481,7 @@ const GetQuotationModal = () => {
                                 prefix={<BankOutlined style={{ color: "#bfbfbf" }} />}
                             />
                         </Col>
-                        <Col span={8}>
+                        <Col lg={8} md={12} sm={24} style={{ width: "100%" }}>
                             <div style={{ marginBottom: "8px" }}>
                                 <Typography.Text strong>Designation</Typography.Text>
                                 <span style={{ color: "#d9d9d9", marginLeft: "4px", fontSize: "12px" }}>
@@ -496,7 +497,7 @@ const GetQuotationModal = () => {
                                 prefix={<IdcardOutlined style={{ color: "#bfbfbf" }} />}
                             />
                         </Col>
-                        <Col span={8}>
+                        <Col lg={8} md={12} sm={24} style={{ width: "100%" }}>
                             <div style={{ marginBottom: "8px" }}>
                                 <Typography.Text strong>Address</Typography.Text>
                                 <span style={{ color: "#d9d9d9", marginLeft: "4px", fontSize: "12px" }}>
@@ -530,9 +531,11 @@ const GetQuotationModal = () => {
                     padding: "20px",
                     background: "#fafafa"
                 }}>
-                    <Typography.Title level={5} style={{ marginTop: 0, marginBottom: "16px", display: "flex", justifyContent: "space-between" }}>
+                    <Typography.Title level={5} style={{ marginTop: 0, marginBottom: "16px", }}>
                         <span>Select Products for Quotation</span>
-                        <div className="searchBarContainer" style={{ display: "flex", alignItems: "center" }}>
+                        {/* <br /> <br /> */}
+                        {/* <div className="searchBarContainer" style={{ display: "flex", alignItems: "center" }}>
+                            
                             <Input
                                 placeholder="Search products"
                                 value={searchQuery}
@@ -541,7 +544,7 @@ const GetQuotationModal = () => {
                                 prefix={<SearchOutlined style={{ color: "#bfbfbf" }} />}
                                 allowClear
                             />
-                        </div>
+                        </div> */}
                     </Typography.Title>
                     {!formValid && (
                         <div style={{
@@ -588,15 +591,17 @@ const GetQuotationModal = () => {
                         + Add Products
                     </Button>
 
-                    <Table
-                        rowKey="_id"
-                        columns={columns}
-                        dataSource={productList.filter((product) =>
-                            selectedProducts.includes(product._id)
-                        )}
-                        pagination={false}
-                    />
+                    <div style={{ width: "100%", overflow: "auto" }}>
+                        <Table
+                            rowKey="_id"
+                            columns={columns}
+                            dataSource={productList.filter((product) =>
+                                selectedProducts.includes(product._id)
+                            )}
+                            pagination={false}
+                        />
 
+                    </div>
 
                     {/* <Button
                     type="primary"

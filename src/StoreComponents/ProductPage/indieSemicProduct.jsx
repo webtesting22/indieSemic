@@ -20,9 +20,8 @@ const imageList = [
     "https://images.unsplash.com/photo-1592659762303-90081d34b277?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 ];
 const IndieSemicProduct = () => {
-    const { products, addToCart } = useContext(ProductContext);
+    const { products, fetchProducts, addToCart, } = useContext(ProductContext);
     const productList = products || [];
-
     // State management for filters
     const [selectedCategory, setSelectedCategory] = useState(""); // Empty string = All Products
     // Set default to "All Products"
@@ -68,6 +67,10 @@ const IndieSemicProduct = () => {
     const toggleDrawer = () => {
         setDrawerVisible(!drawerVisible);
     };
+
+    useEffect(() => {
+        fetchProducts(); // This will fetch on *every* change of filter/search
+    }, []);
 
     // Filter products based on selected category, search query, and price range
     const filteredProducts = productList.filter((product) => {
@@ -214,7 +217,7 @@ const IndieSemicProduct = () => {
                     placement="left"
                     onClose={toggleDrawer}
                     open={drawerVisible}
-                    className="modern-filter-drawer"
+                    className="modern-filter-drawer modern-products-page"
                 >
                     <div className="drawer-sidebar-content">
                         <div className="categories-section">
@@ -252,6 +255,7 @@ const IndieSemicProduct = () => {
                             >
                                 Reset Filters
                             </Button>
+                            <br /><br />
                             <div className="quotation-wrapper">
                                 <GetQuotationModal />
                             </div>
@@ -344,8 +348,9 @@ const IndieSemicProduct = () => {
                                                                 </div>
                                                             </div>
                                                             <div className="product-badge">
-                                                                <span>Latest</span>
+                                                                <span>{product.tradingTag || ""}</span>
                                                             </div>
+
                                                         </div>
 
                                                         <div className="product-info-section">

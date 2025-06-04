@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Button, Drawer, Typography, Card, InputNumber, Divider, message } from "antd";
+import { Button, Drawer, Typography, Card, InputNumber, Divider, message, Modal } from "antd";
 import ProductContext from "../Context/ProductContext";
 import { BsFillCartCheckFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -11,15 +11,23 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { MdDelete } from "react-icons/md";
-
+import ProductPurchaseVerificationModal from "../ProductPage/ProductPurchesVerficationModal/ProductPurchaseVerification";
+import jsPDF from "jspdf";
 const Cart = () => {
     const { cartItems, removeFromCart, addToCart, products } = useContext(ProductContext);
     const [open, setOpen] = useState(false);
     const [quantities, setQuantities] = useState({});
     const [recommendedProducts, setRecommendedProducts] = useState([]);
-    // Track screen width for responsive layout
-    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+    const [loading, setLoading] = useState(false);
+    const [savedData, setSavedData] = useState(null);
+    const [deliveryCharge, setDeliveryCharge] = useState(0);
+    const [invoiceModalVisible, setInvoiceModalVisible] = useState(false);
+    const [invoiceData, setInvoiceData] = useState(null); // To store invoice info for PDF
 
+    // Track screen width for responsive layout
+    const [locationDetails, setLocationDetails] = useState("");
+    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+    const apibaseUrl = import.meta.env.VITE_BASE_URL;
     // Toggle drawer open and close
     const toggleDrawer = (open) => {
         setOpen(open);
@@ -29,6 +37,21 @@ const Cart = () => {
             findRecommendedProducts();
         }
     };
+    useEffect(() => {
+        if (locationDetails && locationDetails.distance) {
+            // distance is a string like "464 km", extract number
+            const distKm = parseFloat(locationDetails.distance.replace(/[^\d\.]/g, ''));
+
+            if (distKm <= 400) {
+                setDeliveryCharge(100);
+            } else {
+                setDeliveryCharge(200);
+            }
+        } else {
+            setDeliveryCharge(0);
+        }
+    }, [locationDetails]);
+
 
     // Update window width when resized
     useEffect(() => {
@@ -108,11 +131,27 @@ const Cart = () => {
 
     // Calculate total price based on selected quantities
     const getTotalPrice = () => {
-        return cartItems.reduce((total, item) => {
-            const quantity = quantities[item._id] || 1; // Default to 1 if no quantity set
+        const baseTotal = cartItems.reduce((total, item) => {
+            const quantity = quantities[item._id] || 1;
             return total + item.price * quantity;
         }, 0);
+
+        return baseTotal;
     };
+    const GST_RATE = 0.18; // 18% GST
+
+    const getTotalWithDelivery = () => {
+        return getTotalPrice() + deliveryCharge;
+    };
+
+    const getGSTAmount = () => {
+        return getTotalWithDelivery() * GST_RATE;
+    };
+
+    const getGrandTotal = () => {
+        return getTotalWithDelivery() + getGSTAmount();
+    };
+
 
     // Handle adding product to cart
     const handleAddProduct = (product) => {
@@ -122,6 +161,281 @@ const Cart = () => {
 
     // Determine if using mobile layout
     const isMobile = windowWidth < 768;
+
+
+
+
+    const handlePayment = async () => {
+        setLoading(true);
+        try {
+            let grandTotal = getGrandTotal(); // e.g., 33.6
+
+            // Round up to nearest integer if decimal exists
+            grandTotal = Math.ceil(grandTotal); // 34
+
+            // Prepare cart data for backend
+            const cartData = cartItems.map(item => ({
+                productId: item._id,
+                title: item.title,
+                price: item.price,
+                quantity: quantities[item._id] || 1,
+            }));
+
+            // Call backend API to create Razorpay order with amount in paise
+            const res = await fetch(`${apibaseUrl}/indieSemic/createPaymentOrder`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ amount: grandTotal, cartItems: cartData, user: { /* user info here */ } }),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                console.error("Order creation failed:", data);
+                throw new Error(data.error || "Order creation failed");
+            }
+
+            // Razorpay payment options
+            const options = {
+                key: "rzp_live_8k9UElnDJykyXX",
+                amount: data.order.amount,
+                currency: data.order.currency,
+                name: "indieSemiC",
+                description: "Order Payment",
+                order_id: data.order.id,
+                handler: async function (response) {
+                    message.success(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
+
+                    // Prepare data to send on payment success
+                    const dataToSend = {
+                        ...savedData,
+                        products: cartItems.map(item => ({
+                            productId: item._id,
+                            title: item.title,
+                            price: item.price,
+                            quantity: quantities[item._id] || 1,
+                            mainImages: item.mainImages || [],
+                        })),
+                        paymentId: response.razorpay_payment_id,
+                    };
+
+                    // Call your backend to save order after payment success
+                    await saveFormDataToBackend(dataToSend);
+                    
+                    setSavedData(null);
+                    setInvoiceData(dataToSend);  // Save the data needed for invoice
+                    setInvoiceModalVisible(true); // Open the invoice modal
+                    // ...clear cart here
+
+                },
+                theme: {
+                    color: "#1890ff",
+                },
+                modal: {
+                    ondismiss: function () {
+                        message.info("Payment popup closed.");
+                    },
+                },
+            };
+
+            const rzp = new window.Razorpay(options);
+            rzp.open();
+        } catch (error) {
+            message.error(error.message || "Something went wrong during payment");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const saveFormDataToBackend = async (formData) => {
+        try {
+            const response = await fetch('http://localhost:4040/api/indiesemic/addPurchaseVerificationData', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+            const responseData = await response.json();
+            if (!response.ok) {
+                throw new Error(responseData.message || 'Failed to save purchase verification data');
+            }
+            return responseData;
+        } catch (error) {
+            console.error('Error saving purchase verification data:', error);
+            throw error;
+        }
+    };
+    const generateInvoicePDF = (data) => {
+        if (!data) return;
+
+        const doc = new jsPDF();
+
+        // Colors
+        const primaryColor = [63, 81, 181]; // Indigo
+        const lightGray = [245, 245, 245];
+        const darkGray = [64, 64, 64];
+
+        // Company Header Section
+        doc.setFontSize(20);
+        doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+        doc.setFont(undefined, 'bold');
+        doc.text("YOUR COMPANY", 20, 25);
+
+        // Company Details
+        doc.setFontSize(10);
+        doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
+        doc.setFont(undefined, 'normal');
+        doc.text("Your Company Pvt Ltd.", 20, 35);
+        doc.text("A-1101, B-1101, The First", 20, 42);
+        doc.text("Behind Business Park, Your City - 380015", 20, 49);
+        doc.text("+91-9876543210", 20, 56);
+        doc.text("sales@yourcompany.com", 20, 63);
+        doc.text("GST: 24AAGCI8223E1ZT", 20, 70);
+
+        // Invoice Title (Right Side)
+        doc.setFontSize(24);
+        doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
+        doc.setFont(undefined, 'bold');
+        doc.text("SALES", 150, 25);
+        doc.text("ORDER", 150, 35);
+
+        // Order Number
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'normal');
+        doc.text(`WEB_SO# ${data.orderNumber || 'INV-' + Date.now()}`, 150, 50);
+
+        // Horizontal line separator
+        doc.setDrawColor(200, 200, 200);
+        doc.line(20, 80, 190, 80);
+
+        // Bill To Section
+        doc.setFontSize(12);
+        doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
+        doc.setFont(undefined, 'bold');
+        doc.text("Bill To", 20, 95);
+
+        // Customer Details
+        doc.setFont(undefined, 'normal');
+        const shipping = data.shipping || {};
+        const customerName = `${shipping.firstName || ""} ${shipping.lastName || ""}`.trim();
+        doc.text(customerName || "Customer Name", 20, 105);
+        doc.text(shipping.company || "Company Name", 20, 112);
+        doc.text(`${shipping.address1 || ""}, ${shipping.city || ""}`.trim(), 20, 119);
+        doc.text(`${shipping.state || ""} - ${shipping.zipCode || ""}`.trim(), 20, 126);
+        doc.text(`Mobile: ${shipping.mobile || ""}`, 20, 133);
+        doc.text(`GSTIN: ${shipping.gstin || "XXXXXXXXXXXXXXX"}`, 20, 140);
+
+        // Order Date and Expected Shipment (Right Side)
+        const orderDate = data.createdAt ? new Date(data.createdAt).toLocaleDateString('en-GB') : new Date().toLocaleDateString('en-GB');
+        const expectedShipment = data.expectedShipment || new Date(Date.now() + 4 * 24 * 60 * 60 * 1000).toLocaleDateString('en-GB');
+
+        doc.text(`Order Date: ${orderDate}`, 120, 105);
+        doc.text(`Expected Shipment: ${expectedShipment}`, 120, 115);
+
+        // Table Header
+        const tableStartY = 155;
+        const tableHeaders = ['#', 'Item & Description', 'Qty', 'Rate', 'Amount'];
+        const columnWidths = [15, 80, 20, 25, 30];
+        const columnPositions = [20, 35, 115, 135, 160];
+
+        // Draw table header background
+        doc.setFillColor(lightGray[0], lightGray[1], lightGray[2]);
+        doc.rect(20, tableStartY - 5, 170, 12, 'F');
+
+        // Draw table header border
+        doc.setDrawColor(200, 200, 200);
+        doc.rect(20, tableStartY - 5, 170, 12);
+
+        // Table header text
+        doc.setFontSize(10);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(0, 0, 0);
+        tableHeaders.forEach((header, index) => {
+            doc.text(header, columnPositions[index], tableStartY + 2);
+        });
+
+        // Table Content
+        let currentY = tableStartY + 15;
+        doc.setFont(undefined, 'normal');
+
+        const products = data.products || [];
+        let subtotal = 0;
+
+        products.forEach((product, index) => {
+            const itemTotal = (product.price || 0) * (product.quantity || 0);
+            subtotal += itemTotal;
+
+            // Draw row border
+            doc.setDrawColor(230, 230, 230);
+            doc.line(20, currentY + 8, 190, currentY + 8);
+
+            // Row content
+            doc.text(String(index + 1), columnPositions[0], currentY + 3);
+
+            // Handle long product titles
+            const productTitle = product.title || `Product ${index + 1}`;
+            const splitTitle = doc.splitTextToSize(productTitle, columnWidths[1]);
+            doc.text(splitTitle[0], columnPositions[1], currentY + 3);
+
+            doc.text(String(product.quantity || 1), columnPositions[2] + 5, currentY + 3, { align: 'center' });
+            doc.text(`₹${(product.price || 0).toFixed(2)}`, columnPositions[3] + 15, currentY + 3, { align: 'right' });
+            doc.text(`₹${itemTotal.toFixed(2)}`, columnPositions[4] + 25, currentY + 3, { align: 'right' });
+
+            currentY += 15;
+        });
+
+        // Add freight charges if present
+        const freightCharges = data.freightCharges || 100;
+        if (freightCharges > 0) {
+            doc.line(20, currentY + 8, 190, currentY + 8);
+            doc.text(String(products.length + 1), columnPositions[0], currentY + 3);
+            doc.text("Freight Charges", columnPositions[1], currentY + 3);
+            doc.text("1", columnPositions[2] + 5, currentY + 3, { align: 'center' });
+            doc.text(`₹${freightCharges.toFixed(2)}`, columnPositions[3] + 15, currentY + 3, { align: 'right' });
+            doc.text(`₹${freightCharges.toFixed(2)}`, columnPositions[4] + 25, currentY + 3, { align: 'right' });
+            currentY += 15;
+            subtotal += freightCharges;
+        }
+
+        // Final table border
+        doc.setDrawColor(200, 200, 200);
+        doc.rect(20, tableStartY - 5, 170, currentY - tableStartY + 8);
+
+        // Totals Section
+        const totalsStartY = currentY + 20;
+        const gstRate = data.gstRate || 18;
+        const gstAmount = (subtotal * gstRate) / 100;
+        const totalAmount = subtotal + gstAmount;
+
+        // Subtotal
+        doc.setFont(undefined, 'normal');
+        doc.text("Sub Total", 140, totalsStartY);
+        doc.text(`₹${subtotal.toFixed(2)}`, 185, totalsStartY, { align: 'right' });
+
+        // GST
+        doc.text(`GST (${gstRate}%)`, 140, totalsStartY + 10);
+        doc.text(`₹${gstAmount.toFixed(2)}`, 185, totalsStartY + 10, { align: 'right' });
+
+        // Total line
+        doc.line(140, totalsStartY + 18, 190, totalsStartY + 18);
+
+        // Final Total
+        doc.setFont(undefined, 'bold');
+        doc.setFontSize(12);
+        doc.text("Total", 140, totalsStartY + 25);
+        doc.text(`₹${totalAmount.toFixed(2)}`, 185, totalsStartY + 25, { align: 'right' });
+
+        // Footer
+        doc.setFontSize(8);
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(100, 100, 100);
+        doc.text("Thank you for your business!", 20, 270);
+        doc.text(`Generated on: ${new Date().toLocaleString()}`, 20, 280);
+
+        // Save the PDF
+        const fileName = `Invoice_${data.orderNumber || data._id || 'ORDER'}.pdf`;
+        doc.save(fileName);
+    };
+
 
     return (
         <>
@@ -389,19 +703,36 @@ const Cart = () => {
                         ))}
 
                         {/* Totals */}
-                        <div style={{ marginTop: "32px", paddingTop: "16px" }}>
-                            <div style={{ display: "flex", justifyContent: "space-between", marginTop: "16px", marginBottom: "32px" }}>
-                                <Typography.Text strong style={{ fontSize: "18px" }}>Total</Typography.Text>
-                                <Typography.Text strong style={{ fontSize: "18px" }}>₹{getTotalPrice()}</Typography.Text>
+                        <div className="order-summary">
+                            <div className="summary-row">
+                                <span className="label">Original Total</span>
+                                <span className="value">₹{getTotalPrice().toFixed(2)}</span>
+                            </div>
+
+                            <div className="summary-row">
+                                <span className="label">Delivery Charges</span>
+                                <span className="value">₹{deliveryCharge.toFixed(2)}</span>
+                            </div>
+
+                            <div className="summary-row">
+                                <span className="label">GST (18%)</span>
+                                <span className="value">₹{getGSTAmount().toFixed(2)}</span>
+                            </div>
+
+                            <div className="summary-row total-row">
+                                <span className="label">Total Payable (Incl. GST)</span>
+                                <span className="value">₹{getGrandTotal().toFixed(2)}</span>
                             </div>
                         </div>
+
+
 
                         {/* Action Buttons */}
                         <div style={{
                             display: "flex",
                             flexDirection: isMobile ? "column" : "row",
                             justifyContent: "space-between",
-                            gap: isMobile ? "12px" : "0",
+                            gap: isMobile ? "12px" : "10px",
                             marginTop: "32px"
                         }}>
                             <Button
@@ -410,13 +741,26 @@ const Cart = () => {
                                     padding: "8px 16px",
                                     borderColor: "#888",
                                     color: "#000",
+                                    margin: "0px",
                                     background: "transparent",
                                     width: isMobile ? "100%" : "auto"
                                 }}
                             >
                                 Continue shopping
                             </Button>
-                            <Button
+
+                            <ProductPurchaseVerificationModal
+                                handlePayment={handlePayment}
+                                cartItems={cartItems}
+                                quantities={quantities}
+                                loading={loading}
+                                savedData={savedData}
+                                setSavedData={setSavedData}
+                                locationDetails={locationDetails}
+                                setLocationDetails={setLocationDetails}
+                            />
+
+                            {/* <Button
                                 type="primary"
                                 style={{
                                     padding: "8px 16px",
@@ -424,9 +768,12 @@ const Cart = () => {
                                     borderColor: "#000",
                                     width: isMobile ? "100%" : "auto"
                                 }}
+                                onClick={handlePayment}
+                                loading={loading}
+
                             >
                                 Process order
-                            </Button>
+                            </Button> */}
                         </div>
 
                         {/* Products Carousel */}
@@ -667,6 +1014,28 @@ const Cart = () => {
                     </div>
                 )}
             </Drawer>
+            <Modal
+                title="Payment Successful!"
+                open={invoiceModalVisible}  // changed visible => open
+                onCancel={() => setInvoiceModalVisible(false)}
+                footer={[
+                    <Button key="close" onClick={() => setInvoiceModalVisible(false)}>
+                        Close
+                    </Button>,
+                    <Button
+                        key="download"
+                        type="primary"
+                        onClick={() => generateInvoicePDF(invoiceData)}
+                        disabled={!invoiceData}
+                    >
+                        Download Invoice
+                    </Button>,
+                ]}
+            >
+                <Typography.Paragraph>
+                    Your payment was successful. You can download your invoice here.
+                </Typography.Paragraph>
+            </Modal>
         </>
     );
 };

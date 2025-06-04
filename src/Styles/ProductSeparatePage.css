@@ -1391,6 +1391,10 @@
   .variant-suggestion-wrapper::-webkit-scrollbar-thumb:hover {
     background: #0056b3;
   }
+
+  .pinlayout-html-table tbody tr:hover{
+    background-color:rgb(225, 225, 225) !important;
+  }
   
   /* Responsive Design */
   @media (max-width: 768px) {
