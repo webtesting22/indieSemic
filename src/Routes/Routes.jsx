@@ -18,7 +18,7 @@ import ShippingDeliveryPolicy from "../Components/TermsAndConditionPages/Shippin
 import CancellationRefundPolicy from "../Components/TermsAndConditionPages/CancellationandRefundPolicy";
 import ProductPurchaseVerificationModal from "../StoreComponents/ProductPage/ProductPurchesVerficationModal/ProductPurchaseVerification";
 // import Dashboard from "../Components/Dashboard/Dashboard";
-import DashboardWrapper from "../Components/Dashboard/DashboardWrapper";
+import DashboardView from "../Components/Dashboard/DashboardView";
 const DynamicRoutes = () => {
     const location = useLocation();
     const isLoggedIn = localStorage.getItem("email") && localStorage.getItem("password");
@@ -41,7 +41,7 @@ const DynamicRoutes = () => {
                 <Route path="/shipping-delivery-policy" element={<ShippingDeliveryPolicy />} />
                 <Route path="/cancellation-refund-policy" element={<CancellationRefundPolicy />} />
                 <Route path="/product-purchase-verification" element={<ProductPurchaseVerificationModal />} />
-                <Route path="/dashboard" element={<DashboardWrapper />} />
+                <Route path="/dashboard" element={<DashboardView />} />
             </Routes>
             {!isAuthPage && <Footer />}
         </>
