@@ -149,8 +149,7 @@ const Cart = () => {
     };
 
     const getGrandTotal = () => {
-        return getTotalPrice()
-        // getTotalWithDelivery() + getGSTAmount();
+        return getTotalWithDelivery() + getGSTAmount();
     };
 
 
@@ -222,7 +221,7 @@ const Cart = () => {
 
                     // Call your backend to save order after payment success
                     await saveFormDataToBackend(dataToSend);
-                    
+
                     setSavedData(null);
                     setInvoiceData(dataToSend);  // Save the data needed for invoice
                     setInvoiceModalVisible(true); // Open the invoice modal
@@ -250,7 +249,7 @@ const Cart = () => {
 
     const saveFormDataToBackend = async (formData) => {
         try {
-            const response = await fetch('http://localhost:4040/api/indiesemic/addPurchaseVerificationData', {
+            const response = await fetch(`${apibaseUrl}/indiesemic/addPurchaseVerificationData`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
