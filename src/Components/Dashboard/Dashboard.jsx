@@ -54,7 +54,7 @@ const Dashboard = ({ handleLogout, user }) => {
     // Product tracking modal states
     const [trackingModalVisible, setTrackingModalVisible] = useState(false);
     const [productStatuses, setProductStatuses] = useState({});
-
+    const apibaseUrl = import.meta.env.VITE_BASE_URL;
     const revenueChannels = [
         { name: 'Direct', amount: '$5,24,685', percentage: 65.6, color: '#10b981' },
         { name: 'Organic Search', amount: '$7,24,685', percentage: 45.2, color: '#3b82f6' },
