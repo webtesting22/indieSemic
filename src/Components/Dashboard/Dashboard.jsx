@@ -82,7 +82,7 @@ const Dashboard = ({ handleLogout, user }) => {
 
     const fetchPurchaseVerificationData = async () => {
         try {
-            const response = await fetch('http://localhost:4040/api/indiesemic/getAllPurchaseVerificationData');
+            const response = await fetch(`${apibaseUrl}/indiesemic/getAllPurchaseVerificationData`);
             if (!response.ok) throw new Error('Network response was not ok');
 
             const result = await response.json();

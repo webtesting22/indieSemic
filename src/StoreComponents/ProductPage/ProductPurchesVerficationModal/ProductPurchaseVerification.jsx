@@ -77,72 +77,72 @@ const ProductPurchaseVerificationModal = ({
         const values = form.getFieldsValue(true);
         const origin = "Ahmedabad, India";
         const destination = values.shipping_city || values.billing_city;
-      
+
         if (!destination) {
-          setLocationDetails(null);
-          console.log("Destination city not selected yet");
-          return;
+            setLocationDetails(null);
+            console.log("Destination city not selected yet");
+            return;
         }
-      
+
         if (!window.google || !window.google.maps) {
-          notification.error({
-            message: "Error",
-            description: "Google Maps API not loaded",
-            placement: "topRight",
-          });
-          return;
+            notification.error({
+                message: "Error",
+                description: "Google Maps API not loaded",
+                placement: "topRight",
+            });
+            return;
         }
-      
+
         const service = new window.google.maps.DistanceMatrixService();
         service.getDistanceMatrix(
-          {
-            origins: [origin],
-            destinations: [destination],
-            travelMode: window.google.maps.TravelMode.DRIVING,
-            unitSystem: window.google.maps.UnitSystem.METRIC,
-          },
-          (response, status) => {
-            if (status === "OK") {
-              const element = response.rows[0].elements[0];
-              if (element.status === "OK") {
-                const newLocationDetails = {
-                  distance: element.distance.text,
-                  duration: element.duration.text,
-                };
-                setLocationDetails(newLocationDetails);
-                localStorage.setItem("locationDetails", JSON.stringify(newLocationDetails));
-      
-                // Save form data locally, update state, close modal
-                setSavedData(values);
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(values));
-                setSameAsBilling(values.sameAsBilling || false);
-                setIsModalVisible(false);
-      
-                notification.success({
-                  message: "Success",
-                  description: "Your address details saved locally. Please proceed to payment.",
-                  placement: "topRight",
-                });
-              } else {
-                setLocationDetails(null);
-                notification.error({
-                  message: "Error",
-                  description: "Distance matrix element status: " + element.status,
-                  placement: "topRight",
-                });
-              }
-            } else {
-              setLocationDetails(null);
-              notification.error({
-                message: "Error",
-                description: "Distance matrix status error: " + status,
-                placement: "topRight",
-              });
+            {
+                origins: [origin],
+                destinations: [destination],
+                travelMode: window.google.maps.TravelMode.DRIVING,
+                unitSystem: window.google.maps.UnitSystem.METRIC,
+            },
+            (response, status) => {
+                if (status === "OK") {
+                    const element = response.rows[0].elements[0];
+                    if (element.status === "OK") {
+                        const newLocationDetails = {
+                            distance: element.distance.text,
+                            duration: element.duration.text,
+                        };
+                        setLocationDetails(newLocationDetails);
+                        localStorage.setItem("locationDetails", JSON.stringify(newLocationDetails));
+
+                        // Save form data locally, update state, close modal
+                        setSavedData(values);
+                        localStorage.setItem(STORAGE_KEY, JSON.stringify(values));
+                        setSameAsBilling(values.sameAsBilling || false);
+                        setIsModalVisible(false);
+
+                        notification.success({
+                            message: "Success",
+                            description: "Your address details saved locally. Please proceed to payment.",
+                            placement: "topRight",
+                        });
+                    } else {
+                        setLocationDetails(null);
+                        notification.error({
+                            message: "Error",
+                            description: "Distance matrix element status: " + element.status,
+                            placement: "topRight",
+                        });
+                    }
+                } else {
+                    setLocationDetails(null);
+                    notification.error({
+                        message: "Error",
+                        description: "Distance matrix status error: " + status,
+                        placement: "topRight",
+                    });
+                }
             }
-          }
         );
-      };
-      
+    };
+
 
 
     // Dropdown change handlers
