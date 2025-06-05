@@ -443,7 +443,7 @@ const ProductPurchaseVerificationModal = ({
                                     name="shipping_postalCode"
                                     rules={[{ required: true, message: 'Please enter postal code' }]}
                                 >
-                                    <Input placeholder="Enter Your Postel Code" />
+                                    <Input placeholder="Enter Your Postal Code" />
                                 </Form.Item>
                             </Col>
                         </Row>

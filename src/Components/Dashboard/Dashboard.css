@@ -412,6 +412,7 @@
     border: 1px solid #f1f5f9;
     align-items: center;
     transition: all 0.2s ease;
+    position: relative;
 }
 
 .table-row-modern:hover {
@@ -1033,6 +1034,12 @@
 .product-tracking-modal .ant-modal-footer .ant-btn-primary:hover {
     background: #2563eb;
     border-color: #2563eb;
+}
+
+.new-tag{
+    position: absolute;
+    left: 0px;
+    top: 0px;
 }
 
 /* Tablet and below */

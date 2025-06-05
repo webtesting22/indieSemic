@@ -86,7 +86,9 @@ const Dashboard = ({ handleLogout, user }) => {
             if (!response.ok) throw new Error('Network response was not ok');
 
             const result = await response.json();
-            setVerificationData(result.data || []);
+            const sortedData = result.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            setVerificationData(sortedData || []);
+
         } catch (error) {
             console.error('Error fetching verification data:', error);
             message.error('Failed to load purchase verification data');
@@ -94,7 +96,16 @@ const Dashboard = ({ handleLogout, user }) => {
             setLoading(false);
         }
     };
-
+    const getLatestOrder = () => {
+        if (verificationData.length > 0) {
+            // Sort orders by createdAt (desc), latest first
+            const sortedOrders = verificationData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            return sortedOrders[0]; // Return the most recent order
+        }
+        return null;
+    };
+    
+    const latestOrder = getLatestOrder(); 
     useEffect(() => {
         fetchPurchaseVerificationData();
     }, []);
@@ -313,7 +324,7 @@ const Dashboard = ({ handleLogout, user }) => {
                                                             (sum, product) => sum + product.quantity,
                                                             0
                                                         );
-
+                                                        const isLatest = latestOrder && latestOrder._id === order._id;
                                                         return (
                                                             <div key={order._id} className="table-row-modern">
                                                                 <div className="row-cell customer-info">
@@ -351,6 +362,7 @@ const Dashboard = ({ handleLogout, user }) => {
                                                                         View Details
                                                                     </Button>
                                                                 </div>
+                                                                {isLatest && <Tag color="green" className="new-tag">Newly Added</Tag>}
                                                             </div>
                                                         );
                                                     })}
@@ -447,7 +459,7 @@ const Dashboard = ({ handleLogout, user }) => {
                                 </Avatar>
                                 <div className="customer-title">
                                     <Title level={3} className="customer-name">
-                                        {selectedOrder.shipping?.firstName} {selectedOrder.shipping.lastName}
+                                        {selectedOrder.shipping?.firstName} {selectedOrder.shipping?.lastName}
                                     </Title>
                                     <Text className="customer-subtitle">Customer Details</Text>
                                 </div>
@@ -518,7 +530,7 @@ const Dashboard = ({ handleLogout, user }) => {
                                         <div>
                                             <Text strong>Full Name</Text>
                                             <br />
-                                            <Text>{selectedOrder.shipping.firstName} {selectedOrder.shipping.lastName}</Text>
+                                            <Text>{selectedOrder.shipping?.firstName} {selectedOrder.shipping?.lastName}</Text>
                                         </div>
                                     </div>
                                 </Col>
@@ -528,7 +540,7 @@ const Dashboard = ({ handleLogout, user }) => {
                                         <div>
                                             <Text strong>Mobile</Text>
                                             <br />
-                                            <Text>{selectedOrder.shipping.mobile}</Text>
+                                            <Text>{selectedOrder.shipping?.mobile}</Text>
                                         </div>
                                     </div>
                                 </Col>
@@ -539,35 +551,35 @@ const Dashboard = ({ handleLogout, user }) => {
                                             <Text strong>Address</Text>
                                             <br />
                                             <Text>
-                                                {selectedOrder.shipping.address1}
-                                                {selectedOrder.shipping.address2 && `, ${selectedOrder.shipping.address2}`}
+                                                {selectedOrder.shipping?.address1}
+                                                {selectedOrder.shipping?.address2 && `, ${selectedOrder.shipping?.address2}`}
                                                 <br />
-                                                {selectedOrder.shipping.city}, {selectedOrder.shipping.state} - {selectedOrder.shipping.postalCode}
+                                                {selectedOrder.shipping?.city}, {selectedOrder.shipping?.state} - {selectedOrder.shipping?.postalCode}
                                                 <br />
-                                                {selectedOrder.shipping.country}
+                                                {selectedOrder.shipping?.country}
                                             </Text>
                                         </div>
                                     </div>
                                 </Col>
-                                {selectedOrder.shipping.company && (
+                                {selectedOrder.shipping?.company && (
                                     <Col span={12}>
                                         <div className="info-item">
                                             <div>
                                                 <Text strong>Company</Text>
                                                 <br />
-                                                <Text>{selectedOrder.shipping.company}</Text>
+                                                <Text>{selectedOrder.shipping?.company}</Text>
                                             </div>
                                         </div>
                                     </Col>
                                 )}
-                                {selectedOrder.shipping.gstin && (
+                                {selectedOrder.shipping?.gstin && (
                                     <Col span={12}>
                                         <div className="info-item">
                                             <FiMail className="info-icon" />
                                             <div>
                                                 <Text strong>GSTIN</Text>
                                                 <br />
-                                                <Text>{selectedOrder.shipping.gstin}</Text>
+                                                <Text>{selectedOrder.shipping?.gstin}</Text>
                                             </div>
                                         </div>
                                     </Col>
