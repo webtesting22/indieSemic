@@ -191,6 +191,7 @@
 
 .mega-menu {
   position: absolute;
+  display: none;
   top: 100%;
   left: 0;
   background: white;
@@ -207,8 +208,9 @@
 }
 
 .dropdown:hover .mega-menu {
-  display: flex;
+  /* display: flex; */
   flex-wrap: wrap;
+  display: none;
   justify-content: space-around;
   visibility: visible;
   opacity: 1;
