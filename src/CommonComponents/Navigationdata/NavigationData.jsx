@@ -3,23 +3,23 @@ const NavigationData = [
     //     link: "Home",
     //     path: ""
     // },
+    // {
+    //     link: "Products",
+    //     path: "/product"
+    // },
     {
-        link: "Products",
-        path: "/product"
+        link: "SOC",
+        path: "/socmodule"
     },
-    // {
-    //     link: "SOC",
-    //     path: "/socmodule"
-    // },
-    // {
-    //     link: "Services",
-    //     path: "/services"
-    // },
+    {
+        link: "Services",
+        path: "/services"
+    },
     {
         link: "Modules",
         path: "/Modules",
     },
-    
+
     {
         link: "Terms and Conditions",
         path: "/terms-and-conditions",
