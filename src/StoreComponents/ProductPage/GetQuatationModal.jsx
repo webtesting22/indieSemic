@@ -214,56 +214,77 @@ const GetQuotationModal = () => {
             key: "quantity",
             width: 150,
             render: (_, product) => (
-                <div style={{ display: "flex", alignItems: "center" }}>
-                    <button
-                        onClick={() => {
-                            const currentQty = parseInt(productQuantities[product._id]) || 0;
-                            if (currentQty > 1) {
-                                handleQuantityChange(product._id, currentQty - 1);
-                            }
-                        }}
-                        disabled={!selectedProducts.includes(product._id) || !formValid}
-                        style={{
-                            border: "none",
-                            background: "none",
-                            cursor: "pointer",
-                            fontSize: "16px",
-                            padding: "0 8px"
-                        }}
-                    >
-                        -
-                    </button>
-                    <Input
-                        type="number"
-                        min="1"
-                        value={productQuantities[product._id] || ""}
-                        onChange={(e) => handleQuantityChange(product._id, e.target.value)}
-                        disabled={!selectedProducts.includes(product._id) || !formValid}
-                        style={{
-                            width: "90px",
-                            textAlign: "center",
-                            borderRadius: "0",
-                            margin: "0 -1px",
-                            WebkitAppearance: "none",
-                            MozAppearance: "textfield"
-                        }}
-                    />
-                    <button
-                        onClick={() => {
-                            const currentQty = parseInt(productQuantities[product._id]) || 0;
-                            handleQuantityChange(product._id, currentQty + 1);
-                        }}
-                        disabled={!selectedProducts.includes(product._id) || !formValid}
-                        style={{
-                            border: "none",
-                            background: "none",
-                            cursor: "pointer",
-                            fontSize: "16px",
-                            padding: "0 8px"
-                        }}
-                    >
-                        +
-                    </button>
+                <div style={{ display: "flex", alignItems: "center",flexDirection:"column" }}>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                        <button
+                            onClick={() => {
+                                const currentQty = parseInt(productQuantities[product._id]) || 0;
+                                if (currentQty > 1) {
+                                    handleQuantityChange(product._id, currentQty - 1);
+                                }
+                            }}
+                            disabled={!selectedProducts.includes(product._id) || !formValid}
+                            style={{
+                                border: "none",
+                                background: "none",
+                                cursor: "pointer",
+                                fontSize: "16px",
+                                padding: "0 8px"
+                            }}
+                        >
+                            -
+                        </button>
+                        <Input
+                            type="number"
+                            min="1"
+                            max="30"
+                            step="1"
+                            value={productQuantities[product._id] || ""}
+                            onChange={(e) => {
+                                const value = e.target.value;
+                                if (value === "") {
+                                    handleQuantityChange(product._id, "");
+                                } else if (/^\d*$/.test(value)) {
+                                    const numValue = parseInt(value);
+                                    if (numValue <= 30) {
+                                        handleQuantityChange(product._id, value);
+                                    }
+                                }
+                            }}
+                            onKeyDown={(e) => {
+                                if (e.key === "." || e.key === "e" || e.key === "-" || e.key === "+") {
+                                    e.preventDefault();
+                                }
+                            }}
+                            disabled={!selectedProducts.includes(product._id) || !formValid}
+                            style={{
+                                width: "90px",
+                                textAlign: "center",
+                                borderRadius: "0",
+                                margin: "0 -1px",
+                                WebkitAppearance: "none",
+                                MozAppearance: "textfield"
+                            }}
+                        />
+
+                        <button
+                            onClick={() => {
+                                const currentQty = parseInt(productQuantities[product._id]) || 0;
+                                handleQuantityChange(product._id, currentQty + 1);
+                            }}
+                            disabled={!selectedProducts.includes(product._id) || !formValid}
+                            style={{
+                                border: "none",
+                                background: "none",
+                                cursor: "pointer",
+                                fontSize: "16px",
+                                padding: "0 8px"
+                            }}
+                        >
+                            +
+                        </button>
+                    </div>
+                    <div style={{ fontSize: "12px", color: "#8c8c8c", marginTop: "2px" }}>Max quantity: 30</div>
                 </div>
             ),
         },
@@ -461,7 +482,13 @@ const GetQuotationModal = () => {
                                 placeholder="Enter your phone number"
                                 value={userDetails.contact}
                                 onChange={handleInputChange}
-                                style={{ borderRadius: "4px" }}
+                                style={{
+                                    borderRadius: "4px",
+                                    // Hide number input arrows
+                                    MozAppearance: "textfield",
+                                    WebkitAppearance: "none",
+                                    margin: 0,
+                                }}
                                 prefix={<PhoneOutlined style={{ color: "#bfbfbf" }} />}
                             />
                         </Col>
