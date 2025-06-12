@@ -13,6 +13,8 @@ import "swiper/css/navigation";
 import { MdDelete } from "react-icons/md";
 import ProductPurchaseVerificationModal from "../ProductPage/ProductPurchesVerficationModal/ProductPurchaseVerification";
 import jsPDF from "jspdf";
+import ContactHome from "../../Components/ContactHome/ContactHome";
+
 const Cart = () => {
     const { cartItems, removeFromCart, addToCart, products } = useContext(ProductContext);
     const [open, setOpen] = useState(false);
@@ -23,6 +25,7 @@ const Cart = () => {
     const [deliveryCharge, setDeliveryCharge] = useState(0);
     const [invoiceModalVisible, setInvoiceModalVisible] = useState(false);
     const [invoiceData, setInvoiceData] = useState(null); // To store invoice info for PDF
+    const [isContactModalVisible, setIsContactModalVisible] = useState(false);
 
     // Track screen width for responsive layout
     const [locationDetails, setLocationDetails] = useState("");
@@ -772,7 +775,13 @@ const Cart = () => {
         doc.save(fileName);
     };
 
+    const showContactModal = () => {
+        setIsContactModalVisible(true);
+    };
 
+    const handleContactModalCancel = () => {
+        setIsContactModalVisible(false);
+    };
 
     return (
         <>
@@ -1417,6 +1426,18 @@ const Cart = () => {
                         </Typography.Text>
                     </div>
                 </div>
+            </Modal>
+
+            {/* Add Contact Modal */}
+            <Modal
+                title="Contact Us"
+                open={isContactModalVisible}
+                onCancel={handleContactModalCancel}
+                footer={null}
+                width={1000}
+                style={{ top: 20 }}
+            >
+                <ContactHome />
             </Modal>
 
         </>

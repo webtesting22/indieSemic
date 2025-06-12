@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import "../../Styles/ProductSeparatePage.css";
-import { Row, Col, Tabs, Image, Button, notification, message, InputNumber } from "antd";
+import { Row, Col, Tabs, Image, Button, notification, message, InputNumber, Modal } from "antd";
 import { FiCopy, FiCheck } from "react-icons/fi";
 import ProductContext from "../Context/ProductContext";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaPhone } from "react-icons/fa";
 import Cart from "../Cart/Cart";
 import GetQuotationModal from "./GetQuatationModal";
 import {
@@ -21,8 +21,10 @@ import {
     FaStar,
     FaCheckCircle,
     FaTruck,
-    FaShieldAlt
+    FaShieldAlt,
+    FaPhoneAlt
 } from "react-icons/fa";
+
 import { GrTechnology } from "react-icons/gr";
 import { GiIndiaGate } from "react-icons/gi";
 import { FaIndianRupeeSign } from "react-icons/fa6";
@@ -42,6 +44,7 @@ const SeparateProductPage = () => {
     const [variants, setVariants] = useState([]);
     const [isSidebarVisible, setIsSidebarVisible] = useState(true);
     const [quantity, setQuantity] = useState(1);
+    const [isContactModalVisible, setIsContactModalVisible] = useState(false);
 
     // Listen for quantity changes from cart
     useEffect(() => {
@@ -95,13 +98,13 @@ const SeparateProductPage = () => {
             return;
         }
         setQuantity(value);
-        
+
         // If product is in cart, update cart quantities
         if (isProductInCart) {
             const storedQuantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
             const newQuantities = { ...storedQuantities, [product._id]: value };
             localStorage.setItem("cartQuantities", JSON.stringify(newQuantities));
-            
+
             // Dispatch event for real-time update
             window.dispatchEvent(new CustomEvent('quantityUpdated', {
                 detail: {
@@ -115,7 +118,7 @@ const SeparateProductPage = () => {
     const handleAddToCart = (product) => {
         // Add to cart with current quantity
         addToCart(product);
-        
+
         // Save quantity to localStorage
         const storedQuantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
         const newQuantities = { ...storedQuantities, [product._id]: quantity };
@@ -211,7 +214,17 @@ const SeparateProductPage = () => {
         });
     };
 
+    const showContactModal = () => {
+        setIsContactModalVisible(true);
+    };
 
+    const handleContactModalCancel = () => {
+        setIsContactModalVisible(false);
+    };
+
+    const handleContactClick = () => {
+        window.location.href = 'tel:+917600460240';
+    };
 
     return (
         <section id="ProductSeparatePage" className="enhanced-product-page">
@@ -376,8 +389,17 @@ const SeparateProductPage = () => {
                                         </div> */}
 
                                         <div className="availability-section">
-                                            <FaCheckCircle className="availability-icon" />
-                                            <span className="availability-text">In Stock - Ready to Ship</span>
+                                            {product.stock > 0 ? (
+                                                <>
+                                                    <FaCheckCircle className="availability-icon" />
+                                                    <span className="availability-text">In Stock - Ready to Ship</span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <FaCheckCircle className="availability-icon" style={{ color: '#ff4d4f' }} />
+                                                    <span className="availability-text" style={{ color: '#ff4d4f' }}>Will be in stock soon</span>
+                                                </>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -430,7 +452,10 @@ const SeparateProductPage = () => {
                                 </div>
                                 <br /><br />
                                 {/* Enhanced Action Buttons */}
-                                <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "16px" }}>
+
+                                {product.stock > 0 ? (
+                                    <div className="action-buttons-section">
+                                        <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "16px" }}>
                                             <div style={{ display: "flex", alignItems: "center" }}>
                                                 <button
                                                     onClick={() => handleQuantityChange(Math.max(1, quantity - 1))}
@@ -475,34 +500,57 @@ const SeparateProductPage = () => {
                                             </div>
                                             <div style={{ fontSize: "12px", color: "#8c8c8c" }}>Max quantity: 30</div>
                                         </div>
-                                <div className="action-buttons-section">
-                                    <div className="primary-actions">
-                                        
 
+                                        <div className="primary-actions">
+
+                                            <>
+
+                                                <Button
+                                                    type="primary"
+                                                    onClick={() => handleAddToCart(product)}
+                                                    className="enhanced-add-to-cart-btn addToCart"
+                                                    disabled={isProductInCart}
+                                                >
+                                                    <FaShoppingCart className="cart-icon" />
+                                                    <span className="button-text">
+                                                        {isProductInCart ? "Product Added" : "Add to Cart"}
+                                                    </span>
+                                                </Button>
+                                            </>
+
+
+
+
+                                            <div className="secondary-action">
+                                                <GetQuotationModal />
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="primary-actions">
                                         <Button
                                             type="primary"
-                                            onClick={() => handleAddToCart(product)}
-                                            className="enhanced-add-to-cart-btn addToCart"
-                                            disabled={isProductInCart}
+                                            onClick={handleContactClick}
+                                            className="enhanced-add-to-cart-btn"
+                                            style={{
+                                                backgroundColor: '#ff4d4f',
+                                                borderColor: '#ff4d4f',
+                                                height: '48px',
+                                                fontSize: '16px',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                gap: '8px'
+                                            }}
                                         >
-                                            <FaShoppingCart className="cart-icon" />
-                                            <span className="button-text">
-                                                {isProductInCart ? "Product Added" : "Add to Cart"}
-                                            </span>
+                                            <FaPhoneAlt style={{ fontSize: '18px' }} />
+                                            <span>Contact US</span>
                                         </Button>
-
                                         <div className="secondary-action">
                                             <GetQuotationModal />
                                         </div>
                                     </div>
-
-                                    {/* <div className="wishlist-section">
-                                        <button className="wishlist-btn">
-                                            <FaHeart />
-                                            <span>Add to Wishlist</span>
-                                        </button>
-                                    </div> */}
-                                </div>
+                                )}
                             </div>
                         </Col>
                     </Row>
@@ -570,7 +618,7 @@ const SeparateProductPage = () => {
                                                     </div>
                                                 </div>
                                             ) : tab.key === "2" && Array.isArray(tab.content) ? (
-                                                <div className="TabDescriptionContainer" style={{display:"flex",justifyContent:"center"}}>
+                                                <div className="TabDescriptionContainer" style={{ display: "flex", justifyContent: "center" }}>
                                                     <div
                                                         className="spec-html-table"
                                                         dangerouslySetInnerHTML={{ __html: tab.content.join('') }}
@@ -694,6 +742,18 @@ const SeparateProductPage = () => {
                     <ContactHome />
                 </div>
             </div>
+
+            {/* Add Contact Modal */}
+            <Modal
+                title="Contact Us"
+                open={isContactModalVisible}
+                onCancel={handleContactModalCancel}
+                footer={null}
+                width={1000}
+                style={{ top: 20 }}
+            >
+                <ContactHome />
+            </Modal>
         </section>
     );
 };
