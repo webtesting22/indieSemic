@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import SOCBackImage from "./TryBanner.jpg";
 import "./SOCModule.css";
-import { Row, Col } from "antd";
+import { Row, Col, Modal } from "antd";
 import { Link } from "react-router-dom";
 import { IoArrowRedoCircle, IoHardwareChip, IoFlash, IoShield, IoCog } from "react-icons/io5";
+import ContactHome from '../ContactHome/ContactHome';
 
 const SOCModule = () => {
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
+
     const microcontrollerFeatures = [
         {
             title: "Single-core 32-bit RISC-V MCU – Successfully taped out",
@@ -229,7 +240,7 @@ const SOCModule = () => {
                     </div>
                     <div className="soc-action-buttons">
                         {/* <button className="soc-cta-button soc-primary">Download Tech Brief</button> */}
-                        <Link to="/"><button className="soc-cta-button soc-secondary">Get in Touch with Our Team</button></Link>
+                        <button className="soc-cta-button soc-secondary" onClick={showModal}>Get in Touch with Our Team</button>
                     </div>
                 </div>
             </section>
@@ -250,6 +261,17 @@ const SOCModule = () => {
                     </div>
                 </div>
             </section>
+
+            <Modal
+                title="Contact Us"
+                open={isModalVisible}
+                onCancel={handleCancel}
+                footer={null}
+                width={1000}
+                style={{ top: 20 }}
+            >
+                <ContactHome />
+            </Modal>
         </div>
     );
 };
