@@ -40,6 +40,19 @@ const Expertise = () => {
     }, []);
 
 
+    const MarqueeTagData = [
+        "./Images/MarqueeLogos/1.png",
+        "./Images/MarqueeLogos/2.png",
+        "./Images/MarqueeLogos/3.png",
+        "./Images/MarqueeLogos/4.png",
+        "./Images/MarqueeLogos/5.png",
+        "./Images/MarqueeLogos/6.png",
+        "./Images/MarqueeLogos/7.png",
+    ]
+
+    // Create an array with 100 repetitions of the logos
+    const repeatedLogos = Array(100).fill(MarqueeTagData).flat();
+
     return (
         <section id='expertise-page' className="section_Padding">
             {/* <div className="expertise-header">
@@ -104,9 +117,16 @@ const Expertise = () => {
             {/* </div>
                 </div> */}
             <div className='ExpertiseCardContainer'>
+                <div className='MarqueeContainer'>
+                    <div className='MarqueeContent'>
+                        {repeatedLogos.map((item, index) => (
+                            <img key={index} src={item} alt="" />
+                        ))}
+                    </div>
+                </div>
                 <img src="/Images/BackShapeImg.svg" alt="" className='Overlayimage' />
                 <div className="DesignedContainer" id='Target'>
-                    <h1 style={{ textAlign: "left" }}><span style={{ color: "rgb(74, 144, 226)" }}>Innovating Tomorrow’s Chips</span> with Precision and Excellence Today</h1>
+                    <h1 style={{ textAlign: "left" }}><span style={{ color: "rgb(74, 144, 226)" }}>Innovating Tomorrow's Chips</span> with Precision and Excellence Today</h1>
                     {/* <p>Revolutionizing the future of technology with cutting-edge chip design and development.</p> */}
                 </div>
 

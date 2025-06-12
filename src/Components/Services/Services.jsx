@@ -35,7 +35,9 @@ const Services = () => {
 
     return (
         <div className="services-module">
+            
             <section className="services-section">
+            <img src="/Images/BackShapeImg.svg" alt="" className='Overlayimage' />
                 <div className="services-container">
                     {/* Header Section */}
                     <div className="services-header">

@@ -78,6 +78,7 @@
 
 .logoContainer {
   width: 121px;
+  border-radius: 20px;
   /* height: 80px; */
   overflow: hidden;
   display: flex;
@@ -147,6 +148,7 @@
 
 .MuiPaper-root {
   background: transparent !important;
+  z-index: 5 !important;
 }
 
 @media (max-width: 769px) {
@@ -325,4 +327,3 @@
     display: inline-block;
   }
 }
-

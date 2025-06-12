@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import "../../Styles/ProductSeparatePage.css";
-import { Row, Col, Tabs, Image, Button, notification, message } from "antd";
+import { Row, Col, Tabs, Image, Button, notification, message, InputNumber } from "antd";
 import { FiCopy, FiCheck } from "react-icons/fi";
 import ProductContext from "../Context/ProductContext";
 import { FaShoppingCart } from "react-icons/fa";
@@ -41,7 +41,32 @@ const SeparateProductPage = () => {
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const [variants, setVariants] = useState([]);
     const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+    const [quantity, setQuantity] = useState(1);
 
+    // Listen for quantity changes from cart
+    useEffect(() => {
+        const handleQuantityUpdate = (event) => {
+            if (product && event.detail.productId === product._id) {
+                setQuantity(event.detail.quantity);
+            }
+        };
+
+        window.addEventListener('quantityUpdated', handleQuantityUpdate);
+        return () => {
+            window.removeEventListener('quantityUpdated', handleQuantityUpdate);
+        };
+    }, [product]);
+
+    // Get initial quantity from cart
+    useEffect(() => {
+        const cartItem = cartItems.find(item => item._id === product?._id);
+        if (cartItem) {
+            const storedQuantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
+            setQuantity(storedQuantities[product._id] || 1);
+        } else {
+            setQuantity(1);
+        }
+    }, [product, cartItems]);
 
     const toggleSidebar = () => {
         setIsSidebarVisible(!isSidebarVisible);
@@ -63,8 +88,46 @@ const SeparateProductPage = () => {
             setIsButtonDisabled(false);
         }
     }, [isProductInCart]);
+
+    const handleQuantityChange = (value) => {
+        if (value > 30) {
+            message.error("Quantity cannot exceed 30!");
+            return;
+        }
+        setQuantity(value);
+        
+        // If product is in cart, update cart quantities
+        if (isProductInCart) {
+            const storedQuantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
+            const newQuantities = { ...storedQuantities, [product._id]: value };
+            localStorage.setItem("cartQuantities", JSON.stringify(newQuantities));
+            
+            // Dispatch event for real-time update
+            window.dispatchEvent(new CustomEvent('quantityUpdated', {
+                detail: {
+                    productId: product._id,
+                    quantity: value
+                }
+            }));
+        }
+    };
+
     const handleAddToCart = (product) => {
-        addToCart(product); // should update cartItems
+        // Add to cart with current quantity
+        addToCart(product);
+        
+        // Save quantity to localStorage
+        const storedQuantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
+        const newQuantities = { ...storedQuantities, [product._id]: quantity };
+        localStorage.setItem("cartQuantities", JSON.stringify(newQuantities));
+
+        // Dispatch event for real-time update
+        window.dispatchEvent(new CustomEvent('quantityUpdated', {
+            detail: {
+                productId: product._id,
+                quantity: quantity
+            }
+        }));
 
         notification.success({
             message: "Product Added",
@@ -166,7 +229,7 @@ const SeparateProductPage = () => {
                         🛍️
                     </button>
                     <div className={`variant-suggestion-wrapper ${!isSidebarVisible ? 'hidden' : ''}`}>
-                        <h3 className="variant-heading">Upgraded Products</h3>
+                        <h3 className="variant-heading">Other Iterations</h3>
                         <div className="variant-list">
                             {variants.map((variant) => (
                                 <Link
@@ -365,9 +428,57 @@ const SeparateProductPage = () => {
                                         <span className="savings">You save ₹{product.price + 100 - product.price}</span>
                                     </div>
                                 </div>
+                                <br /><br />
                                 {/* Enhanced Action Buttons */}
+                                <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "16px" }}>
+                                            <div style={{ display: "flex", alignItems: "center" }}>
+                                                <button
+                                                    onClick={() => handleQuantityChange(Math.max(1, quantity - 1))}
+                                                    style={{
+                                                        border: "1px solid #eaeaea",
+                                                        background: "none",
+                                                        cursor: "pointer",
+                                                        fontSize: "16px",
+                                                        padding: "0 12px",
+                                                        height: "32px",
+                                                        borderRadius: "4px"
+                                                    }}
+                                                >
+                                                    —
+                                                </button>
+                                                <InputNumber
+                                                    min={1}
+                                                    max={30}
+                                                    value={quantity}
+                                                    onChange={handleQuantityChange}
+                                                    style={{
+                                                        width: "80px",
+                                                        margin: "0 8px",
+                                                        textAlign: "center"
+                                                    }}
+                                                    controls={false}
+                                                />
+                                                <button
+                                                    onClick={() => handleQuantityChange(Math.min(30, quantity + 1))}
+                                                    style={{
+                                                        border: "1px solid #eaeaea",
+                                                        background: "none",
+                                                        cursor: "pointer",
+                                                        fontSize: "16px",
+                                                        padding: "0 12px",
+                                                        height: "32px",
+                                                        borderRadius: "4px"
+                                                    }}
+                                                >
+                                                    +
+                                                </button>
+                                            </div>
+                                            <div style={{ fontSize: "12px", color: "#8c8c8c" }}>Max quantity: 30</div>
+                                        </div>
                                 <div className="action-buttons-section">
                                     <div className="primary-actions">
+                                        
+
                                         <Button
                                             type="primary"
                                             onClick={() => handleAddToCart(product)}

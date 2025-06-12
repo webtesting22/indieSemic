@@ -6,7 +6,7 @@ const ProductState = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
     const apibaseUrl = import.meta.env.VITE_BASE_URL;
     const [loadingProducts, setLoadingProducts] = useState(false);
-    const name = "sfhsdafdf";
+    // const name = "hfsadfhfas";
 
     useEffect(() => {
         // Only load cart items from localStorage
@@ -53,7 +53,7 @@ const ProductState = ({ children }) => {
                 removeFromCart,
                 fetchProducts,
                 loadingProducts,
-                name,
+                // name,
             }}
         >
             {children}

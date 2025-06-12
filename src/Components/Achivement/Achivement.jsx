@@ -56,7 +56,7 @@ const Achivement = () => {
             <section id="AchivementContainer" ref={sectionRef} className="section_Padding">
                 <div>
                     <div className="DesignedContainer">
-                        <h1 data-aos="fade-up"><span style={{ color: "rgb(74, 144, 226)" }}>Driving Innovation</span> in Semiconductor Technology</h1>
+                        <h1 data-aos="fade-up">Our <span style={{ color: "rgb(74, 144, 226)" }}>Module </span>Partner's </h1>
                         <p data-aos="fade-up">Shaping the Future of Technology Through Groundbreaking Design and Innovation.</p>
                     </div>
                 </div>
@@ -70,7 +70,7 @@ const Achivement = () => {
                             <div className="Title" onClick={() => handleImageClick(AlternateBack)} // Show alternate image in modal
                             >
                                 {/* <h1>FLIP CHIP SOC</h1> */}
-                                <h1>SOC / SiP</h1>
+                                {/* <h1>Nordic<br/>Semiconductor</h1> */}
                             </div>
                             <div className="ButtonContainer">
                                 <button data-aos="fade-left"
@@ -89,7 +89,7 @@ const Achivement = () => {
                                 </div>
                             </div>
 
-                            <img src={Back} // Original image
+                            <img src="/Images/BannersAndImages/3.png" // Original image
                                 alt=""
                                 onClick={() => handleImageClick(AlternateBack)} // Show alternate image in modal
                                 style={{
@@ -104,7 +104,7 @@ const Achivement = () => {
 
                             </div>
                             <div className="Title" onClick={() => handleImageClick(AlternateBack2)} >
-                                <h1> RF MODULES</h1>
+                                {/* <h1>Semtech </h1> */}
                             </div>
                             <div className="ButtonContainer">
                                 <button data-aos="fade-left"
@@ -122,7 +122,7 @@ const Achivement = () => {
                                     <p>Semiconductors are materials with electrical conductivity between that of a conductor and an insulator, making them essential in modern electronics.</p>
                                 </div>
                             </div>
-                            <img src={Back2} // Original image
+                            <img src="/Images/BannersAndImages/4.png" // Original image
 
                                 onClick={() => handleImageClick(AlternateBack2)} // Show alternate image in modal
                                 alt="" style={{

@@ -1,7 +1,7 @@
 #footerSection {
   position: relative;
   /* Set relative positioning to use pseudo-element */
-background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   color: white;
   padding-top: 3rem;
   padding-bottom: 0rem;
@@ -20,13 +20,14 @@ background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   display: flex;
   justify-content: space-between;
 }
+
 .QuateContainer img {
   width: 250px;
 }
+
 .FooterContentContainer {
   padding: 1rem 0rem;
   border-bottom: 0.5px solid rgba(255, 255, 255, 0.23);
-  /* padding-bottom: 2rem; */
 }
 
 .SocialNavigationLinks p:first-child,
@@ -34,10 +35,12 @@ background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   font-weight: 500;
   color: rgb(74, 144, 226);
 }
+
 .SocialMediaLinks {
   display: flex;
   flex-direction: column;
 }
+
 .CopyrightContainer div {
   display: flex;
   align-items: center;
@@ -58,12 +61,14 @@ background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   display: flex;
   align-items: center;
 }
+
 .footerLogoContainer img {
-  width: 180px;
+  width: 220px;
   object-fit: contain;
   aspect-ratio: 3 / 2;
   margin-right: 30px;
 }
+
 .SocialMediaLinks p {
   margin-top: 0 !important;
 }
@@ -72,7 +77,8 @@ background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   display: flex;
   align-items: center;
   justify-content: start;
-  margin-bottom: 10px; /* Adds spacing between each social link */
+  margin-bottom: 10px;
+  /* Adds spacing between each social link */
 }
 
 .footerSocialIcons div a {
@@ -83,69 +89,86 @@ background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
 }
 
 .footerSocialIcons div a:hover {
-  text-decoration: underline; /* Optional hover effect */
+  text-decoration: underline;
+  /* Optional hover effect */
 }
 
 .footerSocialIcons svg {
-  font-size: 1.5rem; /* Adjust icon size */
+  font-size: 1.5rem;
+  /* Adjust icon size */
   padding-right: 7px;
 }
-.pcOnlyLogo{
+
+.pcOnlyLogo {
   display: block;
 }
-.mobileOnlyLogo{
+
+.mobileOnlyLogo {
   display: none;
 }
-.SocialNavigationLinks ul{
+
+.SocialNavigationLinks ul {
   display: flex;
   gap: 40px;
   font-size: 15px;
 }
+
 @media (max-width: 769px) {
-  .SocialNavigationLinks ul{
+  .SocialNavigationLinks ul {
     display: flex;
     gap: 10px;
     font-size: 15px;
     flex-direction: column;
   }
-  .SocialNavigationLinks{
+
+  .SocialNavigationLinks {
     margin: 30px 0px;
   }
-  .pcOnlyLogo{
+
+  .pcOnlyLogo {
     display: none;
   }
-  .mobileOnlyLogo{
+
+  .mobileOnlyLogo {
     display: block;
   }
+
   .CopyrightContainer div p:first-child {
     margin-bottom: 0px;
   }
+
   .CopyrightContainer div {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
   }
+
   .footerLogoContainer {
     width: 100%;
     flex-direction: column;
   }
+
   .SocialMediaLinks {
     margin-top: 20px;
   }
-  .QuateContainer{
+
+  .QuateContainer {
     flex-direction: column;
   }
-    
+
 }
+
 @media (max-width: 576px) {
-  .QuateContainer{
+  .QuateContainer {
     padding-bottom: 1rem;
   }
+
   .QuateContainer img {
     width: 150px;
   }
-  .FooterMapContainer{
+
+  .FooterMapContainer {
     display: none;
   }
 }

@@ -17,28 +17,16 @@ const Hero = () => {
     const videoRefs = useRef([]);
 
     const CarousalImages = [
-
         {
             image: isMobile ? MobileBanner : "/Images/HomePageBanner.jpg",
         },
         {
-            image: CarouselVideo,
-            // header:"Coming Soon!",
-            // image: "https://images.unsplash.com/photo-1639004643319-a996b810d37e?q=80&w=3018&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            // heading: "High-Performance Chips for Modern Devices",
-            // tagline:"Efficiency and speed in every transistor",
+            image: "/Images/BannersAndImages/1.jpg",
         },
-        // {
-        //     image: "/Images/Slider1.webp",
-        //     heading: "Driving Connectivity with Advanced SoCs",
-        //     tagline: "Revolutionizing mobile and communication systems",
-        // },
-        // {
-        //     image: "/Images/Slider3.jpg",
-        //     heading: "Sustainable Semiconductor Solutions",
-        //     tagline: "Eco-friendly innovation for a greener planet",
-        // },
-
+        {
+            image: "/Images/BannersAndImages/2.jpg"
+        }
+       
     ];
     useEffect(() => {
         const updateScreenSize = () => {
