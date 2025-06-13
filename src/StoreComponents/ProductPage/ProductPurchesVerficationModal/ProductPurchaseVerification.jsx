@@ -352,6 +352,17 @@ const ProductPurchaseVerificationModal = ({
                         </Form.Item>
 
                         <Form.Item
+                            label="Email"
+                            name="shipping_email"
+                            rules={[
+                                { required: true, message: 'Please enter your email' },
+                                { type: 'email', message: 'Please enter a valid email address' }
+                            ]}
+                        >
+                            <Input placeholder="Enter Your Email" />
+                        </Form.Item>
+
+                        <Form.Item
                             label="Address Line 1"
                             name="shipping_address1"
                             rules={[{ required: true, message: 'Please enter address' }]}

@@ -203,10 +203,10 @@ const Cart = () => {
         setLoading(true);
         try {
             let grandTotal = getGrandTotal(); // e.g., 33.6
-    
+
             // Round up to nearest integer if decimal exists
             grandTotal = Math.ceil(grandTotal); // 34
-    
+
             // Prepare cart data for backend
             const cartData = cartItems.map(item => ({
                 productId: item._id,
@@ -214,24 +214,24 @@ const Cart = () => {
                 price: item.price,
                 quantity: quantities[item._id] || 1,
             }));
-    
+
             // Call backend API to create Razorpay order with amount in paise
             const res = await fetch(`${apibaseUrl}/indieSemic/createPaymentOrder`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ amount: grandTotal, cartItems: cartData, user: { /* user info here */ } }),
             });
-    
+
             const data = await res.json();
-    
+
             if (!res.ok) {
                 console.error("Order creation failed:", data);
                 throw new Error(data.error || "Order creation failed");
             }
-    
+
             // Razorpay payment options
             const options = {
-                key: "rzp_live_8k9UElnDJykyXX",
+                key: "rzp_test_PKoVFsSzbHSj3v",
                 amount: data.order.amount,
                 currency: data.order.currency,
                 name: "indieSemiC",
@@ -239,10 +239,22 @@ const Cart = () => {
                 order_id: data.order.id,
                 handler: async function (response) {
                     message.success(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
-    
+
                     // Prepare data to send on payment success
                     const dataToSend = {
                         ...savedData,
+                        shipping: {
+                            firstName: savedData.shipping_firstName || savedData.firstName || '',
+                            lastName: savedData.shipping_lastName || savedData.lastName || '',
+                            company: savedData.shipping_company || savedData.company || '',
+                            address1: savedData.shipping_address1 || savedData.address1 || '',
+                            city: savedData.shipping_city || savedData.city || '',
+                            state: savedData.shipping_state || savedData.state || '',
+                            zipCode: savedData.shipping_zipCode || savedData.zipCode || '',
+                            mobile: savedData.shipping_mobile || savedData.mobile || '',
+                            gstin: savedData.shipping_gstin || savedData.gstin || '',
+                            email: savedData.shipping_email || savedData.email || ''
+                        },
                         products: cartItems.map(item => ({
                             productId: item._id,
                             title: item.title,
@@ -253,14 +265,35 @@ const Cart = () => {
                         paymentId: response.razorpay_payment_id,
                         deliveryCharge: deliveryCharge,
                     };
-    
+
+                    // Prepare orderDetails and productDetails for the email API
+                    const orderDetails = {
+                        _id: dataToSend._id || dataToSend.orderNumber || "ORDER" + Date.now(),
+                        shipping: {
+                            firstName: dataToSend.shipping?.firstName || "",
+                            lastName: dataToSend.shipping?.lastName || "",
+                            mobile: dataToSend.shipping?.mobile || "",
+                            address1: dataToSend.shipping?.address1 || "",
+                            city: dataToSend.shipping?.city || "",
+                            state: dataToSend.shipping?.state || "",
+                            postalCode: dataToSend.shipping?.zipCode || dataToSend.shipping?.postalCode || ""
+                        }
+                    };
+                    const userEmail = dataToSend.shipping?.email || dataToSend.userEmail || "";
+                    const productDetails = (dataToSend.products || []).map(p => ({
+                        title: p.title,
+                        quantity: p.quantity,
+                        price: p.price
+                    }));
+                    await sendOrderEmail({ orderDetails, userEmail, productDetails });
+
                     // Call your backend to save order after payment success
                     await saveFormDataToBackend(dataToSend);
-    
+
                     setSavedData(null);
                     setInvoiceData(dataToSend);
                     setInvoiceModalVisible(true);
-                    
+
                     // Clear the cart after successful payment
                     clearCart();
                 },
@@ -273,7 +306,7 @@ const Cart = () => {
                     },
                 },
             };
-    
+
             const rzp = new window.Razorpay(options);
             rzp.open();
         } catch (error) {
@@ -282,7 +315,7 @@ const Cart = () => {
             setLoading(false);
         }
     };
-    
+
 
     const saveFormDataToBackend = async (formData) => {
         try {
@@ -301,190 +334,19 @@ const Cart = () => {
             throw error;
         }
     };
-    // const generateInvoicePDF = (data) => {
-    //     if (!data) return;
-    
-    //     const doc = new jsPDF('p', 'mm', 'a4');  // Ensure A4 size
-    
-    //     // Brand Info (Company details)
-    //     const brandInfo = {
-    //         companyName: "IndieSemiC Private Limited",
-    //         address: "C-201, 2nd Floor, The First, B/h Keshav Baugh Party Plot Nr. Shivalik High-Street, Vastrapur, Ahmedabad, Gujarat 380015.",
-    //         phone: "+917600460240",
-    //         email: "sales@indiesemic.com",
-    //         gstin: "24AAGCI8223E1ZT"
-    //     };
-    
-    //     // Colors
-    //     const primaryColor = [63, 81, 181]; // Indigo
-    //     const lightGray = [245, 245, 245];
-    //     const darkGray = [64, 64, 64];
-    
-    //     // Company Header Section
-    //     doc.setFontSize(20);
-    //     doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-    //     doc.setFont(undefined, 'bold');
-    //     doc.text(brandInfo.companyName, 20, 25);
-    
-    //     // Company Details
-    //     doc.setFontSize(10);
-    //     doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-    //     doc.setFont(undefined, 'normal');
-    //     doc.text(brandInfo.address, 20, 35);
-    //     doc.text(brandInfo.phone, 20, 42);
-    //     doc.text(brandInfo.email, 20, 49);
-    //     doc.text("GST: " + brandInfo.gstin, 20, 56);
-    
-    //     // Invoice Title (Right Side)
-    //     doc.setFontSize(24);
-    //     doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-    //     doc.setFont(undefined, 'bold');
-    //     doc.text("SALES", 150, 25);
-    //     doc.text("ORDER", 150, 35);
-    
-    //     // Order Number
-    //     doc.setFontSize(12);
-    //     doc.setFont(undefined, 'normal');
-    //     doc.text(`WEB_SO# ${data.orderNumber || 'INV-' + Date.now()}`, 150, 50);
-    
-    //     // Horizontal line separator
-    //     doc.setDrawColor(200, 200, 200);
-    //     doc.line(20, 80, 190, 80);
-    
-    //     // Bill To Section
-    //     doc.setFontSize(12);
-    //     doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-    //     doc.setFont(undefined, 'bold');
-    //     doc.text("Bill To", 20, 95);
-    
-    //     // Customer Details
-    //     doc.setFont(undefined, 'normal');
-    //     const shipping = data.shipping || {};
-    //     const customerName = `${shipping.firstName || ""} ${shipping.lastName || ""}`.trim();
-    //     doc.text(customerName || "Customer Name", 20, 105);
-    //     doc.text(shipping.company || "Company Name", 20, 112);
-    //     doc.text(`${shipping.address1 || ""}, ${shipping.city || ""}`.trim(), 20, 119);
-    //     doc.text(`${shipping.state || ""} - ${shipping.zipCode || ""}`.trim(), 20, 126);
-    //     doc.text(`Mobile: ${shipping.mobile || ""}`, 20, 133);
-    //     doc.text(`GSTIN: ${shipping.gstin || "XXXXXXXXXXXXXXX"}`, 20, 140);
-    
-    //     // Order Date and Expected Shipment (Right Side)
-    //     const orderDate = data.createdAt ? new Date(data.createdAt).toLocaleDateString('en-GB') : new Date().toLocaleDateString('en-GB');
-    //     const expectedShipment = data.expectedShipment || new Date(Date.now() + 4 * 24 * 60 * 60 * 1000).toLocaleDateString('en-GB');
-    
-    //     doc.text(`Order Date: ${orderDate}`, 120, 105);
-    //     doc.text(`Expected Shipment: ${expectedShipment}`, 120, 115);
-    
-    //     // Table Header
-    //     const tableStartY = 155;
-    //     const tableHeaders = ['#', 'Item & Description', 'Qty', 'Rate', 'Amount'];
-    //     const columnWidths = [15, 80, 20, 25, 30];
-    //     const columnPositions = [20, 35, 115, 135, 160];
-    
-    //     // Draw table header background
-    //     doc.setFillColor(lightGray[0], lightGray[1], lightGray[2]);
-    //     doc.rect(20, tableStartY - 5, 170, 12, 'F');
-    
-    //     // Draw table header border
-    //     doc.setDrawColor(200, 200, 200);
-    //     doc.rect(20, tableStartY - 5, 170, 12);
-    
-    //     // Table header text
-    //     doc.setFontSize(10);
-    //     doc.setFont(undefined, 'bold');
-    //     doc.setTextColor(0, 0, 0);
-    //     tableHeaders.forEach((header, index) => {
-    //         doc.text(header, columnPositions[index], tableStartY + 2);
-    //     });
-    
-    //     // Table Content
-    //     let currentY = tableStartY + 15;
-    //     doc.setFont(undefined, 'normal');
-    
-    //     const products = data.products || [];
-    //     let subtotal = 0;
-    
-    //     products.forEach((product, index) => {
-    //         const itemTotal = (product.price || 0) * (product.quantity || 0);
-    //         subtotal += itemTotal;
-    
-    //         // Draw row border
-    //         doc.setDrawColor(230, 230, 230);
-    //         doc.line(20, currentY + 8, 190, currentY + 8);
-    
-    //         // Row content
-    //         doc.text(String(index + 1), columnPositions[0], currentY + 3);
-    
-    //         // Handle long product titles
-    //         const productTitle = product.title || `Product ${index + 1}`;
-    //         const splitTitle = doc.splitTextToSize(productTitle, columnWidths[1]);
-    //         doc.text(splitTitle[0], columnPositions[1], currentY + 3);
-    
-    //         doc.text(String(product.quantity || 1), columnPositions[2] + 5, currentY + 3, { align: 'center' });
-    //         doc.text(`₹${(product.price || 0).toFixed(2)}`, columnPositions[3] + 15, currentY + 3, { align: 'right' });
-    //         doc.text(`₹${itemTotal.toFixed(2)}`, columnPositions[4] + 25, currentY + 3, { align: 'right' });
-    
-    //         currentY += 15;
-    //     });
-    
-    //     // Delivery Charges (Get value from invoiceData)
-    //     const deliveryCharges = data.deliveryCharge || 100; // Use the value from invoiceData
-    //     if (deliveryCharges > 0) {
-    //         doc.line(20, currentY + 8, 190, currentY + 8);
-    //         doc.text(String(products.length + 1), columnPositions[0], currentY + 3);
-    //         doc.text("Delivery Charges", columnPositions[1], currentY + 3);
-    //         doc.text("1", columnPositions[2] + 5, currentY + 3, { align: 'center' });
-    //         doc.text(`₹${deliveryCharges.toFixed(2)}`, columnPositions[3] + 15, currentY + 3, { align: 'right' });
-    //         doc.text(`₹${deliveryCharges.toFixed(2)}`, columnPositions[4] + 25, currentY + 3, { align: 'right' });
-    //         currentY += 15;
-    //         subtotal += deliveryCharges;
-    //     }
-    
-    //     // Final table border
-    //     doc.setDrawColor(200, 200, 200);
-    //     doc.rect(20, tableStartY - 5, 170, currentY - tableStartY + 8);
-    
-    //     // Totals Section
-    //     const totalsStartY = currentY + 20;
-    //     const gstRate = data.gstRate || 18; // Example GST rate
-    //     const gstAmount = (subtotal * gstRate) / 100;
-    //     const totalAmount = subtotal + gstAmount;
-    
-    //     // Subtotal
-    //     doc.setFont(undefined, 'normal');
-    //     doc.text("Sub Total", 140, totalsStartY);
-    //     doc.text(`₹${subtotal.toFixed(2)}`, 185, totalsStartY, { align: 'right' });
-    
-    //     // GST
-    //     doc.text(`GST (${gstRate}%)`, 140, totalsStartY + 10);
-    //     doc.text(`₹${gstAmount.toFixed(2)}`, 185, totalsStartY + 10, { align: 'right' });
-    
-    //     // Total line
-    //     doc.line(140, totalsStartY + 18, 190, totalsStartY + 18);
-    
-    //     // Final Total
-    //     doc.setFont(undefined, 'bold');
-    //     doc.setFontSize(12);
-    //     doc.text("Total", 140, totalsStartY + 25);
-    //     doc.text(`₹${totalAmount.toFixed(2)}`, 185, totalsStartY + 25, { align: 'right' });
-    
-    //     // Footer
-    //     doc.setFontSize(8);
-    //     doc.setFont(undefined, 'normal');
-    //     doc.setTextColor(100, 100, 100);
-    //     doc.text("Thank you for your business!", 20, 270);
-    //     doc.text(`Generated on: ${new Date().toLocaleString()}`, 20, 280);
-    
-    //     // Save the PDF
-    //     const fileName = `Invoice_${data.orderNumber || data._id || 'ORDER'}.pdf`;
-    //     doc.save(fileName);
-    // };
-    
+
     const generateInvoicePDF = (data) => {
         if (!data) return;
-    
+
+        // Ensure formattedOrderNumber is defined
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const orderNumber = data.orderNumber ? data.orderNumber.toString().padStart(4, '0') : '0001';
+        const formattedOrderNumber = `Order ID :WEB_SO#${year}${month}${orderNumber}`;
+
         const doc = new jsPDF('p', 'mm', 'a4');
-    
+
         // Brand Info (Company details)
         const brandInfo = {
             companyName: "IndieSemiC Private Limited",
@@ -493,7 +355,7 @@ const Cart = () => {
             email: "sales@indiesemic.com",
             gstin: "24AAGCI8223E1ZT"
         };
-    
+
         // Professional Color Scheme
         const colors = {
             primary: [41, 84, 144],      // Professional blue
@@ -505,32 +367,34 @@ const Cart = () => {
             border: [222, 226, 230],     // Light border
             success: [40, 167, 69]       // Green for totals
         };
-    
+
         // Header Background
         doc.setFillColor(colors.primary[0], colors.primary[1], colors.primary[2]);
         doc.rect(0, 0, 210, 35, 'F');
-    
+
         // Company Name (White on blue background)
         doc.setFontSize(24);
         doc.setTextColor(255, 255, 255);
         doc.setFont(undefined, 'bold');
         doc.text(brandInfo.companyName, 15, 22);
-    
+
         // Invoice Title (Right side of header)
         doc.setFontSize(28);
         doc.setFont(undefined, 'bold');
-        // doc.text("SALES ORDER", 120, 22);
-    
+        doc.setTextColor(255, 255, 255);
+        // doc.text("SALES", 120, 22);
+        // doc.text("ORDER", 120, 32);
+
         // Company Details Section (White background)
         doc.setFillColor(255, 255, 255);
         doc.rect(0, 35, 210, 25, 'F');
-    
+
         // Company contact details
         // Company contact details with visual bullets
         doc.setFontSize(9);
         doc.setTextColor(colors.mediumGray[0], colors.mediumGray[1], colors.mediumGray[2]);
         doc.setFont(undefined, 'normal');
-        
+
         // Split address for better formatting
         const addressLines = doc.splitTextToSize(brandInfo.address, 85);
         let yPos = 42;
@@ -538,32 +402,41 @@ const Cart = () => {
             doc.text(line, 15, yPos);
             yPos += 4;
         });
-        
+
         // Add simple bullets for contact info
         doc.setFillColor(colors.primary[0], colors.primary[1], colors.primary[2]);
         doc.circle(12, yPos - 1, 0.8, 'F');
         doc.text(`Phone: ${brandInfo.phone}`, 15, yPos);
-        
+
         doc.circle(12, yPos + 3, 0.8, 'F');
         doc.text(`Email: ${brandInfo.email}`, 15, yPos + 4);
-        
+
         doc.circle(12, yPos + 7, 0.8, 'F');
         doc.text(`GST: ${brandInfo.gstin}`, 15, yPos + 8);
-    
+
         // Order Number Box (Right side)
         doc.setFillColor(colors.lightGray[0], colors.lightGray[1], colors.lightGray[2]);
-        doc.rect(120, 40, 75, 15, 'F');
+        doc.rect(120, 40, 75, 22, 'F');
         doc.setDrawColor(colors.border[0], colors.border[1], colors.border[2]);
-        doc.rect(120, 40, 75, 15);
-        
-        doc.setFontSize(11);
-        doc.setTextColor(colors.darkGray[0], colors.darkGray[1], colors.darkGray[2]);
+        doc.rect(120, 40, 75, 22);
+
+        const boxCenterX = 120 + 75 / 2;
+        const boxTopY = 40;
+
+        // 'Sales Order' heading (big, bold, centered in the box)
+        doc.setFontSize(16);
         doc.setFont(undefined, 'bold');
-        doc.text(`Order #: WEB_SO# ${data.orderNumber || 'INV-' + Date.now()}`, 125, 50);
-    
+        doc.setTextColor(colors.darkGray[0], colors.darkGray[1], colors.darkGray[2]);
+        doc.text("Sales Order", boxCenterX, boxTopY + 10, { align: 'center' });
+
+        // Order ID (smaller, bold, centered below)
+        doc.setFontSize(11);
+        doc.setFont(undefined, 'bold');
+        doc.text(formattedOrderNumber, boxCenterX, boxTopY + 17, { align: 'center' });
+
         // Main Content Area
         const contentStartY = 70;
-        
+
         // Bill To Section with enhanced styling
         doc.setFillColor(colors.secondary[0], colors.secondary[1], colors.secondary[2]);
         doc.rect(15, contentStartY, 95, 8, 'F');
@@ -574,7 +447,7 @@ const Cart = () => {
         doc.setFontSize(12);
         doc.setFont(undefined, 'bold');
         doc.text("BILL TO", 18, contentStartY + 5.5);
-    
+
         // Order Info Section
         doc.setFillColor(colors.secondary[0], colors.secondary[1], colors.secondary[2]);
         doc.rect(115, contentStartY, 80, 8, 'F');
@@ -582,62 +455,62 @@ const Cart = () => {
         doc.circle(112, contentStartY + 3, 2, 'F');
         doc.setTextColor(255, 255, 255);
         doc.text("ORDER DETAILS", 118, contentStartY + 5.5);
-    
+
         // Customer Details Box
         doc.setFillColor(colors.lightGray[0], colors.lightGray[1], colors.lightGray[2]);
         doc.rect(15, contentStartY + 8, 95, 35, 'F');
         doc.setDrawColor(colors.border[0], colors.border[1], colors.border[2]);
         doc.rect(15, contentStartY + 8, 95, 35);
-    
+
         // Customer information with visual enhancements
         const shipping = data.shipping || {};
         const customerName = `${shipping.firstName || ""} ${shipping.lastName || ""}`.trim();
-        
+
         doc.setFontSize(11);
         doc.setTextColor(colors.darkGray[0], colors.darkGray[1], colors.darkGray[2]);
         doc.setFont(undefined, 'bold');
         doc.text(customerName || "Customer Name", 18, contentStartY + 15);
-        
+
         doc.setFont(undefined, 'normal');
         doc.setFontSize(9);
         doc.text(shipping.company || "Company Name", 18, contentStartY + 20);
         doc.text(`${shipping.address1 || ""}, ${shipping.city || ""}`.trim(), 18, contentStartY + 25);
         doc.text(`${shipping.state || ""} - ${shipping.zipCode || ""}`.trim(), 18, contentStartY + 30);
-        
+
         // Add small bullets for contact details
         doc.setFillColor(colors.primary[0], colors.primary[1], colors.primary[2]);
         doc.circle(16, contentStartY + 33.5, 0.6, 'F');
         doc.text(`Mobile: ${shipping.mobile || "N/A"}`, 18, contentStartY + 35);
-        
+
         doc.circle(16, contentStartY + 38.5, 0.6, 'F');
         doc.text(`GSTIN: ${shipping.gstin || "XXXXXXXXXXXXXXX"}`, 18, contentStartY + 40);
-    
+
         // Order Details Box
         doc.setFillColor(colors.lightGray[0], colors.lightGray[1], colors.lightGray[2]);
         doc.rect(115, contentStartY + 8, 80, 35, 'F');
         doc.setDrawColor(colors.border[0], colors.border[1], colors.border[2]);
         doc.rect(115, contentStartY + 8, 80, 35);
-    
+
         const orderDate = data.createdAt ? new Date(data.createdAt).toLocaleDateString('en-GB') : new Date().toLocaleDateString('en-GB');
         const expectedShipment = data.expectedShipment || new Date(Date.now() + 4 * 24 * 60 * 60 * 1000).toLocaleDateString('en-GB');
-    
+
         doc.setFontSize(9);
         doc.setTextColor(colors.darkGray[0], colors.darkGray[1], colors.darkGray[2]);
         doc.text(`Order Date: ${orderDate}`, 118, contentStartY + 15);
         doc.text(`Expected Shipment: ${expectedShipment}`, 118, contentStartY + 22);
         doc.text(`Status: Processing`, 118, contentStartY + 29);
-        doc.text(`Payment: Pending`, 118, contentStartY + 36);
-    
+        doc.text(`Payment: Completed`, 118, contentStartY + 36);
+
         // Items Table
         const tableStartY = contentStartY + 55;
         const tableHeaders = ['Sr.No', 'Item & Description', 'Qty', 'Rate', 'Amount'];
         const columnWidths = [12, 85, 18, 25, 30];
         const columnPositions = [15, 27, 112, 130, 155];
-    
+
         // Table header with gradient effect
         doc.setFillColor(colors.primary[0], colors.primary[1], colors.primary[2]);
         doc.rect(15, tableStartY, 180, 10, 'F');
-        
+
         // Header text
         doc.setFontSize(10);
         doc.setFont(undefined, 'bold');
@@ -651,45 +524,45 @@ const Cart = () => {
                 doc.text(header, columnPositions[index] + 2, tableStartY + 6.5);
             }
         });
-    
+
         // Table Content
         let currentY = tableStartY + 10;
         doc.setFont(undefined, 'normal');
         doc.setFontSize(9);
-    
+
         const products = data.products || [];
         let subtotal = 0;
-    
+
         products.forEach((product, index) => {
             const itemTotal = (product.price || 0) * (product.quantity || 0);
             subtotal += itemTotal;
-    
+
             // Alternating row colors
             if (index % 2 === 0) {
                 doc.setFillColor(colors.lightGray[0], colors.lightGray[1], colors.lightGray[2]);
                 doc.rect(15, currentY, 180, 12, 'F');
             }
-    
+
             // Row border
             doc.setDrawColor(colors.border[0], colors.border[1], colors.border[2]);
             doc.line(15, currentY + 12, 195, currentY + 12);
-    
+
             // Row content
             doc.setTextColor(colors.darkGray[0], colors.darkGray[1], colors.darkGray[2]);
             doc.text(String(index + 1), columnPositions[0] + 6, currentY + 7.5, { align: 'center' });
-    
+
             // Product title with better formatting
             const productTitle = product.title || `Product ${index + 1}`;
             const splitTitle = doc.splitTextToSize(productTitle, columnWidths[1] - 4);
             doc.text(splitTitle[0], columnPositions[1] + 2, currentY + 7.5);
-    
+
             doc.text(String(product.quantity || 1), columnPositions[2] + (columnWidths[2] / 2), currentY + 7.5, { align: 'center' });
             doc.text(`${(product.price || 0).toFixed(2)}`, columnPositions[3] + columnWidths[3] - 2, currentY + 7.5, { align: 'right' });
             doc.text(`${itemTotal.toFixed(2)}`, columnPositions[4] + columnWidths[4] - 2, currentY + 7.5, { align: 'right' });
-    
+
             currentY += 12;
         });
-    
+
         // Delivery Charges
         const deliveryCharges = data.deliveryCharge || 100;
         if (deliveryCharges > 0) {
@@ -697,10 +570,10 @@ const Cart = () => {
                 doc.setFillColor(colors.lightGray[0], colors.lightGray[1], colors.lightGray[2]);
                 doc.rect(15, currentY, 180, 12, 'F');
             }
-    
+
             doc.setDrawColor(colors.border[0], colors.border[1], colors.border[2]);
             doc.line(15, currentY + 12, 195, currentY + 12);
-    
+
             doc.text(String(products.length + 1), columnPositions[0] + 6, currentY + 7.5, { align: 'center' });
             doc.text("Delivery Charges", columnPositions[1] + 2, currentY + 7.5);
             doc.text("1", columnPositions[2] + (columnWidths[2] / 2), currentY + 7.5, { align: 'center' });
@@ -709,40 +582,40 @@ const Cart = () => {
             currentY += 12;
             subtotal += deliveryCharges;
         }
-    
+
         // Table border
         doc.setDrawColor(colors.primary[0], colors.primary[1], colors.primary[2]);
         doc.setLineWidth(1);
         doc.rect(15, tableStartY, 180, currentY - tableStartY);
-    
+
         // Totals Section with enhanced styling
         const totalsStartY = currentY + 15;
         const gstRate = data.gstRate || 18;
         const gstAmount = (subtotal * gstRate) / 100;
         const totalAmount = subtotal + gstAmount;
-    
+
         // Totals box
         doc.setFillColor(colors.lightGray[0], colors.lightGray[1], colors.lightGray[2]);
         doc.rect(130, totalsStartY - 5, 65, 35, 'F');
         doc.setDrawColor(colors.border[0], colors.border[1], colors.border[2]);
         doc.rect(130, totalsStartY - 5, 65, 35);
-    
+
         // Subtotal
         doc.setFontSize(10);
         doc.setFont(undefined, 'normal');
         doc.setTextColor(colors.darkGray[0], colors.darkGray[1], colors.darkGray[2]);
         doc.text("Subtotal:", 135, totalsStartY + 3);
         doc.text(`${subtotal.toFixed(2)}`, 190, totalsStartY + 3, { align: 'right' });
-    
+
         // GST
         doc.text(`GST (${gstRate}%):`, 135, totalsStartY + 10);
         doc.text(`${gstAmount.toFixed(2)}`, 190, totalsStartY + 10, { align: 'right' });
-    
+
         // Total line
         doc.setDrawColor(colors.primary[0], colors.primary[1], colors.primary[2]);
         doc.setLineWidth(0.5);
         doc.line(135, totalsStartY + 15, 190, totalsStartY + 15);
-    
+
         // Final Total with emphasis
         doc.setFillColor(colors.success[0], colors.success[1], colors.success[2]);
         doc.rect(130, totalsStartY + 17, 65, 10, 'F');
@@ -751,26 +624,30 @@ const Cart = () => {
         doc.setTextColor(255, 255, 255);
         doc.text("TOTAL:", 135, totalsStartY + 24);
         doc.text(`${totalAmount.toFixed(2)}`, 190, totalsStartY + 24, { align: 'right' });
-    
+
         // Professional Footer
         const footerY = 270;
         doc.setFillColor(colors.lightGray[0], colors.lightGray[1], colors.lightGray[2]);
         doc.rect(0, footerY - 5, 210, 20, 'F');
-    
+
+        const pageWidth = 210; // A4 width in mm
+        const centerX = pageWidth / 2;
+        doc.setTextColor(colors.mediumGray[0], colors.mediumGray[1], colors.mediumGray[2]);
         doc.setFontSize(9);
         doc.setFont(undefined, 'normal');
-        doc.setTextColor(colors.mediumGray[0], colors.mediumGray[1], colors.mediumGray[2]);
         doc.text("Thank you for choosing IndieSemiC Private Limited!", 15, footerY + 2);
-        doc.text(`Generated on: ${new Date().toLocaleString()}`, 15, footerY + 8);
-        
+        doc.setFontSize(8);
         doc.setFont(undefined, 'italic');
-        doc.text("This is a computer-generated document and does not require a signature.", 15, footerY + 12);
-    
+        doc.text("For questions concerning this order, please contact.", 15, footerY + 7);
+        doc.setFont(undefined, 'normal');
+        doc.text("+91-7600460240", 15, footerY + 11);
+        doc.text("sales@indiesemic.com", 15, footerY + 15);
+
         // Page border
         doc.setDrawColor(colors.border[0], colors.border[1], colors.border[2]);
         doc.setLineWidth(0.5);
         doc.rect(10, 10, 190, 277);
-    
+
         // Save the PDF
         const fileName = `Sales_Order_${data.orderNumber || data._id || 'ORDER'}.pdf`;
         doc.save(fileName);
@@ -782,6 +659,27 @@ const Cart = () => {
 
     const handleContactModalCancel = () => {
         setIsContactModalVisible(false);
+    };
+
+    const sendOrderEmail = async ({ orderDetails, userEmail, productDetails }) => {
+        try {
+            const response = await fetch(`${apibaseUrl}/autosend/sendOrderEmailsIndiesemic`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    orderDetails,
+                    userEmail,
+                    adminEmail: "sales@indiesemic.com",
+                    productDetails
+                })
+            });
+            if (!response.ok) {
+                throw new Error("Failed to send order email");
+            }
+            return await response.json();
+        } catch (err) {
+            console.error("Order email error:", err);
+        }
     };
 
     return (
