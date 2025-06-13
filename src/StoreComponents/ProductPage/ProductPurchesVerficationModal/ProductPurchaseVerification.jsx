@@ -298,8 +298,8 @@ const ProductPurchaseVerificationModal = ({
                     form={form}
                     layout="vertical"
                     initialValues={{
-                        shipping_country: 'IN',
-                        billing_country: 'IN',
+                        shipping_country: undefined,
+                        billing_country: undefined,
                         shippingMethod: 'express'
                     }}
                 >
@@ -388,9 +388,11 @@ const ProductPurchaseVerificationModal = ({
                                         placeholder="Select Country"
                                         onChange={handleShippingCountryChange}
                                         showSearch
+                                        allowClear
                                         filterOption={(input, option) =>
                                             option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                         }
+                                        value={selectedShippingCountry || undefined}
                                     >
                                         {shippingCountries.map((country) => (
                                             <Option key={country.isoCode} value={country.isoCode}>
