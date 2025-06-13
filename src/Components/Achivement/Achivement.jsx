@@ -63,6 +63,11 @@ const Achivement = () => {
         <>
 
             <section id="AchivementContainer" ref={sectionRef} className="section_Padding">
+            <div className="DesignedContainer">
+                <h1 data-aos="fade-up"><span style={{ color: "rgb(74, 144, 226)" }}>Technologies </span>Partner's </h1>
+                </div>
+                <br /><br />
+                <br />
                 <div className='MarqueeContainer'>
                     <div className='MarqueeContent'>
                         {repeatedLogos.map((item, index) => (
