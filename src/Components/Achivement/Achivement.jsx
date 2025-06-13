@@ -48,16 +48,32 @@ const Achivement = () => {
     //         }
     //     };
     // }, []);
-
+    const MarqueeTagData = [
+        "./Images/MarqueeLogos/1.png",
+        "./Images/MarqueeLogos/2.png",
+        "./Images/MarqueeLogos/3.png",
+        "./Images/MarqueeLogos/4.png",
+        "./Images/MarqueeLogos/5.png",
+        "./Images/MarqueeLogos/6.png",
+        "./Images/MarqueeLogos/7.png",
+    ]
+    const repeatedLogos = Array(100).fill(MarqueeTagData).flat();
 
     return (
         <>
 
             <section id="AchivementContainer" ref={sectionRef} className="section_Padding">
+                <div className='MarqueeContainer'>
+                    <div className='MarqueeContent'>
+                        {repeatedLogos.map((item, index) => (
+                            <img key={index} src={item} alt="" />
+                        ))}
+                    </div>
+                </div>
                 <div>
                     <div className="DesignedContainer">
-                        <h1 data-aos="fade-up">Our <span style={{ color: "rgb(74, 144, 226)" }}>Module </span>Partner's </h1>
-                        <p data-aos="fade-up">Shaping the Future of Technology Through Groundbreaking Design and Innovation.</p>
+                        <h1 data-aos="fade-up"><span style={{ color: "rgb(74, 144, 226)" }}>Technologies </span>Partner's </h1>
+                        {/* <p data-aos="fade-up">Shaping the Future of Technology Through Groundbreaking Design and Innovation.</p> */}
                     </div>
                 </div>
                 <div id="CardColumns">

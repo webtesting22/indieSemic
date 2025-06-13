@@ -117,13 +117,13 @@ const Expertise = () => {
             {/* </div>
                 </div> */}
             <div className='ExpertiseCardContainer'>
-                <div className='MarqueeContainer'>
+                {/* <div className='MarqueeContainer'>
                     <div className='MarqueeContent'>
                         {repeatedLogos.map((item, index) => (
                             <img key={index} src={item} alt="" />
                         ))}
                     </div>
-                </div>
+                </div> */}
                 <img src="/Images/BackShapeImg.svg" alt="" className='Overlayimage' />
                 <div className="DesignedContainer" id='Target'>
                     <h1 style={{ textAlign: "left" }}><span style={{ color: "rgb(74, 144, 226)" }}>Innovating Tomorrow's Chips</span> with Precision and Excellence Today</h1>
