@@ -186,7 +186,7 @@ const SOCModule = () => {
                                         playsInline
                                         style={{ height: "100%", width: "100%", borderRadius: "20px" }}
                                     >
-                                        <source src="/Images/SocPageVideo.mp4" type="video/mp4" />
+                                        <source src="/Images/NewVideo.mp4" type="video/mp4" />
                                         {/* Fallback if video doesn't load */}
                                         <div className="video-fallback">
                                             <div className="fallback-loader">
