@@ -64,7 +64,7 @@ const Achivement = () => {
 
             <section id="AchivementContainer" ref={sectionRef} className="section_Padding">
             <div className="DesignedContainer">
-                <h1 data-aos="fade-up"><span style={{ color: "rgb(74, 144, 226)" }}>Technologies </span>Partner's </h1>
+                <h1 data-aos="fade-up"><span style={{ color: "rgb(74, 144, 226)" }}>Technologies </span>Supported </h1>
                 </div>
                 <br /><br />
                 <br />
@@ -78,7 +78,7 @@ const Achivement = () => {
                 <div id="AdjustAchivementContainer">
                     <div className="WidthContainer">
                         <div className="DesignedContainer">
-                            <h1 data-aos="fade-up"><span style={{ color: "rgb(74, 144, 226)" }}>Technologies </span>Partner's </h1>
+                            <h1 data-aos="fade-up"><span style={{ color: "rgb(74, 144, 226)" }}>Technology </span>Partner's </h1>
                             {/* <p data-aos="fade-up">Shaping the Future of Technology Through Groundbreaking Design and Innovation.</p> */}
                         </div>
                     </div>
