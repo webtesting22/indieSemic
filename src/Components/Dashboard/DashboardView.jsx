@@ -37,14 +37,6 @@ const DashboardView = ({ handleLogout }) => {
         checkAuthStatus(); // Re-check auth status after login
     };
 
-    // const handleLogout = () => {
-    //     localStorage.removeItem('authData');
-    //     setIsAuthenticated(false);
-    //     setUser(null);
-    //     message.success('Logged out successfully');
-    // };
-
-    // Show loading spinner while checking authentication
     if (loading) {
         return (
             <div style={{

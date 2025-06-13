@@ -104,8 +104,8 @@ const Dashboard = ({ handleLogout, user }) => {
         }
         return null;
     };
-    
-    const latestOrder = getLatestOrder(); 
+
+    const latestOrder = getLatestOrder();
     useEffect(() => {
         fetchPurchaseVerificationData();
     }, []);
@@ -586,7 +586,6 @@ const Dashboard = ({ handleLogout, user }) => {
                                 )}
                             </Row>
                         </Card>
-
                         {/* Products List */}
                         <Card className="products-section" title={
                             <Space>
