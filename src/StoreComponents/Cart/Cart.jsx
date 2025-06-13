@@ -231,7 +231,7 @@ const Cart = () => {
 
             // Razorpay payment options
             const options = {
-                key: "rzp_test_PKoVFsSzbHSj3v",
+                key: "rzp_live_8k9UElnDJykyXX",
                 amount: data.order.amount,
                 currency: data.order.currency,
                 name: "indieSemiC",
