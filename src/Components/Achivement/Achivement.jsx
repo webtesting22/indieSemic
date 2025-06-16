@@ -63,8 +63,8 @@ const Achivement = () => {
         <>
 
             <section id="AchivementContainer" ref={sectionRef} className="section_Padding">
-            <div className="DesignedContainer">
-                <h1 data-aos="fade-up"><span style={{ color: "rgb(74, 144, 226)" }}>Technologies </span>Supported </h1>
+                <div className="DesignedContainer">
+                    <h1 data-aos="fade-up"><span style={{ color: "rgb(74, 144, 226)" }}>Technologies </span>Supported </h1>
                 </div>
                 <br /><br />
                 <br />

@@ -74,17 +74,20 @@ const IndieSemicProduct = () => {
 
     // Filter products based on selected category, search query, and price range
     const filteredProducts = productList.filter((product) => {
-        const categoryMatch = !selectedCategory || product.category === selectedCategory;
+        const categoryMatch = !selectedCategory || 
+            (Array.isArray(product.category) && product.category.includes(selectedCategory));
 
         const searchMatch = product.title.toLowerCase().includes(searchQuery.toLowerCase());
 
         return categoryMatch && searchMatch;
     });
 
-    // Extract unique categories, excluding null, undefined, or empty categories
+    // Extract unique categories from all products' category arrays
     const categories = [
-        ...new Set(productList.map((product) => product.category))
-    ].filter((category) => category && category.trim() !== ""); // This removes null or empty categories
+        ...new Set(productList.flatMap((product) => 
+            Array.isArray(product.category) ? product.category : []
+        ))
+    ].filter((category) => category && typeof category === 'string' && category.trim() !== ""); // This removes null, undefined, or empty categories
 
     // Sidebar component (for both desktop and mobile)
     const SidebarContent = () => (
@@ -231,7 +234,9 @@ const IndieSemicProduct = () => {
                                     <span className="category-badge">{productList.length}</span>
                                 </div>
                                 {categories.map((category) => {
-                                    const categoryCount = productList.filter(p => p.category === category).length;
+                                    const categoryCount = productList.filter(p => 
+                                        Array.isArray(p.category) && p.category.includes(category)
+                                    ).length;
                                     return (
                                         <div
                                             key={category}
@@ -280,7 +285,9 @@ const IndieSemicProduct = () => {
                                             <span className="category-badge">{productList.length}</span>
                                         </div>
                                         {categories.map((category) => {
-                                            const categoryCount = productList.filter(p => p.category === category).length;
+                                            const categoryCount = productList.filter(p => 
+                                                Array.isArray(p.category) && p.category.includes(category)
+                                            ).length;
                                             return (
                                                 <div
                                                     key={category}
@@ -373,7 +380,7 @@ const IndieSemicProduct = () => {
                                                                         Technology
                                                                     </div> */}
                                                                     <div className="category-tag">
-                                                                        {product.category || 'Electronics'}
+                                                                        {Array.isArray(product.category) ? product.category.join(', ') : (product.category || 'Electronics')}
                                                                     </div>
                                                                 </div>
                                                             </div>

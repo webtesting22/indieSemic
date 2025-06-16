@@ -51,13 +51,17 @@ const GetQuotationModal = () => {
     };
 
     const categories = [
-        ...new Set(productList.map((product) => product.category))
-    ].filter((category) => category && category.trim() !== "");
+        ...new Set(productList.flatMap((product) => 
+            Array.isArray(product.categories) ? product.categories : []
+        ))
+    ].filter((category) => category && typeof category === 'string' && category.trim() !== "");
 
     // Filter products based on selected category, search query, and price range
     const filteredProducts = productList.filter((product) => {
         const categoryMatch =
-            selectedCategory.length === 0 || selectedCategory.includes(product.category);
+            selectedCategory.length === 0 || 
+            (Array.isArray(product.categories) && 
+             selectedCategory.some(cat => product.categories.includes(cat)));
         const searchMatch = product.title.toLowerCase().includes(searchQuery.toLowerCase());
         const priceMatch = product.price >= minPrice && product.price <= maxPrice;
 
