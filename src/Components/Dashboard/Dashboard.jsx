@@ -701,10 +701,10 @@ const Dashboard = ({ handleLogout, user }) => {
                                                                         {formatCurrency(totalValue)}
                                                                     </Text>
                                                                 </div>
-                                                                <div className="row-cell orders-info">
+                                                                <div className="row-cell orders-info mobile-hide">
                                                                     <Tag color="blue">{totalQuantity} items</Tag>
                                                                 </div>
-                                                                <div className="row-cell actions-info">
+                                                                <div className="row-cell actions-info mobile-hide">
                                                                     <Button
                                                                         type="primary"
                                                                         size="small"
