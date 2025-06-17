@@ -175,8 +175,7 @@ const Cart = () => {
     };
 
     const getGrandTotal = () => {
-        return getTotalPrice()
-        // getTotalWithDelivery() + getGSTAmount();
+        return getTotalWithDelivery() + getGSTAmount();
     };
 
 
