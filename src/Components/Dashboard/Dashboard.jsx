@@ -367,7 +367,7 @@ const Dashboard = ({ handleLogout, user }) => {
                                         <Card className="customers-card">
                                             <div className="card-header">
                                                 <Title level={4}>Customer Purchase Data</Title>
-                                                <div className="header-actions">
+                                                {/* <div className="header-actions">
                                                     <Button
                                                         type="default"
                                                         onClick={openTrackingModal}
@@ -377,7 +377,7 @@ const Dashboard = ({ handleLogout, user }) => {
                                                         Product Tracking
                                                     </Button>
                                                     <Badge count={verificationData.length} className="customer-badge" />
-                                                </div>
+                                                </div> */}
                                             </div>
 
                                             <div className="customer-tabs" style={{ display: 'flex', gap: 16, marginBottom: 16 }}>
