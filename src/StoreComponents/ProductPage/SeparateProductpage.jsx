@@ -242,7 +242,9 @@ const SeparateProductPage = () => {
                         🛍️
                     </button>
                     <div className={`variant-suggestion-wrapper ${!isSidebarVisible ? 'hidden' : ''}`}>
-                        <h3 className="variant-heading">Other Iterations</h3>
+                        <h3 className="variant-heading">
+                            {product?.title?.startsWith('EVK') ? 'Base Module' : 'Evaluation Boards'}
+                        </h3>
                         <div className="variant-list">
                             {variants.map((variant) => (
                                 <Link
