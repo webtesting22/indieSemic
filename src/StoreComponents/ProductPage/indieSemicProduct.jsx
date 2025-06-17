@@ -354,9 +354,11 @@ const IndieSemicProduct = () => {
                                                                     <div className="overlay-arrow">→</div>
                                                                 </div>
                                                             </div>
-                                                            <div className="product-badge">
-                                                                <span>{product.tradingTag || ""}</span>
-                                                            </div>
+                                                            {product.tradingTag && (
+                                                                <div className="product-badge">
+                                                                    <span>{product.tradingTag}</span>
+                                                                </div>
+                                                            )}
 
                                                         </div>
 
