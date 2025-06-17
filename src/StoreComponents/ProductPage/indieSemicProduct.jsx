@@ -74,7 +74,7 @@ const IndieSemicProduct = () => {
 
     // Filter products based on selected category, search query, and price range
     const filteredProducts = productList.filter((product) => {
-        const categoryMatch = !selectedCategory || 
+        const categoryMatch = !selectedCategory ||
             (Array.isArray(product.category) && product.category.includes(selectedCategory));
 
         const searchMatch = product.title.toLowerCase().includes(searchQuery.toLowerCase());
@@ -84,7 +84,7 @@ const IndieSemicProduct = () => {
 
     // Extract unique categories from all products' category arrays
     const categories = [
-        ...new Set(productList.flatMap((product) => 
+        ...new Set(productList.flatMap((product) =>
             Array.isArray(product.category) ? product.category : []
         ))
     ].filter((category) => category && typeof category === 'string' && category.trim() !== ""); // This removes null, undefined, or empty categories
@@ -234,7 +234,7 @@ const IndieSemicProduct = () => {
                                     <span className="category-badge">{productList.length}</span>
                                 </div>
                                 {categories.map((category) => {
-                                    const categoryCount = productList.filter(p => 
+                                    const categoryCount = productList.filter(p =>
                                         Array.isArray(p.category) && p.category.includes(category)
                                     ).length;
                                     return (
@@ -285,7 +285,7 @@ const IndieSemicProduct = () => {
                                             <span className="category-badge">{productList.length}</span>
                                         </div>
                                         {categories.map((category) => {
-                                            const categoryCount = productList.filter(p => 
+                                            const categoryCount = productList.filter(p =>
                                                 Array.isArray(p.category) && p.category.includes(category)
                                             ).length;
                                             return (

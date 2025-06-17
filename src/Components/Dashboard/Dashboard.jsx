@@ -37,11 +37,14 @@ import Login from './Login/Login';
 import { CiUser } from "react-icons/ci";
 import { MdLogout } from "react-icons/md";
 import jsPDF from "jspdf";
-
+import Status from './Status';
 const { Header, Sider, Content } = Layout;
 const { Title, Text } = Typography;
 
 const Dashboard = ({ handleLogout, user }) => {
+
+    // Add state for active component
+    const [activeComponent, setActiveComponent] = useState('dashboard');
 
     // Your existing states
     const [collapsed, setCollapsed] = useState(false);
@@ -71,7 +74,8 @@ const Dashboard = ({ handleLogout, user }) => {
     ];
 
     const menuItems = [
-        { key: '1', icon: <FiHome />, label: 'Dashboard' },
+        { key: 'dashboard', icon: <FiHome />, label: 'Dashboard' },
+        { key: 'status', icon: <FiActivity />, label: 'Status' },
     ];
 
     // Utility function to check if an order was created today
@@ -520,14 +524,15 @@ const Dashboard = ({ handleLogout, user }) => {
 
                 <Menu
                     mode="inline"
-                    defaultSelectedKeys={['1']}
+                    selectedKeys={[activeComponent]}
                     className="dashboard-menu"
+                    onClick={({ key }) => setActiveComponent(key)}
                 >
                     {menuItems.map(item => (
                         <Menu.Item
                             key={item.key}
                             icon={item.icon}
-                            className={item.active ? 'active-menu-item' : ''}
+                            className={activeComponent === item.key ? 'active-menu-item' : ''}
                         >
                             {item.label}
                         </Menu.Item>
@@ -552,191 +557,197 @@ const Dashboard = ({ handleLogout, user }) => {
             </Sider>
 
             <Layout className="site-layout">
-                <Header className="dashboard-header">
-                    <div className="header-left">
-                        <Title level={2} className="page-title">Customer Analytics</Title>
-                    </div>
-                    <div className="header-right">
-                        <Input
-                            placeholder="Search customers..."
-                            prefix={<FiSearch />}
-                            className="search-input"
-                        />
-                        <Avatar className="user-avatar">{user?.name?.charAt(0) || 'U'}</Avatar>
-                        <Button
-                            type="text"
-                            icon={<FiActivity />}
-                            onClick={() => setDrawerVisible(true)}
-                            className="activity-btn mobile-only"
-                        >
-                            Activity
-                        </Button>
-                    </div>
-                </Header>
-
-                <Content className="dashboard-content">
-                    <div className="content-wrapper">
-                        {/* Summary Cards */}
-                        <div className="summary-cards">
-                            <Card className="summary-card">
-                                <div className="summary-content">
-                                    <FiUser className="summary-icon user-icon" />
-                                    <div className="summary-info">
-                                        <Text className="summary-label">Total Customers</Text>
-                                        <Title level={3} className="summary-value">{verificationData.length}</Title>
-                                    </div>
-                                </div>
-                            </Card>
-                            <Card className="summary-card">
-                                <div className="summary-content">
-                                    <FiDollarSign className="summary-icon revenue-icon" />
-                                    <div className="summary-info">
-                                        <Text className="summary-label">Total Revenue</Text>
-                                        <Title level={3} className="summary-value">
-                                            {formatCurrency(verificationData.reduce((sum, order) =>
-                                                sum + order.products.reduce((orderSum, product) =>
-                                                    orderSum + product.price * product.quantity, 0), 0))}
-                                        </Title>
-                                    </div>
-                                </div>
-                            </Card>
-                            <Card className="summary-card">
-                                <div className="summary-content">
-                                    <FiPackage className="summary-icon orders-icon" />
-                                    <div className="summary-info">
-                                        <Text className="summary-label">Total Orders</Text>
-                                        <Title level={3} className="summary-value">
-                                            {verificationData.reduce((sum, order) =>
-                                                sum + order.products.reduce((orderSum, product) =>
-                                                    orderSum + product.quantity, 0), 0)}
-                                        </Title>
-                                    </div>
-                                </div>
-                            </Card>
-                        </div>
-
-                        <div className="content-grid">
-                            <div className="main-content">
-                                <Card className="customers-card">
-                                    <div className="card-header">
-                                        <Title level={4}>Customer Purchase Data</Title>
-                                        <div className="header-actions">
-                                            <Button
-                                                type="default"
-                                                onClick={openTrackingModal}
-                                                className="tracking-btn"
-                                                icon={<FiPackage />}
-                                            >
-                                                Product Tracking
-                                            </Button>
-                                            <Badge count={verificationData.length} className="customer-badge" />
-                                        </div>
-                                    </div>
-
-                                    <div className="customer-tabs" style={{ display: 'flex', gap: 16, marginBottom: 16 }}>
-                                        <Button type={activeTab === 'all' ? 'primary' : 'default'} onClick={() => setActiveTab('all')}>
-                                            All
-                                        </Button>
-                                    </div>
-
-                                    <div className="customers-table">
-                                        {loading ? (
-                                            <div className="loading-container">
-                                                <div className="loading-spinner"></div>
-                                                <Text>Loading customer data...</Text>
-                                            </div>
-                                        ) : verificationData.length === 0 ? (
-                                            <div className="empty-state">
-                                                <FiUser className="empty-icon" />
-                                                <Text>No customer data available</Text>
-                                            </div>
-                                        ) : (
-                                            <>
-                                                <div className="table-header-modern">
-                                                    <div className="header-cell customer-col">
-                                                        <FiUser className="header-icon" />
-                                                        Customer
-                                                    </div>
-                                                    <div className="header-cell value-col">
-                                                        <FiDollarSign className="header-icon" />
-                                                        Total Value
-                                                    </div>
-                                                    <div className="header-cell orders-col">
-                                                        <FiPackage className="header-icon" />
-                                                        Items
-                                                    </div>
-                                                    <div className="header-cell actions-col">Actions</div>
-                                                    <div className="header-cell invoice-col">Invoice</div>
-                                                </div>
-
-                                                <div className="table-body">
-                                                    {displayedOrders.map((order, index) => {
-                                                        const totalValue = order.products.reduce(
-                                                            (sum, product) => sum + product.price * product.quantity,
-                                                            0
-                                                        );
-                                                        const totalQuantity = order.products.reduce(
-                                                            (sum, product) => sum + product.quantity,
-                                                            0
-                                                        );
-                                                        const isLatest = latestOrder && latestOrder._id === order._id;
-
-                                                        return (
-                                                            <div key={order._id} className="table-row">
-                                                                <div className="row-cell customer-info">
-                                                                    <div className="customer-details">
-                                                                        <Text strong>
-                                                                            {order.shipping?.firstName} {order.shipping?.lastName}
-                                                                        </Text>
-                                                                        <Text type="secondary" className="customer-email">
-                                                                            {order.shipping?.email}
-                                                                        </Text>
-                                                                        <Text type="secondary" className="customer-phone">
-                                                                            {order.shipping?.mobile}
-                                                                        </Text>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="row-cell value-info">
-                                                                    <Text strong className="value-amount">
-                                                                        {formatCurrency(totalValue)}
-                                                                    </Text>
-                                                                </div>
-                                                                <div className="row-cell orders-info mobile-hide">
-                                                                    <Tag color="blue">{totalQuantity} items</Tag>
-                                                                </div>
-                                                                <div className="row-cell actions-info mobile-hide">
-                                                                    <Button
-                                                                        type="primary"
-                                                                        size="small"
-                                                                        onClick={() => openOrderModal(order)}
-                                                                        className="view-details-btn"
-                                                                    >
-                                                                        View Details
-                                                                    </Button>
-                                                                </div>
-                                                                <div className="row-cell invoice-info">
-                                                                    <Button
-                                                                        type="default"
-                                                                        size="small"
-                                                                        onClick={() => generateInvoicePDF(order)}
-                                                                        icon={<FiDownload />}
-                                                                        className="download-invoice-btn"
-                                                                    >
-                                                                        Download
-                                                                    </Button>
-                                                                </div>
-                                                            </div>
-                                                        );
-                                                    })}
-                                                </div>
-                                            </>
-                                        )}
-                                    </div>
-                                </Card>
+                {activeComponent === 'dashboard' ? (
+                    <>
+                        <Header className="dashboard-header">
+                            <div className="header-left">
+                                <Title level={2} className="page-title">Customer Analytics</Title>
                             </div>
-                        </div>
-                    </div>
-                </Content>
+                            <div className="header-right">
+                                <Input
+                                    placeholder="Search customers..."
+                                    prefix={<FiSearch />}
+                                    className="search-input"
+                                />
+                                <Avatar className="user-avatar">{user?.name?.charAt(0) || 'U'}</Avatar>
+                                <Button
+                                    type="text"
+                                    icon={<FiActivity />}
+                                    onClick={() => setDrawerVisible(true)}
+                                    className="activity-btn mobile-only"
+                                >
+                                    Activity
+                                </Button>
+                            </div>
+                        </Header>
+
+                        <Content className="dashboard-content">
+                            <div className="content-wrapper">
+                                {/* Summary Cards */}
+                                <div className="summary-cards">
+                                    <Card className="summary-card">
+                                        <div className="summary-content">
+                                            <FiUser className="summary-icon user-icon" />
+                                            <div className="summary-info">
+                                                <Text className="summary-label">Total Customers</Text>
+                                                <Title level={3} className="summary-value">{verificationData.length}</Title>
+                                            </div>
+                                        </div>
+                                    </Card>
+                                    <Card className="summary-card">
+                                        <div className="summary-content">
+                                            <FiDollarSign className="summary-icon revenue-icon" />
+                                            <div className="summary-info">
+                                                <Text className="summary-label">Total Revenue</Text>
+                                                <Title level={3} className="summary-value">
+                                                    {formatCurrency(verificationData.reduce((sum, order) =>
+                                                        sum + order.products.reduce((orderSum, product) =>
+                                                            orderSum + product.price * product.quantity, 0), 0))}
+                                                </Title>
+                                            </div>
+                                        </div>
+                                    </Card>
+                                    <Card className="summary-card">
+                                        <div className="summary-content">
+                                            <FiPackage className="summary-icon orders-icon" />
+                                            <div className="summary-info">
+                                                <Text className="summary-label">Total Orders</Text>
+                                                <Title level={3} className="summary-value">
+                                                    {verificationData.reduce((sum, order) =>
+                                                        sum + order.products.reduce((orderSum, product) =>
+                                                            orderSum + product.quantity, 0), 0)}
+                                                </Title>
+                                            </div>
+                                        </div>
+                                    </Card>
+                                </div>
+
+                                <div className="content-grid">
+                                    <div className="main-content">
+                                        <Card className="customers-card">
+                                            <div className="card-header">
+                                                <Title level={4}>Customer Purchase Data</Title>
+                                                <div className="header-actions">
+                                                    <Button
+                                                        type="default"
+                                                        onClick={openTrackingModal}
+                                                        className="tracking-btn"
+                                                        icon={<FiPackage />}
+                                                    >
+                                                        Product Tracking
+                                                    </Button>
+                                                    <Badge count={verificationData.length} className="customer-badge" />
+                                                </div>
+                                            </div>
+
+                                            <div className="customer-tabs" style={{ display: 'flex', gap: 16, marginBottom: 16 }}>
+                                                <Button type={activeTab === 'all' ? 'primary' : 'default'} onClick={() => setActiveTab('all')}>
+                                                    All
+                                                </Button>
+                                            </div>
+
+                                            <div className="customers-table">
+                                                {loading ? (
+                                                    <div className="loading-container">
+                                                        <div className="loading-spinner"></div>
+                                                        <Text>Loading customer data...</Text>
+                                                    </div>
+                                                ) : verificationData.length === 0 ? (
+                                                    <div className="empty-state">
+                                                        <FiUser className="empty-icon" />
+                                                        <Text>No customer data available</Text>
+                                                    </div>
+                                                ) : (
+                                                    <>
+                                                        <div className="table-header-modern">
+                                                            <div className="header-cell customer-col">
+                                                                <FiUser className="header-icon" />
+                                                                Customer
+                                                            </div>
+                                                            <div className="header-cell value-col">
+                                                                <FiDollarSign className="header-icon" />
+                                                                Total Value
+                                                            </div>
+                                                            <div className="header-cell orders-col">
+                                                                <FiPackage className="header-icon" />
+                                                                Items
+                                                            </div>
+                                                            <div className="header-cell actions-col">Actions</div>
+                                                            <div className="header-cell invoice-col">Invoice</div>
+                                                        </div>
+
+                                                        <div className="table-body">
+                                                            {displayedOrders.map((order, index) => {
+                                                                const totalValue = order.products.reduce(
+                                                                    (sum, product) => sum + product.price * product.quantity,
+                                                                    0
+                                                                );
+                                                                const totalQuantity = order.products.reduce(
+                                                                    (sum, product) => sum + product.quantity,
+                                                                    0
+                                                                );
+                                                                const isLatest = latestOrder && latestOrder._id === order._id;
+
+                                                                return (
+                                                                    <div key={order._id} className="table-row">
+                                                                        <div className="row-cell customer-info">
+                                                                            <div className="customer-details">
+                                                                                <Text strong>
+                                                                                    {order.shipping?.firstName} {order.shipping?.lastName}
+                                                                                </Text>
+                                                                                <Text type="secondary" className="customer-email">
+                                                                                    {order.shipping?.email}
+                                                                                </Text>
+                                                                                <Text type="secondary" className="customer-phone">
+                                                                                    {order.shipping?.mobile}
+                                                                                </Text>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="row-cell value-info">
+                                                                            <Text strong className="value-amount">
+                                                                                {formatCurrency(totalValue)}
+                                                                            </Text>
+                                                                        </div>
+                                                                        <div className="row-cell orders-info mobile-hide">
+                                                                            <Tag color="blue">{totalQuantity} items</Tag>
+                                                                        </div>
+                                                                        <div className="row-cell actions-info mobile-hide">
+                                                                            <Button
+                                                                                type="primary"
+                                                                                size="small"
+                                                                                onClick={() => openOrderModal(order)}
+                                                                                className="view-details-btn"
+                                                                            >
+                                                                                View Details
+                                                                            </Button>
+                                                                        </div>
+                                                                        <div className="row-cell invoice-info">
+                                                                            <Button
+                                                                                type="default"
+                                                                                size="small"
+                                                                                onClick={() => generateInvoicePDF(order)}
+                                                                                icon={<FiDownload />}
+                                                                                className="download-invoice-btn"
+                                                                            >
+                                                                                Download
+                                                                            </Button>
+                                                                        </div>
+                                                                    </div>
+                                                                );
+                                                            })}
+                                                        </div>
+                                                    </>
+                                                )}
+                                            </div>
+                                        </Card>
+                                    </div>
+                                </div>
+                            </div>
+                        </Content>
+                    </>
+                ) : (
+                    <Status />
+                )}
             </Layout>
 
             <Drawer
