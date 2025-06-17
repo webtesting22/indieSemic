@@ -14,7 +14,9 @@ import {
     FileTextOutlined,
     SettingOutlined,
     DownloadOutlined,
-    AppstoreOutlined
+    AppstoreOutlined,
+    LeftOutlined,
+    RightOutlined
 } from '@ant-design/icons';
 import {
     FaHeart,
@@ -236,10 +238,10 @@ const SeparateProductPage = () => {
                     <button
                         className={`variant-toggle-btn ${!isSidebarVisible ? 'show' : ''}`}
                         onClick={toggleSidebar}
-                        aria-label="Open product suggestions"
-                        title="View upgraded products"
+                        aria-label={isSidebarVisible ? "Hide product suggestions" : "Show product suggestions"}
+                        title={isSidebarVisible ? "Hide product suggestions" : "Show product suggestions"}
                     >
-                        🛍️
+                        {isSidebarVisible ? <LeftOutlined /> : <RightOutlined />}
                     </button>
                     <div className={`variant-suggestion-wrapper ${!isSidebarVisible ? 'hidden' : ''}`}>
                         <h3 className="variant-heading">
