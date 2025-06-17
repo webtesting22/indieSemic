@@ -15,10 +15,10 @@ const NavigationData = [
         link: "Services",
         path: "/services"
     },
-    {
-        link: "Modules",
-        path: "/Modules",
-    },
+    // {
+    //     link: "Modules",
+    //     path: "/Modules",
+    // },
 
     {
         link: "Terms and Conditions",
