@@ -8,10 +8,10 @@
 
 /* Hero Section */
 .soc-hero {
-  height: 85vh;
+  height: 100vh;
   position: relative;
   overflow: hidden;
-  margin-top: -64px;
+  margin-top: 0px;
   display: flex;
   align-items: end;
   padding-bottom: 20px;
