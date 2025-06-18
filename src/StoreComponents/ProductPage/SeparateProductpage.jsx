@@ -696,7 +696,28 @@ const SeparateProductPage = () => {
                                                         <div className="related-products-section">
                                                             <h3 className="related-title">You might also like</h3>
                                                             <Row gutter={[24, 24]}>
-                                                                {products.map((related, idx) => (
+                                                                {products
+                                                                    .filter((related) => {
+                                                                        // Filter out the current product
+                                                                        if (related._id === product?._id) return false;
+                                                                        
+                                                                        // Get current product categories (handle both array and string)
+                                                                        const currentProductCategories = Array.isArray(product?.category) 
+                                                                            ? product.category 
+                                                                            : product?.category ? [product.category] : [];
+                                                                        
+                                                                        // Get related product categories (handle both array and string)
+                                                                        const relatedProductCategories = Array.isArray(related.category) 
+                                                                            ? related.category 
+                                                                            : related.category ? [related.category] : [];
+                                                                        
+                                                                        // Check if there's any category overlap
+                                                                        return currentProductCategories.some(cat => 
+                                                                            relatedProductCategories.includes(cat)
+                                                                        );
+                                                                    })
+                                                                    .slice(0, 8) // Limit to 8 related products
+                                                                    .map((related, idx) => (
                                                                     <Col key={idx} lg={6} md={8} sm={24} xs={24} style={{ width: "100%" }}>
                                                                         <Link
                                                                             to={`/product/${related._id}`}

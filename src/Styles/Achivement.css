@@ -60,7 +60,7 @@
   left: 0px;
   top: 0px;
   width: 100%;
-  z-index: 44;
+  z-index: 4;
   pointer-events: none;
   transition: 0.7s;
 }
@@ -283,7 +283,7 @@
     left: 0px;
     /* top: 30%; */
     width: 100%;
-    z-index: 44;
+    z-index: 4;
   }
 
   .BoxEdit img {

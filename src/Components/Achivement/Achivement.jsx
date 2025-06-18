@@ -89,14 +89,15 @@ const Achivement = () => {
                                 <div className="blackoverlay">
 
                                 </div>
-                                <div className="Title" onClick={() => handleImageClick(AlternateBack)} // Show alternate image in modal
+                                <div className="Title" 
+                                // onClick={() => handleImageClick(AlternateBack)} // Show alternate image in modal
                                 >
                                     {/* <h1>FLIP CHIP SOC</h1> */}
                                     {/* <h1>Nordic<br/>Semiconductor</h1> */}
                                 </div>
                                 <div className="ButtonContainer">
                                     <button data-aos="fade-left"
-                                        onClick={() => handleImageClick(AlternateBack)} // Show alternate image in modal
+                                        // onClick={() => handleImageClick(AlternateBack)} // Show alternate image in modal
                                         data-aos-duration="1500">
 
                                         Know More
@@ -113,7 +114,7 @@ const Achivement = () => {
 
                                 <img src="/Images/BannersAndImages/3.png" // Original image
                                     alt=""
-                                    onClick={() => handleImageClick(AlternateBack)} // Show alternate image in modal
+                                    // onClick={() => handleImageClick(AlternateBack)} // Show alternate image in modal
                                     style={{
                                         transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed with the multiplier
                                         cursor: "pointer"
@@ -125,7 +126,8 @@ const Achivement = () => {
                                 <div className="blackoverlay">
 
                                 </div>
-                                <div className="Title" onClick={() => handleImageClick(AlternateBack2)} >
+                                <div className="Title" 
+                                onClick={() => handleImageClick(AlternateBack2)} >
                                     {/* <h1>Semtech </h1> */}
                                 </div>
                                 <div className="ButtonContainer">
@@ -146,7 +148,7 @@ const Achivement = () => {
                                 </div>
                                 <img src="/Images/BannersAndImages/4.png" // Original image
 
-                                    onClick={() => handleImageClick(AlternateBack2)} // Show alternate image in modal
+                                    // onClick={() => handleImageClick(AlternateBack2)} // Show alternate image in modal
                                     alt="" style={{
                                         transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed with the multiplier
                                         cursor: "pointer"
