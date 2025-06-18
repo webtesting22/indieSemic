@@ -141,7 +141,7 @@ const MegaNavigation = () => {
                             boxShadow: isScrolled ? "0px 4px 6px rgba(0, 0, 0, 0.1)" : "none",
                         }}
                     >
-                        <Toolbar style={{ padding: isScrolled ? "0px" : "20px 50px" }}>
+                        <Toolbar style={{ padding: isScrolled ? "0px" : "10px 50px" }}>
                             <div className='navigationbar' style={{
                                 display: 'flex',
                                 justifyContent: 'space-between',
@@ -155,7 +155,7 @@ const MegaNavigation = () => {
                             }}>
                                 <div className="logoContainer"
                                     style={{
-                                        height: isScrolled ? "85px" : "80px",
+                                        height: isScrolled ? "85px" : "70px",
                                         // boxShadow: isScrolled ? "none" : "2px 2px 19px white",
                                     }}
                                 ><a href='/'>
