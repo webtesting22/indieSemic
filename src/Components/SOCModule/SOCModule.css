@@ -61,7 +61,7 @@
 
 .soc-main-heading {
   color: white;
-  font-size: 4rem;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 1.5rem;
@@ -516,7 +516,7 @@
 /* Responsive Design */
 @media (max-width: 1024px) {
   .soc-main-heading {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   .soc-section-heading {
