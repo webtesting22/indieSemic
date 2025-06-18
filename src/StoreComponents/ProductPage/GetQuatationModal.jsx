@@ -74,6 +74,27 @@ const GetQuotationModal = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
+        
+        // Special handling for contact field - only allow numbers and max 10 digits
+        if (name === "contact") {
+            // Only allow numeric characters and max 10 digits
+            if (!/^\d*$/.test(value)) {
+                return; // Don't update if non-numeric characters are present
+            }
+            // Limit to maximum 10 digits
+            if (value.length > 10) {
+                return; // Don't update if more than 10 digits
+            }
+        }
+        
+        // Special handling for name field - only allow letters and spaces
+        if (name === "name") {
+            // Only allow letters, spaces, and common name characters (apostrophes, hyphens)
+            if (!/^[a-zA-Z\s'\-]*$/.test(value)) {
+                return; // Don't update if non-letter characters are present
+            }
+        }
+        
         const updatedDetails = {
             ...userDetails,
             [name]: value,
@@ -442,6 +463,13 @@ const GetQuotationModal = () => {
                                 placeholder="Enter your full name"
                                 value={userDetails.name}
                                 onChange={handleInputChange}
+                                onKeyDown={(e) => {
+                                    // Allow letters, spaces, apostrophes, hyphens, and navigation keys
+                                    if (!/[a-zA-Z\s'\-]/.test(e.key) && 
+                                        !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter'].includes(e.key)) {
+                                        e.preventDefault();
+                                    }
+                                }}
                                 style={{ borderRadius: "4px" }}
                                 prefix={<UserOutlined style={{ color: "#bfbfbf" }} />}
                             />
@@ -481,11 +509,21 @@ const GetQuotationModal = () => {
                                 <span style={{ color: "#ff4d4f", marginLeft: "4px" }}>*</span>
                             </div>
                             <Input
-                                type="number"
+                                type="text"
                                 name="contact"
                                 placeholder="Enter your phone number"
                                 value={userDetails.contact}
                                 onChange={handleInputChange}
+                                onKeyDown={(e) => {
+                                    // Prevent alphabetic characters, decimal points, and special characters
+                                    if (!/[\d\b\ArrowLeft\ArrowRight\Delete\Tab]/.test(e.key)) {
+                                        e.preventDefault();
+                                    }
+                                    // Prevent typing if already at max length (10 digits) and not a navigation key
+                                    if (userDetails.contact.length >= 10 && /[\d]/.test(e.key)) {
+                                        e.preventDefault();
+                                    }
+                                }}
                                 style={{
                                     borderRadius: "4px",
                                     // Hide number input arrows
