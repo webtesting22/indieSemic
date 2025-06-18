@@ -135,7 +135,7 @@ const GetQuotationModal = () => {
         }
 
         // Update button state based on new validity
-        validateButtonState(productQuantities, [], requiredFieldsFilled);
+        validateButtonState(productQuantities);
     };
 
     // Handle quantity change
@@ -153,12 +153,17 @@ const GetQuotationModal = () => {
 
         if (isSelected) {
             // Add product to selectedProducts
-            setSelectedProducts((prev) => [...prev, productId]);
-
-            // Set initial quantity to 1 if not already set
-            if (!productQuantities[productId]) {
-                handleQuantityChange(productId, 1);
-            }
+            setSelectedProducts((prev) => {
+                const newSelected = [...prev, productId];
+                
+                // Set initial quantity to 1 if not already set
+                if (!productQuantities[productId]) {
+                    const updatedQuantities = { ...productQuantities, [productId]: 1 };
+                    setProductQuantities(updatedQuantities);
+                }
+                
+                return newSelected;
+            });
         } else {
             // Remove product from selectedProducts
             setSelectedProducts((prev) => prev.filter((id) => id !== productId));
@@ -171,10 +176,16 @@ const GetQuotationModal = () => {
         const isValid =
             formValid &&
             selectedProducts.length > 0 &&
-            selectedProducts.every((id) => updatedQuantities[id] > 0);
+            selectedProducts.every((id) => updatedQuantities[id] && updatedQuantities[id] > 0);
 
         setIsButtonDisabled(!isValid);
     };
+
+    // Add useEffect to watch for changes in selectedProducts and productQuantities
+    React.useEffect(() => {
+        validateButtonState(productQuantities);
+    }, [selectedProducts, productQuantities, formValid]);
+
     const showCheckbox = false;
     const columns = [
         {
@@ -687,14 +698,21 @@ const GetQuotationModal = () => {
                 onCancel={() => setIsProductSelectorOpen(false)}
                 onOk={() => {
                     // Merge new products with already selected ones
-                    const merged = [...new Set([...selectedProducts, ...tempSelectedProducts])];
-                    setSelectedProducts(merged);
-
-                    // Initialize quantities
-                    tempSelectedProducts.forEach((id) => {
-                        if (!productQuantities[id]) {
-                            handleQuantityChange(id, 1);
-                        }
+                    setSelectedProducts((prev) => {
+                        const merged = [...new Set([...prev, ...tempSelectedProducts])];
+                        
+                        // Initialize quantities and update productQuantities state
+                        setProductQuantities((prevQuantities) => {
+                            const updatedQuantities = { ...prevQuantities };
+                            tempSelectedProducts.forEach((id) => {
+                                if (!updatedQuantities[id]) {
+                                    updatedQuantities[id] = 1;
+                                }
+                            });
+                            return updatedQuantities;
+                        });
+                        
+                        return merged;
                     });
 
                     setIsProductSelectorOpen(false);
