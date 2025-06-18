@@ -775,7 +775,8 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 16px;
+    gap: 5px;
+    flex-direction: column;
 }
 
 .product-info {
