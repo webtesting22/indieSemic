@@ -57,7 +57,7 @@ const Achivement = () => {
         "./Images/MarqueeLogos/6.png",
         "./Images/MarqueeLogos/7.png",
     ]
-    const repeatedLogos = Array(100).fill(MarqueeTagData).flat();
+    const repeatedLogos = Array(400).fill(MarqueeTagData).flat();
 
     return (
         <>
