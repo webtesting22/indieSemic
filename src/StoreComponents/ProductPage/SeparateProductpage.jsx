@@ -245,6 +245,21 @@ const SeparateProductPage = () => {
 
     const evkVariants = variants?.filter(variant => variant.title?.startsWith('EVK'));
 
+    // Get related products by category (excluding the current product)
+    const relatedProducts = products.filter(
+        (p) =>
+            p._id !== product?._id &&
+            Array.isArray(p.category) &&
+            product.category &&
+            p.category.some((cat) => product.category.includes(cat))
+    );
+
+    // If no related products, fallback to all products (excluding the current product)
+    const productsToShow =
+        relatedProducts.length > 0
+            ? relatedProducts
+            : products.filter((p) => p._id !== product?._id);
+
     return (
         <section id="ProductSeparatePage" className="enhanced-product-page">
 
@@ -730,41 +745,38 @@ const SeparateProductPage = () => {
                                                             {/* Desktop Grid Layout */}
                                                             <div className="desktop-related-products">
                                                                 <Row gutter={[24, 24]}>
-                                                                    {products
-                                                                        .filter((related) => related._id !== product?._id)
-                                                                        .slice(0, 50) // Limit to 20 products
-                                                                        .map((related, idx) => (
-                                                                            <Col key={idx} lg={6} md={8} sm={24} xs={24} style={{ width: "100%" }}>
-                                                                                <Link
-                                                                                    to={`/product/${related._id}`}
-                                                                                    onClick={() => window.scrollTo(0, 0)}
-                                                                                    className="related-product-card-enhanced"
-                                                                                >
-                                                                                    <div className="related-image-container">
-                                                                                        <img
-                                                                                            src={related.mainImages?.[0] || "default-image.jpg"}
-                                                                                            alt={related.title}
-                                                                                            className="related-product-image"
-                                                                                        />
-                                                                                        <div className="related-overlay">
-                                                                                            <span>View Product</span>
-                                                                                        </div>
+                                                                    {productsToShow.slice(0, 50).map((related, idx) => (
+                                                                        <Col key={idx} lg={6} md={8} sm={24} xs={24} style={{ width: "100%" }}>
+                                                                            <Link
+                                                                                to={`/product/${related._id}`}
+                                                                                onClick={() => window.scrollTo(0, 0)}
+                                                                                className="related-product-card-enhanced"
+                                                                            >
+                                                                                <div className="related-image-container">
+                                                                                    <img
+                                                                                        src={related.mainImages?.[0] || "default-image.jpg"}
+                                                                                        alt={related.title}
+                                                                                        className="related-product-image"
+                                                                                    />
+                                                                                    <div className="related-overlay">
+                                                                                        <span>View Product</span>
                                                                                     </div>
-                                                                                    <div className="related-product-info">
-                                                                                        <h4 className="related-product-title">{related.title}</h4>
-                                                                                        <div className="related-price-section">
-                                                                                            <span style={{ textDecoration: "line-through", color: "#6c757d" }}>₹{related.price ? (related.price + 100).toLocaleString() : '-'}</span>
+                                                                                </div>
+                                                                                <div className="related-product-info">
+                                                                                    <h4 className="related-product-title">{related.title}</h4>
+                                                                                    <div className="related-price-section">
+                                                                                        <span style={{ textDecoration: "line-through", color: "#6c757d" }}>₹{related.price ? (related.price + 100).toLocaleString() : '-'}</span>
 
-                                                                                            <span className="related-price">₹{related.price?.toLocaleString()}</span>
-                                                                                            {/* <div className="related-rating">
+                                                                                        <span className="related-price">₹{related.price?.toLocaleString()}</span>
+                                                                                        {/* <div className="related-rating">
                                                                                         <FaStar className="star-mini" />
                                                                                         <span>4.5</span>
                                                                                     </div> */}
-                                                                                        </div>
                                                                                     </div>
-                                                                                </Link>
-                                                                            </Col>
-                                                                        ))}
+                                                                                </div>
+                                                                            </Link>
+                                                                        </Col>
+                                                                    ))}
                                                                 </Row>
                                                             </div>
 
@@ -783,41 +795,38 @@ const SeparateProductPage = () => {
                                                                     loop={true}
                                                                     className="related-products-swiper"
                                                                 >
-                                                                    {products
-                                                                        .filter((related) => related._id !== product?._id)
-                                                                        .slice(0, 20) // Limit to 20 products
-                                                                        .map((related, idx) => (
-                                                                            <SwiperSlide key={idx}>
-                                                                                <Link
-                                                                                    to={`/product/${related._id}`}
-                                                                                    onClick={() => window.scrollTo(0, 0)}
-                                                                                    className="related-product-card-enhanced"
-                                                                                >
-                                                                                    <div className="related-image-container">
-                                                                                        <img
-                                                                                            src={related.mainImages?.[0] || "default-image.jpg"}
-                                                                                            alt={related.title}
-                                                                                            className="related-product-image"
-                                                                                        />
-                                                                                        <div className="related-overlay">
-                                                                                            <span>View Product</span>
-                                                                                        </div>
+                                                                    {productsToShow.slice(0, 20).map((related, idx) => (
+                                                                        <SwiperSlide key={idx}>
+                                                                            <Link
+                                                                                to={`/product/${related._id}`}
+                                                                                onClick={() => window.scrollTo(0, 0)}
+                                                                                className="related-product-card-enhanced"
+                                                                            >
+                                                                                <div className="related-image-container">
+                                                                                    <img
+                                                                                        src={related.mainImages?.[0] || "default-image.jpg"}
+                                                                                        alt={related.title}
+                                                                                        className="related-product-image"
+                                                                                    />
+                                                                                    <div className="related-overlay">
+                                                                                        <span>View Product</span>
                                                                                     </div>
-                                                                                    <div className="related-product-info">
-                                                                                        <h4 className="related-product-title">{related.title}</h4>
-                                                                                        <div className="related-price-section">
-                                                                                            <span style={{ textDecoration: "line-through", color: "#6c757d" }}>₹{related.price ? (related.price + 100).toLocaleString() : '-'}</span>
+                                                                                </div>
+                                                                                <div className="related-product-info">
+                                                                                    <h4 className="related-product-title">{related.title}</h4>
+                                                                                    <div className="related-price-section">
+                                                                                        <span style={{ textDecoration: "line-through", color: "#6c757d" }}>₹{related.price ? (related.price + 100).toLocaleString() : '-'}</span>
 
-                                                                                            <span className="related-price">₹{related.price?.toLocaleString()}</span>
-                                                                                            {/* <div className="related-rating">
+                                                                                        <span className="related-price">₹{related.price?.toLocaleString()}</span>
+                                                                                        {/* <div className="related-rating">
                                                                                         <FaStar className="star-mini" />
                                                                                         <span>4.5</span>
                                                                                     </div> */}
-                                                                                        </div>
                                                                                     </div>
-                                                                                </Link>
-                                                                            </SwiperSlide>
-                                                                        ))}
+                                                                                </div>
+                                                                            </Link>
+                                                                        </SwiperSlide>
+                                                                    ))}
                                                                 </Swiper>
                                                             </div>
                                                         </div>
