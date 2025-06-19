@@ -243,12 +243,14 @@ const SeparateProductPage = () => {
     const baseNameMatch = product.title.match(/^([^-]+-[^-]+)/);
     const baseName = baseNameMatch ? baseNameMatch[1] : product.title;
 
+    const evkVariants = variants?.filter(variant => variant.title?.startsWith('EVK'));
+
     return (
         <section id="ProductSeparatePage" className="enhanced-product-page">
 
 
 
-            {variants && variants.length > 0 && (
+            {evkVariants && evkVariants.length > 0 && (
                 <>
                     <button
                         className={`variant-toggle-btn ${!isSidebarVisible ? 'show' : ''}`}
@@ -263,7 +265,7 @@ const SeparateProductPage = () => {
                             {product?.title?.startsWith('EVK') ? 'Base Module' : 'Evaluation Boards'}
                         </h3>
                         <div className="variant-list">
-                            {variants
+                            {evkVariants
                                 .filter(variant =>
                                     product?.title?.startsWith('EVK')
                                         ? !variant.title?.startsWith('EVK') // If current is EVK, show only non-EVK
