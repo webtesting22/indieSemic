@@ -815,28 +815,92 @@
 
 /* Related Products Tab */
 .related-products-section {
-    padding-top: 1rem;
+    padding: 2rem 0;
 }
 
 .related-title {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 700;
-    color: #1a202c;
+    color: #1e293b;
     margin-bottom: 2rem;
     text-align: center;
     position: relative;
+    background: linear-gradient(135deg, #1e293b, #334155);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .related-title::after {
     content: '';
     position: absolute;
-    bottom: -8px;
+    bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, rgb(74, 144, 226), rgb(94, 164, 246));
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, rgb(74, 144, 226), #3b82f6);
     border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+}
+
+/* Desktop Related Products */
+.desktop-related-products {
+    display: block;
+}
+
+/* Mobile Related Products */
+.mobile-related-products {
+    display: none;
+}
+
+/* Swiper Styles for Related Products */
+.related-products-swiper {
+    padding: 0 20px;
+}
+
+.related-products-swiper .swiper-slide {
+    height: auto;
+}
+
+.related-products-swiper .swiper-button-next,
+.related-products-swiper .swiper-button-prev {
+    color: rgb(74, 144, 226);
+    background: rgba(255, 255, 255, 0.9);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.related-products-swiper .swiper-button-next:hover,
+.related-products-swiper .swiper-button-prev:hover {
+    background: rgb(74, 144, 226);
+    color: white;
+    transform: scale(1.1);
+}
+
+.related-products-swiper .swiper-button-next::after,
+.related-products-swiper .swiper-button-prev::after {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.related-products-swiper .swiper-pagination {
+    bottom: -30px;
+}
+
+.related-products-swiper .swiper-pagination-bullet {
+    background: #cbd5e1;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.related-products-swiper .swiper-pagination-bullet-active {
+    background: rgb(74, 144, 226);
+    opacity: 1;
+    transform: scale(1.2);
 }
 
 .related-product-card-enhanced {
@@ -1069,6 +1133,31 @@
 
     .download-item-enhanced {
         padding: 1.5rem;
+    }
+
+    /* Show mobile carousel, hide desktop grid */
+    .desktop-related-products {
+        display: none;
+    }
+
+    .mobile-related-products {
+        display: block;
+    }
+
+    /* Adjust Swiper for mobile */
+    .related-products-swiper {
+        padding: 0 10px;
+    }
+
+    .related-products-swiper .swiper-button-next,
+    .related-products-swiper .swiper-button-prev {
+        width: 35px;
+        height: 35px;
+    }
+
+    .related-products-swiper .swiper-button-next::after,
+    .related-products-swiper .swiper-button-prev::after {
+        font-size: 14px;
     }
 }
 

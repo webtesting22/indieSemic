@@ -163,7 +163,7 @@ const IndieSemicProduct = () => {
                             <div className="breadcrumb-content">
                                 <Link to="/" className="breadcrumb-item">Home</Link>
                                 <span className="breadcrumb-divider">{">"}</span>
-                                <span className="breadcrumb-current">Products</span>
+                                <span className="breadcrumb-current">IOT Modules</span>
                             </div>
 
                             <Button

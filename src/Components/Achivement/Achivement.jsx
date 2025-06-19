@@ -78,7 +78,7 @@ const Achivement = () => {
                 <div id="AdjustAchivementContainer">
                     <div className="WidthContainer">
                         <div className="DesignedContainer">
-                            <h1 data-aos="fade-up"><span style={{ color: "rgb(74, 144, 226)" }}>Technology </span>Partner's </h1>
+                            <h1 data-aos="fade-up"><span style={{ color: "rgb(74, 144, 226)" }}>Technology  </span>Partners </h1>
                             {/* <p data-aos="fade-up">Shaping the Future of Technology Through Groundbreaking Design and Innovation.</p> */}
                         </div>
                     </div>

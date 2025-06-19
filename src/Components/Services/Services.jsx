@@ -20,13 +20,14 @@ const Services = () => {
         {
             icon: "https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/inventoryManagement/wt6HSLTbpXfHYLoXw3hk/WhatsApp Image 2025-05-16 at 10.25.03.jpeg",
             title: "Embedded Design Services",
-            content: "Need something beyond our modules? We offer full-spectrum design services—from schematic layout to PCBA—for embedded products. Whether it's custom form factors, additional interfaces, firmware development, we've got you covered.",
+            content: "Need something beyond our modules? We offer full-spectrum design services—from schematic layout to PCBA—for embedded products. Whether it's custom form factors, additional interfaces, firmware development, if it's based on our modules,we've got you covered.",
             pointsTitle: "What we offer:",
             offerPoints: [
-                "Tailored Hardware Designs based on our modules",
-                "Firmware development",
-                "Integration with sensors, actuators, or wireless protocols",
-                "Prototyping support"
+                "Hardware engineering",
+                "Embedded engineering",
+                "Mechanical design Engineering",
+                "Firmware engineering",
+                "Manufacturing"
             ],
             gradient: "linear-gradient(135deg, rgba(63, 125, 196, 0.1) 0%, rgba(74, 144, 226, 0.05) 100%)",
             // accentIcon: <IoRocket />
@@ -58,7 +59,7 @@ const Services = () => {
                                 Tailored Design. Trusted Support.
                             </h1>
                             <p className="services-description">
-                                At IndieSemic, we don't just build cutting-edge tech—we help you build with it. 
+                                At IndieSemiC, we don't just build cutting-edge tech—we help you build with it. 
                                 Whether you're integrating our RF modules into your own products or need hands-on guidance, 
                                 we're here to help.
                             </p>
@@ -127,7 +128,7 @@ const Services = () => {
                                     </button> */}
                                     <button className="services-cta-button services-secondary" onClick={showModal}>
                                         {/* <IoSupport /> */}
-                                        Get Technical Support
+                                        GET IN TOUCH WITH OUR TEAM
                                     </button>
                                 </div>
                             </div>

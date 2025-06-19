@@ -51,7 +51,7 @@ const GetQuotationModal = () => {
     };
 
     const categories = [
-        ...new Set(productList.flatMap((product) => 
+        ...new Set(productList.flatMap((product) =>
             Array.isArray(product.categories) ? product.categories : []
         ))
     ].filter((category) => category && typeof category === 'string' && category.trim() !== "");
@@ -59,9 +59,9 @@ const GetQuotationModal = () => {
     // Filter products based on selected category, search query, and price range
     const filteredProducts = productList.filter((product) => {
         const categoryMatch =
-            selectedCategory.length === 0 || 
-            (Array.isArray(product.categories) && 
-             selectedCategory.some(cat => product.categories.includes(cat)));
+            selectedCategory.length === 0 ||
+            (Array.isArray(product.categories) &&
+                selectedCategory.some(cat => product.categories.includes(cat)));
         const searchMatch = product.title.toLowerCase().includes(searchQuery.toLowerCase());
         const priceMatch = product.price >= minPrice && product.price <= maxPrice;
 
@@ -74,7 +74,7 @@ const GetQuotationModal = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        
+
         // Special handling for contact field - only allow numbers and max 10 digits
         if (name === "contact") {
             // Only allow numeric characters and max 10 digits
@@ -86,7 +86,7 @@ const GetQuotationModal = () => {
                 return; // Don't update if more than 10 digits
             }
         }
-        
+
         // Special handling for name field - only allow letters and spaces
         if (name === "name") {
             // Only allow letters, spaces, and common name characters (apostrophes, hyphens)
@@ -94,7 +94,7 @@ const GetQuotationModal = () => {
                 return; // Don't update if non-letter characters are present
             }
         }
-        
+
         const updatedDetails = {
             ...userDetails,
             [name]: value,
@@ -155,13 +155,13 @@ const GetQuotationModal = () => {
             // Add product to selectedProducts
             setSelectedProducts((prev) => {
                 const newSelected = [...prev, productId];
-                
+
                 // Set initial quantity to 1 if not already set
                 if (!productQuantities[productId]) {
                     const updatedQuantities = { ...productQuantities, [productId]: 1 };
                     setProductQuantities(updatedQuantities);
                 }
-                
+
                 return newSelected;
             });
         } else {
@@ -250,7 +250,7 @@ const GetQuotationModal = () => {
             key: "quantity",
             width: 150,
             render: (_, product) => (
-                <div style={{ display: "flex", alignItems: "center",flexDirection:"column" }}>
+                <div style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
                     <div style={{ display: "flex", alignItems: "center" }}>
                         <button
                             onClick={() => {
@@ -320,7 +320,7 @@ const GetQuotationModal = () => {
                             +
                         </button>
                     </div>
-                    <div style={{ fontSize: "12px", color: "#8c8c8c", marginTop: "2px" }}>Max quantity: 30</div>
+                    {/* <div style={{ fontSize: "12px", color: "#8c8c8c", marginTop: "2px" }}>Max quantity: 30</div> */}
                 </div>
             ),
         },
@@ -476,7 +476,7 @@ const GetQuotationModal = () => {
                                 onChange={handleInputChange}
                                 onKeyDown={(e) => {
                                     // Allow letters, spaces, apostrophes, hyphens, and navigation keys
-                                    if (!/[a-zA-Z\s'\-]/.test(e.key) && 
+                                    if (!/[a-zA-Z\s'\-]/.test(e.key) &&
                                         !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter'].includes(e.key)) {
                                         e.preventDefault();
                                     }
@@ -700,7 +700,7 @@ const GetQuotationModal = () => {
                     // Merge new products with already selected ones
                     setSelectedProducts((prev) => {
                         const merged = [...new Set([...prev, ...tempSelectedProducts])];
-                        
+
                         // Initialize quantities and update productQuantities state
                         setProductQuantities((prevQuantities) => {
                             const updatedQuantities = { ...prevQuantities };
@@ -711,7 +711,7 @@ const GetQuotationModal = () => {
                             });
                             return updatedQuantities;
                         });
-                        
+
                         return merged;
                     });
 

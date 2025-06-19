@@ -61,7 +61,7 @@
   top: 0px;
   width: 100%;
   z-index: 4;
-  pointer-events: none;
+  /* pointer-events: none; */
   transition: 0.7s;
 }
 
@@ -131,7 +131,7 @@
 }
 
 .Title {
-  cursor: pointer;
+  /* cursor: pointer; */
   z-index: 1000;
   text-align: center;
   visibility: visible;

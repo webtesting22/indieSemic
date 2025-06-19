@@ -32,6 +32,14 @@ import { GiIndiaGate } from "react-icons/gi";
 import { FaIndianRupeeSign } from "react-icons/fa6";
 
 import ContactHome from "../../Components/ContactHome/ContactHome";
+
+// Swiper imports
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 const { TabPane } = Tabs;
 const SeparateProductPage = () => {
     const { products, addToCart, cartItems, fetchProducts } = useContext(ProductContext);
@@ -695,61 +703,106 @@ const SeparateProductPage = () => {
                                                     <div className="TabDescriptionContainer">
                                                         <div className="related-products-section">
                                                             <h3 className="related-title">You might also like</h3>
-                                                            <Row gutter={[24, 24]}>
-                                                                {products
-                                                                    .filter((related) => {
-                                                                        // Filter out the current product
-                                                                        if (related._id === product?._id) return false;
-                                                                        
-                                                                        // Get current product categories (handle both array and string)
-                                                                        const currentProductCategories = Array.isArray(product?.category) 
-                                                                            ? product.category 
-                                                                            : product?.category ? [product.category] : [];
-                                                                        
-                                                                        // Get related product categories (handle both array and string)
-                                                                        const relatedProductCategories = Array.isArray(related.category) 
-                                                                            ? related.category 
-                                                                            : related.category ? [related.category] : [];
-                                                                        
-                                                                        // Check if there's any category overlap
-                                                                        return currentProductCategories.some(cat => 
-                                                                            relatedProductCategories.includes(cat)
-                                                                        );
-                                                                    })
-                                                                    .slice(0, 8) // Limit to 8 related products
-                                                                    .map((related, idx) => (
-                                                                    <Col key={idx} lg={6} md={8} sm={24} xs={24} style={{ width: "100%" }}>
-                                                                        <Link
-                                                                            to={`/product/${related._id}`}
-                                                                            onClick={() => window.scrollTo(0, 0)}
-                                                                            className="related-product-card-enhanced"
-                                                                        >
-                                                                            <div className="related-image-container">
-                                                                                <img
-                                                                                    src={related.mainImages?.[0] || "default-image.jpg"}
-                                                                                    alt={related.title}
-                                                                                    className="related-product-image"
-                                                                                />
-                                                                                <div className="related-overlay">
-                                                                                    <span>View Product</span>
+                                                            
+                                                            {/* Desktop Grid Layout */}
+                                                            <div className="desktop-related-products">
+                                                                <Row gutter={[24, 24]}>
+                                                                    {products
+                                                                        .filter((related) => {
+                                                                            // Only filter out the current product
+                                                                            return related._id !== product?._id;
+                                                                        })
+                                                                        .slice(0, 20) // Limit to 20 related products
+                                                                        .map((related, idx) => (
+                                                                        <Col key={idx} lg={6} md={8} sm={24} xs={24} style={{ width: "100%" }}>
+                                                                            <Link
+                                                                                to={`/product/${related._id}`}
+                                                                                onClick={() => window.scrollTo(0, 0)}
+                                                                                className="related-product-card-enhanced"
+                                                                            >
+                                                                                <div className="related-image-container">
+                                                                                    <img
+                                                                                        src={related.mainImages?.[0] || "default-image.jpg"}
+                                                                                        alt={related.title}
+                                                                                        className="related-product-image"
+                                                                                    />
+                                                                                    <div className="related-overlay">
+                                                                                        <span>View Product</span>
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div className="related-product-info">
-                                                                                <h4 className="related-product-title">{related.title}</h4>
-                                                                                <div className="related-price-section">
-                                                                                    <span style={{ textDecoration: "line-through", color: "#6c757d" }}>₹{related.price ? (related.price + 100).toLocaleString() : '-'}</span>
+                                                                                <div className="related-product-info">
+                                                                                    <h4 className="related-product-title">{related.title}</h4>
+                                                                                    <div className="related-price-section">
+                                                                                        <span style={{ textDecoration: "line-through", color: "#6c757d" }}>₹{related.price ? (related.price + 100).toLocaleString() : '-'}</span>
 
-                                                                                    <span className="related-price">₹{related.price?.toLocaleString()}</span>
-                                                                                    {/* <div className="related-rating">
-                                                                                    <FaStar className="star-mini" />
-                                                                                    <span>4.5</span>
-                                                                                </div> */}
+                                                                                        <span className="related-price">₹{related.price?.toLocaleString()}</span>
+                                                                                        {/* <div className="related-rating">
+                                                                                        <FaStar className="star-mini" />
+                                                                                        <span>4.5</span>
+                                                                                    </div> */}
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                        </Link>
-                                                                    </Col>
-                                                                ))}
-                                                            </Row>
+                                                                            </Link>
+                                                                        </Col>
+                                                                    ))}
+                                                                </Row>
+                                                            </div>
+
+                                                            {/* Mobile Swiper Carousel */}
+                                                            <div className="mobile-related-products">
+                                                                <Swiper
+                                                                    modules={[Autoplay, Navigation, Pagination]}
+                                                                    spaceBetween={16}
+                                                                    slidesPerView={1.2}
+                                                                    navigation={true}
+                                                                    pagination={{ clickable: true }}
+                                                                    autoplay={{
+                                                                        delay: 2000,
+                                                                        disableOnInteraction: false,
+                                                                    }}
+                                                                    loop={true}
+                                                                    className="related-products-swiper"
+                                                                >
+                                                                    {products
+                                                                        .filter((related) => {
+                                                                            // Only filter out the current product
+                                                                            return related._id !== product?._id;
+                                                                        })
+                                                                        .slice(0, 20) // Limit to 20 related products
+                                                                        .map((related, idx) => (
+                                                                        <SwiperSlide key={idx}>
+                                                                            <Link
+                                                                                to={`/product/${related._id}`}
+                                                                                onClick={() => window.scrollTo(0, 0)}
+                                                                                className="related-product-card-enhanced"
+                                                                            >
+                                                                                <div className="related-image-container">
+                                                                                    <img
+                                                                                        src={related.mainImages?.[0] || "default-image.jpg"}
+                                                                                        alt={related.title}
+                                                                                        className="related-product-image"
+                                                                                    />
+                                                                                    <div className="related-overlay">
+                                                                                        <span>View Product</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div className="related-product-info">
+                                                                                    <h4 className="related-product-title">{related.title}</h4>
+                                                                                    <div className="related-price-section">
+                                                                                        <span style={{ textDecoration: "line-through", color: "#6c757d" }}>₹{related.price ? (related.price + 100).toLocaleString() : '-'}</span>
+
+                                                                                        <span className="related-price">₹{related.price?.toLocaleString()}</span>
+                                                                                        {/* <div className="related-rating">
+                                                                                        <FaStar className="star-mini" />
+                                                                                        <span>4.5</span>
+                                                                                    </div> */}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </Link>
+                                                                        </SwiperSlide>
+                                                                    ))}
+                                                                </Swiper>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 ) : (

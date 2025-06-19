@@ -415,6 +415,8 @@
   height: 50px;
   width: auto;
   object-fit: contain;
+  mix-blend-mode: multiply !important;
+  filter: contrast(1);
 }
 
 @keyframes scroll {

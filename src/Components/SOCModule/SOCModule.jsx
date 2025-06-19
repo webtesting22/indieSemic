@@ -19,15 +19,15 @@ const SOCModule = () => {
 
     const microcontrollerFeatures = [
         {
-            title: "Single-core 32-bit RISC-V MCU – Successfully taped out",
+            title: "Single-core 32-bit RISC-V based MCU",
             icon: <IoHardwareChip />,
         },
         {
-            title: "Designed for embedded, low-power smart systems",
+            title: "Successfully taped out our first iteration",
             icon: <IoFlash />,
         },
         {
-            title: "Developed with a lean, agile silicon team in India",
+            title: "Ongoing development for defence and medical applications",
             icon: <IoCog />,
         },
         {
@@ -99,13 +99,14 @@ const SOCModule = () => {
                             India's Silicon Breakthrough: IndieSemic's RISC-V Revolution
                         </h1>
                         <p className="soc-hero-subtitle">
-                            From microcontroller to multi-core AI—empowering automotive and surveillance systems with homegrown precision.
+                            From microcontroller to multi-core AI—empowering industries with homegrown precision.
                         </p>
                         {/* <button className="soc-cta-button">Get in Touch</button> */}
                     </div>
                     <div className="soc-hero-info">
-                        <h2>Transforming Businesses with Cutting-Edge Solutions</h2>
-                        <p>Leading technology company specializing in innovative semiconductor solutions and IT services</p>
+                        <h2>Transforming Businesses with Cutting-Edge Solutions (OK)</h2>
+                        <p>Leading technology company specializing in innovative semiconductor solutions.
+                        </p>
                     </div>
                 </div>
             </section>
@@ -115,7 +116,7 @@ const SOCModule = () => {
                 <div className="soc-container">
                     <div className="soc-content-block">
                         <h2 className="soc-section-heading">
-                            Engineered at the Edge—India's Own RISC-V Microcontroller
+                            India’s own RISC-V based controller for Defence, Medical, Robotics, & UAVs.
                         </h2>
                         <Row gutter={[32, 32]} align="middle">
                             <Col lg={12} md={24}>

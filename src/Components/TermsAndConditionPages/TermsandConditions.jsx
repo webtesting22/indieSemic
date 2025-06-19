@@ -25,7 +25,7 @@ const TermsandConditions = () => {
                         <li>Any dispute arising out of use of our website and/or purchase with us and/or any engagement with us is subject to the laws of India .</li>
                         <li>We, shall be under no liability whatsoever in respect of any loss or damage arising directly or indirectly out of the decline of authorization for any Transaction, on Account of the Cardholder having exceeded the preset limit mutually agreed by us with our acquiring bank from time to time</li>
                     </ul>
-                    <p><b><i>Disclaimer: The above content is created at INDIESEMIC PRIVATE LIMITED's sole discretion. Razorpay shall not be liable for any content provided here and shall not be responsible for any claims and liability that may arise due to merchant’s non-adherence to it.</i></b></p>
+                    {/* <p><b><i>Disclaimer: The above content is created at INDIESEMIC PRIVATE LIMITED's sole discretion. Razorpay shall not be liable for any content provided here and shall not be responsible for any claims and liability that may arise due to merchant’s non-adherence to it.</i></b></p> */}
                 </div>
             </div>
         </>

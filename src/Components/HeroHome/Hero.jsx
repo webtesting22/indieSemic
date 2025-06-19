@@ -18,13 +18,13 @@ const Hero = () => {
 
     const CarousalImages = [
         {
-            image: isMobile ? MobileBanner : "/Images/HomePageBanner.jpg",
+            image: "https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/1. Modules.png",
         },
         {
-            image: "/Images/BannersAndImages/1.jpg",
+            image: "https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/2. SiP.png",
         },
         {
-            image: "/Images/BannersAndImages/2.jpg"
+            image: "https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/3. SoC.gif"
         }
        
     ];
