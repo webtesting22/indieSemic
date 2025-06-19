@@ -49,7 +49,7 @@ const PrivacyPolicy = () => {
                     <p>If you believe that any information we are holding on you is incorrect or incomplete, please write to A-1101, B-1101, The First, B/H Keshavbaug Party Plot Ahmedabad GUJARAT 380015 . or contact us at or as soon as possible. We will promptly correct any information found to be incorrect.
 
                     </p>
-                    <p><b><i>Disclaimer: The above content is created at INDIESEMIC PRIVATE LIMITED's sole discretion. Razorpay shall not be liable for any content provided here and shall not be responsible for any claims and liability that may arise due to merchant’s non-adherence to it.</i></b></p>
+                    {/* <p><b><i>Disclaimer: The above content is created at INDIESEMIC PRIVATE LIMITED's sole discretion. Razorpay shall not be liable for any content provided here and shall not be responsible for any claims and liability that may arise due to merchant’s non-adherence to it.</i></b></p> */}
                 </div>
             </div>
         </>
