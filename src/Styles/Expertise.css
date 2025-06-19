@@ -408,7 +408,7 @@
 .MarqueeContent {
   display: flex;
   animation: scroll 10s linear infinite;
-  gap: 150px;
+  gap: 50px;
 }
 
 .MarqueeContent img {
