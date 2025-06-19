@@ -50,7 +50,45 @@ const ContactHome = () => {
 
     const handleInputChange = (e) => {
         const { id, value } = e.target;
-        setFormValues((prev) => ({ ...prev, [id]: value }));
+        
+        // Special validation for different field types
+        let processedValue = value;
+        
+        // Phone number validation - only allow numbers and max 10 digits
+        if (id === 'contact') {
+            // Remove any non-numeric characters
+            processedValue = value.replace(/\D/g, '');
+            // Limit to 10 digits
+            if (processedValue.length > 10) {
+                processedValue = processedValue.slice(0, 10);
+            }
+        }
+        
+        // Name validation - only allow letters, spaces, and common name characters
+        if (id === 'name') {
+            // Only allow letters, spaces, apostrophes, hyphens, and dots
+            processedValue = value.replace(/[^a-zA-Z\s'\-\.]/g, '');
+        }
+        
+        // Email validation - basic format check
+        if (id === 'email') {
+            // Allow standard email characters
+            processedValue = value.replace(/[^a-zA-Z0-9@._%+-]/g, '');
+        }
+        
+        // Message validation - allow letters, numbers, spaces, and common punctuation
+        if (id === 'message') {
+            // Allow letters, numbers, spaces, and common punctuation
+            processedValue = value.replace(/[^a-zA-Z0-9\s.,!?@#$%&*()_+\-=\[\]{};':"\\|<>\/]/g, '');
+        }
+        
+        // Other country validation - allow letters, spaces, and common characters
+        if (id === 'otherCountry') {
+            processedValue = value.replace(/[^a-zA-Z\s'\-]/g, '');
+        }
+        
+        setFormValues((prev) => ({ ...prev, [id]: processedValue }));
+        
         // Clear error when user starts typing
         if (formErrors[id]) {
             setFormErrors((prev) => ({ ...prev, [id]: '' }));
@@ -66,17 +104,61 @@ const ContactHome = () => {
 
     const validateForm = () => {
         const errors = {};
-        if (!formValues.name.trim()) errors.name = "Name is required";
-        if (!formValues.email.trim()) errors.email = "Email is required";
-        else if (!/\S+@\S+\.\S+/.test(formValues.email)) errors.email = "Invalid email format";
-        if (!formValues.contact.trim()) errors.contact = "Contact is required";
-        else if (!/^\d{10}$/.test(formValues.contact)) errors.contact = "Contact must be 10 digits";
-        if (!formValues.country) errors.country = "Country is required";
-        if (formValues.country === "Others" && !formValues.otherCountry.trim())
+        
+        // Name validation
+        if (!formValues.name.trim()) {
+            errors.name = "Name is required";
+        } else if (formValues.name.trim().length < 2) {
+            errors.name = "Name must be at least 2 characters long";
+        } else if (formValues.name.trim().length > 50) {
+            errors.name = "Name must be less than 50 characters";
+        } else if (!/^[a-zA-Z\s'\-\.]+$/.test(formValues.name.trim())) {
+            errors.name = "Name can only contain letters, spaces, apostrophes, hyphens, and dots";
+        }
+        
+        // Email validation
+        if (!formValues.email.trim()) {
+            errors.email = "Email is required";
+        } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formValues.email.trim())) {
+            errors.email = "Please enter a valid email address";
+        } else if (formValues.email.trim().length > 100) {
+            errors.email = "Email must be less than 100 characters";
+        }
+        
+        // Contact validation
+        if (!formValues.contact.trim()) {
+            errors.contact = "Contact number is required";
+        } else if (!/^\d{10}$/.test(formValues.contact.trim())) {
+            errors.contact = "Contact number must be exactly 10 digits";
+        }
+        
+        // Country validation
+        if (!formValues.country) {
+            errors.country = "Country is required";
+        }
+        
+        // Other country validation
+        if (formValues.country === "Others" && !formValues.otherCountry.trim()) {
             errors.otherCountry = "Please specify your country";
-        if (formValues.country === "India" && !formValues.state.trim())
-            errors.state = "State is required";
-        if (!formValues.message.trim()) errors.message = "Message is required";
+        } else if (formValues.country === "Others" && formValues.otherCountry.trim().length < 2) {
+            errors.otherCountry = "Country name must be at least 2 characters long";
+        } else if (formValues.country === "Others" && formValues.otherCountry.trim().length > 50) {
+            errors.otherCountry = "Country name must be less than 50 characters";
+        }
+        
+        // State validation for India
+        if (formValues.country === "IN" && !formValues.state.trim()) {
+            errors.state = "State is required for India";
+        }
+        
+        // Message validation
+        if (!formValues.message.trim()) {
+            errors.message = "Message is required";
+        } else if (formValues.message.trim().length < 10) {
+            errors.message = "Message must be at least 10 characters long";
+        } else if (formValues.message.trim().length > 1000) {
+            errors.message = "Message must be less than 1000 characters";
+        }
 
         setFormErrors(errors);
         return Object.keys(errors).length === 0;
@@ -225,8 +307,18 @@ const ContactHome = () => {
                                         error={!!formErrors.name}
                                         helperText={formErrors.name}
                                         onChange={handleInputChange}
+                                        onKeyDown={(e) => {
+                                            // Allow letters, spaces, apostrophes, hyphens, dots, and navigation keys
+                                            if (!/[a-zA-Z\s'\-\.]/.test(e.key) &&
+                                                !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter'].includes(e.key)) {
+                                                e.preventDefault();
+                                            }
+                                        }}
                                         className="form-field"
                                         fullWidth
+                                        inputProps={{
+                                            maxLength: 50
+                                        }}
                                     />
                                 </div>
 
@@ -240,8 +332,18 @@ const ContactHome = () => {
                                         error={!!formErrors.email}
                                         helperText={formErrors.email}
                                         onChange={handleInputChange}
+                                        onKeyDown={(e) => {
+                                            // Allow email characters and navigation keys
+                                            if (!/[a-zA-Z0-9@._%+-]/.test(e.key) &&
+                                                !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter'].includes(e.key)) {
+                                                e.preventDefault();
+                                            }
+                                        }}
                                         className="form-field"
                                         fullWidth
+                                        inputProps={{
+                                            maxLength: 100
+                                        }}
                                     />
                                     <TextField
                                         id='contact'
@@ -251,8 +353,23 @@ const ContactHome = () => {
                                         error={!!formErrors.contact}
                                         helperText={formErrors.contact}
                                         onChange={handleInputChange}
+                                        onKeyDown={(e) => {
+                                            // Only allow numbers and navigation keys
+                                            if (!/[\d]/.test(e.key) &&
+                                                !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter'].includes(e.key)) {
+                                                e.preventDefault();
+                                            }
+                                            // Prevent typing if already at max length (10 digits) and not a navigation key
+                                            if (formValues.contact.length >= 10 && /[\d]/.test(e.key)) {
+                                                e.preventDefault();
+                                            }
+                                        }}
                                         className="form-field"
                                         fullWidth
+                                        inputProps={{
+                                            maxLength: 10,
+                                            pattern: "[0-9]*"
+                                        }}
                                     />
                                 </div>
 
@@ -304,10 +421,20 @@ const ContactHome = () => {
                                             variant="outlined"
                                             value={formValues.otherCountry}
                                             onChange={handleInputChange}
+                                            onKeyDown={(e) => {
+                                                // Allow letters, spaces, apostrophes, hyphens, and navigation keys
+                                                if (!/[a-zA-Z\s'\-]/.test(e.key) &&
+                                                    !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter'].includes(e.key)) {
+                                                    e.preventDefault();
+                                                }
+                                            }}
                                             error={!!formErrors.otherCountry}
                                             helperText={formErrors.otherCountry}
                                             className="form-field"
                                             fullWidth
+                                            inputProps={{
+                                                maxLength: 50
+                                            }}
                                         />
                                     </div>
                                 )}
@@ -321,10 +448,20 @@ const ContactHome = () => {
                                         rows={4}
                                         value={formValues.message}
                                         onChange={handleInputChange}
+                                        onKeyDown={(e) => {
+                                            // Allow letters, numbers, spaces, and common punctuation
+                                            if (!/[a-zA-Z0-9\s.,!?@#$%&*()_+\-=\[\]{};':"\\|<>\/]/.test(e.key) &&
+                                                !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter'].includes(e.key)) {
+                                                e.preventDefault();
+                                            }
+                                        }}
                                         error={!!formErrors.message}
                                         helperText={formErrors.message}
                                         className="form-field"
                                         fullWidth
+                                        inputProps={{
+                                            maxLength: 1000
+                                        }}
                                     />
                                 </div>
 
