@@ -116,7 +116,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 2.5rem;
   width: 50%;
   /* overflow: hidden; */
 }
@@ -192,7 +192,9 @@
   font-size: 23px;
 }
 
-
+#AchivementContainer{
+  overflow: hidden;
+}
 #AdjustAchivementContainer {
   display: flex;
   align-items: center;
