@@ -103,8 +103,11 @@ const SeparateProductPage = () => {
     }, [isProductInCart]);
 
     const handleQuantityChange = (value) => {
-        if (value > 30) {
-            message.error("Quantity cannot exceed 30!");
+        // Determine max quantity based on product type
+        const maxQuantity = product?.title?.startsWith('EVK') ? 10 : 20;
+        
+        if (value > maxQuantity) {
+            message.error(`Quantity cannot exceed ${maxQuantity}!`);
             return;
         }
         setQuantity(value);
@@ -480,7 +483,10 @@ const SeparateProductPage = () => {
                                         <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "16px" }}>
                                             <div style={{ display: "flex", alignItems: "center" }}>
                                                 <button
-                                                    onClick={() => handleQuantityChange(Math.max(1, quantity - 1))}
+                                                    onClick={() => {
+                                                        const maxQuantity = product?.title?.startsWith('EVK') ? 10 : 20;
+                                                        handleQuantityChange(Math.max(1, quantity - 1));
+                                                    }}
                                                     style={{
                                                         border: "1px solid #eaeaea",
                                                         background: "none",
@@ -495,7 +501,7 @@ const SeparateProductPage = () => {
                                                 </button>
                                                 <InputNumber
                                                     min={1}
-                                                    max={30}
+                                                    max={product?.title?.startsWith('EVK') ? 10 : 20}
                                                     value={quantity}
                                                     onChange={handleQuantityChange}
                                                     style={{
@@ -506,7 +512,10 @@ const SeparateProductPage = () => {
                                                     controls={false}
                                                 />
                                                 <button
-                                                    onClick={() => handleQuantityChange(Math.min(30, quantity + 1))}
+                                                    onClick={() => {
+                                                        const maxQuantity = product?.title?.startsWith('EVK') ? 10 : 20;
+                                                        handleQuantityChange(Math.min(maxQuantity, quantity + 1));
+                                                    }}
                                                     style={{
                                                         border: "1px solid #eaeaea",
                                                         background: "none",
@@ -520,7 +529,9 @@ const SeparateProductPage = () => {
                                                     +
                                                 </button>
                                             </div>
-                                            {/* <div style={{ fontSize: "12px", color: "#8c8c8c" }}>Max quantity: 30</div> */}
+                                            <div style={{ fontSize: "12px", color: "#8c8c8c" }}>
+                                                Max quantity: {product?.title?.startsWith('EVK') ? '10' : '20'}
+                                            </div>
                                         </div>
 
                                         <div className="primary-actions">
@@ -719,7 +730,7 @@ const SeparateProductPage = () => {
                                                                 <Row gutter={[24, 24]}>
                                                                     {products
                                                                         .filter((related) => related._id !== product?._id)
-                                                                        .slice(0, 20) // Limit to 20 products
+                                                                        .slice(0, 50) // Limit to 20 products
                                                                         .map((related, idx) => (
                                                                             <Col key={idx} lg={6} md={8} sm={24} xs={24} style={{ width: "100%" }}>
                                                                                 <Link

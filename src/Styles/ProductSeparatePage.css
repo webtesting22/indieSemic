@@ -1369,11 +1369,11 @@
     border-radius: 0 10px 10px 0;
     padding: 15px 8px;
     cursor: pointer;
-    z-index: 999;
+    /* z-index: 999; */
     font-size: 16px;
     transition: all 0.3s ease;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 555555555;
+    z-index: 3;
     /* opacity: 0;
     visibility: hidden; */
   }

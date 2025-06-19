@@ -273,7 +273,6 @@ const GetQuotationModal = () => {
                         <Input
                             type="number"
                             min="1"
-                            max="30"
                             step="1"
                             value={productQuantities[product._id] || ""}
                             onChange={(e) => {
@@ -282,7 +281,7 @@ const GetQuotationModal = () => {
                                     handleQuantityChange(product._id, "");
                                 } else if (/^\d*$/.test(value)) {
                                     const numValue = parseInt(value);
-                                    if (numValue <= 30) {
+                                    if (numValue > 0) {
                                         handleQuantityChange(product._id, value);
                                     }
                                 }
@@ -320,7 +319,6 @@ const GetQuotationModal = () => {
                             +
                         </button>
                     </div>
-                    {/* <div style={{ fontSize: "12px", color: "#8c8c8c", marginTop: "2px" }}>Max quantity: 30</div> */}
                 </div>
             ),
         },
