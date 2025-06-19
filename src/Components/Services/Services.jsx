@@ -23,10 +23,10 @@ const Services = () => {
             content: "Need something beyond our modules? We offer full-spectrum design services—from schematic layout to PCBA—for embedded products. Whether it's custom form factors, additional interfaces, firmware development, if it's based on our modules, we've got you covered.",
             pointsTitle: "What we offer:",
             offerPoints: [
-                "Hardware engineering",
-                "Embedded engineering",
-                "Mechanical design Engineering",
-                "Firmware engineering",
+                "Hardware Engineering",
+                "Embedded Engineering",
+                "Mechanical Design Engineering",
+                "Firmware Engineering",
                 "Manufacturing"
             ],
             gradient: "linear-gradient(135deg, rgba(63, 125, 196, 0.1) 0%, rgba(74, 144, 226, 0.05) 100%)",
@@ -48,7 +48,6 @@ const Services = () => {
 
     return (
         <>
-        {/* <img src="https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/Screenshot%202025-06-19%20at%2011.49.05%E2%80%AFAM.png" alt="" /> */}
             <div className="services-module">
                 
                 <section className="services-section">
