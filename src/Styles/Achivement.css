@@ -45,6 +45,7 @@
   justify-content: center;
   position: relative;
   border-radius: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .BoxEdit img {
@@ -228,6 +229,8 @@
 
   .BoxEdit {
     align-items: center;
+    border: 1px solid rgb(205, 205, 205);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
 
   .BoxEdit img {
@@ -236,7 +239,7 @@
 
   .ButtonContainer {
     overflow: hidden;
-    display: block;
+    display: none;
   }
 
   #CardColumns {
@@ -284,6 +287,7 @@
     /* top: 30%; */
     width: 100%;
     z-index: 4;
+    display: none;
   }
 
   .BoxEdit img {

@@ -435,8 +435,8 @@
 
 @media (max-width: 768px) {
   .MarqueeContent {
-    gap: 40px;
-    animation-duration: 15s;
+    gap: 70px;
+    animation-duration: 50s;
   }
   
   .MarqueeContent img {
