@@ -22,7 +22,7 @@ const HomeRoutes = () => {
     };
     return (
         <>
-            {showLoader && (
+            {/* {showLoader && (
                 <div className="video-loader-container" style={{ boxShadow: "none" }}>
                     <video
                         className="loader-video"
@@ -34,7 +34,7 @@ const HomeRoutes = () => {
                         style={{ boxShadow: "none", transform: "unset" }}
                     >
                         <source src="/Images/HomePageLoaderVideoNew.mp4" type="video/mp4" />
-                        {/* Fallback if video doesn't load */}
+                       
                         <div className="video-fallback">
                             <div className="fallback-loader">
                                 <div className="spinner"></div>
@@ -43,8 +43,9 @@ const HomeRoutes = () => {
                         </div>
                     </video>
                 </div>
-            )}
-            <div className={`main-content ${showLoader ? 'content-hidden' : 'content-visible'}`}>
+            )} */}
+            <div className="main-content">
+            {/* ${showLoader ? 'content-hidden' : 'content-visible'}` */}
                 <ScrollTop style={{ zIndex: "1000000", backgroundColor: 'black' }} />
                 <Hero />
                 <AboutCompany />

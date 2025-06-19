@@ -47,7 +47,8 @@ const ExpertiseCards = () => {
     ];
     return (
         <div className='section_Padding' id='ScrollingAnimation'>
-
+<hr style={{height:"2px",color:"rgb(74, 144, 226)",opacity:"1"}}/>
+<br />
             <div className='StickyComponent'>
                 <div className="DesignedContainer" id='Target'>
                     <h1 style={{ textAlign: "left" }}><span style={{ color: "rgb(74, 144, 226)" }}>Revolutionizing Technology</span> with cutting-edge chip design</h1>
