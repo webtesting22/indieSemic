@@ -64,7 +64,7 @@ const Achivement = () => {
         "./Images/MarqueeLogos/6.png",
         "./Images/MarqueeLogos/7.png",
     ]
-    
+
     // Create a seamless loop by duplicating the logos multiple times
     const repeatedLogos = [...MarqueeTagData, ...MarqueeTagData, ...MarqueeTagData, ...MarqueeTagData, ...MarqueeTagData];
 
@@ -94,87 +94,97 @@ const Achivement = () => {
                     </div>
                 </div>
                 <div id="AdjustAchivementContainer">
-                    <div className="WidthContainer">
-                        <div className="DesignedContainer">
-                            <h1 data-aos="fade-up"><span style={{ color: "rgb(74, 144, 226)" }}>Technology  </span>Partners </h1>
-                            {/* <p data-aos="fade-up">Shaping the Future of Technology Through Groundbreaking Design and Innovation.</p> */}
-                        </div>
+    {/* Left Side - Heading */}
+    <div className="WidthContainer">
+        <div className="DesignedContainer">
+            <h1 data-aos="fade-up">
+                <span style={{ color: "rgb(74, 144, 226)" }}>Technology  </span>
+                Partners 
+            </h1>
+            {/* <p data-aos="fade-up">Shaping the Future of Technology Through Groundbreaking Design and Innovation.</p> */}
+        </div>
+    </div>
+
+    {/* Right Side - Cards */}
+    <div id="CardColumns">
+        {/* First Card - SoC */}
+        <div data-aos="fade-right" data-aos-duration="1000">
+            <div className="BoxEdit">
+                <div className="blackoverlay"></div>
+                
+                <div className="Title">
+                    {/* <h1>FLIP CHIP SOC</h1> */}
+                    {/* <h1>Nordic<br/>Semiconductor</h1> */}
+                </div>
+                
+                <div className="ButtonContainer">
+                    <button 
+                        data-aos="fade-left"
+                        data-aos-duration="1500">
+                        Know More
+                        <ArrowRightAltIcon />
+                    </button>
+                </div>
+                
+                <div className="Content">
+                    <h1>SoC</h1>
+                    <div>
+                        <h2>The Building Block of Modern Technology</h2>
+                        <p>Semiconductors are materials with electrical conductivity between that of a conductor and an insulator, making them essential in modern electronics.</p>
                     </div>
-                    <div id="CardColumns">
-                        <div data-aos="fade-right" data-aos-duration="1000">
-                            <div className="BoxEdit"  >
+                </div>
 
-                                <div className="blackoverlay">
+                <img 
+                    src="/Images/BannersAndImages/3.png"
+                    alt=""
+                    style={{
+                        transform: `translateY(${offsetY * 0.1}px)`,
+                        cursor: "pointer"
+                    }} 
+                />
+            </div>
+        </div>
 
-                                </div>
-                                <div className="Title" 
-                                // onClick={() => handleImageClick(AlternateBack)} // Show alternate image in modal
-                                >
-                                    {/* <h1>FLIP CHIP SOC</h1> */}
-                                    {/* <h1>Nordic<br/>Semiconductor</h1> */}
-                                </div>
-                                <div className="ButtonContainer">
-                                    <button data-aos="fade-left"
-                                        // onClick={() => handleImageClick(AlternateBack)} // Show alternate image in modal
-                                        data-aos-duration="1500">
+        {/* Second Card - RF Modules */}
+        <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+            <div className="BoxEdit">
+                <div className="blackoverlay"></div>
+                
+                <div className="Title" onClick={() => handleImageClick(AlternateBack2)}>
+                    {/* <h1>Semtech </h1> */}
+                </div>
+                
+                <div className="ButtonContainer">
+                    <button 
+                        data-aos="fade-left"
+                        onClick={() => handleImageClick(AlternateBack2)}
+                        data-aos-duration="1500">
+                        Know More
+                        <ArrowRightAltIcon />
+                    </button>
+                </div>
+                
+                <div className="Content">
+                    <h1>RF MODULES</h1>
+                    <div>
+                        <h2>The Building Block of Modern Technology</h2>
+                        <p>Semiconductors are materials with electrical conductivity between that of a conductor and an insulator, making them essential in modern electronics.</p>
+                    </div>
+                </div>
 
-                                        Know More
-                                        <ArrowRightAltIcon />
-                                    </button>
-                                </div>
-                                <div className="Content">
-                                    <h1 >SoC </h1>
-                                    <div>
-                                        <h2>The Building Block of Modern Technology</h2>
-                                        <p>Semiconductors are materials with electrical conductivity between that of a conductor and an insulator, making them essential in modern electronics.</p>
-                                    </div>
-                                </div>
-
-                                <img src="/Images/BannersAndImages/3.png" // Original image
-                                    alt=""
-                                    // onClick={() => handleImageClick(AlternateBack)} // Show alternate image in modal
-                                    style={{
-                                        transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed with the multiplier
-                                        cursor: "pointer"
-                                    }} />
-                            </div>
-                        </div>
-                        <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                            <div className="BoxEdit" >
-                                <div className="blackoverlay">
-
-                                </div>
-                                <div className="Title" 
-                                onClick={() => handleImageClick(AlternateBack2)} >
-                                    {/* <h1>Semtech </h1> */}
-                                </div>
-                                <div className="ButtonContainer">
-                                    <button data-aos="fade-left"
-                                        onClick={() => handleImageClick(AlternateBack2)} // Show alternate image in modal
-                                        data-aos-duration="1500">
-
-                                        Know More
-                                        <ArrowRightAltIcon />
-                                    </button>
-                                </div>
-                                <div className="Content">
-                                    <h1>RF MODULES</h1>
-                                    <div>
-                                        <h2>The Building Block of Modern Technology</h2>
-                                        <p>Semiconductors are materials with electrical conductivity between that of a conductor and an insulator, making them essential in modern electronics.</p>
-                                    </div>
-                                </div>
-                                <img src="/Images/BannersAndImages/4.png" // Original image
-
-                                    // onClick={() => handleImageClick(AlternateBack2)} // Show alternate image in modal
-                                    alt="" style={{
-                                        transform: `translateY(${offsetY * 0.1}px)`, // Adjust speed with the multiplier
-                                        cursor: "pointer"
-                                    }} />
-                            </div>
-                        </div>
-                    </div></div>
-                <div className="FixedImage" />
+                <img 
+                    src="/Images/BannersAndImages/4.png"
+                    alt="" 
+                    style={{
+                        transform: `translateY(${offsetY * 0.1}px)`,
+                        cursor: "pointer"
+                    }} 
+                />
+            </div>
+        </div>
+    </div>
+</div>
+                {/* <div className="FixedImage" /> */}
 
                 <Modal
                     open={isModalVisible}

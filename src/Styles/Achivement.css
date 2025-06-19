@@ -45,14 +45,15 @@
   justify-content: center;
   position: relative;
   border-radius: 20px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .BoxEdit img {
   width: 100%;
-  height: 100%;
+  height: 100%; 
   object-fit: cover;
 }
+
 
 .blackoverlay {
   position: absolute;
@@ -117,7 +118,7 @@
   justify-content: center;
   gap: 1rem;
   width: 50%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 #CardColumns>div {
@@ -201,20 +202,22 @@
   .WidthContainer {
     width: 100%;
   }
-  
+
   #CardColumns {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
     width: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
   }
+
   #AdjustAchivementContainer {
     display: flex;
     align-items: center;
     flex-direction: column;
   }
+
   .Title {
     padding-top: 0;
   }
