@@ -20,7 +20,7 @@ const Services = () => {
         {
             icon: "https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/inventoryManagement/wt6HSLTbpXfHYLoXw3hk/WhatsApp Image 2025-05-16 at 10.25.03.jpeg",
             title: "Embedded Design Services",
-            content: "Need something beyond our modules? We offer full-spectrum design services—from schematic layout to PCBA—for embedded products. Whether it's custom form factors, additional interfaces, firmware development, if it's based on our modules,we've got you covered.",
+            content: "Need something beyond our modules? We offer full-spectrum design services—from schematic layout to PCBA—for embedded products. Whether it's custom form factors, additional interfaces, firmware development, if it's based on our modules, we've got you covered.",
             pointsTitle: "What we offer:",
             offerPoints: [
                 "Hardware engineering",

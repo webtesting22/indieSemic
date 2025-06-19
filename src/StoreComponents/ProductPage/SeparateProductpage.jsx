@@ -520,7 +520,7 @@ const SeparateProductPage = () => {
                                                     +
                                                 </button>
                                             </div>
-                                            <div style={{ fontSize: "12px", color: "#8c8c8c" }}>Max quantity: 30</div>
+                                            {/* <div style={{ fontSize: "12px", color: "#8c8c8c" }}>Max quantity: 30</div> */}
                                         </div>
 
                                         <div className="primary-actions">
@@ -712,17 +712,14 @@ const SeparateProductPage = () => {
                                                 ) : tab.key === "5" ? (
                                                     <div className="TabDescriptionContainer">
                                                         <div className="related-products-section">
-                                                            <h3 className="related-title">You might also like</h3>
+                                                            <h3 className="related-title">All Products</h3>
 
                                                             {/* Desktop Grid Layout */}
                                                             <div className="desktop-related-products">
                                                                 <Row gutter={[24, 24]}>
                                                                     {products
-                                                                        .filter((related) =>
-                                                                            related._id !== product?._id &&
-                                                                            related.title.startsWith(`EVK-${baseName}`)
-                                                                        )
-                                                                        .slice(0, 20) // Limit to 20 related products
+                                                                        .filter((related) => related._id !== product?._id)
+                                                                        .slice(0, 20) // Limit to 20 products
                                                                         .map((related, idx) => (
                                                                             <Col key={idx} lg={6} md={8} sm={24} xs={24} style={{ width: "100%" }}>
                                                                                 <Link
@@ -774,11 +771,8 @@ const SeparateProductPage = () => {
                                                                     className="related-products-swiper"
                                                                 >
                                                                     {products
-                                                                        .filter((related) =>
-                                                                            related._id !== product?._id &&
-                                                                            related.title.startsWith(`EVK-${baseName}`)
-                                                                        )
-                                                                        .slice(0, 20) // Limit to 20 related products
+                                                                        .filter((related) => related._id !== product?._id)
+                                                                        .slice(0, 20) // Limit to 20 products
                                                                         .map((related, idx) => (
                                                                             <SwiperSlide key={idx}>
                                                                                 <Link
