@@ -612,7 +612,7 @@
   overflow: hidden;
   white-space: nowrap;
   width: 100%;
-  background: white;
+  /* background: white; */
 }
 
 .marquee-content {

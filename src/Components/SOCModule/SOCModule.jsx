@@ -114,6 +114,19 @@ const SOCModule = () => {
             {/* Microcontroller Section */}
             <section className="soc-section backset">
                 <div className="soc-container">
+                    <div className="marquee-wrapper">
+                        <div className="marquee-content">
+                            <ul>
+                                {MarqueeDate.map((item, index) => (
+                                    <li key={index}>
+                                        {item.text}!
+                                    </li>
+                                ))}
+
+                            </ul>
+                        </div>
+                    </div>
+                    <br /><br />
                     <div className="soc-content-block">
                         <h2 className="soc-section-heading">
                             India’s own RISC-V based controller for Defence, Medical, Robotics, & UAVs.
@@ -147,18 +160,7 @@ const SOCModule = () => {
 
             {/* Vajra Project Section */}
             <section className="soc-section soc-dark-section">
-                <div className="marquee-wrapper">
-                    <div className="marquee-content">
-                        <ul>
-                            {MarqueeDate.map((item, index) => (
-                                <li key={index}>
-                                    {item.text}!
-                                </li>
-                            ))}
 
-                        </ul>
-                    </div>
-                </div>
                 <br /><br />
                 <div className="soc-container" style={{ background: "transparent" }}>
                     <div className="soc-content-block">

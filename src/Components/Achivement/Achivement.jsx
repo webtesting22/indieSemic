@@ -56,8 +56,17 @@ const Achivement = () => {
         "./Images/MarqueeLogos/5.png",
         "./Images/MarqueeLogos/6.png",
         "./Images/MarqueeLogos/7.png",
+        "./Images/MarqueeLogos/1.png",
+        "./Images/MarqueeLogos/2.png",
+        "./Images/MarqueeLogos/3.png",
+        "./Images/MarqueeLogos/4.png",
+        "./Images/MarqueeLogos/5.png",
+        "./Images/MarqueeLogos/6.png",
+        "./Images/MarqueeLogos/7.png",
     ]
-    const repeatedLogos = Array(400).fill(MarqueeTagData).flat();
+    
+    // Create a seamless loop by duplicating the logos multiple times
+    const repeatedLogos = [...MarqueeTagData, ...MarqueeTagData, ...MarqueeTagData, ...MarqueeTagData, ...MarqueeTagData];
 
     return (
         <>
@@ -70,8 +79,17 @@ const Achivement = () => {
                 <br />
                 <div className='MarqueeContainer'>
                     <div className='MarqueeContent'>
+                        {/* First set of logos */}
                         {repeatedLogos.map((item, index) => (
-                            <img key={index} src={item} alt="" />
+                            <img key={`first-${index}`} src={item} alt="" />
+                        ))}
+                        {/* Second set of logos for seamless loop */}
+                        {MarqueeTagData.map((item, index) => (
+                            <img key={`second-${index}`} src={item} alt="" />
+                        ))}
+                        {/* Third set for extra smoothness */}
+                        {MarqueeTagData.map((item, index) => (
+                            <img key={`third-${index}`} src={item} alt="" />
                         ))}
                     </div>
                 </div>
