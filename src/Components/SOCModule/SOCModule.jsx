@@ -104,7 +104,7 @@ const SOCModule = () => {
                         {/* <button className="soc-cta-button">Get in Touch</button> */}
                     </div>
                     <div className="soc-hero-info">
-                        <h2>Transforming Businesses with Cutting-Edge Solutions (OK)</h2>
+                        <h2>Transforming Businesses with Cutting-Edge Solutions</h2>
                         <p>Leading technology company specializing in innovative semiconductor solutions.
                         </p>
                     </div>

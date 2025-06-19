@@ -717,6 +717,32 @@ const GetQuotationModal = () => {
                     setTempSelectedProducts([]);
                 }}
                 width={900}
+                footer={[
+                    <Button
+                        key="ok"
+                        type="primary"
+                        onClick={() => {
+                            // Your OK logic here (copy from your onOk handler)
+                            setSelectedProducts((prev) => {
+                                const merged = [...new Set([...prev, ...tempSelectedProducts])];
+                                setProductQuantities((prevQuantities) => {
+                                    const updatedQuantities = { ...prevQuantities };
+                                    tempSelectedProducts.forEach((id) => {
+                                        if (!updatedQuantities[id]) {
+                                            updatedQuantities[id] = 1;
+                                        }
+                                    });
+                                    return updatedQuantities;
+                                });
+                                return merged;
+                            });
+                            setIsProductSelectorOpen(false);
+                            setTempSelectedProducts([]);
+                        }}
+                    >
+                        OK
+                    </Button>
+                ]}
             >
                 <Row gutter={16} style={{ marginBottom: 16 }}>
                     <Col span={12}>

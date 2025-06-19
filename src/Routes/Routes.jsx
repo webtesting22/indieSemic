@@ -31,7 +31,7 @@ const DynamicRoutes = () => {
             {!isAuthPage && <NavigationWrap />}
             <Routes>
                 <Route path="/" element={<HomeRoutes />} />
-                <Route path="/product" element={<Product />} />
+                <Route path="/iot-modules" element={<Product />} />
                 <Route path="/product/:id" element={<IndividualProduct />} />
                 <Route path="/Modules" element={<Modules />} />
                 <Route path="/socmodule" element={<SOCModule />} />
