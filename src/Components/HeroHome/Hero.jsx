@@ -18,13 +18,13 @@ const Hero = () => {
 
     const CarousalImages = [
         {
-            image: "https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/1. Modules.png",
+            image: "https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/Cutting edge RF modules (2).png",
         },
         {
-            image: "https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/2. SiP.png",
+            image: "https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/Cutting edge RF modules (1).png",
         },
         {
-            image: "https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/3. SoC.gif"
+            image: "https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/Cutting edge RF modules.png"
         }
        
     ];
