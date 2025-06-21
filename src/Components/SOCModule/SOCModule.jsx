@@ -119,7 +119,7 @@ const SOCModule = () => {
                     <div className="soc-content-block">
                         <p style={{fontSize:"30px"}}><b>Coming Soon !!</b></p>
                         <h2 className="soc-section-heading">
-                            India’s own RISC-V based controller for Defence, Medical, Robotics, & UAVs.
+                            India's own RISC-V based controller for Defence, Medical, Robotics, & UAVs.
                         </h2>
                         <Row gutter={[32, 32]} align="middle">
                             <Col lg={12} md={24}>
@@ -185,6 +185,7 @@ const SOCModule = () => {
                                         className="loader-video"
                                         autoPlay
                                         muted
+                                        loop
                                         // onEnded={handleVideoEnd}
                                         // onError={handleVideoError}
                                         playsInline
