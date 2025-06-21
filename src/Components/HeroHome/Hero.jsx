@@ -64,10 +64,10 @@ const Hero = () => {
                             clickable: true,
                         }}
                         speed={1000}
-                        autoplay={{
-                            delay: 4000,
-                            disableOnInteraction: false,
-                        }}
+                        // autoplay={{
+                        //     delay: 4000,
+                        //     disableOnInteraction: false,
+                        // }}
                         // onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
                         modules={[Autoplay, Pagination]}
                         onSlideChange={handleSlideChange}
