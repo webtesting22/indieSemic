@@ -281,6 +281,10 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
+  .imageContainer {
+    padding-right: 0rem !important;
+    height: 100%;
+  }
   .ExpertiseCards {
     margin-bottom: 3rem;
     transform: translateY(50px);

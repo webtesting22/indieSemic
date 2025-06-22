@@ -324,12 +324,12 @@ const IndieSemicProduct = () => {
                         </Col>
 
                         {/* Products Grid */}
-                        <Col lg={18} md={16} sm={24} xs={24}>
+                        <Col lg={18} md={24} sm={24} xs={24} style={{width:"100%"}}>
                             <div className="products-grid-section">
                                 {filteredProducts.length > 0 ? (
                                     <Row gutter={[24, 24]}>
                                         {filteredProducts.map((product) => (
-                                            <Col lg={8} md={12} sm={24} xs={24} key={product._id}>
+                                            <Col lg={8} md={24} sm={24} xs={24} key={product._id} style={{width:"100%"}}>
                                                 <Link
                                                     to={`/product/${product._id}`}
                                                     className="product-link-wrapper"

@@ -201,7 +201,7 @@
   align-items: center;
 }
 
-@media (max-width: 769px) {
+@media (max-width: 500px) {
   .WidthContainer {
     width: 100%;
   }

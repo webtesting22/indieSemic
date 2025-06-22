@@ -172,3 +172,14 @@
     display: none;
   }
 }
+
+
+@media (max-width: 900px) {
+  .footerLogoContainer {
+    /* background-color: white; */
+    width: 70%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}

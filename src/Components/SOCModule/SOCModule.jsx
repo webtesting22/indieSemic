@@ -175,7 +175,7 @@ const SOCModule = () => {
                         </div>
                         <Row gutter={[32, 32]} align="middle">
                             <Col lg={12} md={24} style={{ minHeight: "500px" }}>
-                                <div className="soc-image-container" style={{ height: "500px", width: "90%", borderRadius: "20px", paddingRight: "20px" }}>
+                                <div className="soc-image-container" style={{ height: "500px", width: "100%", borderRadius: "20px", paddingRight: "20px" }}>
                                     {/* <img
                                         src="https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/inventoryManagement/UBDwOQMdOlLiZ0JHGzCf/6.jpg"
                                         alt="Vajra AI Processor"
