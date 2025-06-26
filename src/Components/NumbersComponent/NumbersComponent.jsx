@@ -13,6 +13,7 @@ const NumbersComponent = () => {
         marketReady: 0,
     });
     const sectionRef = useRef(null); // Ref for detecting visibility
+    const wasInViewRef = useRef(false); // Ref to track previous state
 
     const AchivementvaluesData = [
         {
@@ -37,13 +38,14 @@ const NumbersComponent = () => {
             target: 15,
         },
     ];
+    
     useEffect(() => {
         const handleScroll = () => {
             if (sectionRef.current) {
                 const rect = sectionRef.current.getBoundingClientRect();
                 const isMobile = window.innerWidth <= 768; // Adjust breakpoint as needed
                 const offset = isMobile ? 400 : 150; // Mobile offset vs. Desktop offset
-                const wasInView = isInView;
+                const wasInView = wasInViewRef.current;
                 const currentlyInView = rect.top + offset >= 0 &&
                     rect.bottom - offset <= window.innerHeight;
 
@@ -56,6 +58,8 @@ const NumbersComponent = () => {
                     });
                 }
 
+                // Update ref and state
+                wasInViewRef.current = currentlyInView;
                 setIsInView(currentlyInView);
             }
         };
@@ -63,7 +67,8 @@ const NumbersComponent = () => {
         window.addEventListener("scroll", handleScroll);
         handleScroll(); // Initial check
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [isInView]);
+    }, []); // Remove isInView dependency to prevent infinite loop
+    
     const maxTarget = Math.max(...AchivementvaluesData.map(item => item.target));
 
     // Counter increment effect
