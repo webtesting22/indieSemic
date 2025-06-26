@@ -45,7 +45,13 @@ const Hero = () => {
         videoRefs.current.forEach((video, index) => {
             if (video) {
                 if (index === swiper.realIndex) {
-                    video.play(); // Play video in active slide
+                    // iOS Safari specific video play handling
+                    const playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(error => {
+                            console.log('Video play failed:', error);
+                        });
+                    }
                 } else {
                     video.pause(); // Pause video in other slides
                     video.currentTime = 0; // Reset video
@@ -64,10 +70,10 @@ const Hero = () => {
                             clickable: true,
                         }}
                         speed={1000}
-                        // autoplay={{
-                        //     delay: 4000,
-                        //     disableOnInteraction: false,
-                        // }}
+                        autoplay={{
+                            delay: 3000,
+                            disableOnInteraction: false,
+                        }}
                         // onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
                         modules={[Autoplay, Pagination]}
                         onSlideChange={handleSlideChange}
@@ -88,6 +94,8 @@ const Hero = () => {
                                                 loop
                                                 muted
                                                 playsInline
+                                                webkit-playsinline="true"
+                                                preload="metadata"
                                                 style={{
                                                     width: "100%",
                                                     height: "100%",

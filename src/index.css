@@ -6,6 +6,64 @@ body {
   padding: 0px;
   margin: 0px;
   font-family: "Signika Negative", sans-serif;
+  /* iOS Safari specific fixes */
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent horizontal scrolling on iOS */
+  overflow-x: hidden;
+  /* Fix for iOS Safari 100vh issue */
+  min-height: -webkit-fill-available;
+}
+
+/* iOS Safari specific fixes */
+html {
+  /* Fix for iOS Safari 100vh issue */
+  height: -webkit-fill-available;
+}
+
+/* Fix for iOS Safari input zoom issue */
+input, select, textarea {
+  font-size: 16px !important;
+  /* Prevent zoom on focus in iOS Safari */
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+/* Fix for iOS Safari button tap highlight */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Fix for iOS Safari overflow issues */
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Fix for iOS Safari position fixed issues */
+.fixed-element {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Fix for iOS Safari flexbox issues */
+.flex-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/* Fix for iOS Safari grid issues */
+.grid-container {
+  display: -webkit-grid;
+  display: grid;
 }
 
 svg.p-icon {
@@ -175,5 +233,37 @@ a {
   .total-row .label,
   .total-row .value {
     font-size: 1rem;
+  }
+}
+
+/* iOS Safari specific media queries */
+@supports (-webkit-touch-callout: none) {
+  /* iOS Safari specific styles */
+  body {
+    /* Fix for iOS Safari 100vh issue */
+    min-height: -webkit-fill-available;
+  }
+  
+  /* Fix for iOS Safari input zoom */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+  
+  /* Fix for iOS Safari overflow scrolling */
+  .scrollable-content {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Fix for iOS Safari position fixed */
+  .fixed-header,
+  .fixed-footer {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
 }

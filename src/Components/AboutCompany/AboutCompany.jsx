@@ -214,7 +214,7 @@ const AboutCompany = () => {
                                 <p>
                                     Truechip has been serving customers for the last 10 years in VLSI
                                     with strong and experienced leadership. Truechip provides the
-                                    industry’s first 24x5 support model with specialization in VIP
+                                    industry's first 24x5 support model with specialization in VIP
                                     integration, customization, and SOC Verification.
                                 </p>
                                 <p>Get in Touch with us to learn about our Services.</p>
@@ -228,6 +228,9 @@ const AboutCompany = () => {
                                     autoPlay
                                     loop
                                     muted
+                                    playsInline
+                                    webkit-playsinline="true"
+                                    preload="metadata"
                                 />
                             </div>
 

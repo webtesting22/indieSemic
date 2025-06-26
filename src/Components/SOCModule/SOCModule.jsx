@@ -189,6 +189,8 @@ const SOCModule = () => {
                                         // onEnded={handleVideoEnd}
                                         // onError={handleVideoError}
                                         playsInline
+                                        webkit-playsinline="true"
+                                        preload="metadata"
                                         style={{ height: "100%", width: "100%", borderRadius: "20px" }}
                                     >
                                         <source src="/Images/NewVideo.mp4" type="video/mp4" />

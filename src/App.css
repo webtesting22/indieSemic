@@ -27,6 +27,11 @@
   justify-content: center;
   z-index: 9999999;
   overflow: hidden;
+  /* iOS Safari fixes */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  /* Fix for iOS Safari 100vh issue */
+  height: -webkit-fill-available;
 }
 
 /* Loader Video */
@@ -87,6 +92,8 @@
   width: 100%;
   min-height: 100vh;
   transition: opacity 0.5s ease-in-out;
+  /* iOS Safari fixes */
+  -webkit-overflow-scrolling: touch;
 }
 
 .content-hidden {
@@ -108,6 +115,8 @@
 @media (max-width: 768px) {
   .video-loader-container {
     overflow: visible !important;
+    /* iOS Safari specific fixes */
+    -webkit-overflow-scrolling: touch;
   }
 
   .loader-video {
@@ -143,4 +152,30 @@ input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .video-loader-container {
+    /* Fix for iOS Safari 100vh issue */
+    height: -webkit-fill-available;
+    /* Fix for iOS Safari position fixed */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  
+  .main-content {
+    /* Fix for iOS Safari overflow scrolling */
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Fix for iOS Safari input zoom */
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+  
+  /* Fix for iOS Safari button tap highlight */
+  button, a {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
