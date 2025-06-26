@@ -1,12 +1,13 @@
 const NavigationData = [
+
     // {
     //     link: "Home",
     //     path: ""
     // },
-    // {
-    //     link: "IOT Modules",
-    //     path: "/iot-modules"
-    // },
+    {
+        link: "IOT Modules",
+        path: "/iot-modules"
+    },
     {
         link: "SOC",
         path: "/socmodule"
