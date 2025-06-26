@@ -12,10 +12,6 @@
     border-radius: 50%;
 }
 
-/* Modern Products Page Container - All styles scoped under this class */
-.modern-products-page {
-    /* Main container for the entire products page */
-}
 
 /* Hero Section */
 .modern-products-page .hero-section-wrapper {
@@ -398,7 +394,7 @@
     gap: 10px;
 }
 
-.modern-products-page .categories-list .category-option:first-child{
+.modern-products-page .categories-list .category-option:first-child {
     display: none !important;
 }
 
@@ -885,6 +881,7 @@
     .modern-products-page .mobile-filter-button {
         display: block;
     }
+
     .modern-products-page .hero-section-wrapper {
         height: 60vh;
         margin-top: -2rem;
