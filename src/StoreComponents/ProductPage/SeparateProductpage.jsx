@@ -313,7 +313,7 @@ const SeparateProductPage = () => {
                 <div className="breadcrumb-section">
                     <div className="breadcrumb-content">
                         <span>
-                            <Link to="/product" className="breadcrumb-link">All Products</Link>
+                            <Link to="/iot-modules" className="breadcrumb-link">All Products</Link>
                             <span className="breadcrumb-separator"> {">"} </span>
                             <span className="breadcrumb-current">{product.title}</span>
                         </span>
