@@ -105,7 +105,7 @@ const SeparateProductPage = () => {
     const handleQuantityChange = (value) => {
         // Determine max quantity based on product type
         const maxQuantity = product?.title?.startsWith('EVK') ? 10 : 20;
-        
+
         if (value > maxQuantity) {
             message.error(`Quantity cannot exceed ${maxQuantity}!`);
             return;
@@ -239,11 +239,34 @@ const SeparateProductPage = () => {
         window.location.href = 'tel:+917600460240';
     };
 
-    // Extract base name (first two segments) for EVK matching
-    const baseNameMatch = product.title.match(/^([^-]+-[^-]+)/);
-    const baseName = baseNameMatch ? baseNameMatch[1] : product.title;
+    // Extract base name for product matching
+    const extractBaseName = (title) => {
+        if (!title) return '';
+        
+        // For EVK products, extract the entire base name after EVK-
+        if (title.startsWith('EVK-')) {
+            return title.substring(4); // Remove 'EVK-' prefix, return the rest
+        }
+        
+        // For base modules, return the full title
+        return title;
+    };
 
-    const evkVariants = variants?.filter(variant => variant.title?.startsWith('EVK'));
+    const currentBaseName = extractBaseName(product.title);
+
+    // Get all related variants (both EVK and base modules)
+    const relatedVariants = variants?.filter(variant => {
+        const variantBaseName = extractBaseName(variant.title);
+        
+        // Match variants that share the same base name
+        return variantBaseName === currentBaseName;
+    }) || [];
+
+    // Debug logging
+    console.log('Product title:', product.title);
+    console.log('Current base name:', currentBaseName);
+    console.log('All variants:', variants?.map(v => v.title));
+    console.log('Related variants:', relatedVariants.map(v => v.title));
 
     // Get related products by category (excluding the current product)
     const relatedProducts = products.filter(
@@ -265,7 +288,7 @@ const SeparateProductPage = () => {
 
 
 
-            {evkVariants && evkVariants.length > 0 && (
+            {relatedVariants && relatedVariants.length > 0 && (
                 <>
                     <button
                         className={`variant-toggle-btn ${!isSidebarVisible ? 'show' : ''}`}
@@ -277,16 +300,21 @@ const SeparateProductPage = () => {
                     </button>
                     <div className={`variant-suggestion-wrapper ${!isSidebarVisible ? 'hidden' : ''}`}>
                         <h3 className="variant-heading">
-                            {product?.title?.startsWith('EVK') ? 'Base Module' : 'Evaluation Boards'}
+                            {product?.title?.startsWith('EVK') ? 'Base Modules' : 'Evaluation Boards'}
                         </h3>
                         <div className="variant-list">
-                            {evkVariants
-                                .filter(variant =>
-                                    product?.title?.startsWith('EVK')
-                                        ? !variant.title?.startsWith('EVK') // If current is EVK, show only non-EVK
-                                        : variant.title?.startsWith('EVK')  // If current is not EVK, show only EVK
-                                )
-                                .map((variant) => (
+                            {(() => {
+                                const isCurrentEVK = product?.title?.startsWith('EVK');
+                                const filteredVariants = relatedVariants.filter(variant =>
+                                    isCurrentEVK
+                                        ? !variant.title?.startsWith('EVK') // If current is EVK, show only non-EVK (base modules)
+                                        : variant.title?.startsWith('EVK')  // If current is base module, show only EVK
+                                );
+                                
+                                console.log('Is current EVK:', isCurrentEVK);
+                                console.log('Filtered variants to show:', filteredVariants.map(v => v.title));
+                                
+                                return filteredVariants.map((variant) => (
                                     <Link
                                         key={variant._id}
                                         to={`/product/${variant._id}`}
@@ -302,7 +330,8 @@ const SeparateProductPage = () => {
                                             <p>₹{variant.price?.toLocaleString()}</p>
                                         </div>
                                     </Link>
-                                ))}
+                                ));
+                            })()}
                         </div>
                     </div>
                 </>
@@ -567,10 +596,6 @@ const SeparateProductPage = () => {
                                                     </span>
                                                 </Button>
                                             </>
-
-
-
-
                                             <div className="secondary-action">
                                                 <GetQuotationModal />
                                             </div>
