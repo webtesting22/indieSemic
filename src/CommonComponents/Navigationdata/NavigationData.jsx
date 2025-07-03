@@ -9,6 +9,10 @@ const NavigationData = [
         path: "/iot-modules"
     },
     {
+        link: "SIP",
+        path: "/sip"
+    },
+    {
         link: "SOC",
         path: "/socmodule"
     },
@@ -16,6 +20,7 @@ const NavigationData = [
         link: "Services",
         path: "/services"
     },
+    
     // {
     //     link: "Modules",
     //     path: "/Modules",

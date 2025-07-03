@@ -19,6 +19,7 @@ import CancellationRefundPolicy from "../Components/TermsAndConditionPages/Cance
 import ProductPurchaseVerificationModal from "../StoreComponents/ProductPage/ProductPurchesVerficationModal/ProductPurchaseVerification";
 // import Dashboard from "../Components/Dashboard/Dashboard";
 import DashboardView from "../Components/Dashboard/DashboardView";
+import SIP from "../Components/SIP/SIP";
 const DynamicRoutes = () => {
     const location = useLocation();
     const isLoggedIn = localStorage.getItem("email") && localStorage.getItem("password");
@@ -42,6 +43,7 @@ const DynamicRoutes = () => {
                 <Route path="/cancellation-refund-policy" element={<CancellationRefundPolicy />} />
                 <Route path="/product-purchase-verification" element={<ProductPurchaseVerificationModal />} />
                 <Route path="/dashboard" element={<DashboardView />} />
+                <Route path="/sip" element={<SIP />} />
             </Routes>
             {!isAuthPage && <Footer />}
         </>
