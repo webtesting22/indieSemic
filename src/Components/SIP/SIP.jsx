@@ -87,6 +87,7 @@ const SIP = () => {
         <div className="sip-module">
             {/* Hero Section */}
             <section className="sip-hero">
+                <div>
                 <div className="sip-hero-background">
                     <div className="sip-hero-overlay"></div>
                     <img src="https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/Hero image.png" alt="SiP Module Innovation" />
@@ -109,6 +110,16 @@ const SIP = () => {
                         </p>
                     </div>
                 </div>
+                <section className="sip-marquee-section">
+                    <div className="sip-coming-soon-marquee">
+                        <div className="sip-marquee-track">
+                            <span className="sip-marquee-text">Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • </span>
+                            <span className="sip-marquee-text">Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • </span>
+                        </div>
+                    </div>
+                </section>
+                </div>
+
             </section>
 
             {/* Series Overview Section */}
@@ -150,7 +161,7 @@ const SIP = () => {
             </section>
 
             {/* Main Banner Section */}
-            <section style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+            <section style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <div className="sip-main-banner">
                     <img src="https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/Main banner.png" alt="Main Banner" />
                 </div>
@@ -229,6 +240,8 @@ const SIP = () => {
                     </div>
                 </div>
             </section>
+
+            {/* Coming Soon Marquee Section */}
 
             {/* Call to Action Section */}
             <section className="sip-cta-section">
