@@ -78,13 +78,7 @@ const SOCModule = () => {
     ];
 
 
-    const MarqueeDate = Array(50).fill({ text: "Coming Soon" });
-
-    // Repeat MarqueeDate to reach 150 items
-    const repeatedMarqueeData = Array.from({ length: 150 }, (_, i) => ({
-        ...MarqueeDate[i % MarqueeDate.length],
-        id: i,
-    }));
+    const marqueeText = "Coming Soon";
     return (
         <div className="soc-module">
             {/* Hero Section */}
@@ -114,10 +108,10 @@ const SOCModule = () => {
             {/* Microcontroller Section */}
             <section className="soc-section backset">
                 <div className="soc-container">
-                    
+
                     <br /><br />
                     <div className="soc-content-block">
-                        <p style={{fontSize:"30px"}}><b>Coming Soon !!</b></p>
+                        <p style={{ fontSize: "30px" }}><b>Coming Soon !!</b></p>
                         <h2 className="soc-section-heading">
                             India's own RISC-V based controller for Defence, Medical, Robotics, & UAVs.
                         </h2>
@@ -150,18 +144,16 @@ const SOCModule = () => {
 
             {/* Vajra Project Section */}
             <section className="soc-section soc-dark-section">
-            <div className="marquee-wrapper">
-                        <div className="marquee-content">
-                            <ul>
-                                {MarqueeDate.map((item, index) => (
-                                    <li key={index} style={{color:"white"}}>
-                                        {item.text}!
-                                    </li>
-                                ))}
-
-                            </ul>
+                <div className="marquee-wrapper">
+                    <div className="marquee-content">
+                        <div className="marquee-track">
+                            <span className="marquee-text">{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        </div>
+                        <div className="marquee-track">
+                            <span className="marquee-text">{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         </div>
                     </div>
+                </div>
                 <br /><br />
                 <div className="soc-container" style={{ background: "transparent" }}>
                     <div className="soc-content-block">

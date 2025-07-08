@@ -81,36 +81,38 @@ const SIP = () => {
         },
     ];
 
-    const MarqueeData = Array(50).fill({ text: "ISC-nRF54L Series" });
+    const marqueeText = "Coming Soon";
 
     return (
         <div className="sip-module">
             {/* Hero Section */}
             <section className="sip-hero">
                 <div>
-                <div className="sip-hero-background">
-                    <div className="sip-hero-overlay"></div>
-                    <img src="https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/Hero image.png" alt="SiP Module Innovation" />
-                </div>
-                <div className="sip-hero-content">
-                    <div className="sip-hero-text">
-                        <h1 className="sip-main-heading">
-                            Integrated SiP Modules Designed for the Future of Wireless Innovation
-                        </h1>
-                        <p className="sip-hero-subtitle">
-                            India's first System in Package - proudly designed and developed in India
-                        </p>
-                        <p className="sip-hero-subheadline">
-                            Advanced Bluetooth® 6.0 System-in-Package modules delivering unmatched performance, ultra-low power, and compact integration for next-gen IoT and wearable designs.
-                        </p>
+                    <div className="sip-hero-background">
+                        <div className="sip-hero-overlay"></div>
+                        <img src="https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/Hero image.png" alt="SiP Module Innovation" />
                     </div>
-                    <div className="sip-hero-info">
-                        <h2>Transforming Connectivity with Ultra-Compact Solutions</h2>
-                        <p>Leading the revolution in wireless technology with our advanced SiP modules.
-                        </p>
+                    <div className="sip-hero-content">
+                        <div className="sip-hero-text">
+                            <h1 className="sip-main-heading">
+                                Integrated SiP Modules Designed for the Future of Wireless Innovation
+                            </h1>
+                            <p className="sip-hero-subtitle">
+                                India's first System in Package - proudly designed and developed in India
+                            </p>
+                            <p className="sip-hero-subheadline">
+                                Advanced Bluetooth® 6.0 System-in-Package modules delivering unmatched performance, ultra-low power, and compact integration for next-gen IoT and wearable designs.
+                            </p>
+                        </div>
+                        <div className="sip-hero-info">
+                            <h2>Transforming Connectivity with Ultra-Compact Solutions</h2>
+                            <p>Leading the revolution in wireless technology with our advanced SiP modules.
+                            </p>
+                        </div>
+
                     </div>
-                </div>
-                {/* <section className="sip-marquee-section">
+
+                    {/* <section className="sip-marquee-section">
                     <div className="sip-coming-soon-marquee">
                         <div className="sip-marquee-track">
                             <span className="sip-marquee-text">Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • </span>
@@ -118,8 +120,18 @@ const SIP = () => {
                         </div>
                     </div>
                 </section> */}
-                </div>
 
+                </div>
+                <div className="marquee-wrapper">
+                    <div className="marquee-content">
+                        <div className="marquee-track">
+                            <span className="marquee-text">{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        </div>
+                        <div className="marquee-track">
+                            <span className="marquee-text">{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{marqueeText}!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             {/* Series Overview Section */}
@@ -127,7 +139,7 @@ const SIP = () => {
                 <div className="sip-container">
                     <br /><br />
                     <div className="sip-content-block">
-                        <p style={{fontSize:"30px"}}><b>Coming Soon!</b></p>
+                        <p style={{ fontSize: "30px" }}><b>Coming Soon!</b></p>
                         <h2 className="sip-section-heading">
                             ISC-nRF54L-SiP Series: Ultra-Compact SiP Modules for High-Performance BLE Applications
                         </h2>
