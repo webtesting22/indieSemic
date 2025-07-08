@@ -110,14 +110,14 @@ const SIP = () => {
                         </p>
                     </div>
                 </div>
-                <section className="sip-marquee-section">
+                {/* <section className="sip-marquee-section">
                     <div className="sip-coming-soon-marquee">
                         <div className="sip-marquee-track">
                             <span className="sip-marquee-text">Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • </span>
                             <span className="sip-marquee-text">Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • Coming Soon • </span>
                         </div>
                     </div>
-                </section>
+                </section> */}
                 </div>
 
             </section>
@@ -127,6 +127,7 @@ const SIP = () => {
                 <div className="sip-container">
                     <br /><br />
                     <div className="sip-content-block">
+                        <p style={{fontSize:"30px"}}><b>Coming Soon!</b></p>
                         <h2 className="sip-section-heading">
                             ISC-nRF54L-SiP Series: Ultra-Compact SiP Modules for High-Performance BLE Applications
                         </h2>
