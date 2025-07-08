@@ -68,9 +68,10 @@ const IndieSemicProduct = () => {
         setDrawerVisible(!drawerVisible);
     };
 
-    useEffect(() => {
-        fetchProducts(); // This will fetch on *every* change of filter/search
-    }, []);
+    // Products are already fetched by State.jsx context, no need to fetch again
+    // useEffect(() => {
+    //     fetchProducts(); // This will fetch on *every* change of filter/search
+    // }, []);
 
     // Filter products based on selected category, search query, and price range
     const filteredProducts = productList.filter((product) => {

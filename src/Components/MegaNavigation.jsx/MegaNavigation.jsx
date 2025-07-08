@@ -4,7 +4,7 @@ import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Slide from '@mui/material/Slide';
-import { NavigationData, RFModules, SystemOnChip, Services, Applications, } from "../../CommonComponents/Navigationdata/NavigationData";
+import { NavigationData } from "../../CommonComponents/Navigationdata/NavigationData";
 import { Drawer, Button, Collapse, Carousel } from 'antd';
 import { MenuOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
 import "../../Styles/MegaNavigation.css";
@@ -46,12 +46,15 @@ const MegaNavigation = () => {
     const [menuVisible, setMenuVisible] = useState(false);
     const hideTimeout = useRef();
 
-    // Ensure products are loaded
+    // Ensure products are loaded - only fetch if products are not available and not currently loading
     useEffect(() => {
         if (!products || products.length === 0) {
-            fetchProducts();
+            if (!loadingProducts) {
+                fetchProducts();
+            }
         }
-    }, [products, fetchProducts]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []); // Only run once on mount - State.jsx handles the fetching
 
     // Dynamic IOT modules data from API
     const iotModulesData = products?.filter(product =>
@@ -185,6 +188,11 @@ const MegaNavigation = () => {
     };
     const handleMenuLeave = () => {
         hideTimeout.current = setTimeout(() => setMenuVisible(false), 200);
+    };
+
+    // Close dropdown when clicking on any item
+    const handleDropdownItemClick = () => {
+        setMenuVisible(false);
     };
 
     return (
@@ -337,7 +345,7 @@ const MegaNavigation = () => {
                                                                                                 prevArrow={<LeftOutlined />}
                                                                                             >
                                                                                                 {filteredIotModules.map((module, index) => (
-                                                                                                    <div key={module.id || index} className="iot-carousel-slide">
+                                                                                                    <div key={module.id || index} className="iot-carousel-slide" onClick={handleDropdownItemClick}>
                                                                                                         <Link to={`/product/${module.id}`} className="iot-module-card">
                                                                                                             <Card
                                                                                                                 hoverable
@@ -382,7 +390,7 @@ const MegaNavigation = () => {
                                                                                             </div>
                                                                                         )}
                                                                                         <div className="mega-menu-footer">
-                                                                                            <Link to="/iot-modules" className="view-all-link">
+                                                                                            <Link to="/iot-modules" className="view-all-link" onClick={handleDropdownItemClick}>
                                                                                                 View All IOT Modules →
                                                                                             </Link>
                                                                                         </div>

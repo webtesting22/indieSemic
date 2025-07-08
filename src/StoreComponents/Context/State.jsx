@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import ProductContext from "./ProductContext";
 
 const ProductState = ({ children }) => {
@@ -6,28 +6,56 @@ const ProductState = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
     const apibaseUrl = import.meta.env.VITE_BASE_URL;
     const [loadingProducts, setLoadingProducts] = useState(false);
+    const fetchingRef = useRef(false); // Track if we're currently fetching
+    const hasInitializedRef = useRef(false); // Use ref instead of state
     // const name = "hfsadfhfas";
 
-    useEffect(() => {
-        // Only load cart items from localStorage
-        const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-        setCartItems(storedCartItems);
-    }, []);
+    const fetchProducts = useCallback(async () => {
+        // Prevent multiple simultaneous API calls with multiple checks
+        if (fetchingRef.current) {
+            console.log("Skipping fetch - already fetching");
+            return;
+        }
 
-    const fetchProducts = async () => {
-        if (products.length > 0) return; // Don't fetch again if already fetched
+        // Set fetching flag immediately
+        fetchingRef.current = true;
 
         try {
             setLoadingProducts(true);
+            console.log("Fetching products..."); // Debug log
+            
             const response = await fetch(`${apibaseUrl}/indieSemic/getAllProducts`);
             const data = await response.json();
-            setProducts(data.products || []);
+            
+            if (data.products && Array.isArray(data.products)) {
+                setProducts(data.products);
+                console.log(`Loaded ${data.products.length} products`); // Debug log
+            } else {
+                console.warn("Invalid products data received:", data);
+                setProducts([]);
+            }
         } catch (error) {
             console.error("Error fetching products:", error);
+            setProducts([]); // Set empty array on error
+
         } finally {
             setLoadingProducts(false);
+            fetchingRef.current = false; // Reset fetching flag
         }
-    };
+    }, [apibaseUrl]);
+
+    useEffect(() => {
+        // Load cart items from localStorage on mount
+        const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+        setCartItems(storedCartItems);
+        
+        // Auto-fetch products only once on component mount
+        if (!hasInitializedRef.current) {
+            hasInitializedRef.current = true;
+            fetchProducts();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []); // Empty dependency array - only run once on mount
 
     const addToCart = (product) => {
         const existingProduct = cartItems.find(item => item._id === product._id);

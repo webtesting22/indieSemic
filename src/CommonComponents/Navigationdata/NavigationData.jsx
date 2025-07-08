@@ -20,7 +20,7 @@ const NavigationData = [
         link: "Services",
         path: "/services"
     },
-    
+
     // {
     //     link: "Modules",
     //     path: "/Modules",
@@ -48,38 +48,38 @@ const NavigationData = [
     // },
 ]
 
-const RFModules = [
-    {
-        link: "Coming Soon",
-    },
-]
-// const AboutUs = [
-//     // {
-//     //     link: "Coming Soon",
-//     // },
+// const RFModules = [
+//     {
+//         link: "Coming Soon",
+//     },
+// ]
+// // const AboutUs = [
+// //     // {
+// //     //     link: "Coming Soon",
+// //     // },
+// // ]
+
+// const SystemOnChip = [
+//     {
+//         link: "Coming Soon",
+//     },
+
 // ]
 
-const SystemOnChip = [
-    {
-        link: "Coming Soon",
-    },
+// const Services = [
+//     {
+//         link: "Coming Soon",
+//     },
 
-]
+// ]
 
-const Services = [
-    {
-        link: "Coming Soon",
-    },
-
-]
-
-const Applications = [
-    {
-        link: "Coming Soon",
-    },
-]
+// const Applications = [
+//     {
+//         link: "Coming Soon",
+//     },
+// ]
 
 
 
-export { RFModules, NavigationData, SystemOnChip, Services, Applications }
+export { NavigationData}
 
