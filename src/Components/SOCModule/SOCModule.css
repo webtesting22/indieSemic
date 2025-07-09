@@ -632,7 +632,7 @@
 .marquee-text {
   display: inline-block;
   color: white;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
   letter-spacing: 2px;
