@@ -133,11 +133,17 @@ const SIP = () => {
                     </div>
                 </div>
             </section>
-
+            <section style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <div className="sip-main-banner">
+                    <img src="https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/Main banner.png" alt="Main Banner" />
+                </div>
+            </section>
+            <br />
+            {/* <br /> */}
             {/* Series Overview Section */}
             <section className="sip-section backset">
                 <div className="sip-container">
-                    <br /><br />
+                    {/* <br /> */}
                     <div className="sip-content-block">
                         <p style={{ fontSize: "30px" }}><b>Coming Soon!</b></p>
                         <h2 className="sip-section-heading">
@@ -174,11 +180,7 @@ const SIP = () => {
             </section>
 
             {/* Main Banner Section */}
-            <section style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <div className="sip-main-banner">
-                    <img src="https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/Main banner.png" alt="Main Banner" />
-                </div>
-            </section>
+           
             {/* Applications Section */}
             <section className="sip-section">
                 <div className="sip-container">
