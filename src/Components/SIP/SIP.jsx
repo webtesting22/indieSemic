@@ -180,7 +180,7 @@ const SIP = () => {
             </section>
 
             {/* Main Banner Section */}
-           
+
             {/* Applications Section */}
             <section className="sip-section">
                 <div className="sip-container">

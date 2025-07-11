@@ -636,6 +636,10 @@
     font-family: 'Arial', sans-serif;
 }
 
+.sip-module .marquee-text {
+    background-color: #2c3e50c0;
+    padding: 10px 0px;
+}
 @keyframes infiniteMarquee {
     0% {
         transform: translateX(0);
