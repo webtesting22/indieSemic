@@ -30,7 +30,7 @@ const GetQuotationModal = () => {
     const [emailStatus, setEmailStatus] = useState("");
     const [isProductSelectorOpen, setIsProductSelectorOpen] = useState(false);
     const [tempSelectedProducts, setTempSelectedProducts] = useState([]);
-
+    const apibaseUrl = import.meta.env.VITE_BASE_URL;
     const [userDetails, setUserDetails] = useState({
         name: "",
         company: "",
@@ -372,7 +372,7 @@ const GetQuotationModal = () => {
         const subject = "Quotation Request";
 
         try {
-            const response = await fetch("https://testapi.prepseed.com/autosend/sendEmailIndiesemic", {
+            const response = await fetch(`${apibaseUrl}/autosend/sendEmailIndiesemic`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
