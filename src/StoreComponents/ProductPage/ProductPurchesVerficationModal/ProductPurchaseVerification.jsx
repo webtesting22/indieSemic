@@ -22,6 +22,7 @@ const ProductPurchaseVerificationModal = ({
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [form] = Form.useForm();
     const [sameAsBilling, setSameAsBilling] = useState(false);
+    const [isFormValid, setIsFormValid] = useState(false);
 
     // Shipping address states
     const [shippingCountries] = useState(Country.getAllCountries());
@@ -220,6 +221,9 @@ const ProductPurchaseVerificationModal = ({
                 setBillingCities([]);
             }
         }
+        
+        // Check form validation after updating billing fields
+        setTimeout(handleFormValuesChange, 100);
     };
 
 
@@ -245,8 +249,44 @@ const ProductPurchaseVerificationModal = ({
         setSavedData(null);
         setLocationDetails(null);
         form.resetFields();
-        setSameAsBilling(false);
-    };
+            setSameAsBilling(false);
+};
+
+// Add form validation handler
+const handleFormValuesChange = () => {
+    const values = form.getFieldsValue(true);
+    
+    // Check if all required fields are filled
+    const requiredFields = [
+        'shipping_firstName',
+        'shipping_lastName', 
+        'shipping_mobile',
+        'shipping_email',
+        'shipping_address1',
+        'shipping_country',
+        'shipping_state',
+        'shipping_city',
+        'shipping_postalCode'
+    ];
+
+    // Add billing fields if not same as shipping
+    if (!sameAsBilling) {
+        requiredFields.push(
+            'billing_firstName',
+            'billing_lastName',
+            'billing_mobile',
+            'billing_address1',
+            'billing_country',
+            'billing_state',
+            'billing_city',
+            'billing_postalCode'
+        );
+    }
+
+    // Check if all required fields have values
+    const hasAllRequiredValues = requiredFields.every(field => values[field]);
+    setIsFormValid(hasAllRequiredValues);
+};
     return (
         <div style={{ padding: '0px', display: "flex", width: "100%", justifyContent: "end", gap: "10px" }} className='EditCss'>
             {!savedData ? (
@@ -302,6 +342,7 @@ const ProductPurchaseVerificationModal = ({
                         billing_country: undefined,
                         shippingMethod: 'express'
                     }}
+                    onValuesChange={handleFormValuesChange}
                 >
                     {/* Shipping Section */}
                     {/* <Title level={4}>Shipping</Title> */}
@@ -639,7 +680,11 @@ const ProductPurchaseVerificationModal = ({
                         {/* <Button onClick={handleCancel} style={{ marginRight: '10px' }}>
                             Cancel
                         </Button> */}
-                        <Button type="primary" onClick={handleSave}>
+                        <Button 
+                            type="primary" 
+                            onClick={handleSave}
+                            disabled={!isFormValid}
+                        >
                             Save
                         </Button>
                     </div>
