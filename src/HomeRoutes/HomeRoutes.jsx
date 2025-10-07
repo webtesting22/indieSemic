@@ -1,62 +1,120 @@
-import React, { useEffect, useState } from "react";
-import Hero from "../Components/HeroHome/Hero";
-import AboutCompany from "../Components/AboutCompany/AboutCompany";
-import Achivement from "../Components/Achivement/Achivement";
-import ContactHome from "../Components/ContactHome/ContactHome";
-import { ScrollTop } from 'primereact/scrolltop';
-import NumbersComponent from "../Components/NumbersComponent/NumbersComponent";
-import Expertise from "../Components/OurExpertise/Expertise";
-import ExpertiseCards from "../Components/OurExpertise/ExpertiseCards";
+import React, { useEffect, useState, Suspense } from "react";
+import EmergencyErrorBoundary from "../components/EmergencyErrorBoundary.jsx";
+
+// Lazy load heavy components to reduce initial bundle size
+const Hero = React.lazy(() => import("../Components/HeroHome/Hero"));
+const AboutCompany = React.lazy(() =>
+  import("../Components/AboutCompany/AboutCompany")
+);
+const Achivement = React.lazy(() =>
+  import("../Components/Achivement/Achivement")
+);
+const ContactHome = React.lazy(() =>
+  import("../Components/ContactHome/ContactHome")
+);
+const ScrollTop = React.lazy(() =>
+  import("primereact/scrolltop").then((module) => ({
+    default: module.ScrollTop,
+  }))
+);
+const NumbersComponent = React.lazy(() =>
+  import("../Components/NumbersComponent/NumbersComponent")
+);
+const Expertise = React.lazy(() =>
+  import("../Components/OurExpertise/Expertise")
+);
+const ExpertiseCards = React.lazy(() =>
+  import("../Components/OurExpertise/ExpertiseCards")
+);
+
+// Lightweight loading component for home page sections
+const SectionLoader = ({ height = "100px" }) => (
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: height,
+      backgroundColor: "rgba(0,0,0,0.02)",
+      borderRadius: "8px",
+      margin: "10px 0",
+    }}
+  >
+    <div
+      style={{
+        width: "40px",
+        height: "40px",
+        border: "4px solid #f3f3f3",
+        borderTop: "4px solid #007AFF",
+        borderRadius: "50%",
+        animation: "spin 1s linear infinite",
+      }}
+    ></div>
+    <style>{`
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        `}</style>
+  </div>
+);
 const HomeRoutes = () => {
-    const [showLoader, setShowLoader] = useState(true);
+  const [showLoader, setShowLoader] = useState(true);
 
-    const handleVideoEnd = () => {
-        setShowLoader(false);
-    };
+  const handleVideoEnd = () => {
+    setShowLoader(false);
+  };
 
-    const handleVideoError = () => {
-        // If video fails to load, hide loader after 3 seconds
-        setTimeout(() => {
-            setShowLoader(false);
-        }, 3000);
-    };
-    return (
-        <>
-            {/* {showLoader && (
-                <div className="video-loader-container" style={{ boxShadow: "none" }}>
-                    <video
-                        className="loader-video"
-                        autoPlay
-                        muted
-                        onEnded={handleVideoEnd}
-                        onError={handleVideoError}
-                        playsInline
-                        style={{ boxShadow: "none", transform: "unset" }}
-                    >
-                        <source src="/Images/HomePageLoaderVideoNew.mp4" type="video/mp4" />
-                       
-                        <div className="video-fallback">
-                            <div className="fallback-loader">
-                                <div className="spinner"></div>
-                                <p>Loading...</p>
-                            </div>
-                        </div>
-                    </video>
-                </div>
-            )} */}
-            <div className="main-content">
-            {/* ${showLoader ? 'content-hidden' : 'content-visible'}` */}
-                <ScrollTop style={{ zIndex: "1000000", backgroundColor: 'black' }} />
-                <Hero />
-                <AboutCompany />
+  const handleVideoError = () => {
+    // If video fails to load, hide loader after 3 seconds
+    setTimeout(() => {
+      setShowLoader(false);
+    }, 3000);
+  };
+  return (
+    <EmergencyErrorBoundary>
+      <div className="main-content">
+        {/* Load ScrollTop first as it's lightweight */}
+        <Suspense fallback={null}>
+          <ScrollTop style={{ zIndex: "1000000", backgroundColor: "black" }} />
+        </Suspense>
 
-                <Expertise />
-                <Achivement />
-                <ExpertiseCards />
-                <NumbersComponent />
-                <ContactHome />
-            </div>
-        </>
-    )
-}
-export default HomeRoutes
+        {/* Hero section - load first as it's above the fold */}
+        <Suspense fallback={<SectionLoader height="400px" />}>
+          <Hero />
+        </Suspense>
+
+        {/* About section */}
+        <Suspense fallback={<SectionLoader height="300px" />}>
+          <AboutCompany />
+        </Suspense>
+
+        {/* Expertise section */}
+        <Suspense fallback={<SectionLoader height="250px" />}>
+          <Expertise />
+        </Suspense>
+
+        {/* Achievement section */}
+        <Suspense fallback={<SectionLoader height="200px" />}>
+          <Achivement />
+        </Suspense>
+
+        {/* Expertise cards */}
+        <Suspense fallback={<SectionLoader height="300px" />}>
+          <ExpertiseCards />
+        </Suspense>
+
+        {/* Numbers component - the problematic one, load it last */}
+        <Suspense fallback={<SectionLoader height="200px" />}>
+          <NumbersComponent />
+        </Suspense>
+
+        {/* Contact form - load last */}
+        <Suspense fallback={<SectionLoader height="400px" />}>
+          <ContactHome />
+        </Suspense>
+      </div>
+    </EmergencyErrorBoundary>
+  );
+};
+export default HomeRoutes;

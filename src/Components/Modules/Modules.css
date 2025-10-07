@@ -69,16 +69,15 @@
   /* Fade in */
 }
 
-
-.ImageStickyContainer{
+.ImageStickyContainer {
   height: 70vh;
   overflow: hidden;
   position: relative;
-  background-image: url("/Images/blue-circuit-board-shows-complexity-technology-generated-by-ai_188544-31023.jpg");
-  background-attachment: fixed;
+  /* Removed background-attachment: fixed - causes memory issues on iOS Safari */
+  background-color: #1a1a2e; /* Fallback color */
 }
 
-.ImageStickyContainer::after{
+.ImageStickyContainer::after {
   content: "";
   display: inline-block;
   position: absolute;
@@ -91,32 +90,31 @@
   right: 0px;
   top: 0px;
 }
-.ImageStickyContainer div:nth-child(1){
+.ImageStickyContainer div:nth-child(1) {
   position: absolute;
-    top: 0px;
-    height: 100%;
-    width: 100%;
-    display: flex
-;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    z-index: 10;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 10;
 }
-.ImageStickyContainer div:nth-child(1) h1{
+.ImageStickyContainer div:nth-child(1) h1 {
   color: white !important;
 }
 
-.NewBackSection{
+.NewBackSection {
   background-color: #eaf6ffce !important;
-  padding: 7rem 4rem !important; 
+  padding: 7rem 4rem !important;
   position: relative;
 }
 @media (max-width: 769px) {
-  .NewBackSection{
+  .NewBackSection {
     background-color: #eaf6ffce !important;
-    padding: 4rem 1rem !important; 
+    padding: 4rem 1rem !important;
     position: relative;
   }
   #ModulesDataContainer .ContentRow {
@@ -142,7 +140,7 @@
 
   #ModulesDataContainer .ant-row {
     padding-bottom: 60px;
-    border-bottom: 1px solid gray
+    border-bottom: 1px solid gray;
   }
 
   .even-row {
@@ -154,14 +152,10 @@
     display: flex;
     flex-direction: column;
   }
-
 }
 
 @media (max-width: 576px) {
   .ModuleBanner {
     height: 40vh;
   }
-
-
 }
-
