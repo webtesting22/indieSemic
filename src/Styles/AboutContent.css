@@ -14,7 +14,7 @@
   width: 100%;
   top: 0px;
   opacity: 0.2;
-  /* Removed background-attachment: fixed - causes memory issues on iOS Safari */
+  background-attachment: fixed;
   visibility: hidden;
 }
 
@@ -85,8 +85,8 @@
   /* height: 100%; */
   width: 100%;
   border-radius: 20px;
-  /* Removed background-attachment: fixed - causes memory issues on iOS Safari */
-  background-position: right center;
+  background-attachment: fixed;
+  background-position:right center;
   background-repeat: no-repeat;
   background-size: contain;
   background-image: url("/Images/AboutImage.jpg");
@@ -114,6 +114,7 @@
   font-size: 16px;
   padding: 1rem 0rem;
 }
+
 
 .ListItemUl ul li::before {
   content: "";
@@ -155,7 +156,7 @@
   background-size: cover;
   background-position: center;
   opacity: 0.1;
-  /* Removed background-attachment: fixed - causes memory issues on iOS Safari */
+  background-attachment: fixed;
 }
 
 .MiddleImageContainer .swiper-slide {
@@ -253,7 +254,7 @@
   .DesignedContainer h1 {
     font-size: 30px;
   }
-  #AboutCompanyContainer .CompanyContentRow {
+  #AboutCompanyContainer .CompanyContentRow{
     margin-top: 0rem;
   }
 }
