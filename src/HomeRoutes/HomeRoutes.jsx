@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Suspense } from "react";
-import EmergencyErrorBoundary from "../Components/EmergencyErrorBoundary.jsx";
+import EmergencyErrorBoundary from "../components/EmergencyErrorBoundary.jsx";
 
 // Lazy load heavy components to reduce initial bundle size
 const Hero = React.lazy(() => import("../Components/HeroHome/Hero"));
