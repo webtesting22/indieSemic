@@ -3,8 +3,8 @@ import "./Modules.css";
 import { Row, Col } from "antd";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import ContactHome from "../ContactHome/ContactHome";
-import OptimizedImage from "../../Components/OptimizedImage.jsx";
-import EmergencyErrorBoundary from "../../Components/EmergencyErrorBoundary.jsx";
+import OptimizedImage from "../../components/OptimizedImage.jsx";
+import EmergencyErrorBoundary from "../../components/EmergencyErrorBoundary.jsx";
 
 const Modules = () => {
   const CarouselImage = ({ imgSrc, hoverImgSrc, alt }) => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button, Form, Input, Typography, notification } from "antd";
 import { isIOSSafari } from "../../../utils/iosCompatibility.js";
-import EmergencyErrorBoundary from "../../../Components/EmergencyErrorBoundary.jsx";
+import EmergencyErrorBoundary from "../../../components/EmergencyErrorBoundary.jsx";
 
 const { Title } = Typography;
 
@@ -153,3 +153,4 @@ const IOSSafePurchaseModal = ({
 };
 
 export default IOSSafePurchaseModal;
+

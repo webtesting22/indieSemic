@@ -1,5 +1,5 @@
 // iOS Compatibility Utilities
-// React import removed - not needed for current functionality
+import React from "react";
 
 // Enhanced iOS Safari detection for newer devices
 export const isIOSSafari = () => {
@@ -400,8 +400,96 @@ export const preventMaxDepthError = () => {
   }
 };
 
-// React-dependent functions removed to prevent React internals errors
-// Using EmergencyErrorBoundary component instead
+// Error boundary for catching maximum depth errors
+export const createErrorBoundary = () => {
+  if (typeof React === "undefined") return null;
+
+  class IOSErrorBoundary extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = { hasError: false, error: null };
+    }
+
+    static getDerivedStateFromError(error) {
+      // Check if it's a maximum depth error
+      if (
+        error.message &&
+        (error.message.includes("Maximum call stack") ||
+          error.message.includes("Maximum depth exceeded") ||
+          error.message.includes("too much recursion"))
+      ) {
+        return { hasError: true, error };
+      }
+      return null;
+    }
+
+    componentDidCatch(error, errorInfo) {
+      if (isIOSSafari() && this.state.hasError) {
+        console.error(
+          "iOS Safari maximum depth error caught:",
+          error,
+          errorInfo
+        );
+
+        // Attempt to recover by clearing all timers and resetting state
+        setTimeout(() => {
+          this.setState({ hasError: false, error: null });
+          window.location.reload();
+        }, 2000);
+      }
+    }
+
+    render() {
+      if (this.state.hasError) {
+        return React.createElement(
+          "div",
+          {
+            style: {
+              padding: "20px",
+              textAlign: "center",
+              backgroundColor: "#f8f9fa",
+              border: "1px solid #dee2e6",
+              borderRadius: "8px",
+              margin: "20px",
+            },
+          },
+          [
+            React.createElement(
+              "h2",
+              { key: "title" },
+              "Oops! Something went wrong"
+            ),
+            React.createElement(
+              "p",
+              { key: "message" },
+              "We encountered an issue on iOS Safari. The page will reload automatically."
+            ),
+            React.createElement(
+              "button",
+              {
+                key: "reload",
+                onClick: () => window.location.reload(),
+                style: {
+                  padding: "10px 20px",
+                  backgroundColor: "#007bff",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                },
+              },
+              "Reload Now"
+            ),
+          ]
+        );
+      }
+
+      return this.props.children;
+    }
+  }
+
+  return IOSErrorBoundary;
+};
 
 // Force iOS compatibility mode for all mobile devices
 export const forceIOSCompatibilityMode = () => {
