@@ -80,34 +80,34 @@ const HomeRoutes = () => {
         </Suspense>
 
         {/* Hero section - load first as it's above the fold */}
-        {/* <Suspense fallback={<SectionLoader height="400px" />}>
+        <Suspense fallback={<SectionLoader height="400px" />}>
           <Hero />
-        </Suspense> */}
+        </Suspense>
 
         {/* About section */}
-        {/* <Suspense fallback={<SectionLoader height="300px" />}>
+        <Suspense fallback={<SectionLoader height="300px" />}>
           <AboutCompany />
-        </Suspense> */}
+        </Suspense>
 
         {/* Expertise section */}
-        {/* <Suspense fallback={<SectionLoader height="250px" />}>
+        <Suspense fallback={<SectionLoader height="250px" />}>
           <Expertise />
-        </Suspense> */}
+        </Suspense>
 
         {/* Achievement section */}
-        {/* <Suspense fallback={<SectionLoader height="200px" />}>
+        <Suspense fallback={<SectionLoader height="200px" />}>
           <Achivement />
-        </Suspense> */}
+        </Suspense>
 
         {/* Expertise cards */}
-        {/* <Suspense fallback={<SectionLoader height="300px" />}>
+        <Suspense fallback={<SectionLoader height="300px" />}>
           <ExpertiseCards />
-        </Suspense> */}
+        </Suspense>
 
         {/* Numbers component - the problematic one, load it last */}
-        {/* <Suspense fallback={<SectionLoader height="200px" />}>
+        <Suspense fallback={<SectionLoader height="200px" />}>
           <NumbersComponent />
-        </Suspense> */}
+        </Suspense>
 
         {/* Contact form - load last */}
         <Suspense fallback={<SectionLoader height="400px" />}>
