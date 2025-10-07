@@ -5,8 +5,8 @@ import "../../Styles/Hero.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
-import OptimizedImage from "../../components/OptimizedImage.jsx";
-import EmergencyErrorBoundary from "../../components/EmergencyErrorBoundary.jsx";
+import OptimizedImage from "../../Components/OptimizedImage.jsx";
+import EmergencyErrorBoundary from "../../Components/EmergencyErrorBoundary.jsx";
 
 // Local images - better for iOS Safari than external URLs
 import BackBanner from "/Images/Cutting edge RF modules (1) (2).png";

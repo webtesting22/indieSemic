@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { useLocation, Routes, Route, Navigate } from "react-router-dom";
-import EmergencyErrorBoundary from "../components/EmergencyErrorBoundary.jsx";
+import EmergencyErrorBoundary from "../Components/EmergencyErrorBoundary.jsx";
 
 // Lazy load all route components for better code splitting
 const HomeRoutes = React.lazy(() => import("../HomeRoutes/HomeRoutes"));
