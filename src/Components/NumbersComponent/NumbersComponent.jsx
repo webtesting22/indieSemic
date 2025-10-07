@@ -4,7 +4,7 @@ import { Row, Col } from "antd";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import EmojiEventsSharpIcon from "@mui/icons-material/EmojiEventsSharp";
 import StoreSharpIcon from "@mui/icons-material/StoreSharp";
-import EmergencyErrorBoundary from "../../components/EmergencyErrorBoundary.jsx";
+import EmergencyErrorBoundary from "../../Components/EmergencyErrorBoundary.jsx";
 
 const NumbersComponent = () => {
   const [isInView, setIsInView] = useState(false); // Track visibility of the section

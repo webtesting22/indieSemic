@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
-import EmergencyErrorBoundary from "./components/EmergencyErrorBoundary.jsx";
+import EmergencyErrorBoundary from "./Components/EmergencyErrorBoundary.jsx";
 import { isIOSSafari } from "./utils/iosCompatibility.js";
 
 // Simple iOS detection
