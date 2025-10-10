@@ -4,8 +4,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@mui/material';
 import "../../styles/Styles/Expertise.css";
 import { Row, Col } from 'antd';
-
-import LeftSide from "./LeftSide.jpeg"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -137,7 +135,7 @@ const Expertise = () => {
                         <Col lg={12}>
                             <div className='imageContainer' data-aos="fade-right"
                                 data-aos-duration="1500">
-                                <img src={LeftSide} alt="Advancements Semiconductor Technology" />
+                                <img src="https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/LeftSide.jpeg" alt="Advancements Semiconductor Technology" />
                             </div>
                         </Col>
                         <Col lg={12}>

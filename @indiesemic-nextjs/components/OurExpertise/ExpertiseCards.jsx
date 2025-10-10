@@ -14,7 +14,7 @@ const ExpertiseCards = () => {
             description: "Advancing smart vehicles with enhanced safety and performance."
         },
         {
-            image: IOTNetwork,
+            image: "https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/IOTNetwork.jpg",
             title: "IOT Networks",
             description: "Connecting devices for seamless data sharing and automation."
         },
@@ -32,7 +32,7 @@ const ExpertiseCards = () => {
         },
 
         {
-            image: HealthCare,
+            image: "https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/HealthCare.jpeg",
             title: "Health Care",
             description: "Innovating medical technology for improved diagnostics and patient care."
         },
@@ -42,7 +42,7 @@ const ExpertiseCards = () => {
             description: "Enabling fast and reliable data exchange across networks."
         },
         {
-            image: Robotics,
+            image: "https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/media/Robotics.jpeg",
             title: "Robotics",
             description: "Designing intelligent machines to automate tasks and enhance efficiency."
         }

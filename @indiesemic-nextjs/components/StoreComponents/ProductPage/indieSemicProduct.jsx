@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useContext, useEffect } from "react";
 import Link from "next/link";
-import TopContainerBanner from "../Navigationdata/TopContainerBanner";
+import TopContainerBanner from "../../Navigationdata/NavigationData";
 import LocalGroceryStoreSharpIcon from "@mui/icons-material/LocalGroceryStoreSharp";
 import "../../../styles/Styles/Product.css";
 import "swiper/css";

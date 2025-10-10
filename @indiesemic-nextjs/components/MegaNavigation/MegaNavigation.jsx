@@ -298,7 +298,7 @@ const MegaNavigation = () => {
                           ).map((item, index) => (
                             <li key={index} style={{ marginBottom: "1rem" }}>
                               <Link
-                                to={item.path} // Use `item.path` for the href
+                                href={item.path} // Use `item.path` for the href
                                 style={{
                                   fontSize: "16px",
                                   textDecoration: "none",
@@ -352,7 +352,7 @@ const MegaNavigation = () => {
                                   style={{ color: getButtonColor() }}
                                 >
                                   <Link
-                                    to={item.path}
+                                    href={item.path}
                                     style={{ color: getButtonColor() }}
                                   >
                                     {item.link}
@@ -434,7 +434,7 @@ const MegaNavigation = () => {
                                                         }
                                                       >
                                                         <Link
-                                                          to={`/product/${module.id}`}
+                                                          href={`/product/${module.id}`}
                                                           className="iot-module-card"
                                                         >
                                                           <Card
@@ -508,7 +508,7 @@ const MegaNavigation = () => {
                                               )}
                                               <div className="mega-menu-footer">
                                                 <Link
-                                                  to="/iot-modules"
+                                                  href="/iot-modules"
                                                   className="view-all-link"
                                                   onClick={
                                                     handleDropdownItemClick

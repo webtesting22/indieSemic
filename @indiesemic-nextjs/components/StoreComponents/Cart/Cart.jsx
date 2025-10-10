@@ -24,7 +24,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { MdDelete } from "react-icons/md";
 import ProductPurchaseVerificationModal from "../ProductPage/ProductPurchesVerficationModal/ProductPurchaseVerification";
-import { generateInvoicePDF } from "../../utils/pdfGenerator";
+import { generateInvoicePDF } from "../../../utils/pdfGenerator";
 import ContactHome from "../../ContactHome/ContactHome";
 // import './Cart.css';
 
@@ -954,7 +954,7 @@ const Cart = () => {
                           style={{ height: "100%", margin: "10px 0" }}
                         >
                           <Link
-                            to={`/product/${product._id}`}
+                            href={`/product/${product._id}`}
                             onClick={() => toggleDrawer(false)}
                           >
                             <div style={{ marginBottom: "8px" }}>
@@ -1127,7 +1127,7 @@ const Cart = () => {
                           style={{ height: "100%", margin: "10px 0" }}
                         >
                           <Link
-                            to={`/product/${product._id}`}
+                            href={`/product/${product._id}`}
                             onClick={() => toggleDrawer(false)}
                           >
                             <div style={{ marginBottom: "8px" }}>

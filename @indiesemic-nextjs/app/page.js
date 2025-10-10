@@ -1,5 +1,6 @@
 "use client";
-
+import "../styles/index.css";
+import "../styles/App.css";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 

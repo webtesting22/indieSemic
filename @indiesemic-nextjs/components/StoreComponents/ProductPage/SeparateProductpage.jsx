@@ -3,7 +3,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import "../../../../styles/Styles/ProductSeparatePage.css";
+import "../../../styles/Styles/ProductSeparatePage.css";
 import {
   Row,
   Col,
