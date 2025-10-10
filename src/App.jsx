@@ -1,8 +1,6 @@
-import { useState } from 'react'
-import './App.css'
-import DynamicRoutes from './Routes/Routes'
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Modal } from 'antd';
+import "./App.css";
+import DynamicRoutes from "./Routes/Routes";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   // const [isModalOpen, setIsModalOpen] = useState(true); // Modal opens on page load
@@ -14,7 +12,6 @@ function App() {
     <>
       <Router>
         <DynamicRoutes />
-
       </Router>
       {/* Modal */}
       {/* <Modal
@@ -29,7 +26,7 @@ function App() {
         <img src="/Images/Loading.jpg" style={{width:"100%"}}/>
       </Modal> */}
     </>
-  )
+  );
 }
 
-export default App
+export default App;

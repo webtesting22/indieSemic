@@ -1,105 +1,96 @@
 import React, { useState, useEffect, useRef } from "react";
-import CountUp from "react-countup";
-import "../../Styles/AboutContent.css"
-import AboutContentVideo from "/Images/AboutContentVideo.mp4"
+import "../../Styles/AboutContent.css";
 import { Row, Col } from "antd";
-import MemoryRoundedIcon from '@mui/icons-material/MemoryRounded';
-import DeveloperBoardIcon from '@mui/icons-material/DeveloperBoard';
-import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-import BackImage from "./BackImage.jpeg"
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from 'swiper/modules';
 import "swiper/css/autoplay";
 import "swiper/css/autoplay";
 
 // Import Swiper styles
-import 'swiper/css';
+import "swiper/css";
 
 const AboutCompany = () => {
-    const [offsetY, setOffsetY] = useState(0);
-    const [startCount, setStartCount] = useState(false); // State to trigger count-up animation
-    const sectionRef = useRef(null); // Ref for the observer
+  const [offsetY, setOffsetY] = useState(0);
+  const [startCount, setStartCount] = useState(false); // State to trigger count-up animation
+  const sectionRef = useRef(null); // Ref for the observer
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                // Always trigger the counter reset each time the section is in view
-                if (entry.isIntersecting) {
-                    setStartCount(false);  // Reset the count
-                    setTimeout(() => {
-                        setStartCount(true);  // Start the count-up animation again
-                    }, 0);  // Delay the start to ensure reset happens
-                }
-            },
-            {
-                threshold: 0.5, // Trigger when 50% of the element is visible
-            }
-        );
-
-        const currentRef = sectionRef.current;
-        if (currentRef) {
-            observer.observe(currentRef); // Observe the section
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Always trigger the counter reset each time the section is in view
+        if (entry.isIntersecting) {
+          setStartCount(false); // Reset the count
+          setTimeout(() => {
+            setStartCount(true); // Start the count-up animation again
+          }, 0); // Delay the start to ensure reset happens
         }
+      },
+      {
+        threshold: 0.5, // Trigger when 50% of the element is visible
+      }
+    );
 
-        // Cleanup observer when component unmounts
-        return () => {
-            if (currentRef) {
-                observer.unobserve(currentRef);
-            }
-        };
-    }, []);
-    // Update scroll position
-    const handleScroll = () => {
-        setOffsetY(window.scrollY);
+    const currentRef = sectionRef.current;
+    if (currentRef) {
+      observer.observe(currentRef); // Observe the section
+    }
+
+    // Cleanup observer when component unmounts
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
     };
+  }, []);
+  // Update scroll position
+  const handleScroll = () => {
+    setOffsetY(window.scrollY);
+  };
 
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
-    const CompanyData = [
-        {
-            points: "Customers",
-            numbers: 50
-        },
-        {
-            points: "Awards",
-            numbers: 75
-        },
-        {
-            points: "Market Ready Modules",
-            numbers: 100
-        },
-    ];
+  const CompanyData = [
+    {
+      points: "Customers",
+      numbers: 50,
+    },
+    {
+      points: "Awards",
+      numbers: 75,
+    },
+    {
+      points: "Market Ready Modules",
+      numbers: 100,
+    },
+  ];
 
-    const CarousalImages = [
-        {
-            image: "https://images.unsplash.com/photo-1726739819428-a8f250e60691?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        },
-        {
-            image: "https://images.unsplash.com/photo-1642229408339-572fa3328d10?q=80&w=2873&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        },
-        {
-            image: '/Images/AboutImage3.jpg',
-        }
-        // {
-        //     image: "https://plus.unsplash.com/premium_photo-1714618946021-8fbd6394d1a8?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        // }
-    ]
-    return (
-        <>
-            <section id="AboutCompanyContainer" className="section_Padding">
-                <div className="backGroundAttachment">
+  const CarousalImages = [
+    {
+      image:
+        "https://images.unsplash.com/photo-1726739819428-a8f250e60691?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+      image:
+        "https://images.unsplash.com/photo-1642229408339-572fa3328d10?q=80&w=2873&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+      image: "/Images/AboutImage3.jpg",
+    },
+    // {
+    //     image: "https://plus.unsplash.com/premium_photo-1714618946021-8fbd6394d1a8?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    // }
+  ];
+  return (
+    <>
+      <section id="AboutCompanyContainer" className="section_Padding">
+        <div className="backGroundAttachment"></div>
 
-                </div>
-
-                <div className="CompanyContentRow">
-
-                    <Row>
-                        {/* <Col lg={8}>
+        <div className="CompanyContentRow">
+          <Row>
+            {/* <Col lg={8}>
                             <div className="ListItemUl" ref={sectionRef}>
                                 <ul>
                                     {CompanyData.map((item, index) => (
@@ -120,33 +111,55 @@ const AboutCompany = () => {
                             </div>
                         </Col> */}
 
-                        <Col lg={12} md={24} xs={24}>
-                            <div className="DesignedContainer">
-                                <h1 data-aos="fade-up"  ><span style={{ fontSize: "50px" }}>IndieSemiC</span> <br /> <span style={{ color: "rgb(74, 144, 226)" }} >Making India's Way To Semiconductor</span></h1>
-                                {/* <p data-aos="fade-up">Revolutionizing the future of technology with cutting-edge chip design and development.</p> */}
-                            </div>
-                            <div><br />
-                                <div>
-                                    <h2 >Empowering innovation and creativity through cutting-edge semiconductor design.</h2>
+            <Col lg={12} md={24} xs={24}>
+              <div className="DesignedContainer">
+                <h1 data-aos="fade-up">
+                  <span style={{ fontSize: "50px" }}>IndieSemiC</span> <br />{" "}
+                  <span style={{ color: "rgb(74, 144, 226)" }}>
+                    Making India's Way To Semiconductor
+                  </span>
+                </h1>
+                {/* <p data-aos="fade-up">Revolutionizing the future of technology with cutting-edge chip design and development.</p> */}
+              </div>
+              <div>
+                <br />
+                <div>
+                  <h2>
+                    Empowering innovation and creativity through cutting-edge
+                    semiconductor design.
+                  </h2>
 
-                                    <p>IndieSemiC specializes in semiconductor and embedded systems, with a focus on design and development of ASIC chipsets and RF modules. Our technology expertise spans BLE, WiFi, LoRa, GPS, Zigbee, and more.</p>
-                                    <p>With a diverse clientele across Europe, the USA, and India, we are dedicated to delivering tailored solutions that drive technological advancements. At IndieSemiC, we strive to push the boundaries of the semiconductor industry while supporting our customers' growth and success on a global scale.</p>
-                                    {/* <p>Our team is dedicated to crafting bespoke, thoughtful designs that not only reflect the individuality of your brand but also connect with your audience on a meaningful level. Every project we undertake is an opportunity to tell a unique story, blending strategy .</p> */}
-                                    <br /><br />
-                                    {/* <div className="SideContentContainer">
+                  <p>
+                    IndieSemiC specializes in semiconductor and embedded
+                    systems, with a focus on design and development of ASIC
+                    chipsets and RF modules. Our technology expertise spans BLE,
+                    WiFi, LoRa, GPS, Zigbee, and more.
+                  </p>
+                  <p>
+                    With a diverse clientele across Europe, the USA, and India,
+                    we are dedicated to delivering tailored solutions that drive
+                    technological advancements. At IndieSemiC, we strive to push
+                    the boundaries of the semiconductor industry while
+                    supporting our customers' growth and success on a global
+                    scale.
+                  </p>
+                  {/* <p>Our team is dedicated to crafting bespoke, thoughtful designs that not only reflect the individuality of your brand but also connect with your audience on a meaningful level. Every project we undertake is an opportunity to tell a unique story, blending strategy .</p> */}
+                  <br />
+                  <br />
+                  {/* <div className="SideContentContainer">
                                         <button data-aos="fade-left"
                                             data-aos-duration="1500">
                                             <ArrowRightAltIcon />
                                             Read More
                                         </button>
                                     </div> */}
-                                </div>
-                            </div>
-                        </Col>
-                        <Col lg={1} md={0} xs={0} sm={0} />
-                        <Col lg={11} md={24} xs={24}>
-                            <div className="MiddleImageContainer">
-                                {/* <Swiper
+                </div>
+              </div>
+            </Col>
+            <Col lg={1} md={0} xs={0} sm={0} />
+            <Col lg={11} md={24} xs={24}>
+              <div className="MiddleImageContainer">
+                {/* <Swiper
                                     loop={true}
                                     autoplay={{
                                         delay: 2500, // Delay between slides in milliseconds
@@ -164,15 +177,15 @@ const AboutCompany = () => {
                                         </SwiperSlide>
                                     ))}
                                 </Swiper> */}
-                                {/* <img style={{
+                {/* <img style={{
                                     transform: `translateY(${offsetY * 0.1}px)`,
                                 }} src="https://images.unsplash.com/photo-1726739819428-a8f250e60691?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" /> */}
-                            </div>
-                        </Col>
-                    </Row>
-                </div>
+              </div>
+            </Col>
+          </Row>
+        </div>
 
-                {/* <div className="AnimatedParallaxContainer">
+        {/* <div className="AnimatedParallaxContainer">
                     <div >
                         <img
                             className="parallax-image"
@@ -196,8 +209,8 @@ const AboutCompany = () => {
                         
                     </div>
                 </div> */}
-                {/* <div className="FixedImage" /> */}
-                {/* <div style={{ position: "sticky" }}>
+        {/* <div className="FixedImage" /> */}
+        {/* <div style={{ position: "sticky" }}>
                     <Row>
                         <Col lg={12} md={24}>
                             <div className="AboutCompanyContent">
@@ -238,8 +251,8 @@ const AboutCompany = () => {
                     </Row>
 
                 </div> */}
-            </section>
-        </>
-    )
-}
-export default AboutCompany
+      </section>
+    </>
+  );
+};
+export default AboutCompany;

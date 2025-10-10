@@ -1,0 +1,316 @@
+.AchivementValuesContainer {
+  max-width: 100%;
+  height: 30vh;
+  /* height: 100%; */
+  background-color: black;
+  /* background-image: url("https://images.unsplash.com/photo-1721314787850-5745fdfb06b4?q=80&w=3028&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); */
+  background-image: url("/Images/3047945.jpg");
+  background-size: cover;
+  position: relative;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  /* width: 100%; */
+  /* margin: 7rem 4rem; */
+  justify-content: space-between;
+  background-color: #eaf6ffce;
+}
+
+.CountersContainer {
+  text-align: center;
+  width: 100%;
+}
+
+.CountersContainer h1 {
+  font-size: 4rem;
+}
+
+.OverlayContainer {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: #000000ba;
+  top: 0px;
+  left: 0px;
+  border-radius: 20px;
+}
+
+.BoxEdit {
+  height: 100%;
+  width: 100%;
+  margin-top: 2rem;
+  overflow: hidden;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  position: relative;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.BoxEdit img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.blackoverlay {
+  position: absolute;
+  background-color: rgb(0 0 0 / 3%);
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  z-index: 4;
+  /* pointer-events: none; */
+  transition: 0.7s;
+}
+
+.Content {
+  position: absolute;
+  width: 90%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  z-index: 45;
+  display: flex;
+  align-items: end;
+  padding-left: 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.Content h1 {
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+.Content>div {
+  width: 100%;
+}
+
+.Content h2 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 36px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+}
+
+.Content p {
+  color: rgba(255, 255, 255, 0.849);
+  text-align: center;
+}
+
+.WidthContainer {
+  width: 50%;
+}
+
+#CardColumns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  width: 50%;
+  /* overflow: hidden; */
+}
+
+#CardColumns>div {
+  width: 50%;
+}
+
+.Content {
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.7s;
+  transform: scale(0);
+}
+
+.Title {
+  /* cursor: pointer; */
+  z-index: 1000;
+  text-align: center;
+  visibility: visible;
+  width: 100%;
+  position: absolute;
+  color: white;
+  opacity: 1;
+  transition: 0.7s;
+  padding-top: 3rem;
+}
+
+.Content h1 {
+  font-size: 75px;
+}
+
+.ant-image {
+  height: 100%;
+  width: 100%;
+}
+
+.ant-image-img {
+  height: 100% !important;
+  width: 100%;
+}
+
+.ant-modal-content {
+  padding-top: 40px !important;
+}
+
+.Title h1 {
+  font-size: 60px;
+}
+
+.ButtonContainer {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  bottom: 30%;
+  text-align: center;
+  background-color: transparent;
+}
+
+.ButtonContainer button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-size: 23px;
+}
+
+.ButtonContainer button svg {
+  border: 1px solid white;
+  border-radius: 50%;
+  margin-left: 5px;
+  font-size: 23px;
+}
+
+#AchivementContainer {
+  overflow: hidden;
+}
+
+#AdjustAchivementContainer {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 500px) {
+  .WidthContainer {
+    width: 100%;
+  }
+
+  #CardColumns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    /* overflow: hidden; */
+  }
+
+  #AdjustAchivementContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .Title {
+    padding-top: 0;
+  }
+
+  .Title h1 {
+    font-size: 45px;
+  }
+
+  .ButtonContainer button {
+    font-size: 1.3rem;
+  }
+
+  .BoxEdit {
+    align-items: center;
+    border: 1px solid rgb(205, 205, 205);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+
+  .BoxEdit img {
+    pointer-events: none;
+  }
+
+  .ButtonContainer {
+    overflow: hidden;
+    display: none;
+  }
+
+  #CardColumns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-direction: column;
+  }
+
+  #CardColumns>div {
+    width: 100%;
+  }
+
+  .Content h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 400;
+    color: white;
+  }
+
+  .Content>div {
+    /* height: 100%; */
+    width: 90%;
+    /* display: flex;
+        align-items: center; */
+  }
+
+  .BoxEdit {
+    flex-direction: column;
+    margin-top: 2rem;
+  }
+
+  .Content {
+    width: 100%;
+  }
+
+  .blackoverlay {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 100%;
+    left: 0px;
+    /* top: 30%; */
+    width: 100%;
+    z-index: 4;
+    display: none;
+  }
+
+  .BoxEdit img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .AchivementValuesContainer {
+    margin: 0;
+    height: 100%;
+    padding: 4rem 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .Content h1 {
+    font-size: 50px;
+  }
+}

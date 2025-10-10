@@ -1,53 +1,96 @@
-import React from "react";
-import { useLocation, Routes, Route, Navigate } from 'react-router-dom';
+import { useMemo, lazy, Suspense } from "react";
+import { useLocation, Routes, Route } from "react-router-dom";
 
-// import MegaNavigation from "../Components/MegaNavigation.jsx/MegaNavigation";
-import HomeRoutes from "../HomeRoutes/HomeRoutes";
-// import IndieSemicProduct from "../StoreComponents/ProductPage/indieSemicProduct";
-import Product from "../StoreComponents/ProductPage/Product";
-import Footer from "../Components/Footer/Footer"
-import Modules from "../Components/Modules/Modules";
-import SOCModule from "../Components/SOCModule/SOCModule";
-// import SeparateProductPage from "../StoreComponents/ProductPage/SeparateProductpage";
-import IndividualProduct from "../StoreComponents/ProductPage/individualProduct";
-import NavigationWrap from "../Components/MegaNavigation.jsx/MegaNavigatioIndex";
-import Services from "../Components/Services/Services";
-import TermsandConditions from "../Components/TermsAndConditionPages/TermsandConditions";
-import PrivacyPolicy from "../Components/TermsAndConditionPages/PrivacyPolicy";
-import ShippingDeliveryPolicy from "../Components/TermsAndConditionPages/ShippingandDeliveryPolicy";
-import CancellationRefundPolicy from "../Components/TermsAndConditionPages/CancellationandRefundPolicy";
-import ProductPurchaseVerificationModal from "../StoreComponents/ProductPage/ProductPurchesVerficationModal/ProductPurchaseVerification";
-// import Dashboard from "../Components/Dashboard/Dashboard";
-import DashboardView from "../Components/Dashboard/DashboardView";
-import SIP from "../Components/SIP/SIP";
+// Lazy load all components
+const HomeRoutes = lazy(() => import("../HomeRoutes/HomeRoutes"));
+const Footer = lazy(() => import("../Components/Footer/Footer"));
+const NavigationWrap = lazy(() =>
+  import("../Components/MegaNavigation.jsx/MegaNavigatioIndex")
+);
+const Product = lazy(() => import("../StoreComponents/ProductPage/Product"));
+const IndividualProduct = lazy(() =>
+  import("../StoreComponents/ProductPage/individualProduct")
+);
+const Modules = lazy(() => import("../Components/Modules/Modules"));
+const SOCModule = lazy(() => import("../Components/SOCModule/SOCModule"));
+const Services = lazy(() => import("../Components/Services/Services"));
+const TermsandConditions = lazy(() =>
+  import("../Components/TermsAndConditionPages/TermsandConditions")
+);
+const PrivacyPolicy = lazy(() =>
+  import("../Components/TermsAndConditionPages/PrivacyPolicy")
+);
+const ShippingDeliveryPolicy = lazy(() =>
+  import("../Components/TermsAndConditionPages/ShippingandDeliveryPolicy")
+);
+const CancellationRefundPolicy = lazy(() =>
+  import("../Components/TermsAndConditionPages/CancellationandRefundPolicy")
+);
+const ProductPurchaseVerificationModal = lazy(() =>
+  import(
+    "../StoreComponents/ProductPage/ProductPurchesVerficationModal/ProductPurchaseVerification"
+  )
+);
+const DashboardView = lazy(() =>
+  import("../Components/Dashboard/DashboardView")
+);
+const SIP = lazy(() => import("../Components/SIP/SIP"));
+
+// Simple loading component
+const Loading = () => (
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: "100vh",
+      fontSize: "1.5rem",
+      color: "#666",
+    }}
+  >
+    Loading...
+  </div>
+);
 const DynamicRoutes = () => {
-    const location = useLocation();
-    const isLoggedIn = localStorage.getItem("email") && localStorage.getItem("password");
+  const location = useLocation();
 
-    // ❗ Hide Nav/Footer on these pages
-    const isAuthPage = location.pathname === '/sign-in' || location.pathname === '/dashboard';
-
+  // ❗ Hide Nav/Footer on these pages
+  const isAuthPage = useMemo(() => {
     return (
-        <>
-            {!isAuthPage && <NavigationWrap />}
-            <Routes>
-                <Route path="/" element={<HomeRoutes />} />
-                <Route path="/iot-modules" element={<Product />} />
-                <Route path="/product/:id" element={<IndividualProduct />} />
-                <Route path="/Modules" element={<Modules />} />
-                <Route path="/socmodule" element={<SOCModule />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/terms-and-conditions" element={<TermsandConditions />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="/shipping-delivery-policy" element={<ShippingDeliveryPolicy />} />
-                <Route path="/cancellation-refund-policy" element={<CancellationRefundPolicy />} />
-                <Route path="/product-purchase-verification" element={<ProductPurchaseVerificationModal />} />
-                <Route path="/dashboard" element={<DashboardView />} />
-                <Route path="/sip" element={<SIP />} />
-            </Routes>
-            {!isAuthPage && <Footer />}
-        </>
-    )
-}
+      location.pathname === "/sign-in" || location.pathname === "/dashboard"
+    );
+  }, [location.pathname]);
 
-export default DynamicRoutes
+  return (
+    <Suspense fallback={<Loading />}>
+      {!isAuthPage && <NavigationWrap />}
+      <Routes>
+        <Route path="/" element={<HomeRoutes />} />
+        <Route path="/iot-modules" element={<Product />} />
+        <Route path="/product/:id" element={<IndividualProduct />} />
+        <Route path="/Modules" element={<Modules />} />
+        <Route path="/socmodule" element={<SOCModule />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/terms-and-conditions" element={<TermsandConditions />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route
+          path="/shipping-delivery-policy"
+          element={<ShippingDeliveryPolicy />}
+        />
+        <Route
+          path="/cancellation-refund-policy"
+          element={<CancellationRefundPolicy />}
+        />
+        <Route
+          path="/product-purchase-verification"
+          element={<ProductPurchaseVerificationModal />}
+        />
+        <Route path="/dashboard" element={<DashboardView />} />
+        <Route path="/sip" element={<SIP />} />
+      </Routes>
+      {!isAuthPage && <Footer />}
+    </Suspense>
+  );
+};
+
+export default DynamicRoutes;
